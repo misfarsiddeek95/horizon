@@ -1,30 +1,19 @@
+/* 1. Initialize Tailwind v4 */
 @import "tailwindcss";
 
+/* 2. Import your split token files */
 @import "../styles/tokens/colors.css";
 @import "../styles/tokens/typography.css";
 @import "../styles/tokens/radii.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 3. Apply base HTML/Body styles using the new v4 variables */
+@layer base {
+  body {
+    background-color: var(--color-surface-muted);
+    color: var(--color-content-primary);
+    font-family: var(--font-sans);
+    /* antialiased is handled natively by Tailwind, but you can explicitly ensure smooth fonts */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
