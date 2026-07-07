@@ -1,0 +1,16 @@
+@theme {
+  /* --- SURFACE COLORS --- */
+  --color-surface-default: oklch(0.99 0.01 250);
+  --color-surface-muted: oklch(0.96 0.01 250);
+
+  /* --- CONTENT COLORS --- */
+  --color-content-primary: oklch(0.15 0.02 250);
+  --color-content-inverse: oklch(0.99 0.01 250);
+
+  /* --- BRAND COLORS --- */
+  --color-brand-main: oklch(0.55 0.15 250);
+  --color-brand-hover: oklch(0.45 0.15 250);
+
+  /* --- ACCENT COLORS --- */
+  --color-accent-main: oklch(0.7 0.18 45);
+}

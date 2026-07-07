@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/radii.css";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
