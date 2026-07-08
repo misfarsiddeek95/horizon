@@ -1,0 +1,220 @@
+'use client';
+
+import { useMemo, useCallback } from 'react';
+import { usePuzzle } from '@/context/PuzzleContext';
+
+interface CellRenderData {
+  x: number;
+  y: number;
+  isOccupied: boolean;
+  isStartOfWord: boolean;
+  questionIds: string[];
+}
+
+export default function CrosswordGrid() {
+  const { state, dispatch } = usePuzzle();
+  const { gridCells, gridWidth, gridHeight, activeIndex, questions, wordPlacements } = state;
+
+  const activeQ = activeIndex !== null ? questions[activeIndex] : null;
+  const activePlacement = useMemo(
+    () =>
+      activeQ && activeQ.status === 'active'
+        ? wordPlacements.find((p) => p.questionId === activeQ.question.id) ?? null
+        : null,
+    [activeQ, wordPlacements],
+  );
+
+  const cellMatrix = useMemo(() => {
+    const matrix: CellRenderData[][] = [];
+    for (let y = 0; y < gridHeight; y++) {
+      const row: CellRenderData[] = [];
+      for (let x = 0; x < gridWidth; x++) {
+        row.push({ x, y, isOccupied: false, isStartOfWord: false, questionIds: [] });
+      }
+      matrix.push(row);
+    }
+    for (const pw of wordPlacements) {
+      for (const c of pw.cells) {
+        const cell = matrix[c.y][c.x];
+        cell.isOccupied = true;
+        cell.questionIds.push(pw.questionId);
+        if (c.index === 0 && !cell.isStartOfWord) {
+          cell.isStartOfWord = true;
+        }
+      }
+    }
+    return matrix;
+  }, [wordPlacements, gridWidth, gridHeight]);
+
+  const getCellStatus = useCallback(
+    (questionIds: string[]) => {
+      for (const qid of questionIds) {
+        const qState = questions.find((q) => q.question.id === qid);
+        if (!qState) continue;
+        if (qState.status === 'active') return 'active';
+        if (qState.status === 'completed') return 'completed';
+        if (qState.status === 'failed') return 'failed';
+        if (qState.status === 'timeout') return 'timeout';
+      }
+      return 'pending';
+    },
+    [questions],
+  );
+
+  const getClueNumber = useCallback(
+    (x: number, y: number) => {
+      const pw = wordPlacements.find((p) => p.startX === x && p.startY === y);
+      return pw?.number ?? null;
+    },
+    [wordPlacements],
+  );
+
+  const focusCell = useCallback((x: number, y: number) => {
+    const el = document.querySelector<HTMLInputElement>(
+      `[data-cell-pos="${x}-${y}"]`,
+    );
+    el?.focus();
+  }, []);
+
+  const handleInput = useCallback(
+    (x: number, y: number, value: string) => {
+      const letter = value.slice(0, 1).toUpperCase();
+      dispatch({
+        type: 'UPDATE_CELL',
+        payload: { x, y, letter },
+      });
+
+      if (letter && activePlacement) {
+        const currentCell = activePlacement.cells.find((c) => c.x === x && c.y === y);
+        if (currentCell) {
+          const nextIdx = currentCell.index + 1;
+          if (nextIdx < activePlacement.word.length) {
+            const nextCell = activePlacement.cells[nextIdx];
+            focusCell(nextCell.x, nextCell.y);
+          }
+        }
+      }
+    },
+    [dispatch, activePlacement, focusCell],
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent, x: number, y: number) => {
+      if (!activePlacement) return;
+
+      const currentCell = activePlacement.cells.find((c) => c.x === x && c.y === y);
+      if (!currentCell) return;
+
+      let nextIdx: number | null = null;
+      if (activePlacement.direction === 'across') {
+        if (e.key === 'ArrowRight') nextIdx = currentCell.index + 1;
+        if (e.key === 'ArrowLeft') nextIdx = currentCell.index - 1;
+      } else {
+        if (e.key === 'ArrowDown') nextIdx = currentCell.index + 1;
+        if (e.key === 'ArrowUp') nextIdx = currentCell.index - 1;
+      }
+
+      if (
+        nextIdx !== null &&
+        nextIdx >= 0 &&
+        nextIdx < activePlacement.word.length
+      ) {
+        e.preventDefault();
+        const nextCell = activePlacement.cells[nextIdx];
+        focusCell(nextCell.x, nextCell.y);
+      }
+    },
+    [activePlacement, focusCell],
+  );
+
+  if (gridHeight === 0 || gridWidth === 0) {
+    return (
+      <div className="flex aspect-square w-full max-w-md items-center justify-center rounded-xl bg-white shadow-sm border border-gray-200">
+        <p className="text-sm text-gray-400">Loading puzzle...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] overflow-auto">
+      <div className="flex items-center justify-center bg-gray-50/50 rounded-lg p-2 md:p-6">
+        <div
+          className="grid w-fit mx-auto place-content-center"
+          style={{
+            gridTemplateColumns: `repeat(${gridWidth}, minmax(40px, 60px))`,
+            gridTemplateRows: `repeat(${gridHeight}, minmax(40px, 60px))`,
+          }}
+        >
+          {cellMatrix.map((row, y) =>
+            row.map((cellData, x) => {
+              const isInactive = !cellData.isOccupied;
+
+              if (isInactive) {
+                return (
+                  <div
+                    key={`${x}-${y}`}
+                    className="relative w-[40px] h-[40px] sm:w-[56px] sm:h-[56px] flex-shrink-0 bg-transparent pointer-events-none"
+                    style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
+                  />
+                );
+              }
+
+              const cellLetter = gridCells[y]?.[x]?.letter ?? null;
+              const status = getCellStatus(cellData.questionIds);
+              const number = getClueNumber(x, y);
+              const isCellActive = activePlacement && cellData.questionIds.includes(activePlacement.questionId);
+              const isInputEnabled = isCellActive && activeQ?.status === 'active';
+              const showLetter = cellLetter && (status !== 'pending');
+
+              let overlayBg = 'bg-white';
+              if (status === 'completed') overlayBg = 'bg-green-50';
+              else if (status === 'failed') overlayBg = 'bg-red-50';
+              else if (status === 'timeout') overlayBg = 'bg-gray-100';
+              else if (isCellActive) overlayBg = 'bg-blue-50';
+
+              const overlayClasses = `absolute top-0 left-0 w-[calc(100%+1px)] h-[calc(100%+1px)] border border-gray-400 ${overlayBg}${isCellActive ? ' ring-2 ring-inset ring-blue-500 z-10' : ' z-0'}`;
+
+              return (
+                <div
+                  key={`${x}-${y}`}
+                  className="relative w-[40px] h-[40px] sm:w-[56px] sm:h-[56px] flex-shrink-0"
+                  style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
+                >
+                  <div className={overlayClasses} />
+
+                  {number && (
+                    <span className="absolute top-1 left-1 text-[10px] font-semibold text-gray-500 pointer-events-none z-20">
+                      {number}
+                    </span>
+                  )}
+
+                  {isInputEnabled ? (
+                    <input
+                      data-cell-pos={`${x}-${y}`}
+                      type="text"
+                      maxLength={1}
+                      autoCapitalize="characters"
+                      autoComplete="off"
+                      spellCheck={false}
+                      value={cellLetter ?? ''}
+                      onChange={(e) => handleInput(x, y, e.target.value)}
+                      onKeyDown={(e) => handleKeyDown(e, x, y)}
+                      className="absolute inset-0 w-full h-full text-center text-lg sm:text-2xl font-bold uppercase outline-none bg-transparent z-30"
+                      aria-label={`Cell ${x},${y}${number ? ' Clue ' + number : ''}`}
+                    />
+                  ) : (
+                    showLetter && (
+                      <span className={`absolute inset-0 flex items-center justify-center text-lg sm:text-2xl font-bold z-30${status === 'completed' ? ' text-green-700' : status === 'failed' ? ' text-red-600' : status === 'timeout' ? ' text-gray-400' : ''}`}>
+                        {cellLetter}
+                      </span>
+                    )
+                  )}
+                </div>
+              );
+            }),
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
