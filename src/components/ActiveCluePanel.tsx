@@ -1,16 +1,19 @@
-'use client';
+"use client";
 
-import { useMemo } from 'react';
-import { usePuzzle } from '@/context/PuzzleContext';
+import { useMemo } from "react";
+import { usePuzzle } from "@/context/PuzzleContext";
 
 export default function ActiveCluePanel() {
   const { state, dispatch } = usePuzzle();
-  const { activeIndex, questions, timerRemaining, wordPlacements, gridCells } = state;
+  const { activeIndex, questions, timerRemaining, wordPlacements, gridCells } =
+    state;
 
   const activeQ = activeIndex !== null ? questions[activeIndex] : null;
   const placement = useMemo(() => {
     if (!activeQ) return null;
-    return wordPlacements.find((p) => p.questionId === activeQ.question.id) ?? null;
+    return (
+      wordPlacements.find((p) => p.questionId === activeQ.question.id) ?? null
+    );
   }, [activeQ, wordPlacements]);
 
   const allFilled = useMemo(() => {
@@ -26,16 +29,16 @@ export default function ActiveCluePanel() {
   const urgent = timerRemaining <= 10 && timerRemaining > 0;
 
   function handleSubmit() {
-    dispatch({ type: 'SUBMIT_ANSWER' });
+    dispatch({ type: "SUBMIT_ANSWER" });
   }
 
   function openHelp() {
-    window.open('/chat-help', '_blank', 'noopener,noreferrer');
+    window.open("/chat-help", "_blank", "noopener,noreferrer");
   }
 
   if (!activeQ) {
     return (
-      <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 text-center shadow-sm">
+      <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 text-center shadow-sm mb-4">
         <p className="text-xl sm:text-2xl font-medium text-gray-500">
           Select a question to begin
         </p>
@@ -44,7 +47,7 @@ export default function ActiveCluePanel() {
   }
 
   return (
-    <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm">
+    <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4">
       <div className="mb-3 flex items-center justify-between">
         <span className="rounded-full bg-zinc-200 px-2.5 py-0.5 text-[11px] font-semibold text-zinc-600">
           #{activeQ.number} &middot; {activeQ.question.category}
@@ -53,13 +56,19 @@ export default function ActiveCluePanel() {
         <div
           className={`flex items-center gap-1.5 font-mono text-xl sm:text-2xl lg:text-3xl font-extrabold tabular-nums ${
             urgent
-              ? 'text-red-500 animate-pulse'
+              ? "text-red-500 animate-pulse"
               : showHelp
-                ? 'text-amber-500'
-                : 'text-content-primary'
+              ? "text-amber-500"
+              : "text-content-primary"
           }`}
         >
-          <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg
+            className="h-5 w-5 sm:h-6 sm:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -73,14 +82,14 @@ export default function ActiveCluePanel() {
       <div className="mb-2 h-1.5 overflow-hidden rounded-full bg-zinc-200">
         <div
           className={`h-full rounded-full transition-all duration-1000 ${
-            urgent ? 'bg-red-500' : showHelp ? 'bg-amber-400' : 'bg-brand-main'
+            urgent ? "bg-red-500" : showHelp ? "bg-amber-400" : "bg-brand-main"
           }`}
           style={{ width: `${Math.max(0, timerRatio * 100)}%` }}
         />
       </div>
 
       <p className="mb-1 text-[11px] font-medium uppercase tracking-wider text-content-primary/40">
-        {placement?.direction === 'across' ? 'Across' : 'Down'}
+        {placement?.direction === "across" ? "Across" : "Down"}
       </p>
 
       <p className="mb-4 text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
