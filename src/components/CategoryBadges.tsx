@@ -1,5 +1,6 @@
 'use client';
 
+import { TrophyIcon } from '@heroicons/react/24/solid';
 import type { Category } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
 
@@ -10,18 +11,49 @@ const CATEGORY_ORDER: Category[] = [
   'Governance',
 ];
 
-const CATEGORY_COLORS: Record<Category, string> = {
-  Innovation: 'bg-blue-100 text-blue-700 border-blue-300',
-  Sustainability: 'bg-emerald-100 text-emerald-700 border-emerald-300',
-  Financials: 'bg-amber-100 text-amber-700 border-amber-300',
-  Governance: 'bg-violet-100 text-violet-700 border-violet-300',
-};
-
-const CATEGORY_MASTERY_COLORS: Record<Category, string> = {
-  Innovation: 'bg-blue-500 text-white border-blue-600 shadow-lg shadow-blue-500/30',
-  Sustainability: 'bg-emerald-500 text-white border-emerald-600 shadow-lg shadow-emerald-500/30',
-  Financials: 'bg-amber-500 text-white border-amber-600 shadow-lg shadow-amber-500/30',
-  Governance: 'bg-violet-500 text-white border-violet-600 shadow-lg shadow-violet-500/30',
+const CATEGORY_STYLES: Record<
+  Category,
+  {
+    border400: string;
+    halfBg: string;
+    halfIcon: string;
+    fullBg: string;
+    fullBorder: string;
+    fullShadow: string;
+  }
+> = {
+  Innovation: {
+    border400: 'border-blue-400',
+    halfBg: 'bg-blue-100',
+    halfIcon: 'text-blue-500',
+    fullBg: 'bg-blue-500',
+    fullBorder: 'border-blue-500',
+    fullShadow: 'shadow-blue-200',
+  },
+  Sustainability: {
+    border400: 'border-emerald-400',
+    halfBg: 'bg-emerald-100',
+    halfIcon: 'text-emerald-500',
+    fullBg: 'bg-emerald-500',
+    fullBorder: 'border-emerald-500',
+    fullShadow: 'shadow-emerald-200',
+  },
+  Financials: {
+    border400: 'border-amber-400',
+    halfBg: 'bg-amber-100',
+    halfIcon: 'text-amber-500',
+    fullBg: 'bg-amber-500',
+    fullBorder: 'border-amber-500',
+    fullShadow: 'shadow-amber-200',
+  },
+  Governance: {
+    border400: 'border-violet-400',
+    halfBg: 'bg-violet-100',
+    halfIcon: 'text-violet-500',
+    fullBg: 'bg-violet-500',
+    fullBorder: 'border-violet-500',
+    fullShadow: 'shadow-violet-200',
+  },
 };
 
 export default function CategoryBadges() {
@@ -30,22 +62,42 @@ export default function CategoryBadges() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3 px-4 py-3">
       {CATEGORY_ORDER.map((cat) => {
-        const count = state.categoryCounts[cat] ?? 0;
-        const mastered = count >= 2;
-        const base = mastered ? CATEGORY_MASTERY_COLORS[cat] : CATEGORY_COLORS[cat];
+        const completedCount = state.categoryCounts[cat] ?? 0;
+        const s = CATEGORY_STYLES[cat];
+
+        let wrapperClasses: string;
+        let iconClasses: string;
+        let showHalfFill: boolean;
+
+        if (completedCount === 0) {
+          wrapperClasses = 'bg-transparent border-2 border-gray-200 text-gray-400';
+          iconClasses = 'text-gray-300';
+          showHalfFill = false;
+        } else if (completedCount === 1) {
+          wrapperClasses = `relative overflow-hidden bg-transparent border-2 ${s.border400} ${s.halfIcon}`;
+          iconClasses = `relative z-10 ${s.halfIcon}`;
+          showHalfFill = true;
+        } else {
+          wrapperClasses = `bg-transparent border-2 ${s.fullBorder} ${s.fullShadow} ${s.fullBg} text-white shadow-md`;
+          iconClasses = 'text-white';
+          showHalfFill = false;
+        }
 
         return (
           <div
             key={cat}
-            className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold transition-all duration-300 ${base} ${
-              mastered ? 'scale-105' : 'opacity-80'
-            }`}
+            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-xs font-semibold shadow-sm"
           >
-            <span>{cat}</span>
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black/10 text-[10px] font-bold">
-              {count}
+            <div className={`h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 ${wrapperClasses}`}>
+              {showHalfFill && (
+                <div className={`absolute top-0 left-0 h-full w-1/2 ${s.halfBg} z-0`} />
+              )}
+              <TrophyIcon className={`h-4 w-4 ${iconClasses}`} />
+            </div>
+            <span className="text-gray-700">{cat}</span>
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500">
+              {completedCount}
             </span>
-            {mastered && <span className="text-[10px]">★</span>}
           </div>
         );
       })}

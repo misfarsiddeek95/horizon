@@ -212,59 +212,21 @@ export function generateGrid(words: WordInput[]): GridResult {
       startY = best.startY;
       direction = best.direction;
     } else {
-      // Fallback: scan for an empty zone with a 1-cell gap from all placed words
-      const occupied = buildLetterGrid(placed);
-      let found = false;
-      startX = 0;
-      startY = 0;
-      direction = 'across';
-      for (let attemptY = 0; attemptY < VIRTUAL_SIZE && !found; attemptY++) {
-        for (let attemptX = 0; attemptX < VIRTUAL_SIZE && !found; attemptX++) {
-          const candidateCells: { x: number; y: number }[] = [];
-          let valid = true;
-          for (let i = 0; i < upper.length; i++) {
-            const cx = attemptX + i;
-            const cy = attemptY;
-            if (cx >= VIRTUAL_SIZE || cy >= VIRTUAL_SIZE) { valid = false; break; }
-            candidateCells.push({ x: cx, y: cy });
-          }
-          if (!valid) continue;
-
-          // Check no overlap with any occupied cell
-          for (const c of candidateCells) {
-            if (occupied.has(`${c.x},${c.y}`)) { valid = false; break; }
-          }
-          if (!valid) continue;
-
-          // Check 1-cell gap from all occupied cells
-          for (const c of candidateCells) {
-            for (let dy = -1; dy <= 1; dy++) {
-              for (let dx = -1; dx <= 1; dx++) {
-                if (dx === 0 && dy === 0) continue;
-                const nx = c.x + dx;
-                const ny = c.y + dy;
-                if (nx >= 0 && nx < VIRTUAL_SIZE && ny >= 0 && ny < VIRTUAL_SIZE) {
-                  if (occupied.has(`${nx},${ny}`)) { valid = false; break; }
-                }
-              }
-              if (!valid) break;
-            }
-            if (!valid) break;
-          }
-          if (!valid) continue;
-
-          startX = attemptX;
-          startY = attemptY;
-          direction = 'across' as const;
-          found = true;
+      // Compact fallback: place below the current puzzle footprint
+      let fpMinX = Infinity, fpMaxY = -Infinity;
+      for (const pw of placed) {
+        const pwUpper = pw.word.toUpperCase();
+        for (let i = 0; i < pwUpper.length; i++) {
+          const px = pw.direction === 'across' ? pw.startX + i : pw.startX;
+          const py = pw.direction === 'down' ? pw.startY + i : pw.startY;
+          if (px < fpMinX) fpMinX = px;
+          if (py > fpMaxY) fpMaxY = py;
         }
       }
 
-      if (!found) {
-        startX = 2;
-        startY = 2 + wi * 2;
-        direction = 'across' as const;
-      }
+      startX = fpMinX;
+      startY = fpMaxY + 2;
+      direction = 'across';
     }
 
     placed.push({

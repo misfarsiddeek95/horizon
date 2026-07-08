@@ -13,6 +13,7 @@ import type {
   GameAction,
   SessionData,
   QuestionState,
+  Question,
   Category,
 } from '@/types';
 import { questionPool } from '@/data/questions';
@@ -29,15 +30,31 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function initializeGame() {
-  const selected = shuffle(questionPool).slice(0, 8);
-  const questions: QuestionState[] = selected.map((q, i) => ({
+  const groups: Record<Category, Question[]> = {
+    Innovation: [],
+    Sustainability: [],
+    Financials: [],
+    Governance: [],
+  };
+  for (const q of questionPool) {
+    groups[q.category].push(q);
+  }
+
+  const selected: Question[] = [];
+  for (const cat of ['Innovation', 'Sustainability', 'Financials', 'Governance'] as const) {
+    const shuffled = shuffle(groups[cat]);
+    selected.push(...shuffled.slice(0, 2));
+  }
+
+  const finalSelected = shuffle(selected);
+  const questions: QuestionState[] = finalSelected.map((q, i) => ({
     question: q,
     status: 'pending' as const,
     number: i + 1,
   }));
 
   const gridResult = generateGrid(
-    selected.map((q, i) => ({ word: q.word, id: q.id, number: i + 1 })),
+    finalSelected.map((q, i) => ({ word: q.word, id: q.id, number: i + 1 })),
   );
 
   return {

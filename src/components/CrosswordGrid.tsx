@@ -141,8 +141,8 @@ export default function CrosswordGrid() {
         <div
           className="grid w-fit mx-auto place-content-center"
           style={{
-            gridTemplateColumns: `repeat(${gridWidth}, minmax(40px, 60px))`,
-            gridTemplateRows: `repeat(${gridHeight}, minmax(40px, 60px))`,
+            gridTemplateColumns: `repeat(${gridWidth}, 48px)`,
+            gridTemplateRows: `repeat(${gridHeight}, 48px)`,
           }}
         >
           {cellMatrix.map((row, y) =>
@@ -153,7 +153,7 @@ export default function CrosswordGrid() {
                 return (
                   <div
                     key={`${x}-${y}`}
-                    className="relative w-[40px] h-[40px] sm:w-[56px] sm:h-[56px] flex-shrink-0 bg-transparent pointer-events-none"
+                    className="relative w-[48px] h-[48px] flex-none shrink-0 bg-transparent pointer-events-none"
                     style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                   />
                 );
@@ -177,7 +177,7 @@ export default function CrosswordGrid() {
               return (
                 <div
                   key={`${x}-${y}`}
-                  className="relative w-[40px] h-[40px] sm:w-[56px] sm:h-[56px] flex-shrink-0"
+                  className="relative w-[48px] h-[48px] flex-none shrink-0"
                   style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                 >
                   <div className={overlayClasses} />
