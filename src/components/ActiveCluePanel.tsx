@@ -51,7 +51,7 @@ export default function ActiveCluePanel() {
         </span>
 
         <div
-          className={`flex items-center gap-1.5 font-mono text-2xl sm:text-3xl font-extrabold tabular-nums ${
+          className={`flex items-center gap-1.5 font-mono text-xl sm:text-2xl lg:text-3xl font-extrabold tabular-nums ${
             urgent
               ? 'text-red-500 animate-pulse'
               : showHelp
@@ -83,7 +83,7 @@ export default function ActiveCluePanel() {
         {placement?.direction === 'across' ? 'Across' : 'Down'}
       </p>
 
-      <p className="mb-4 text-2xl sm:text-3xl font-bold text-gray-800 leading-snug">
+      <p className="mb-4 text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
         {activeQ.question.clue}
       </p>
 

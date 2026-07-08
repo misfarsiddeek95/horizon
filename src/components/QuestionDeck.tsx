@@ -43,7 +43,7 @@ export default function QuestionDeck() {
   );
 
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
       {questions.map((qs, i) => {
         const cfg = STATUS_CONFIG[qs.status];
         const canSelect = !hasActive && qs.status === 'pending';

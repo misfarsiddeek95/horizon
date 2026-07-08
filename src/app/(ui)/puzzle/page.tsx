@@ -17,8 +17,8 @@ function PuzzleGame() {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center justify-between px-4 py-3 sm:px-6">
+    <main className="flex flex-col p-4 sm:p-6 lg:p-12 overflow-x-hidden">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-gray-700">
             {state.session?.name ?? 'Player'}
@@ -35,19 +35,19 @@ function PuzzleGame() {
 
       <CategoryBadges />
 
-      <div className="flex flex-1 flex-col gap-4 px-4 pb-6 lg:flex-row lg:gap-6 lg:px-6">
-        <div className="flex items-start justify-center lg:w-[60%]">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+        <div className="w-full lg:w-3/5 flex-shrink max-w-full min-w-0">
           <CrosswordGrid />
         </div>
 
-        <div className="flex flex-col gap-4 lg:w-[40%]">
+        <div className="w-full lg:w-2/5 flex flex-col min-w-0">
           <ActiveCluePanel />
           <QuestionDeck />
         </div>
       </div>
 
       {state.phase === 'finished' && <ResultsOverlay />}
-    </div>
+    </main>
   );
 }
 

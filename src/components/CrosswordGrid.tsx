@@ -136,10 +136,11 @@ export default function CrosswordGrid() {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] overflow-auto">
-      <div className="flex items-center justify-center bg-gray-50/50 rounded-lg p-2 md:p-6">
-        <div
-          className="grid w-fit mx-auto place-content-center"
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full overflow-hidden">
+      <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 snap-x touch-pan-x">
+        <div className="flex items-center justify-center bg-gray-50/50 rounded-lg p-2 md:p-6">
+          <div
+            className="grid w-fit mx-auto place-content-center"
           style={{
             gridTemplateColumns: `repeat(${gridWidth}, 48px)`,
             gridTemplateRows: `repeat(${gridHeight}, 48px)`,
@@ -214,6 +215,7 @@ export default function CrosswordGrid() {
             }),
           )}
         </div>
+      </div>
       </div>
     </div>
   );

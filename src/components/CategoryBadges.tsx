@@ -55,7 +55,7 @@ export default function CategoryBadges() {
   const { state } = usePuzzle();
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3 px-4 py-3">
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8">
       {CATEGORY_ORDER.map((cat) => {
         const completedCount = state.categoryCounts[cat] ?? 0;
         const s = BADGE_STYLES[cat];
