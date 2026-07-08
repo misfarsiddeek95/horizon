@@ -27,7 +27,7 @@ function PuzzleGame() {
         </div>
         <Link
           href="/leaderboard"
-          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold shadow-md transition-all text-sm"
+          className="px-4 py-2 bg-brand-main hover:bg-brand-hover text-white rounded-lg font-semibold shadow-md transition-all text-sm"
         >
           View Leaderboard
         </Link>
