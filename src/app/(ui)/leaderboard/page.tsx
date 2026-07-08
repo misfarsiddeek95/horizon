@@ -23,10 +23,10 @@ export default async function LeaderboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 flex flex-col items-center px-4 py-10 sm:py-16">
+    <div className="min-h-screen bg-brand-main flex flex-col items-center px-4 py-10 sm:py-16">
       <Link
         href="/puzzle"
-        className="self-start mb-6 text-sm text-white/60 hover:text-white transition-colors"
+        className="self-start mb-6 text-sm text-white/80 hover:text-white transition-colors"
       >
         &larr; Back to Puzzle
       </Link>
@@ -41,7 +41,7 @@ export default async function LeaderboardPage() {
 
         <div className="flex flex-col gap-3">
           {players.length === 0 && (
-            <p className="text-center text-white/40 py-8">
+            <p className="text-center text-white/60 py-8">
               No scores yet. Play a game to appear here!
             </p>
           )}
@@ -53,36 +53,36 @@ export default async function LeaderboardPage() {
               'flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors';
 
             let rankIcon: React.ReactNode;
-            let nameClasses = 'text-gray-200';
+            let nameClasses = 'text-white/85';
             let scoreClasses = 'text-white';
 
             if (rank === 1) {
               rowClasses +=
                 ' bg-gradient-to-r from-yellow-500/20 to-transparent border-yellow-500/50';
               nameClasses = 'text-xl font-extrabold text-white';
-              scoreClasses = 'text-xl font-extrabold text-yellow-400';
+              scoreClasses = 'text-xl font-extrabold text-yellow-300';
               rankIcon = (
-                <TrophyIcon className="w-8 h-8 text-yellow-400 flex-shrink-0" />
+                <TrophyIcon className="w-8 h-8 text-yellow-300 flex-shrink-0" />
               );
             } else if (rank === 2) {
               rowClasses +=
                 ' bg-gradient-to-r from-gray-400/20 to-transparent border-gray-400/50';
               nameClasses = 'text-lg font-bold text-white';
-              scoreClasses = 'text-lg font-bold text-gray-300';
+              scoreClasses = 'text-lg font-bold text-white/85';
               rankIcon = (
-                <TrophyIcon className="w-7 h-7 text-gray-300 flex-shrink-0" />
+                <TrophyIcon className="w-7 h-7 text-white/80 flex-shrink-0" />
               );
             } else if (rank === 3) {
               rowClasses +=
                 ' bg-gradient-to-r from-amber-700/20 to-transparent border-amber-700/50';
               nameClasses = 'text-lg font-bold text-white';
-              scoreClasses = 'text-lg font-bold text-amber-600';
+              scoreClasses = 'text-lg font-bold text-amber-300';
               rankIcon = (
-                <TrophyIcon className="w-6 h-6 text-amber-600 flex-shrink-0" />
+                <TrophyIcon className="w-6 h-6 text-amber-300 flex-shrink-0" />
               );
             } else {
               rankIcon = (
-                <span className="w-8 text-center text-gray-400 text-sm">
+                <span className="w-8 text-center text-white/50 text-sm">
                   {rank}
                 </span>
               );

@@ -4,11 +4,6 @@
 @import "../styles/tokens/typography.css";
 @import "../styles/tokens/radii.css";
 
-@theme {
-  --font-sans: "Avenir", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Minion Pro", ui-serif, Georgia, serif;
-}
-
 @font-face {
   font-family: "Avenir";
   src: url("./fonts/Avenir.ttc") format("truetype-collection");
@@ -24,10 +19,6 @@
 }
 
 @layer base {
-  :root {
-    --font-heading: "Minion Pro", ui-serif, Georgia, serif;
-  }
-
   body {
     background-color: var(--color-surface-muted);
     color: var(--color-content-primary);
