@@ -43,7 +43,7 @@ export default function QuestionDeck() {
   );
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
       {questions.map((qs, i) => {
         const cfg = STATUS_CONFIG[qs.status];
         const canSelect = !hasActive && qs.status === 'pending';
@@ -56,7 +56,7 @@ export default function QuestionDeck() {
             key={qs.question.id}
             onClick={() => handleSelect(i)}
             disabled={!canSelect}
-            className={`flex flex-col gap-1.5 rounded-ui-element border p-4 sm:p-6 text-left text-xs shadow-sm transition-all ${
+            className={`min-w-0 flex flex-col gap-1.5 rounded-ui-element border p-4 sm:p-6 text-left text-xs shadow-sm transition-all ${
               cfg.bg
             } ${
               canSelect
@@ -64,9 +64,9 @@ export default function QuestionDeck() {
                 : 'cursor-default'
             }`}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between items-start gap-2 w-full">
               <span
-                className={`rounded-full px-2.5 py-0.5 text-sm font-semibold ${catColor}`}
+                className={`truncate rounded-full px-2.5 py-0.5 text-sm font-semibold ${catColor}`}
               >
                 {qs.question.category}
               </span>
