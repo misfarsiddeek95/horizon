@@ -82,7 +82,7 @@ export default async function LeaderboardPage() {
               );
             } else {
               rankIcon = (
-                <span className="w-8 text-center text-gray-400 font-mono text-sm">
+                <span className="w-8 text-center text-gray-400 text-sm">
                   {rank}
                 </span>
               );

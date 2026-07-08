@@ -92,7 +92,7 @@ export default function ResultsOverlay() {
                   }}
                 />
               </div>
-              <span className="w-8 text-right font-mono text-xs text-content-primary/50">
+              <span className="w-8 text-right font-sans text-xs text-content-primary/50">
                 {count}/{total}
               </span>
             </div>
@@ -116,7 +116,7 @@ export default function ResultsOverlay() {
                   <span className="flex-1 text-content-primary">
                     {entry.name}
                   </span>
-                  <span className="font-mono font-bold text-brand-main">
+                  <span className="font-bold text-brand-main">
                     {entry.score}/8
                   </span>
                 </div>

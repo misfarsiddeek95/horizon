@@ -184,7 +184,7 @@ export default function CrosswordGrid() {
                   <div className={overlayClasses} />
 
                   {number && (
-                    <span className="absolute top-1 left-1 text-[10px] font-semibold text-gray-500 pointer-events-none z-20">
+                    <span className="absolute top-1 left-1 text-[10px] font-semibold font-sans text-gray-500 pointer-events-none z-20">
                       {number}
                     </span>
                   )}
@@ -200,7 +200,7 @@ export default function CrosswordGrid() {
                       value={cellLetter ?? ''}
                       onChange={(e) => handleInput(x, y, e.target.value)}
                       onKeyDown={(e) => handleKeyDown(e, x, y)}
-                      className="absolute inset-0 w-full h-full text-center text-lg sm:text-2xl font-bold uppercase outline-none bg-transparent z-30"
+                      className="absolute inset-0 w-full h-full text-center text-lg sm:text-2xl font-bold font-sans uppercase outline-none bg-transparent z-30"
                       aria-label={`Cell ${x},${y}${number ? ' Clue ' + number : ''}`}
                     />
                   ) : (

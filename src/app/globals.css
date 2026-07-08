@@ -1,19 +1,42 @@
-/* 1. Initialize Tailwind v4 */
 @import "tailwindcss";
 
-/* 2. Import your split token files */
 @import "../styles/tokens/colors.css";
 @import "../styles/tokens/typography.css";
 @import "../styles/tokens/radii.css";
 
-/* 3. Apply base HTML/Body styles using the new v4 variables */
+@theme {
+  --font-sans: "Avenir", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Minion Pro", ui-serif, Georgia, serif;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("./fonts/Avenir.ttc") format("truetype-collection");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Minion Pro";
+  src: url("./fonts/MinionPro-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 @layer base {
+  :root {
+    --font-heading: "Minion Pro", ui-serif, Georgia, serif;
+  }
+
   body {
     background-color: var(--color-surface-muted);
     color: var(--color-content-primary);
     font-family: var(--font-sans);
-    /* antialiased is handled natively by Tailwind, but you can explicitly ensure smooth fonts */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 }

@@ -75,7 +75,7 @@ export default function QuestionDeck() {
               </span>
             </div>
 
-            <p className="font-mono text-[10px] tracking-wider text-zinc-400">
+            <p className="font-sans text-[10px] tracking-wider text-zinc-400">
               {dashes}
             </p>
 

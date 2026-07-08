@@ -54,7 +54,7 @@ export default function ActiveCluePanel() {
         </span>
 
         <div
-          className={`flex items-center gap-1.5 font-mono text-xl sm:text-2xl lg:text-3xl font-extrabold tabular-nums ${
+          className={`flex items-center gap-1.5 font-sans text-xl sm:text-2xl lg:text-3xl font-extrabold tabular-nums ${
             urgent
               ? "text-red-500 animate-pulse"
               : showHelp
