@@ -11,48 +11,43 @@ const CATEGORY_ORDER: Category[] = [
   'Governance',
 ];
 
-const CATEGORY_STYLES: Record<
+const BADGE_STYLES: Record<
   Category,
   {
-    border400: string;
+    base: string;
     halfBg: string;
-    halfIcon: string;
-    fullBg: string;
-    fullBorder: string;
-    fullShadow: string;
+    iconHalf: string;
+    full: string;
+    iconFull: string;
   }
 > = {
   Innovation: {
-    border400: 'border-blue-400',
+    base: 'border-blue-400 text-blue-600',
     halfBg: 'bg-blue-100',
-    halfIcon: 'text-blue-500',
-    fullBg: 'bg-blue-500',
-    fullBorder: 'border-blue-500',
-    fullShadow: 'shadow-blue-200',
+    iconHalf: 'relative z-10 text-blue-500',
+    full: 'bg-blue-500 border-blue-500 text-white shadow-md shadow-blue-200',
+    iconFull: 'text-white',
   },
   Sustainability: {
-    border400: 'border-emerald-400',
-    halfBg: 'bg-emerald-100',
-    halfIcon: 'text-emerald-500',
-    fullBg: 'bg-emerald-500',
-    fullBorder: 'border-emerald-500',
-    fullShadow: 'shadow-emerald-200',
+    base: 'border-green-400 text-green-600',
+    halfBg: 'bg-green-100',
+    iconHalf: 'relative z-10 text-green-500',
+    full: 'bg-green-500 border-green-500 text-white shadow-md shadow-green-200',
+    iconFull: 'text-white',
   },
   Financials: {
-    border400: 'border-amber-400',
+    base: 'border-amber-400 text-amber-600',
     halfBg: 'bg-amber-100',
-    halfIcon: 'text-amber-500',
-    fullBg: 'bg-amber-500',
-    fullBorder: 'border-amber-500',
-    fullShadow: 'shadow-amber-200',
+    iconHalf: 'relative z-10 text-amber-500',
+    full: 'bg-amber-500 border-amber-500 text-white shadow-md shadow-amber-200',
+    iconFull: 'text-white',
   },
   Governance: {
-    border400: 'border-violet-400',
-    halfBg: 'bg-violet-100',
-    halfIcon: 'text-violet-500',
-    fullBg: 'bg-violet-500',
-    fullBorder: 'border-violet-500',
-    fullShadow: 'shadow-violet-200',
+    base: 'border-purple-400 text-purple-600',
+    halfBg: 'bg-purple-100',
+    iconHalf: 'relative z-10 text-purple-500',
+    full: 'bg-purple-500 border-purple-500 text-white shadow-md shadow-purple-200',
+    iconFull: 'text-white',
   },
 };
 
@@ -63,7 +58,7 @@ export default function CategoryBadges() {
     <div className="flex flex-wrap items-center justify-center gap-3 px-4 py-3">
       {CATEGORY_ORDER.map((cat) => {
         const completedCount = state.categoryCounts[cat] ?? 0;
-        const s = CATEGORY_STYLES[cat];
+        const s = BADGE_STYLES[cat];
 
         let wrapperClasses: string;
         let iconClasses: string;
@@ -74,12 +69,12 @@ export default function CategoryBadges() {
           iconClasses = 'text-gray-300';
           showHalfFill = false;
         } else if (completedCount === 1) {
-          wrapperClasses = `relative overflow-hidden bg-transparent border-2 ${s.border400} ${s.halfIcon}`;
-          iconClasses = `relative z-10 ${s.halfIcon}`;
+          wrapperClasses = `relative overflow-hidden bg-transparent border-2 ${s.base}`;
+          iconClasses = s.iconHalf;
           showHalfFill = true;
         } else {
-          wrapperClasses = `bg-transparent border-2 ${s.fullBorder} ${s.fullShadow} ${s.fullBg} text-white shadow-md`;
-          iconClasses = 'text-white';
+          wrapperClasses = `${s.full}`;
+          iconClasses = s.iconFull;
           showHalfFill = false;
         }
 
