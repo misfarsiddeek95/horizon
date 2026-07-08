@@ -63,12 +63,21 @@ export async function POST(request: NextRequest) {
     }
 
     const results = await readResults();
-    results.push({
+    const newEntry = {
       name: name.trim(),
       email,
       score,
       date: typeof date === 'string' ? date : new Date().toISOString(),
-    });
+    };
+
+    const existingIndex = results.findIndex((r) => r.email === newEntry.email);
+    if (existingIndex !== -1) {
+      results[existingIndex].score = Math.max(results[existingIndex].score, newEntry.score);
+      results[existingIndex].date = newEntry.date;
+      results[existingIndex].name = newEntry.name;
+    } else {
+      results.push(newEntry);
+    }
     await writeResults(results);
 
     return NextResponse.json({ success: true });

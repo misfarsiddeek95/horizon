@@ -273,12 +273,14 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (state.phase === 'finished' && state.session) {
-      saveResult({
+      const result = {
         name: state.session.name,
         email: state.session.email,
         score: state.score,
         date: new Date().toISOString(),
-      });
+      };
+      saveResult(result);
+      localStorage.setItem('horizon-puzzle-score', JSON.stringify(result));
     }
   }, [state.phase, state.session, state.score]);
 
