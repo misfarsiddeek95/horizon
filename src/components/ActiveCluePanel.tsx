@@ -25,7 +25,7 @@ export default function ActiveCluePanel() {
   }, [activeQ, placement, gridCells]);
 
   const timerRatio = activeQ ? timerRemaining / activeQ.question.timeLimit : 1;
-  const showHelp = timerRemaining <= 20 && timerRemaining > 0;
+  const showHelp = timerRemaining <= 20 && timerRemaining > 0 && !state.isPaused;
   const urgent = timerRemaining <= 10 && timerRemaining > 0;
 
   function handleSubmit() {
@@ -76,6 +76,9 @@ export default function ActiveCluePanel() {
             />
           </svg>
           <span>{Math.ceil(timerRemaining)}s</span>
+          {state.isPaused && (
+            <span className="ml-1 text-sm font-medium text-amber-500">(Paused)</span>
+          )}
         </div>
       </div>
 
@@ -107,7 +110,7 @@ export default function ActiveCluePanel() {
 
       <button
         onClick={handleSubmit}
-        disabled={!allFilled}
+        disabled={!allFilled || state.isPaused}
         className="w-full rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-40"
       >
         Submit Answer

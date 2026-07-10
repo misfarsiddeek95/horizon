@@ -28,7 +28,7 @@ export default function QuestionDeck() {
   const hasActive = activeIndex !== null;
 
   const handleSelect = (index: number) => {
-    if (hasActive) return;
+    if (hasActive || state.isPaused) return;
     const qs = questions[index];
     if (qs.status !== 'pending') return;
     dispatch({ type: 'SELECT_QUESTION', payload: index });

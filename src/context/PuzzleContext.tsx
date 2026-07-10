@@ -15,6 +15,7 @@ import type {
   QuestionState,
   Question,
   Category,
+  SavedGameState,
 } from '@/types';
 import { questionPool } from '@/data/questions';
 import { generateGrid } from '@/utils/gridGenerator';
@@ -85,6 +86,7 @@ const initialState: GameState = {
   timerRemaining: 60,
   gridWidth: 0,
   gridHeight: 0,
+  isPaused: false,
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -218,6 +220,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'TICK_TIMER': {
       if (state.activeIndex === null) return state;
+      if (state.isPaused) return state;
       const next = state.timerRemaining - 1;
       if (next <= 0) {
         const questions = state.questions.map((q, i) =>
@@ -232,9 +235,56 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           questions,
           phase: allDone ? 'finished' : 'playing',
           timerRemaining: 0,
+          isPaused: false,
         };
       }
       return { ...state, timerRemaining: next };
+    }
+
+    case 'PAUSE_GAME': {
+      if (state.phase !== 'playing') return state;
+      return { ...state, isPaused: true };
+    }
+
+    case 'RESUME_GAME': {
+      if (state.phase !== 'playing' || !state.isPaused) return state;
+      return { ...state, isPaused: false };
+    }
+
+    case 'RESTORE_GAME': {
+      return {
+        ...state,
+        phase: 'playing',
+        isPaused: false,
+        session: action.payload.session,
+        questions: action.payload.questions,
+        gridCells: action.payload.gridCells,
+        wordPlacements: action.payload.wordPlacements,
+        score: action.payload.score,
+        categoryCounts: action.payload.categoryCounts,
+        timerRemaining: action.payload.timerRemaining,
+        activeIndex: action.payload.activeIndex,
+        gridWidth: action.payload.gridWidth,
+        gridHeight: action.payload.gridHeight,
+      };
+    }
+
+    case 'RESTART_GAME': {
+      return {
+        ...state,
+        phase: 'playing',
+        session: action.payload.session,
+        questions: action.payload.questions,
+        gridCells: action.payload.gridCells,
+        wordPlacements: action.payload.wordPlacements,
+        gridWidth: action.payload.gridWidth,
+        gridHeight: action.payload.gridHeight,
+        activeIndex: null,
+        score: 0,
+        categoryCounts: { ...categoryDefaults },
+        timerRemaining: 60,
+        isPaused: false,
+      };
     }
 
     case 'RESET':
@@ -249,6 +299,7 @@ interface PuzzleContextValue {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
   startGame: (session: SessionData) => void;
+  restartGame: () => void;
 }
 
 const PuzzleContext = createContext<PuzzleContextValue | null>(null);
@@ -281,8 +332,57 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
       };
       saveResult(result);
       localStorage.setItem('horizon-puzzle-score', JSON.stringify(result));
+      localStorage.removeItem('horizon-puzzle-game-state');
     }
   }, [state.phase, state.session, state.score]);
+
+  useEffect(() => {
+    if (state.phase === 'playing') {
+      const saveData: SavedGameState = {
+        session: state.session!,
+        questions: state.questions,
+        gridCells: state.gridCells,
+        wordPlacements: state.wordPlacements,
+        score: state.score,
+        categoryCounts: state.categoryCounts,
+        timerRemaining: state.timerRemaining,
+        activeIndex: state.activeIndex,
+        gridWidth: state.gridWidth,
+        gridHeight: state.gridHeight,
+      };
+      localStorage.setItem('horizon-puzzle-game-state', JSON.stringify(saveData));
+    }
+  }, [
+    state.phase,
+    state.session,
+    state.questions,
+    state.gridCells,
+    state.wordPlacements,
+    state.score,
+    state.categoryCounts,
+    state.timerRemaining,
+    state.activeIndex,
+    state.gridWidth,
+    state.gridHeight,
+  ]);
+
+  useEffect(() => {
+    if (state.phase !== 'playing') return;
+
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        dispatch({ type: 'PAUSE_GAME' });
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [state.phase]);
+
+  const sessionRef = useRef(state.session);
+  sessionRef.current = state.session;
 
   const startGame = useCallback((session: SessionData) => {
     const gameData = initializeGame();
@@ -292,7 +392,27 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const restartGame = useCallback(() => {
+    localStorage.removeItem('horizon-puzzle-game-state');
+    const gameData = initializeGame();
+    dispatch({
+      type: 'RESTART_GAME',
+      payload: { ...gameData, session: sessionRef.current! },
+    });
+  }, []);
+
   useEffect(() => {
+    const savedGame = localStorage.getItem('horizon-puzzle-game-state');
+    if (savedGame) {
+      try {
+        const parsed: SavedGameState = JSON.parse(savedGame);
+        dispatch({ type: 'RESTORE_GAME', payload: parsed });
+        return;
+      } catch {
+        localStorage.removeItem('horizon-puzzle-game-state');
+      }
+    }
+
     const saved = localStorage.getItem('horizon-puzzle-session');
     if (saved) {
       try {
@@ -305,7 +425,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
   }, [startGame]);
 
   return (
-    <PuzzleContext.Provider value={{ state, dispatch, startGame }}>
+    <PuzzleContext.Provider value={{ state, dispatch, startGame, restartGame }}>
       {children}
     </PuzzleContext.Provider>
   );

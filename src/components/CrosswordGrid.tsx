@@ -135,8 +135,26 @@ export default function CrosswordGrid() {
     );
   }
 
+  const hasPaused = state.isPaused && state.phase === 'playing';
+
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full overflow-hidden relative">
+      {hasPaused && (
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-white/70 backdrop-blur-sm rounded-xl">
+          <div className="rounded-ui-card bg-surface-glass backdrop-blur-lg border border-white/20 px-8 py-6 text-center shadow-2xl">
+            <p className="text-xl font-bold text-content-primary">Game Paused</p>
+            <p className="mt-1 text-sm text-content-primary/50">
+              Timer and input are frozen
+            </p>
+            <button
+              onClick={() => dispatch({ type: 'RESUME_GAME' })}
+              className="mt-4 rounded-ui-element bg-brand-main px-6 py-2 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
+            >
+              Resume
+            </button>
+          </div>
+        </div>
+      )}
       <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
         <div className="flex items-center justify-center bg-gray-50/50 rounded-lg p-2 md:p-6">
           <div
@@ -164,7 +182,7 @@ export default function CrosswordGrid() {
               const status = getCellStatus(cellData.questionIds);
               const number = getClueNumber(x, y);
               const isCellActive = activePlacement && cellData.questionIds.includes(activePlacement.questionId);
-              const isInputEnabled = isCellActive && activeQ?.status === 'active';
+              const isInputEnabled = isCellActive && activeQ?.status === 'active' && !state.isPaused;
               const showLetter = cellLetter && (status !== 'pending');
 
               let overlayBg = 'bg-white';

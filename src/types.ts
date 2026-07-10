@@ -63,6 +63,20 @@ export interface GameState {
   timerRemaining: number;
   gridWidth: number;
   gridHeight: number;
+  isPaused: boolean;
+}
+
+export interface SavedGameState {
+  session: SessionData;
+  questions: QuestionState[];
+  gridCells: GridCell[][];
+  wordPlacements: WordPlacement[];
+  score: number;
+  categoryCounts: Record<Category, number>;
+  timerRemaining: number;
+  activeIndex: number | null;
+  gridWidth: number;
+  gridHeight: number;
 }
 
 export interface StartGamePayload {
@@ -80,4 +94,8 @@ export type GameAction =
   | { type: 'UPDATE_CELL'; payload: { x: number; y: number; letter: string } }
   | { type: 'SUBMIT_ANSWER' }
   | { type: 'TICK_TIMER' }
+  | { type: 'PAUSE_GAME' }
+  | { type: 'RESUME_GAME' }
+  | { type: 'RESTORE_GAME'; payload: SavedGameState }
+  | { type: 'RESTART_GAME'; payload: StartGamePayload }
   | { type: 'RESET' };
