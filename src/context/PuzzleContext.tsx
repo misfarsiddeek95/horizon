@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, {
   createContext,
@@ -7,7 +7,7 @@ import React, {
   useCallback,
   useEffect,
   useRef,
-} from 'react';
+} from "react";
 import type {
   GameState,
   GameAction,
@@ -16,10 +16,11 @@ import type {
   Question,
   Category,
   SavedGameState,
-} from '@/types';
-import { questionPool } from '@/data/questions';
-import { generateGrid } from '@/utils/gridGenerator';
-import { saveResult } from '@/data/leaderboard';
+} from "@/types";
+import { questionPool } from "@/data/questions";
+import { generateGrid } from "@/utils/gridGenerator";
+import { saveResult } from "@/data/leaderboard";
+import { CONFIG, getAllCategories } from "@/data/config";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -31,31 +32,41 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function initializeGame() {
-  const groups: Record<Category, Question[]> = {
-    Innovation: [],
-    Sustainability: [],
-    Financials: [],
-    Governance: [],
-  };
-  for (const q of questionPool) {
-    groups[q.category].push(q);
-  }
+  const activePool = questionPool.filter(
+    (q) => !CONFIG.EXCLUDED_CATEGORIES.includes(q.category)
+  );
+  const groupedQuestions = activePool.reduce<Record<string, Question[]>>(
+    (acc, curr) => {
+      if (!acc[curr.category]) acc[curr.category] = [];
+      acc[curr.category].push(curr);
+      return acc;
+    },
+    {}
+  );
+
+  const availableCategories = Object.keys(groupedQuestions);
+  const shuffledCategories = shuffle(availableCategories);
+  const maxCategoriesToPick = Math.floor(
+    CONFIG.MAX_TOTAL_QUESTIONS / CONFIG.QUESTIONS_PER_CATEGORY
+  );
+  const selectedCategories = shuffledCategories.slice(0, maxCategoriesToPick);
 
   const selected: Question[] = [];
-  for (const cat of ['Innovation', 'Sustainability', 'Financials', 'Governance'] as const) {
-    const shuffled = shuffle(groups[cat]);
-    selected.push(...shuffled.slice(0, 2));
+  for (const category of selectedCategories) {
+    const categoryQuestions = groupedQuestions[category];
+    const shuffled = shuffle(categoryQuestions);
+    selected.push(...shuffled.slice(0, CONFIG.QUESTIONS_PER_CATEGORY));
   }
 
   const finalSelected = shuffle(selected);
   const questions: QuestionState[] = finalSelected.map((q, i) => ({
     question: q,
-    status: 'pending' as const,
+    status: "pending" as const,
     number: i + 1,
   }));
 
   const gridResult = generateGrid(
-    finalSelected.map((q, i) => ({ word: q.word, id: q.id, number: i + 1 })),
+    finalSelected.map((q, i) => ({ word: q.word, id: q.id, number: i + 1 }))
   );
 
   return {
@@ -67,15 +78,12 @@ function initializeGame() {
   };
 }
 
-const categoryDefaults: Record<Category, number> = {
-  Innovation: 0,
-  Sustainability: 0,
-  Financials: 0,
-  Governance: 0,
-};
+const categoryDefaults: Record<Category, number> = Object.fromEntries(
+  getAllCategories().map((c) => [c, 0]),
+) as Record<Category, number>;
 
 const initialState: GameState = {
-  phase: 'onboarding',
+  phase: "onboarding",
   session: null,
   questions: [],
   activeIndex: null,
@@ -91,10 +99,10 @@ const initialState: GameState = {
 
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
-    case 'START_GAME': {
+    case "START_GAME": {
       return {
         ...state,
-        phase: 'playing',
+        phase: "playing",
         session: action.payload.session,
         questions: action.payload.questions,
         gridCells: action.payload.gridCells,
@@ -108,15 +116,15 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
 
-    case 'SELECT_QUESTION': {
+    case "SELECT_QUESTION": {
       if (state.activeIndex !== null) return state;
       const idx = action.payload;
       if (idx < 0 || idx >= state.questions.length) return state;
-      if (state.questions[idx].status !== 'pending') return state;
+      if (state.questions[idx].status !== "pending") return state;
 
       const questions = state.questions.map((q, i) => ({
         ...q,
-        status: i === idx ? 'active' as const : q.status,
+        status: i === idx ? ("active" as const) : q.status,
       }));
 
       return {
@@ -127,11 +135,11 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
 
-    case 'UPDATE_CELL': {
+    case "UPDATE_CELL": {
       if (state.activeIndex === null) return state;
       const { x, y, letter } = action.payload;
       const activeQ = state.questions[state.activeIndex];
-      if (activeQ.status !== 'active') return state;
+      if (activeQ.status !== "active") return state;
 
       const gridCells = state.gridCells.map((row) =>
         row.map((cell) => {
@@ -139,19 +147,19 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             return { ...cell, letter: letter.toUpperCase() || null };
           }
           return cell;
-        }),
+        })
       );
 
       return { ...state, gridCells };
     }
 
-    case 'SUBMIT_ANSWER': {
+    case "SUBMIT_ANSWER": {
       if (state.activeIndex === null) return state;
       const activeQ = state.questions[state.activeIndex];
-      if (activeQ.status !== 'active') return state;
+      if (activeQ.status !== "active") return state;
 
       const placement = state.wordPlacements.find(
-        (p) => p.questionId === activeQ.question.id,
+        (p) => p.questionId === activeQ.question.id
       );
       if (!placement) return state;
 
@@ -171,9 +179,11 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         }
       }
 
-      const newStatus = isCorrect ? 'completed' as const : 'failed' as const;
+      const newStatus = isCorrect
+        ? ("completed" as const)
+        : ("failed" as const);
       const questions = state.questions.map((q, i) =>
-        i === state.activeIndex ? { ...q, status: newStatus } : q,
+        i === state.activeIndex ? { ...q, status: newStatus } : q
       );
 
       const categoryCounts = { ...state.categoryCounts };
@@ -190,7 +200,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           row.map((cell) => {
             if (cell.questionId === activeQ.question.id) {
               const placementCell = placement.cells.find(
-                (c) => c.x === cell.x && c.y === cell.y,
+                (c) => c.x === cell.x && c.y === cell.y
               );
               return {
                 ...cell,
@@ -198,12 +208,12 @@ function gameReducer(state: GameState, action: GameAction): GameState {
               };
             }
             return cell;
-          }),
+          })
         );
       }
 
       const allDone = questions.every(
-        (q) => q.status !== 'pending' && q.status !== 'active',
+        (q) => q.status !== "pending" && q.status !== "active"
       );
 
       return {
@@ -213,27 +223,27 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         gridCells,
         score,
         categoryCounts,
-        phase: allDone ? 'finished' : 'playing',
+        phase: allDone ? "finished" : "playing",
         timerRemaining: 60,
       };
     }
 
-    case 'TICK_TIMER': {
+    case "TICK_TIMER": {
       if (state.activeIndex === null) return state;
       if (state.isPaused) return state;
       const next = state.timerRemaining - 1;
       if (next <= 0) {
         const questions = state.questions.map((q, i) =>
-          i === state.activeIndex ? { ...q, status: 'timeout' as const } : q,
+          i === state.activeIndex ? { ...q, status: "timeout" as const } : q
         );
         const allDone = questions.every(
-          (q) => q.status !== 'pending' && q.status !== 'active',
+          (q) => q.status !== "pending" && q.status !== "active"
         );
         return {
           ...state,
           activeIndex: null,
           questions,
-          phase: allDone ? 'finished' : 'playing',
+          phase: allDone ? "finished" : "playing",
           timerRemaining: 0,
           isPaused: false,
         };
@@ -241,20 +251,20 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, timerRemaining: next };
     }
 
-    case 'PAUSE_GAME': {
-      if (state.phase !== 'playing') return state;
+    case "PAUSE_GAME": {
+      if (state.phase !== "playing") return state;
       return { ...state, isPaused: true };
     }
 
-    case 'RESUME_GAME': {
-      if (state.phase !== 'playing' || !state.isPaused) return state;
+    case "RESUME_GAME": {
+      if (state.phase !== "playing" || !state.isPaused) return state;
       return { ...state, isPaused: false };
     }
 
-    case 'RESTORE_GAME': {
+    case "RESTORE_GAME": {
       return {
         ...state,
-        phase: 'playing',
+        phase: "playing",
         isPaused: false,
         session: action.payload.session,
         questions: action.payload.questions,
@@ -269,10 +279,10 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
 
-    case 'RESTART_GAME': {
+    case "RESTART_GAME": {
       return {
         ...state,
-        phase: 'playing',
+        phase: "playing",
         session: action.payload.session,
         questions: action.payload.questions,
         gridCells: action.payload.gridCells,
@@ -287,7 +297,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
 
-    case 'RESET':
+    case "RESET":
       return { ...initialState };
 
     default:
@@ -309,9 +319,9 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    if (state.activeIndex !== null && state.phase === 'playing') {
+    if (state.activeIndex !== null && state.phase === "playing") {
       timerRef.current = setInterval(() => {
-        dispatch({ type: 'TICK_TIMER' });
+        dispatch({ type: "TICK_TIMER" });
       }, 1000);
     }
     return () => {
@@ -323,7 +333,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
   }, [state.activeIndex, state.phase]);
 
   useEffect(() => {
-    if (state.phase === 'finished' && state.session) {
+    if (state.phase === "finished" && state.session) {
       const result = {
         name: state.session.name,
         email: state.session.email,
@@ -331,13 +341,13 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
         date: new Date().toISOString(),
       };
       saveResult(result);
-      localStorage.setItem('horizon-puzzle-score', JSON.stringify(result));
-      localStorage.removeItem('horizon-puzzle-game-state');
+      localStorage.setItem("horizon-puzzle-score", JSON.stringify(result));
+      localStorage.removeItem("horizon-puzzle-game-state");
     }
   }, [state.phase, state.session, state.score]);
 
   useEffect(() => {
-    if (state.phase === 'playing') {
+    if (state.phase === "playing") {
       const saveData: SavedGameState = {
         session: state.session!,
         questions: state.questions,
@@ -350,7 +360,10 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
         gridWidth: state.gridWidth,
         gridHeight: state.gridHeight,
       };
-      localStorage.setItem('horizon-puzzle-game-state', JSON.stringify(saveData));
+      localStorage.setItem(
+        "horizon-puzzle-game-state",
+        JSON.stringify(saveData)
+      );
     }
   }, [
     state.phase,
@@ -367,59 +380,62 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
   ]);
 
   useEffect(() => {
-    if (state.phase !== 'playing') return;
+    if (state.phase !== "playing") return;
 
     function handleVisibilityChange() {
       if (document.hidden) {
-        dispatch({ type: 'PAUSE_GAME' });
+        dispatch({ type: "PAUSE_GAME" });
       }
     }
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [state.phase]);
 
   const sessionRef = useRef(state.session);
-  sessionRef.current = state.session;
+
+  useEffect(() => {
+    sessionRef.current = state.session;
+  }, [state.session]);
 
   const startGame = useCallback((session: SessionData) => {
     const gameData = initializeGame();
     dispatch({
-      type: 'START_GAME',
+      type: "START_GAME",
       payload: { ...gameData, session },
     });
   }, []);
 
   const restartGame = useCallback(() => {
-    localStorage.removeItem('horizon-puzzle-game-state');
+    localStorage.removeItem("horizon-puzzle-game-state");
     const gameData = initializeGame();
     dispatch({
-      type: 'RESTART_GAME',
+      type: "RESTART_GAME",
       payload: { ...gameData, session: sessionRef.current! },
     });
   }, []);
 
   useEffect(() => {
-    const savedGame = localStorage.getItem('horizon-puzzle-game-state');
+    const savedGame = localStorage.getItem("horizon-puzzle-game-state");
     if (savedGame) {
       try {
         const parsed: SavedGameState = JSON.parse(savedGame);
-        dispatch({ type: 'RESTORE_GAME', payload: parsed });
+        dispatch({ type: "RESTORE_GAME", payload: parsed });
         return;
       } catch {
-        localStorage.removeItem('horizon-puzzle-game-state');
+        localStorage.removeItem("horizon-puzzle-game-state");
       }
     }
 
-    const saved = localStorage.getItem('horizon-puzzle-session');
+    const saved = localStorage.getItem("horizon-puzzle-session");
     if (saved) {
       try {
         const session = JSON.parse(saved) as SessionData;
         startGame(session);
       } catch {
-        localStorage.removeItem('horizon-puzzle-session');
+        localStorage.removeItem("horizon-puzzle-session");
       }
     }
   }, [startGame]);
@@ -433,6 +449,6 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
 
 export function usePuzzle() {
   const ctx = useContext(PuzzleContext);
-  if (!ctx) throw new Error('usePuzzle must be used within PuzzleProvider');
+  if (!ctx) throw new Error("usePuzzle must be used within PuzzleProvider");
   return ctx;
 }

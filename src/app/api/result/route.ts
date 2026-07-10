@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
+import { CONFIG } from '@/data/config';
 
 const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'results.json');
 
@@ -48,9 +49,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (typeof score !== 'number' || score < 0 || score > 8) {
+    if (typeof score !== 'number' || score < 0 || score > CONFIG.MAX_TOTAL_QUESTIONS) {
       return NextResponse.json(
-        { success: false, error: 'Score must be a number between 0 and 8' },
+        { success: false, error: `Score must be between 0 and ${CONFIG.MAX_TOTAL_QUESTIONS}` },
         { status: 400 },
       );
     }

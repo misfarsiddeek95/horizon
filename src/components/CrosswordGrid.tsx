@@ -148,14 +148,14 @@ export default function CrosswordGrid() {
             </p>
             <button
               onClick={() => dispatch({ type: 'RESUME_GAME' })}
-              className="mt-4 rounded-ui-element bg-brand-main px-6 py-2 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
+              className="mt-4 cursor-pointer rounded-ui-element bg-brand-main px-6 py-2 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
             >
               Resume
             </button>
           </div>
         </div>
       )}
-      <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
+      <div className="w-full max-w-full overflow-x-auto lg:overflow-x-hidden overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
         <div className="flex items-center justify-center bg-gray-50/50 rounded-lg p-2 md:p-6">
           <div
             className="grid w-max min-w-full justify-start md:justify-center md:mx-auto"

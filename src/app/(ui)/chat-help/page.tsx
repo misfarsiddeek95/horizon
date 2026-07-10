@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import { getAllCategories } from '@/data/config';
+
+const CATEGORIES = getAllCategories();
 
 export default function ChatHelpPage() {
   return (
@@ -18,7 +21,7 @@ export default function ChatHelpPage() {
           </li>
           <li>
             <strong className="text-content-primary">Think about the category</strong>
-            &mdash; clues are grouped by Innovation, Sustainability, Financials, and Governance.
+            &mdash; clues are grouped by {CATEGORIES.join(', ')}.
           </li>
           <li>
             <strong className="text-content-primary">Skip and return</strong>

@@ -1,4 +1,4 @@
-export type Category = 'Innovation' | 'Sustainability' | 'Financials' | 'Governance';
+export type Category = 'Innovation' | 'Sustainability' | 'Financials' | 'Governance' | 'Technology';
 
 export interface Question {
   id: string;

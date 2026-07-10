@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import type { QuestionStatus } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
+import { CATEGORY_COLORS } from '@/data/config';
 
 const STATUS_CONFIG: Record<
   QuestionStatus,
@@ -13,13 +14,6 @@ const STATUS_CONFIG: Record<
   completed: { bg: 'bg-green-50 border-green-300', icon: '✓', label: 'Completed' },
   failed: { bg: 'bg-red-50 border-red-300', icon: '✕', label: 'Failed' },
   timeout: { bg: 'bg-zinc-100 border-zinc-300', icon: '⌛', label: 'Timeout' },
-};
-
-const CATEGORY_BADGE_COLORS: Record<string, string> = {
-  Innovation: 'bg-blue-100 text-blue-600',
-  Sustainability: 'bg-emerald-100 text-emerald-600',
-  Financials: 'bg-amber-100 text-amber-600',
-  Governance: 'bg-violet-100 text-violet-600',
 };
 
 export default function QuestionDeck() {
@@ -47,7 +41,7 @@ export default function QuestionDeck() {
       {questions.map((qs, i) => {
         const cfg = STATUS_CONFIG[qs.status];
         const canSelect = !hasActive && qs.status === 'pending';
-        const catColor = CATEGORY_BADGE_COLORS[qs.question.category] ?? 'bg-zinc-100 text-zinc-600';
+        const catColor = CATEGORY_COLORS[qs.question.category]?.card ?? 'bg-zinc-100 text-zinc-600';
         const wLen = wordLengths[qs.question.id] ?? 0;
         const dashes = Array.from({ length: wLen }, () => '_').join(' ');
 

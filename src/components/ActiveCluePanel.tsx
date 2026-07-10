@@ -102,7 +102,7 @@ export default function ActiveCluePanel() {
       {showHelp && (
         <button
           onClick={openHelp}
-          className="mb-3 w-full rounded-ui-element bg-amber-100 px-3 py-2 text-xs font-semibold text-amber-700 transition-colors hover:bg-amber-200"
+          className="mb-3 w-full cursor-pointer rounded-ui-element bg-amber-100 px-3 py-2 text-xs font-semibold text-amber-700 transition-colors hover:bg-amber-200"
         >
           Need Help?
         </button>
@@ -111,7 +111,7 @@ export default function ActiveCluePanel() {
       <button
         onClick={handleSubmit}
         disabled={!allFilled || state.isPaused}
-        className="w-full rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-40"
+        className="w-full cursor-pointer rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-40"
       >
         Submit Answer
       </button>

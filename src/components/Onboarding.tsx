@@ -111,7 +111,7 @@ export default function Onboarding({ onStart }: OnboardingProps) {
 
         <button
           type="submit"
-          className="w-full rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
+          className="w-full cursor-pointer rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
         >
           Start Game
         </button>

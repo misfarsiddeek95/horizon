@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { TrophyIcon } from '@heroicons/react/24/solid';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { CONFIG } from '@/data/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -97,7 +98,7 @@ export default async function LeaderboardPage() {
                   </span>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  <span className={scoreClasses}>{player.score}/8</span>
+                  <span className={scoreClasses}>{player.score}/{CONFIG.MAX_TOTAL_QUESTIONS}</span>
                 </div>
               </div>
             );

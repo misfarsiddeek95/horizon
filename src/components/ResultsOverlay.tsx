@@ -1,23 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { LeaderboardEntry, Category } from '@/types';
+import type { LeaderboardEntry } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { getLeaderboard } from '@/data/leaderboard';
+import { getAllCategories } from '@/data/config';
 
-const CATEGORY_ORDER: Category[] = [
-  'Innovation',
-  'Sustainability',
-  'Financials',
-  'Governance',
-];
-
-const CATEGORY_LABELS: Record<Category, string> = {
-  Innovation: 'Innovation',
-  Sustainability: 'Sustainability',
-  Financials: 'Financials',
-  Governance: 'Governance',
-};
+const CATEGORY_ORDER = getAllCategories();
 
 export default function ResultsOverlay() {
   const { state, dispatch } = usePuzzle();
@@ -33,9 +22,9 @@ export default function ResultsOverlay() {
     const text = [
       `Crossword Puzzle Results`,
       `Player: ${session?.name ?? 'Unknown'}`,
-      `Score: ${score}/8`,
+      `Score: ${score}/${questions.length}`,
       ...CATEGORY_ORDER.map(
-        (c) => `  ${CATEGORY_LABELS[c]}: ${categoryCounts[c] ?? 0} completed`,
+        (c) => `  ${c}: ${categoryCounts[c] ?? 0} completed`,
       ),
       '',
       'Leaderboard:',
@@ -70,7 +59,7 @@ export default function ResultsOverlay() {
             Puzzle Complete!
           </h2>
           <p className="mt-1 text-3xl font-bold text-brand-main">
-            {score} / 8
+            {score} / {questions.length}
           </p>
           <p className="text-sm text-content-primary/50">
             {session?.name ?? 'Player'}
@@ -128,13 +117,13 @@ export default function ResultsOverlay() {
         <div className="flex gap-3">
           <button
             onClick={handleCopy}
-            className="flex-1 rounded-ui-element border border-zinc-300 px-3 py-2 text-xs font-semibold text-content-primary transition-colors hover:bg-zinc-100"
+            className="flex-1 cursor-pointer rounded-ui-element border border-zinc-300 px-3 py-2 text-xs font-semibold text-content-primary transition-colors hover:bg-zinc-100"
           >
             {copied ? 'Copied!' : 'Copy Results'}
           </button>
           <button
             onClick={handlePlayAgain}
-            className="flex-1 rounded-ui-element bg-brand-main px-3 py-2 text-xs font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
+            className="flex-1 cursor-pointer rounded-ui-element bg-brand-main px-3 py-2 text-xs font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
           >
             Play Again
           </button>

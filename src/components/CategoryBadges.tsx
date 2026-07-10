@@ -1,64 +1,18 @@
 'use client';
 
 import { TrophyIcon } from '@heroicons/react/24/solid';
-import type { Category } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
-
-const CATEGORY_ORDER: Category[] = [
-  'Innovation',
-  'Sustainability',
-  'Financials',
-  'Governance',
-];
-
-const BADGE_STYLES: Record<
-  Category,
-  {
-    base: string;
-    halfBg: string;
-    iconHalf: string;
-    full: string;
-    iconFull: string;
-  }
-> = {
-  Innovation: {
-    base: 'border-blue-400 text-blue-600',
-    halfBg: 'bg-blue-100',
-    iconHalf: 'relative z-10 text-blue-500',
-    full: 'bg-blue-500 border-blue-500 text-white shadow-md shadow-blue-200',
-    iconFull: 'text-white',
-  },
-  Sustainability: {
-    base: 'border-green-400 text-green-600',
-    halfBg: 'bg-green-100',
-    iconHalf: 'relative z-10 text-green-500',
-    full: 'bg-green-500 border-green-500 text-white shadow-md shadow-green-200',
-    iconFull: 'text-white',
-  },
-  Financials: {
-    base: 'border-amber-400 text-amber-600',
-    halfBg: 'bg-amber-100',
-    iconHalf: 'relative z-10 text-amber-500',
-    full: 'bg-amber-500 border-amber-500 text-white shadow-md shadow-amber-200',
-    iconFull: 'text-white',
-  },
-  Governance: {
-    base: 'border-purple-400 text-purple-600',
-    halfBg: 'bg-purple-100',
-    iconHalf: 'relative z-10 text-purple-500',
-    full: 'bg-purple-500 border-purple-500 text-white shadow-md shadow-purple-200',
-    iconFull: 'text-white',
-  },
-};
+import { getAllCategories, CATEGORY_COLORS } from '@/data/config';
 
 export default function CategoryBadges() {
   const { state } = usePuzzle();
+  const categories = getAllCategories();
 
   return (
     <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8">
-      {CATEGORY_ORDER.map((cat) => {
+      {categories.map((cat) => {
         const completedCount = state.categoryCounts[cat] ?? 0;
-        const s = BADGE_STYLES[cat];
+        const s = CATEGORY_COLORS[cat];
 
         let wrapperClasses: string;
         let iconClasses: string;

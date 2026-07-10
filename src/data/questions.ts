@@ -176,4 +176,47 @@ export const questionPool: Question[] = [
     clue: 'A code of integrity and ethical behavior',
     timeLimit: 60,
   },
+  // Technology (6)
+  {
+    id: 'tech-1',
+    category: 'Technology',
+    word: 'CLOUD',
+    clue: 'Computing resources delivered over the internet',
+    timeLimit: 60,
+  },
+  {
+    id: 'tech-2',
+    category: 'Technology',
+    word: 'DIGITAL',
+    clue: 'Relating to technology using electronic signals and data',
+    timeLimit: 60,
+  },
+  {
+    id: 'tech-3',
+    category: 'Technology',
+    word: 'NETWORK',
+    clue: 'A group of interconnected computers or devices',
+    timeLimit: 60,
+  },
+  {
+    id: 'tech-4',
+    category: 'Technology',
+    word: 'SOFTWARE',
+    clue: 'Programs and operating information used by computers',
+    timeLimit: 60,
+  },
+  {
+    id: 'tech-5',
+    category: 'Technology',
+    word: 'SERVER',
+    clue: 'A computer that provides data or services to other computers',
+    timeLimit: 60,
+  },
+  {
+    id: 'tech-6',
+    category: 'Technology',
+    word: 'CODING',
+    clue: 'The process of writing instructions for computers',
+    timeLimit: 60,
+  },
 ];
