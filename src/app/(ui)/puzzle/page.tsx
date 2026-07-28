@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { PuzzleProvider, usePuzzle } from '@/context/PuzzleContext';
@@ -15,6 +15,11 @@ import ConfirmDialog from '@/components/ConfirmDialog';
 function PuzzleGame() {
   const { state, startGame, restartGame } = usePuzzle();
   const [showRestartDialog, setShowRestartDialog] = useState(false);
+  const [showResults, setShowResults] = useState(true);
+
+  useEffect(() => {
+    if (state.phase === 'finished') setShowResults(true);
+  }, [state.phase]);
 
   if (state.phase === 'onboarding') {
     return <Onboarding onStart={startGame} />;
@@ -71,7 +76,7 @@ function PuzzleGame() {
         </div>
       </div>
 
-      {state.phase === 'finished' && <ResultsOverlay />}
+      {state.phase === 'finished' && showResults && <ResultsOverlay onClose={() => setShowResults(false)} />}
     </main>
   );
 }

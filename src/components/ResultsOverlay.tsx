@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CheckBadgeIcon } from '@heroicons/react/24/solid';
+import { CheckBadgeIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import type { LeaderboardEntry } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { getLeaderboard } from '@/data/leaderboard';
@@ -9,7 +9,7 @@ import { getAllCategories } from '@/data/config';
 
 const CATEGORY_ORDER = getAllCategories();
 
-export default function ResultsOverlay() {
+export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
   const { state, dispatch } = usePuzzle();
   const { score, questions, categoryCounts, earnedBadges, session } = state;
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
@@ -61,7 +61,16 @@ export default function ResultsOverlay() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-lg space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
+      <div className="relative w-full max-w-lg space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 cursor-pointer rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+            aria-label="Close results"
+          >
+            <XMarkIcon className="h-5 w-5" />
+          </button>
+        )}
         <div className="text-center">
           <h2 className="font-heading text-xl font-bold text-content-primary">
             Puzzle Complete!
@@ -138,15 +147,23 @@ export default function ResultsOverlay() {
         )}
 
         <div className="flex gap-3">
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="cursor-pointer rounded-ui-element border border-zinc-300 px-3 py-2 text-xs font-semibold text-content-primary transition-colors hover:bg-zinc-100"
+            >
+              View Board
+            </button>
+          )}
           <button
             onClick={handleCopy}
-            className="flex-1 cursor-pointer rounded-ui-element border border-zinc-300 px-3 py-2 text-xs font-semibold text-content-primary transition-colors hover:bg-zinc-100"
+            className="cursor-pointer rounded-ui-element border border-zinc-300 px-3 py-2 text-xs font-semibold text-content-primary transition-colors hover:bg-zinc-100"
           >
             {copied ? 'Copied!' : 'Copy Results'}
           </button>
           <button
             onClick={handlePlayAgain}
-            className="flex-1 cursor-pointer rounded-ui-element bg-brand-main px-3 py-2 text-xs font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
+            className="cursor-pointer rounded-ui-element bg-brand-main px-3 py-2 text-xs font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
           >
             Play Again
           </button>
