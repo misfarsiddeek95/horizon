@@ -71,7 +71,7 @@ export default function CrosswordGrid() {
 
   const lockedSet = useMemo(() => {
     const locked = new Set<string>();
-    const terminal = new Set(['completed', 'failed', 'timeout']);
+    const terminal = new Set(['completed']);
     for (const pw of wordPlacements) {
       const qs = questions.find((q) => q.question.id === pw.questionId);
       if (qs && terminal.has(qs.status)) {
