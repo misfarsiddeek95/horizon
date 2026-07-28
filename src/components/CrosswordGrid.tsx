@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useEffect } from 'react';
 import { usePuzzle } from '@/context/PuzzleContext';
 
 interface CellRenderData {
@@ -69,33 +69,59 @@ export default function CrosswordGrid() {
     [wordPlacements],
   );
 
-  const focusCell = useCallback((x: number, y: number) => {
+  const focusCell = useCallback((x: number, y: number, scroll?: boolean) => {
     const el = document.querySelector<HTMLInputElement>(
       `[data-cell-pos="${x}-${y}"]`,
     );
-    el?.focus();
+    if (el) {
+      el.focus();
+      if (scroll) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+      }
+    }
   }, []);
+
+  useEffect(() => {
+    if (activePlacement && activeQ?.status === 'active') {
+      const first = activePlacement.cells[0];
+      focusCell(first.x, first.y, true);
+    }
+  }, [activePlacement, activeQ?.status, focusCell]);
 
   const handleInput = useCallback(
     (x: number, y: number, value: string) => {
       const letter = value.slice(0, 1).toUpperCase();
-      dispatch({
-        type: 'UPDATE_CELL',
-        payload: { x, y, letter },
-      });
+      if (!activePlacement) return;
 
-      if (letter && activePlacement) {
-        const currentCell = activePlacement.cells.find((c) => c.x === x && c.y === y);
-        if (currentCell) {
-          const nextIdx = currentCell.index + 1;
-          if (nextIdx < activePlacement.word.length) {
-            const nextCell = activePlacement.cells[nextIdx];
-            focusCell(nextCell.x, nextCell.y);
-          }
+      const currentCell = activePlacement.cells.find((c) => c.x === x && c.y === y);
+      if (!currentCell) return;
+
+      const existingLetter = gridCells[y]?.[x]?.letter ?? null;
+
+      // Same letter already in cell — just advance
+      if (letter && letter === existingLetter) {
+        const nextIdx = currentCell.index + 1;
+        if (nextIdx < activePlacement.word.length) {
+          focusCell(activePlacement.cells[nextIdx].x, activePlacement.cells[nextIdx].y);
+        }
+        return;
+      }
+
+      if (letter !== existingLetter) {
+        dispatch({
+          type: 'UPDATE_CELL',
+          payload: { x, y, letter },
+        });
+      }
+
+      if (letter) {
+        const nextIdx = currentCell.index + 1;
+        if (nextIdx < activePlacement.word.length) {
+          focusCell(activePlacement.cells[nextIdx].x, activePlacement.cells[nextIdx].y);
         }
       }
     },
-    [dispatch, activePlacement, focusCell],
+    [dispatch, activePlacement, focusCell, gridCells],
   );
 
   const handleKeyDown = useCallback(
@@ -104,6 +130,28 @@ export default function CrosswordGrid() {
 
       const currentCell = activePlacement.cells.find((c) => c.x === x && c.y === y);
       if (!currentCell) return;
+
+      if (e.key === 'Backspace') {
+        e.preventDefault();
+        const existingLetter = gridCells[y]?.[x]?.letter;
+        if (existingLetter) {
+          dispatch({
+            type: 'UPDATE_CELL',
+            payload: { x, y, letter: '' },
+          });
+        } else {
+          const prevIdx = currentCell.index - 1;
+          if (prevIdx >= 0) {
+            const prevCell = activePlacement.cells[prevIdx];
+            dispatch({
+              type: 'UPDATE_CELL',
+              payload: { x: prevCell.x, y: prevCell.y, letter: '' },
+            });
+            focusCell(prevCell.x, prevCell.y);
+          }
+        }
+        return;
+      }
 
       let nextIdx: number | null = null;
       if (activePlacement.direction === 'across') {
@@ -124,7 +172,7 @@ export default function CrosswordGrid() {
         focusCell(nextCell.x, nextCell.y);
       }
     },
-    [activePlacement, focusCell],
+    [activePlacement, focusCell, gridCells, dispatch],
   );
 
   if (gridHeight === 0 || gridWidth === 0) {
@@ -138,7 +186,7 @@ export default function CrosswordGrid() {
   const hasPaused = state.isPaused && state.phase === 'playing';
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full overflow-hidden relative">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-start justify-center min-h-[500px] w-full max-w-full relative">
       {hasPaused && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-white/70 backdrop-blur-sm rounded-xl">
           <div className="rounded-ui-card bg-surface-glass backdrop-blur-lg border border-white/20 px-8 py-6 text-center shadow-2xl">
@@ -155,10 +203,10 @@ export default function CrosswordGrid() {
           </div>
         </div>
       )}
-      <div className="w-full max-w-full overflow-x-auto lg:overflow-x-hidden overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
-        <div className="flex items-center justify-center bg-gray-50/50 rounded-lg p-2 md:p-6">
+      <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
+        <div className="flex items-start bg-gray-50/50 rounded-lg p-2 md:p-6">
           <div
-            className="grid w-max min-w-full justify-start md:justify-center md:mx-auto"
+            className="grid w-max min-w-full"
           style={{
             gridTemplateColumns: `repeat(${gridWidth}, 48px)`,
             gridTemplateRows: `repeat(${gridHeight}, 48px)`,

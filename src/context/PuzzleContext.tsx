@@ -82,6 +82,10 @@ const categoryDefaults: Record<Category, number> = Object.fromEntries(
   getAllCategories().map((c) => [c, 0]),
 ) as Record<Category, number>;
 
+const badgeDefaults: Record<Category, boolean> = Object.fromEntries(
+  getAllCategories().map((c) => [c, false]),
+) as Record<Category, boolean>;
+
 const initialState: GameState = {
   phase: "onboarding",
   session: null,
@@ -91,6 +95,7 @@ const initialState: GameState = {
   wordPlacements: [],
   score: 0,
   categoryCounts: { ...categoryDefaults },
+  earnedBadges: { ...badgeDefaults },
   timerRemaining: 60,
   gridWidth: 0,
   gridHeight: 0,
@@ -112,6 +117,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         activeIndex: null,
         score: 0,
         categoryCounts: { ...categoryDefaults },
+        earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
       };
     }
@@ -187,9 +193,13 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       );
 
       const categoryCounts = { ...state.categoryCounts };
+      const earnedBadges = { ...state.earnedBadges };
       if (isCorrect) {
-        categoryCounts[activeQ.question.category] =
-          (categoryCounts[activeQ.question.category] ?? 0) + 1;
+        const cat = activeQ.question.category;
+        categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1;
+        if (categoryCounts[cat] >= CONFIG.QUESTIONS_PER_CATEGORY) {
+          earnedBadges[cat] = true;
+        }
       }
 
       const score = isCorrect ? state.score + 1 : state.score;
@@ -223,6 +233,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         gridCells,
         score,
         categoryCounts,
+        earnedBadges,
         phase: allDone ? "finished" : "playing",
         timerRemaining: 60,
       };
@@ -272,6 +283,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         wordPlacements: action.payload.wordPlacements,
         score: action.payload.score,
         categoryCounts: action.payload.categoryCounts,
+        earnedBadges: action.payload.earnedBadges ?? { ...badgeDefaults },
         timerRemaining: action.payload.timerRemaining,
         activeIndex: action.payload.activeIndex,
         gridWidth: action.payload.gridWidth,
@@ -292,6 +304,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         activeIndex: null,
         score: 0,
         categoryCounts: { ...categoryDefaults },
+        earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
         isPaused: false,
       };
@@ -355,6 +368,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
         wordPlacements: state.wordPlacements,
         score: state.score,
         categoryCounts: state.categoryCounts,
+        earnedBadges: state.earnedBadges,
         timerRemaining: state.timerRemaining,
         activeIndex: state.activeIndex,
         gridWidth: state.gridWidth,
@@ -373,6 +387,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     state.wordPlacements,
     state.score,
     state.categoryCounts,
+    state.earnedBadges,
     state.timerRemaining,
     state.activeIndex,
     state.gridWidth,

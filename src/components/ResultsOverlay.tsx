@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import type { LeaderboardEntry } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { getLeaderboard } from '@/data/leaderboard';
@@ -10,7 +11,7 @@ const CATEGORY_ORDER = getAllCategories();
 
 export default function ResultsOverlay() {
   const { state, dispatch } = usePuzzle();
-  const { score, questions, categoryCounts, session } = state;
+  const { score, questions, categoryCounts, earnedBadges, session } = state;
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [copied, setCopied] = useState(false);
 
@@ -19,6 +20,9 @@ export default function ResultsOverlay() {
   }, []);
 
   function handleCopy() {
+    const earned = CATEGORY_ORDER.filter((c) => earnedBadges?.[c]).map(
+      (c) => `  \u2705 ${c} Certified`,
+    );
     const text = [
       `Crossword Puzzle Results`,
       `Player: ${session?.name ?? 'Unknown'}`,
@@ -26,11 +30,12 @@ export default function ResultsOverlay() {
       ...CATEGORY_ORDER.map(
         (c) => `  ${c}: ${categoryCounts[c] ?? 0} completed`,
       ),
+      ...(earned.length > 0 ? ['', 'Certifications Earned:', ...earned] : []),
       '',
       'Leaderboard:',
       ...leaderboard.slice(0, 5).map(
         (e, i) =>
-          `  ${i + 1}. ${e.name} — ${e.score}/8`,
+          `  ${i + 1}. ${e.name} — ${e.score}`,
       ),
     ].join('\n');
 
@@ -48,8 +53,11 @@ export default function ResultsOverlay() {
   const totalByCategory = CATEGORY_ORDER.map((c) => ({
     category: c,
     count: categoryCounts[c] ?? 0,
+    earned: earnedBadges?.[c] ?? false,
     total: questions.filter((q) => q.question.category === c).length,
   }));
+
+  const earnedCount = CATEGORY_ORDER.filter((c) => earnedBadges?.[c]).length;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
@@ -64,24 +72,39 @@ export default function ResultsOverlay() {
           <p className="text-sm text-content-primary/50">
             {session?.name ?? 'Player'}
           </p>
+          {earnedCount > 0 && (
+            <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-yellow-100 to-amber-100 px-3 py-1 text-xs font-bold text-yellow-800">
+              <CheckBadgeIcon className="h-4 w-4 text-yellow-600" />
+              {earnedCount} Category Certification{earnedCount > 1 ? 's' : ''} Earned
+            </p>
+          )}
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <h3 className="text-xs font-semibold uppercase tracking-wider text-content-primary/40">
             Category Breakdown
           </h3>
-          {totalByCategory.map(({ category, count, total }) => (
+          {totalByCategory.map(({ category, count, earned, total }) => (
             <div key={category} className="flex items-center gap-2 text-sm">
-              <span className="w-28 text-content-primary/70">{category}</span>
+              {earned ? (
+                <div className="flex items-center gap-1.5 w-28">
+                  <CheckBadgeIcon className="h-4 w-4 shrink-0 text-yellow-500" />
+                  <span className="text-yellow-700 font-semibold truncate">{category}</span>
+                </div>
+              ) : (
+                <span className="w-28 text-content-primary/70 truncate">{category}</span>
+              )}
               <div className="flex-1 overflow-hidden rounded-full bg-zinc-200">
                 <div
-                  className="h-2 rounded-full bg-brand-main transition-all"
+                  className={`h-2 rounded-full transition-all ${
+                    earned ? 'bg-gradient-to-r from-yellow-400 to-amber-500' : 'bg-brand-main'
+                  }`}
                   style={{
                     width: `${total > 0 ? (count / total) * 100 : 0}%`,
                   }}
                 />
               </div>
-              <span className="w-8 text-right font-sans text-xs text-content-primary/50">
+              <span className={`w-8 text-right font-sans text-xs ${earned ? 'font-bold text-yellow-700' : 'text-content-primary/50'}`}>
                 {count}/{total}
               </span>
             </div>
@@ -106,7 +129,7 @@ export default function ResultsOverlay() {
                     {entry.name}
                   </span>
                   <span className="font-bold text-brand-main">
-                    {entry.score}/8
+                    {entry.score}
                   </span>
                 </div>
               ))}

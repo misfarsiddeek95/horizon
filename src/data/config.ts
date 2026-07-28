@@ -2,8 +2,8 @@ import type { Category } from '@/types';
 import { questionPool } from './questions';
 
 export const CONFIG = {
-  MAX_TOTAL_QUESTIONS: 10,
-  QUESTIONS_PER_CATEGORY: 2,
+  MAX_TOTAL_QUESTIONS: 15,
+  QUESTIONS_PER_CATEGORY: 3,
   EXCLUDED_CATEGORIES: [] as string[],
 };
 
@@ -23,7 +23,7 @@ export const CATEGORY_COLORS: Record<
     card: string;
   }
 > = {
-  Innovation: {
+  'Company & Identity': {
     base: 'border-blue-400 text-blue-600',
     halfBg: 'bg-blue-100',
     iconHalf: 'relative z-10 text-blue-500',
@@ -31,7 +31,23 @@ export const CATEGORY_COLORS: Record<
     iconFull: 'text-white',
     card: 'bg-blue-100 text-blue-600',
   },
-  Sustainability: {
+  'Products & Solutions': {
+    base: 'border-teal-400 text-teal-600',
+    halfBg: 'bg-teal-100',
+    iconHalf: 'relative z-10 text-teal-500',
+    full: 'bg-teal-500 border-teal-500 text-white shadow-md shadow-teal-200',
+    iconFull: 'text-white',
+    card: 'bg-teal-100 text-teal-600',
+  },
+  'Innovation, Technology & Future Growth': {
+    base: 'border-cyan-400 text-cyan-600',
+    halfBg: 'bg-cyan-100',
+    iconHalf: 'relative z-10 text-cyan-500',
+    full: 'bg-cyan-500 border-cyan-500 text-white shadow-md shadow-cyan-200',
+    iconFull: 'text-white',
+    card: 'bg-cyan-100 text-cyan-600',
+  },
+  'Sustainability/ESG': {
     base: 'border-green-400 text-green-600',
     halfBg: 'bg-green-100',
     iconHalf: 'relative z-10 text-green-500',
@@ -39,28 +55,12 @@ export const CATEGORY_COLORS: Record<
     iconFull: 'text-white',
     card: 'bg-emerald-100 text-emerald-600',
   },
-  Financials: {
+  'Performance & Growth': {
     base: 'border-amber-400 text-amber-600',
     halfBg: 'bg-amber-100',
     iconHalf: 'relative z-10 text-amber-500',
     full: 'bg-amber-500 border-amber-500 text-white shadow-md shadow-amber-200',
     iconFull: 'text-white',
     card: 'bg-amber-100 text-amber-600',
-  },
-  Governance: {
-    base: 'border-purple-400 text-purple-600',
-    halfBg: 'bg-purple-100',
-    iconHalf: 'relative z-10 text-purple-500',
-    full: 'bg-purple-500 border-purple-500 text-white shadow-md shadow-purple-200',
-    iconFull: 'text-white',
-    card: 'bg-violet-100 text-violet-600',
-  },
-  Technology: {
-    base: 'border-cyan-400 text-cyan-600',
-    halfBg: 'bg-cyan-100',
-    iconHalf: 'relative z-10 text-cyan-500',
-    full: 'bg-cyan-500 border-cyan-500 text-white shadow-md shadow-cyan-200',
-    iconFull: 'text-white',
-    card: 'bg-cyan-100 text-cyan-600',
   },
 };

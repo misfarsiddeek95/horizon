@@ -27,7 +27,7 @@ function PuzzleGame() {
           <span className="text-sm font-semibold text-gray-700">
             {state.session?.name ?? 'Player'}
           </span>
-          <span className="text-sm text-gray-400">Score: {state.score}/8</span>
+          <span className="text-sm text-gray-400">Score: {state.score}/{state.questions.length}</span>
         </div>
         <div className="flex items-center gap-3">
           <button

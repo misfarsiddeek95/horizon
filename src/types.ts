@@ -1,4 +1,4 @@
-export type Category = 'Innovation' | 'Sustainability' | 'Financials' | 'Governance' | 'Technology';
+export type Category = 'Company & Identity' | 'Products & Solutions' | 'Innovation, Technology & Future Growth' | 'Sustainability/ESG' | 'Performance & Growth';
 
 export interface Question {
   id: string;
@@ -60,6 +60,7 @@ export interface GameState {
   wordPlacements: WordPlacement[];
   score: number;
   categoryCounts: Record<Category, number>;
+  earnedBadges: Record<Category, boolean>;
   timerRemaining: number;
   gridWidth: number;
   gridHeight: number;
@@ -73,6 +74,7 @@ export interface SavedGameState {
   wordPlacements: WordPlacement[];
   score: number;
   categoryCounts: Record<Category, number>;
+  earnedBadges: Record<Category, boolean>;
   timerRemaining: number;
   activeIndex: number | null;
   gridWidth: number;

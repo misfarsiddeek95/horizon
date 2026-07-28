@@ -1,8 +1,8 @@
 'use client';
 
-import { TrophyIcon } from '@heroicons/react/24/solid';
+import { TrophyIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { usePuzzle } from '@/context/PuzzleContext';
-import { getAllCategories, CATEGORY_COLORS } from '@/data/config';
+import { getAllCategories, CATEGORY_COLORS, CONFIG } from '@/data/config';
 
 export default function CategoryBadges() {
   const { state } = usePuzzle();
@@ -12,7 +12,28 @@ export default function CategoryBadges() {
     <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8">
       {categories.map((cat) => {
         const completedCount = state.categoryCounts[cat] ?? 0;
+        const earned = state.earnedBadges?.[cat] ?? false;
         const s = CATEGORY_COLORS[cat];
+        const required = CONFIG.QUESTIONS_PER_CATEGORY;
+
+        if (earned) {
+          return (
+            <div
+              key={cat}
+              className="inline-flex items-center gap-2 rounded-full border-2 border-yellow-400 bg-gradient-to-r from-yellow-50 to-amber-50 px-4 py-1.5 text-xs font-semibold shadow-md shadow-yellow-200/50"
+            >
+              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-gradient-to-br from-yellow-400 to-amber-500 shadow-lg shadow-yellow-300/50 animate-pulse">
+                <CheckBadgeIcon className="h-5 w-5 text-white" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-yellow-800">{cat}</span>
+                <span className="text-[10px] font-bold text-yellow-600 tracking-wider uppercase">
+                  Certified
+                </span>
+              </div>
+            </div>
+          );
+        }
 
         let wrapperClasses: string;
         let iconClasses: string;
@@ -22,7 +43,7 @@ export default function CategoryBadges() {
           wrapperClasses = 'bg-transparent border-2 border-gray-200 text-gray-400';
           iconClasses = 'text-gray-300';
           showHalfFill = false;
-        } else if (completedCount === 1) {
+        } else if (completedCount < required) {
           wrapperClasses = `relative overflow-hidden bg-transparent border-2 ${s.base}`;
           iconClasses = s.iconHalf;
           showHalfFill = true;
