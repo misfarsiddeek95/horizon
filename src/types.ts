@@ -48,6 +48,8 @@ export interface LeaderboardEntry {
   name: string;
   email: string;
   score: number;
+  timeRemaining: number;
+  aiUsed: boolean;
   date: string;
 }
 
@@ -64,6 +66,7 @@ export interface GameState {
   gridWidth: number;
   gridHeight: number;
   isPaused: boolean;
+  aiAssistUsed: boolean;
 }
 
 export interface SavedGameState {
@@ -77,6 +80,7 @@ export interface SavedGameState {
   activeIndex: number | null;
   gridWidth: number;
   gridHeight: number;
+  aiAssistUsed: boolean;
 }
 
 export interface StartGamePayload {
@@ -94,6 +98,7 @@ export type GameAction =
   | { type: 'UPDATE_CELL'; payload: { x: number; y: number; letter: string } }
   | { type: 'SUBMIT_ANSWER' }
   | { type: 'TICK_TIMER' }
+  | { type: 'MARK_AI_USED' }
   | { type: 'PAUSE_GAME' }
   | { type: 'RESUME_GAME' }
   | { type: 'RESTORE_GAME'; payload: SavedGameState }

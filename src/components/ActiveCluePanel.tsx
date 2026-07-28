@@ -33,6 +33,7 @@ export default function ActiveCluePanel() {
   }
 
   function openHelp() {
+    dispatch({ type: "MARK_AI_USED" });
     window.open("/chat-help", "_blank", "noopener,noreferrer");
   }
 

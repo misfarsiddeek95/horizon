@@ -9,6 +9,8 @@ interface ResultEntry {
   name: string;
   email: string;
   score: number;
+  timeRemaining: number;
+  aiUsed: boolean;
   date: string;
 }
 
@@ -29,7 +31,7 @@ export async function GET() {
   try {
     const results = await readResults();
     const sorted = results
-      .sort((a, b) => b.score - a.score || new Date(b.date).getTime() - new Date(a.date).getTime())
+      .sort((a, b) => b.score - a.score || b.timeRemaining - a.timeRemaining)
       .slice(0, 10);
     return NextResponse.json({ results: sorted });
   } catch {
@@ -40,7 +42,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body: unknown = await request.json();
-    const { name, email, score, date } = body as Record<string, unknown>;
+    const { name, email, score, timeRemaining, aiUsed, date } = body as Record<string, unknown>;
 
     if (typeof name !== 'string' || !name.trim()) {
       return NextResponse.json(
@@ -49,9 +51,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (typeof score !== 'number' || score < 0 || score > CONFIG.MAX_TOTAL_QUESTIONS) {
+    if (typeof score !== 'number' || score < 0) {
       return NextResponse.json(
-        { success: false, error: `Score must be between 0 and ${CONFIG.MAX_TOTAL_QUESTIONS}` },
+        { success: false, error: 'Score must be a non-negative number' },
         { status: 400 },
       );
     }
@@ -68,14 +70,20 @@ export async function POST(request: NextRequest) {
       name: name.trim(),
       email,
       score,
+      timeRemaining: typeof timeRemaining === 'number' ? timeRemaining : 0,
+      aiUsed: typeof aiUsed === 'boolean' ? aiUsed : false,
       date: typeof date === 'string' ? date : new Date().toISOString(),
     };
 
     const existingIndex = results.findIndex((r) => r.email === newEntry.email);
     if (existingIndex !== -1) {
-      results[existingIndex].score = Math.max(results[existingIndex].score, newEntry.score);
-      results[existingIndex].date = newEntry.date;
-      results[existingIndex].name = newEntry.name;
+      if (newEntry.score > results[existingIndex].score) {
+        results[existingIndex].score = newEntry.score;
+        results[existingIndex].timeRemaining = newEntry.timeRemaining;
+        results[existingIndex].aiUsed = newEntry.aiUsed;
+        results[existingIndex].date = newEntry.date;
+        results[existingIndex].name = newEntry.name;
+      }
     } else {
       results.push(newEntry);
     }

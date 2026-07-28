@@ -95,6 +95,7 @@ const initialState: GameState = {
   gridWidth: 0,
   gridHeight: 0,
   isPaused: false,
+  aiAssistUsed: false,
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -224,8 +225,12 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         score,
         categoryCounts,
         phase: allDone ? "finished" : "playing",
-        timerRemaining: 60,
+        timerRemaining: allDone ? state.timerRemaining : 60,
       };
+    }
+
+    case "MARK_AI_USED": {
+      return { ...state, aiAssistUsed: true };
     }
 
     case "TICK_TIMER": {
@@ -276,6 +281,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         activeIndex: action.payload.activeIndex,
         gridWidth: action.payload.gridWidth,
         gridHeight: action.payload.gridHeight,
+        aiAssistUsed: action.payload.aiAssistUsed,
       };
     }
 
@@ -334,17 +340,27 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (state.phase === "finished" && state.session) {
+      const BASE_POINTS_PER_WORD = 100;
+      const baseScore = state.score * BASE_POINTS_PER_WORD;
+      const timeBonus = state.timerRemaining;
+      let finalScore = baseScore + timeBonus;
+      if (state.aiAssistUsed) {
+        finalScore = Math.floor(finalScore * 0.5);
+      }
+
       const result = {
         name: state.session.name,
         email: state.session.email,
-        score: state.score,
+        score: finalScore,
+        timeRemaining: state.timerRemaining,
+        aiUsed: state.aiAssistUsed,
         date: new Date().toISOString(),
       };
       saveResult(result);
       localStorage.setItem("horizon-puzzle-score", JSON.stringify(result));
       localStorage.removeItem("horizon-puzzle-game-state");
     }
-  }, [state.phase, state.session, state.score]);
+  }, [state.phase, state.session, state.score, state.timerRemaining, state.aiAssistUsed]);
 
   useEffect(() => {
     if (state.phase === "playing") {
@@ -359,6 +375,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
         activeIndex: state.activeIndex,
         gridWidth: state.gridWidth,
         gridHeight: state.gridHeight,
+        aiAssistUsed: state.aiAssistUsed,
       };
       localStorage.setItem(
         "horizon-puzzle-game-state",
@@ -377,6 +394,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     state.activeIndex,
     state.gridWidth,
     state.gridHeight,
+    state.aiAssistUsed,
   ]);
 
   useEffect(() => {

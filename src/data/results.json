@@ -3,18 +3,24 @@
     "name": "Misfar Siddeek",
     "email": "asmmisfar@gmail.com",
     "score": 8,
+    "timeRemaining": 0,
+    "aiUsed": false,
     "date": "2026-07-08T19:10:02.870Z"
   },
   {
     "name": "Mohemed Misfar",
     "email": "misfar@gmil.com",
     "score": 8,
+    "timeRemaining": 0,
+    "aiUsed": false,
     "date": "2026-07-08T18:34:46.532Z"
   },
   {
     "name": "Editor",
     "email": "test@example.com",
     "score": 0,
+    "timeRemaining": 0,
+    "aiUsed": false,
     "date": "2026-07-10T09:52:02.989Z"
   }
 ]

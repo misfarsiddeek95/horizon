@@ -1,14 +1,15 @@
 import Link from 'next/link';
-import { TrophyIcon } from '@heroicons/react/24/solid';
+import { TrophyIcon, SparklesIcon } from '@heroicons/react/24/solid';
 import { promises as fs } from 'fs';
 import path from 'path';
-import { CONFIG } from '@/data/config';
 
 export const dynamic = 'force-dynamic';
 
 interface PlayerEntry {
   name: string;
   score: number;
+  timeRemaining: number;
+  aiUsed: boolean;
 }
 
 export default async function LeaderboardPage() {
@@ -18,7 +19,9 @@ export default async function LeaderboardPage() {
     const filePath = path.join(process.cwd(), 'src', 'data', 'results.json');
     const fileContents = await fs.readFile(filePath, 'utf8');
     const allResults = JSON.parse(fileContents) as PlayerEntry[];
-    players = allResults.sort((a, b) => b.score - a.score).slice(0, 10);
+    players = allResults
+      .sort((a, b) => b.score - a.score || b.timeRemaining - a.timeRemaining)
+      .slice(0, 10);
   } catch (error) {
     console.error('Error reading result.json:', error);
   }
@@ -93,12 +96,25 @@ export default async function LeaderboardPage() {
               <div key={`${player.name}-${i}`} className={rowClasses}>
                 <div className="flex items-center gap-4 min-w-0">
                   {rankIcon}
-                  <span className={`truncate ${nameClasses}`}>
-                    {player.name}
-                  </span>
+                  <div className="flex flex-col min-w-0">
+                    <span className={`truncate ${nameClasses}`}>
+                      {player.name}
+                    </span>
+                    {player.aiUsed && (
+                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-amber-300/80 mt-0.5">
+                        <SparklesIcon className="w-3 h-3" />
+                        Helper Used
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  <span className={scoreClasses}>{player.score}/{CONFIG.MAX_TOTAL_QUESTIONS}</span>
+                  <div className="text-right">
+                    <span className={scoreClasses}>{player.score}</span>
+                    {player.aiUsed && (
+                      <span className="block text-[10px] text-white/40">-50% AI penalty</span>
+                    )}
+                  </div>
                 </div>
               </div>
             );
