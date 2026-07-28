@@ -69,6 +69,20 @@ export default function CrosswordGrid() {
     [wordPlacements],
   );
 
+  const lockedSet = useMemo(() => {
+    const locked = new Set<string>();
+    const terminal = new Set(['completed', 'failed', 'timeout']);
+    for (const pw of wordPlacements) {
+      const qs = questions.find((q) => q.question.id === pw.questionId);
+      if (qs && terminal.has(qs.status)) {
+        for (const c of pw.cells) {
+          locked.add(`${c.x},${c.y}`);
+        }
+      }
+    }
+    return locked;
+  }, [wordPlacements, questions]);
+
   const focusCell = useCallback((x: number, y: number, scroll?: boolean) => {
     const el = document.querySelector<HTMLInputElement>(
       `[data-cell-pos="${x}-${y}"]`,
@@ -98,6 +112,17 @@ export default function CrosswordGrid() {
 
       const existingLetter = gridCells[y]?.[x]?.letter ?? null;
 
+      // Cell belongs to a completed/failed/timeout word — lock it
+      if (lockedSet.has(`${x},${y}`)) {
+        if (letter && letter === existingLetter) {
+          const nextIdx = currentCell.index + 1;
+          if (nextIdx < activePlacement.word.length) {
+            focusCell(activePlacement.cells[nextIdx].x, activePlacement.cells[nextIdx].y);
+          }
+        }
+        return;
+      }
+
       // Same letter already in cell — just advance
       if (letter && letter === existingLetter) {
         const nextIdx = currentCell.index + 1;
@@ -121,7 +146,7 @@ export default function CrosswordGrid() {
         }
       }
     },
-    [dispatch, activePlacement, focusCell, gridCells],
+    [dispatch, activePlacement, focusCell, gridCells, lockedSet],
   );
 
   const handleKeyDown = useCallback(
@@ -132,6 +157,8 @@ export default function CrosswordGrid() {
       if (!currentCell) return;
 
       if (e.key === 'Backspace') {
+        if (lockedSet.has(`${x},${y}`)) return;
+        e.preventDefault();
         e.preventDefault();
         const existingLetter = gridCells[y]?.[x]?.letter;
         if (existingLetter) {
@@ -172,7 +199,7 @@ export default function CrosswordGrid() {
         focusCell(nextCell.x, nextCell.y);
       }
     },
-    [activePlacement, focusCell, gridCells, dispatch],
+    [activePlacement, focusCell, gridCells, dispatch, lockedSet],
   );
 
   if (gridHeight === 0 || gridWidth === 0) {
