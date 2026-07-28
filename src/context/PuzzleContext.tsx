@@ -16,6 +16,8 @@ import type {
   Question,
   Category,
   SavedGameState,
+  LeaderboardEntry,
+  AnswerRecord,
 } from "@/types";
 import { questionPool } from "@/data/questions";
 import { generateGrid } from "@/utils/gridGenerator";
@@ -100,6 +102,8 @@ const initialState: GameState = {
   gridWidth: 0,
   gridHeight: 0,
   isPaused: false,
+  aiAssistedQuestions: [],
+  answerHistory: [],
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -119,6 +123,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         categoryCounts: { ...categoryDefaults },
         earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
+        aiAssistedQuestions: [],
+        answerHistory: [],
       };
     }
 
@@ -157,6 +163,15 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       );
 
       return { ...state, gridCells };
+    }
+
+    case "USE_AI_ASSIST": {
+      const { questionId } = action.payload;
+      if (state.aiAssistedQuestions.includes(questionId)) return state;
+      return {
+        ...state,
+        aiAssistedQuestions: [...state.aiAssistedQuestions, questionId],
+      };
     }
 
     case "SUBMIT_ANSWER": {
@@ -202,7 +217,29 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         }
       }
 
-      const score = isCorrect ? state.score + 1 : state.score;
+      let questionPoints = 0;
+      if (isCorrect) {
+        const q = activeQ.question;
+        const base = CONFIG.BASE_POINTS_PER_QUESTION;
+        const timeBonus = Math.floor((state.timerRemaining / q.timeLimit) * CONFIG.TIME_BONUS_MULTIPLIER);
+        questionPoints = base + timeBonus;
+        if (state.aiAssistedQuestions.includes(q.id)) {
+          questionPoints = Math.floor(questionPoints / 2);
+        }
+      }
+      const score = state.score + questionPoints;
+
+      const answerRecord: AnswerRecord = {
+        questionId: activeQ.question.id,
+        clue: activeQ.question.clue,
+        category: activeQ.question.category,
+        status: newStatus,
+        timeRemaining: state.timerRemaining,
+        basePoints: isCorrect ? CONFIG.BASE_POINTS_PER_QUESTION : 0,
+        timeBonus: isCorrect ? Math.floor((state.timerRemaining / activeQ.question.timeLimit) * CONFIG.TIME_BONUS_MULTIPLIER) : 0,
+        aiUsed: state.aiAssistedQuestions.includes(activeQ.question.id),
+        totalPointsEarned: questionPoints,
+      };
 
       let gridCells = state.gridCells;
       if (isCorrect) {
@@ -234,6 +271,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         score,
         categoryCounts,
         earnedBadges,
+        answerHistory: [...state.answerHistory, answerRecord],
         phase: allDone ? "finished" : "playing",
         timerRemaining: 60,
       };
@@ -244,6 +282,18 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       if (state.isPaused) return state;
       const next = state.timerRemaining - 1;
       if (next <= 0) {
+        const timeoutActiveQ = state.questions[state.activeIndex];
+        const timeoutRecord: AnswerRecord = {
+          questionId: timeoutActiveQ.question.id,
+          clue: timeoutActiveQ.question.clue,
+          category: timeoutActiveQ.question.category,
+          status: "timeout" as const,
+          timeRemaining: 0,
+          basePoints: 0,
+          timeBonus: 0,
+          aiUsed: state.aiAssistedQuestions.includes(timeoutActiveQ.question.id),
+          totalPointsEarned: 0,
+        };
         const questions = state.questions.map((q, i) =>
           i === state.activeIndex ? { ...q, status: "timeout" as const } : q
         );
@@ -254,6 +304,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           ...state,
           activeIndex: null,
           questions,
+          answerHistory: [...state.answerHistory, timeoutRecord],
           phase: allDone ? "finished" : "playing",
           timerRemaining: 0,
           isPaused: false,
@@ -288,6 +339,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         activeIndex: action.payload.activeIndex,
         gridWidth: action.payload.gridWidth,
         gridHeight: action.payload.gridHeight,
+        aiAssistedQuestions: action.payload.aiAssistedQuestions ?? [],
+        answerHistory: action.payload.answerHistory ?? [],
       };
     }
 
@@ -307,6 +360,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
         isPaused: false,
+        aiAssistedQuestions: [],
+        answerHistory: [],
       };
     }
 
@@ -347,17 +402,19 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (state.phase === "finished" && state.session) {
-      const result = {
+      const result: LeaderboardEntry = {
         name: state.session.name,
         email: state.session.email,
         score: state.score,
         date: new Date().toISOString(),
+        earnedBadges: state.earnedBadges,
+        answerHistory: state.answerHistory,
       };
       saveResult(result);
       localStorage.setItem("horizon-puzzle-score", JSON.stringify(result));
       localStorage.removeItem("horizon-puzzle-game-state");
     }
-  }, [state.phase, state.session, state.score]);
+  }, [state.phase, state.session, state.score, state.earnedBadges, state.answerHistory]);
 
   useEffect(() => {
     if (state.phase === "playing") {
@@ -373,6 +430,8 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
         activeIndex: state.activeIndex,
         gridWidth: state.gridWidth,
         gridHeight: state.gridHeight,
+        aiAssistedQuestions: state.aiAssistedQuestions,
+        answerHistory: state.answerHistory,
       };
       localStorage.setItem(
         "horizon-puzzle-game-state",
@@ -392,6 +451,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     state.activeIndex,
     state.gridWidth,
     state.gridHeight,
+    state.answerHistory,
   ]);
 
   useEffect(() => {

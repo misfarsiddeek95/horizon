@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { CONFIG } from '@/data/config';
+import type { AnswerRecord } from '@/types';
 
 const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'results.json');
 
@@ -10,6 +11,8 @@ interface ResultEntry {
   email: string;
   score: number;
   date: string;
+  earnedBadges?: Record<string, boolean>;
+  answerHistory?: AnswerRecord[];
 }
 
 async function readResults(): Promise<ResultEntry[]> {
@@ -49,9 +52,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (typeof score !== 'number' || score < 0 || score > CONFIG.MAX_TOTAL_QUESTIONS) {
+    if (typeof score !== 'number' || score < 0) {
       return NextResponse.json(
-        { success: false, error: `Score must be between 0 and ${CONFIG.MAX_TOTAL_QUESTIONS}` },
+        { success: false, error: 'Score must be a non-negative number' },
         { status: 400 },
       );
     }
@@ -64,11 +67,14 @@ export async function POST(request: NextRequest) {
     }
 
     const results = await readResults();
-    const newEntry = {
+    const bodyRecord = body as Record<string, unknown>;
+    const newEntry: ResultEntry = {
       name: name.trim(),
       email,
       score,
       date: typeof date === 'string' ? date : new Date().toISOString(),
+      earnedBadges: (bodyRecord.earnedBadges as Record<string, boolean> | undefined) ?? undefined,
+      answerHistory: (bodyRecord.answerHistory as AnswerRecord[] | undefined) ?? undefined,
     };
 
     const existingIndex = results.findIndex((r) => r.email === newEntry.email);
@@ -76,6 +82,8 @@ export async function POST(request: NextRequest) {
       results[existingIndex].score = Math.max(results[existingIndex].score, newEntry.score);
       results[existingIndex].date = newEntry.date;
       results[existingIndex].name = newEntry.name;
+      if (newEntry.earnedBadges) results[existingIndex].earnedBadges = newEntry.earnedBadges;
+      if (newEntry.answerHistory) results[existingIndex].answerHistory = newEntry.answerHistory;
     } else {
       results.push(newEntry);
     }

@@ -44,11 +44,25 @@ export interface QuestionState {
   number: number;
 }
 
+export interface AnswerRecord {
+  questionId: string;
+  clue: string;
+  category: Category;
+  status: QuestionStatus;
+  timeRemaining: number;
+  basePoints: number;
+  timeBonus: number;
+  aiUsed: boolean;
+  totalPointsEarned: number;
+}
+
 export interface LeaderboardEntry {
   name: string;
   email: string;
   score: number;
   date: string;
+  earnedBadges: Record<Category, boolean>;
+  answerHistory: AnswerRecord[];
 }
 
 export interface GameState {
@@ -65,6 +79,8 @@ export interface GameState {
   gridWidth: number;
   gridHeight: number;
   isPaused: boolean;
+  aiAssistedQuestions: string[];
+  answerHistory: AnswerRecord[];
 }
 
 export interface SavedGameState {
@@ -79,6 +95,8 @@ export interface SavedGameState {
   activeIndex: number | null;
   gridWidth: number;
   gridHeight: number;
+  aiAssistedQuestions: string[];
+  answerHistory: AnswerRecord[];
 }
 
 export interface StartGamePayload {
@@ -95,6 +113,7 @@ export type GameAction =
   | { type: 'SELECT_QUESTION'; payload: number }
   | { type: 'UPDATE_CELL'; payload: { x: number; y: number; letter: string } }
   | { type: 'SUBMIT_ANSWER' }
+  | { type: 'USE_AI_ASSIST'; payload: { questionId: string } }
   | { type: 'TICK_TIMER' }
   | { type: 'PAUSE_GAME' }
   | { type: 'RESUME_GAME' }

@@ -33,6 +33,9 @@ export default function ActiveCluePanel() {
   }
 
   function openHelp() {
+    if (activeQ) {
+      dispatch({ type: "USE_AI_ASSIST", payload: { questionId: activeQ.question.id } });
+    }
     window.open("/chat-help", "_blank", "noopener,noreferrer");
   }
 

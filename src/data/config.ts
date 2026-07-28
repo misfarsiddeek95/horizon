@@ -5,6 +5,8 @@ export const CONFIG = {
   MAX_TOTAL_QUESTIONS: 15,
   QUESTIONS_PER_CATEGORY: 3,
   EXCLUDED_CATEGORIES: [] as string[],
+  BASE_POINTS_PER_QUESTION: 10,
+  TIME_BONUS_MULTIPLIER: 5,
 };
 
 export function getAllCategories(): Category[] {

@@ -26,7 +26,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
     const text = [
       `Crossword Puzzle Results`,
       `Player: ${session?.name ?? 'Unknown'}`,
-      `Score: ${score}/${questions.length}`,
+      `        Score: ${score}/${questions.length}`,
       ...CATEGORY_ORDER.map(
         (c) => `  ${c}: ${categoryCounts[c] ?? 0} completed`,
       ),
