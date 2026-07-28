@@ -178,5 +178,185 @@
         "totalPointsEarned": 14
       }
     ]
+  },
+  {
+    "name": "Developer",
+    "email": "dev@test.com",
+    "score": 68,
+    "date": "2026-07-28T20:27:52.209Z",
+    "earnedBadges": {
+      "Company & Identity": false,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": false,
+      "Sustainability/ESG": false,
+      "Performance & Growth": false
+    },
+    "answerHistory": [
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 55,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-1",
+        "clue": "Which assessment approach considers both financial and impact perspectives when identifying priorities?",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 49,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "esg-7",
+        "clue": "Which patented Haycarb technology uses heat from the charcoaling process to generate electricity?",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 44,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "perf-4",
+        "clue": "Haycarb's total ______ reached 53,200 MT during FY2025/26",
+        "category": "Performance & Growth",
+        "status": "failed",
+        "timeRemaining": 51,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "comp-4",
+        "clue": "What guides Haycarb's journey alongside innovation and sustainability?",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 44,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 55,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "tech-2",
+        "clue": "Which country is home to Haycarb's progressing greenfield manufacturing expansion?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 35,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": true,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "perf-2",
+        "clue": "What operational quality helps Haycarb maintain consistent product delivery across global markets?",
+        "category": "Performance & Growth",
+        "status": "failed",
+        "timeRemaining": 54,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 56,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "tech-5",
+        "clue": "Which technology produces carbons for specialty applications by achieving exceptionally high surface areas?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 44,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "prod-5",
+        "clue": "Haycarb progressed the development of fine carbon products for ______ grade applications",
+        "category": "Products & Solutions",
+        "status": "failed",
+        "timeRemaining": 51,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "tech-4",
+        "clue": "Haycarb's manufacturing best practices include Lean Manufacturing, Six Sigma, 5S and ______",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 54,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "comp-5",
+        "clue": "What stage represents \"Moving With Direction and Purpose\"?",
+        "category": "Company & Identity",
+        "status": "failed",
+        "timeRemaining": 52,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "prod-4",
+        "clue": "Which engineering segment extends Haycarb's offering beyond activated carbon products?",
+        "category": "Products & Solutions",
+        "status": "failed",
+        "timeRemaining": 53,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "esg-5",
+        "clue": "The type of harvesting Haycarb uses, alongside recycling and reuse, for sustainable water management",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 50,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
   }
 ]
