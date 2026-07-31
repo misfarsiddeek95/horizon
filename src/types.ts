@@ -140,7 +140,7 @@ export type GameAction =
   | { type: 'PAUSE_GAME' }
   | { type: 'RESUME_GAME' }
   | { type: 'RESTORE_GAME'; payload: SavedGameState }
-  | { type: 'RESTART_GAME' }
+  | { type: 'RESTART_GAME'; payload: StartGamePayload }
   | { type: 'LOGOUT' }
   | { type: 'RESET' }
   | { type: 'ENQUEUE_BADGES'; payload: { badgeIds: string[] } }

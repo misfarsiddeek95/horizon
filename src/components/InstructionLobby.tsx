@@ -34,7 +34,7 @@ function LobbyCard({
       } ${wide ? "md:col-span-2" : ""}`}
     >
       <div className="mb-3 flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-ui-element bg-white/10 text-accent-main">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-ui-element bg-white/10 text-yellow-400">
           {icon}
         </div>
         <h2 className="font-heading text-lg font-bold text-white">{title}</h2>
@@ -80,7 +80,7 @@ export default function InstructionLobby() {
             <p>
               Stuck? The <strong className="text-white">&quot;Need Help?&quot;</strong> button
               provides AI assistance, but it costs{" "}
-              <strong className="text-accent-main">50% of that word&apos;s points</strong>.
+              <strong className="text-yellow-400">50% of that word&apos;s points</strong>.
             </p>
           </LobbyCard>
 

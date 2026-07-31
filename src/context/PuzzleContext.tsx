@@ -378,18 +378,18 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case "RESTART_GAME": {
       return {
         ...state,
-        phase: "idle",
-        session: state.session,
-        questions: [],
+        phase: "playing",
+        session: action.payload.session,
+        questions: action.payload.questions,
+        gridCells: action.payload.gridCells,
+        wordPlacements: action.payload.wordPlacements,
+        gridWidth: action.payload.gridWidth,
+        gridHeight: action.payload.gridHeight,
         activeIndex: null,
-        gridCells: [],
-        wordPlacements: [],
         score: 0,
         categoryCounts: { ...categoryDefaults },
         earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
-        gridWidth: 0,
-        gridHeight: 0,
         isPaused: false,
         aiAssistedQuestions: [],
         answerHistory: [],
@@ -590,7 +590,11 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
 
   const restartGame = useCallback(() => {
     localStorage.removeItem("horizon-puzzle-game-state");
-    dispatch({ type: "RESTART_GAME" });
+    const gameData = initializeGame();
+    dispatch({
+      type: "RESTART_GAME",
+      payload: { ...gameData, session: sessionRef.current! },
+    });
   }, []);
 
   const logout = useCallback(() => {
