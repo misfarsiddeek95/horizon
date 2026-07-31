@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { SessionData } from '@/types';
+import MuteToggle from '@/components/MuteToggle';
 
 interface OnboardingProps {
   onStart: (session: SessionData) => void;
@@ -108,6 +109,13 @@ export default function Onboarding({ onStart }: OnboardingProps) {
         {errors.consent && (
           <p className="text-xs text-red-500">{errors.consent}</p>
         )}
+
+        <div className="flex items-center justify-between rounded-ui-element border border-zinc-200 px-3 py-2">
+          <span className="text-sm font-medium text-content-primary">
+            Sound effects
+          </span>
+          <MuteToggle />
+        </div>
 
         <button
           type="submit"
