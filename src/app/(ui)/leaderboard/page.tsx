@@ -15,7 +15,6 @@ export default async function LeaderboardPage() {
     const allResults = JSON.parse(fileContents) as LeaderboardEntry[];
     players = allResults
       .sort((a, b) => b.score - a.score || new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 10)
       .map((entry) => ({
         ...entry,
         earnedBadges: (entry.earnedBadges ?? {}) as Record<Category, boolean>,

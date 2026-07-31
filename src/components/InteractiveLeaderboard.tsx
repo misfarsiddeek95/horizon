@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
-import { TrophyIcon, CheckBadgeIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { CheckBadgeIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import type { LeaderboardEntry } from "@/types";
 import { CATEGORY_COLORS, getAllCategories } from "@/data/config";
 
@@ -20,6 +20,56 @@ function readSessionEmail(): string | null {
     return null;
   }
 }
+
+function initials(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  const first = parts[0]?.[0]?.toUpperCase() ?? "";
+  const second = parts[1]?.[0]?.toUpperCase() ?? "";
+  return (first + second || "?").slice(0, 2);
+}
+
+interface PodiumStyle {
+  orderClass: string;
+  avatarSize: string;
+  avatarText: string;
+  snakeGradient: string;
+  glowShadow: string;
+  rippleClass: string;
+  scoreClass: string;
+}
+
+const PODIUM_STYLES: Record<1 | 2 | 3, PodiumStyle> = {
+  1: {
+    orderClass: "order-2",
+    avatarSize: "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24",
+    avatarText: "text-2xl sm:text-3xl",
+    snakeGradient:
+      "bg-[conic-gradient(from_0deg,transparent_70%,rgba(250,204,21,1)_100%)]",
+    glowShadow: "shadow-[0_0_25px_rgba(250,204,21,0.6)]",
+    rippleClass: "bg-yellow-400 opacity-20 animate-[ping_3s_ease-out_infinite]",
+    scoreClass: "text-yellow-300",
+  },
+  2: {
+    orderClass: "order-1",
+    avatarSize: "w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20",
+    avatarText: "text-xl sm:text-2xl",
+    snakeGradient:
+      "bg-[conic-gradient(from_0deg,transparent_70%,rgba(203,213,225,1)_100%)]",
+    glowShadow: "",
+    rippleClass: "",
+    scoreClass: "text-slate-300",
+  },
+  3: {
+    orderClass: "order-3",
+    avatarSize: "w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20",
+    avatarText: "text-xl sm:text-2xl",
+    snakeGradient:
+      "bg-[conic-gradient(from_0deg,transparent_70%,rgba(217,119,6,1)_100%)]",
+    glowShadow: "",
+    rippleClass: "",
+    scoreClass: "text-amber-500",
+  },
+};
 
 export default function InteractiveLeaderboard({
   players,
@@ -40,78 +90,162 @@ export default function InteractiveLeaderboard({
     () => null
   );
 
+  const sortedPlayers = useMemo(
+    () =>
+      [...players].sort(
+        (a, b) =>
+          b.score - a.score ||
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+      ),
+    [players]
+  );
+
+  const topThree = sortedPlayers.slice(0, 3);
+  const remainingList = sortedPlayers.slice(3, 10);
+
+  const currentUserIndex = sortedPlayers.findIndex(
+    (p) => p.email === currentUserEmail
+  );
+  const currentUser =
+    currentUserIndex >= 0 ? sortedPlayers[currentUserIndex] : null;
+  const currentUserRank = currentUserIndex + 1;
+  const showPinnedRow = currentUser !== null && currentUserRank > 10;
+
   const selectedPlayer = selectedEmail
-    ? players.find((p) => p.email === selectedEmail)
+    ? sortedPlayers.find((p) => p.email === selectedEmail)
     : null;
 
   function handleClose() {
     setSelectedEmail(null);
   }
 
-  return (
-    <>
-      <div className="flex flex-col gap-3">
-        {players.length === 0 && (
-          <p className="text-center text-white/60 py-8">
-            No scores yet. Play a game to appear here!
-          </p>
-        )}
+  function renderRow(player: LeaderboardEntry, rank: number, pinned: boolean) {
+    const isSelected = selectedEmail === player.email;
+    const isCurrentUser = player.email === currentUserEmail;
 
-        {players.map((player, i) => {
-          const rank = i + 1;
+    let rowClasses =
+      "w-full min-w-0 flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-[inset_0_0_15px_rgba(255,255,255,0.15)]" +
+      (isCurrentUser ? " cursor-pointer" : " cursor-default");
+    if (isSelected) {
+      rowClasses += " ring-2 ring-white/40";
+    }
+    if (pinned) {
+      rowClasses += " mt-2 border-t-2 border-white/20";
+    }
+
+    return (
+      <div
+        key={player.email}
+        className={rowClasses}
+        onClick={
+          isCurrentUser
+            ? () => setSelectedEmail(isSelected ? null : player.email)
+            : undefined
+        }
+      >
+        <div className="flex items-center gap-4 min-w-0">
+          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 font-bold text-white/90 border border-white/20">
+            {rank}
+          </span>
+          <span className="min-w-0 flex-1 truncate text-white/85">{player.name}</span>
+        </div>
+        <div className="flex items-center gap-3 flex-shrink-0">
+          <span className="text-white">{player.score} pts</span>
+        </div>
+      </div>
+    );
+  }
+
+  function renderPodium() {
+    if (topThree.length === 0) return null;
+
+    return (
+      <div className="flex justify-center items-end gap-2 sm:gap-3 md:gap-4 pt-12 md:pt-16 pb-6">
+        {topThree.map((player, i) => {
+          const rank = (i + 1) as 1 | 2 | 3;
           const isSelected = selectedEmail === player.email;
           const isCurrentUser = player.email === currentUserEmail;
+          const podium = PODIUM_STYLES[rank];
 
-          let rowClasses =
-            "flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 transition-colors" +
-            (isCurrentUser ? " cursor-pointer hover:bg-white/10" : " cursor-default");
-          if (isSelected) {
-            rowClasses += " ring-2 ring-white/40";
-          }
-
-          let rankIcon: React.ReactNode;
-          let nameClasses = "text-white/85";
-          let scoreClasses = "text-white";
-
-          if (rank === 1) {
-            rowClasses += " bg-gradient-to-r from-yellow-500/20 to-transparent border-yellow-500/50";
-            nameClasses = "text-xl font-extrabold text-white";
-            scoreClasses = "text-xl font-extrabold text-yellow-300";
-            rankIcon = <TrophyIcon className="w-8 h-8 text-yellow-300 flex-shrink-0" />;
-          } else if (rank === 2) {
-            rowClasses += " bg-gradient-to-r from-gray-400/20 to-transparent border-gray-400/50";
-            nameClasses = "text-lg font-bold text-white";
-            scoreClasses = "text-lg font-bold text-white/85";
-            rankIcon = <TrophyIcon className="w-7 h-7 text-white/80 flex-shrink-0" />;
-          } else if (rank === 3) {
-            rowClasses += " bg-gradient-to-r from-amber-700/20 to-transparent border-amber-700/50";
-            nameClasses = "text-lg font-bold text-white";
-            scoreClasses = "text-lg font-bold text-amber-300";
-            rankIcon = <TrophyIcon className="w-6 h-6 text-amber-300 flex-shrink-0" />;
-          } else {
-            rankIcon = <span className="w-8 text-center text-white/50 text-sm">{rank}</span>;
-          }
+          const columnClasses =
+            "flex flex-col items-center" +
+            (isCurrentUser ? " cursor-pointer" : " cursor-default");
+          const snakeClasses =
+            "relative z-10 overflow-hidden rounded-full transition-transform duration-300" +
+            " " +
+            podium.avatarSize +
+            " " +
+            podium.glowShadow +
+            (isSelected ? " scale-105" : isCurrentUser ? " hover:scale-105" : "");
 
           return (
             <div
               key={player.email}
-              className={rowClasses}
+              className={`${columnClasses} ${podium.orderClass}`}
               onClick={
                 isCurrentUser
                   ? () => setSelectedEmail(isSelected ? null : player.email)
                   : undefined
               }
             >
-              <div className="flex items-center gap-4 min-w-0">
-                {rankIcon}
-                <span className={`truncate ${nameClasses}`}>{player.name}</span>
+              <div className="relative">
+                {podium.rippleClass && (
+                  <span
+                    className={`absolute inset-0 rounded-full pointer-events-none ${podium.rippleClass}`}
+                    aria-hidden="true"
+                  />
+                )}
+                <div className={snakeClasses}>
+                  <span
+                    className={`absolute inset-[-50%] ${podium.snakeGradient} animate-[spin_3s_linear_infinite]`}
+                    aria-hidden="true"
+                  />
+                  <div
+                    className={`absolute inset-[4px] rounded-full z-10 flex items-center justify-center font-bold text-white select-none bg-brand-main ${podium.avatarText}`}
+                  >
+                    {initials(player.name)}
+                  </div>
+                </div>
+                {rank === 1 && (
+                  <span
+                    className="absolute -top-8 sm:-top-10 md:-top-12 left-1/2 -translate-x-1/2 text-5xl sm:text-6xl md:text-7xl z-50"
+                    aria-hidden="true"
+                  >
+                    👑
+                  </span>
+                )}
               </div>
-              <div className="flex items-center gap-3 flex-shrink-0">
-                <span className={scoreClasses}>{player.score} pts</span>
-              </div>
+              <span className="mt-4 block w-28 min-h-10 md:min-h-12 whitespace-normal break-words text-center font-bold tracking-wide text-xs sm:text-sm md:text-base text-white/85">
+                {player.name}
+              </span>
+              <span
+                className={`mt-1 text-base md:text-lg font-extrabold ${podium.scoreClass}`}
+              >
+                {player.score} pts
+              </span>
             </div>
           );
         })}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="flex flex-col gap-3 w-full max-w-full overflow-x-hidden">
+        {sortedPlayers.length === 0 && (
+          <p className="text-center text-white/60 py-8">
+            No scores yet. Play a game to appear here!
+          </p>
+        )}
+
+        {topThree.length > 0 && renderPodium()}
+
+        {remainingList.map((player, i) => renderRow(player, i + 4, false))}
+
+        {showPinnedRow &&
+          currentUser &&
+          renderRow(currentUser, currentUserRank, true)}
       </div>
 
       {mounted && selectedPlayer && createPortal(

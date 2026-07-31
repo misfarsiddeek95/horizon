@@ -718,5 +718,523 @@
         "totalPointsEarned": 0
       }
     ]
+  },
+  {
+    "name": "Alex Johnson",
+    "email": "alex.johnson@gmail.com",
+    "score": 178,
+    "date": "2026-07-29T09:14:22.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": true,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 54,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-7",
+        "clue": "Which patented Haycarb technology uses heat from the charcoaling process to generate electricity?",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 48,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      }
+    ]
+  },
+  {
+    "name": "Sarah Smith",
+    "email": "sarah.smith@gmail.com",
+    "score": 165,
+    "date": "2026-07-29T11:32:08.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": false,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 56,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 51,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      }
+    ]
+  },
+  {
+    "name": "Michael Chen",
+    "email": "michael.chen@gmail.com",
+    "score": 154,
+    "date": "2026-07-29T14:05:47.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": true,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "esg-9",
+        "clue": "Haycarb expanded renewable energy adoption through solar power and waste ______ recovery",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 52,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 47,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      }
+    ]
+  },
+  {
+    "name": "Emily Davis",
+    "email": "emily.davis@gmail.com",
+    "score": 149,
+    "date": "2026-07-29T16:48:33.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": false,
+      "Sustainability/ESG": true,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 53,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 55,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      }
+    ]
+  },
+  {
+    "name": "James Wilson",
+    "email": "james.wilson@gmail.com",
+    "score": 142,
+    "date": "2026-07-30T08:21:19.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": false,
+      "Performance & Growth": false
+    },
+    "answerHistory": [
+      {
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 50,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-7",
+        "clue": "Which patented Haycarb technology uses heat from the charcoaling process to generate electricity?",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 44,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  },
+  {
+    "name": "Olivia Brown",
+    "email": "olivia.brown@gmail.com",
+    "score": 136,
+    "date": "2026-07-30T09:53:41.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": true,
+      "Performance & Growth": false
+    },
+    "answerHistory": [
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 49,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-9",
+        "clue": "Haycarb expanded renewable energy adoption through solar power and waste ______ recovery",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 46,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      }
+    ]
+  },
+  {
+    "name": "Daniel Garcia",
+    "email": "daniel.garcia@gmail.com",
+    "score": 128,
+    "date": "2026-07-30T12:14:57.000Z",
+    "earnedBadges": {
+      "Company & Identity": false,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": false,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 52,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "failed",
+        "timeRemaining": 47,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  },
+  {
+    "name": "Sophia Martinez",
+    "email": "sophia.martinez@gmail.com",
+    "score": 121,
+    "date": "2026-07-30T15:37:05.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": false,
+      "Sustainability/ESG": true,
+      "Performance & Growth": false
+    },
+    "answerHistory": [
+      {
+        "questionId": "esg-7",
+        "clue": "Which patented Haycarb technology uses heat from the charcoaling process to generate electricity?",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 51,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 45,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      }
+    ]
+  },
+  {
+    "name": "William Anderson",
+    "email": "william.anderson@gmail.com",
+    "score": 115,
+    "date": "2026-07-30T18:02:29.000Z",
+    "earnedBadges": {
+      "Company & Identity": false,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": true,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 48,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "esg-9",
+        "clue": "Haycarb expanded renewable energy adoption through solar power and waste ______ recovery",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 43,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  },
+  {
+    "name": "Isabella Thomas",
+    "email": "isabella.thomas@gmail.com",
+    "score": 104,
+    "date": "2026-07-30T20:26:44.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": false,
+      "Sustainability/ESG": false,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 50,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "failed",
+        "timeRemaining": 46,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  },
+  {
+    "name": "Ethan Moore",
+    "email": "ethan.moore@gmail.com",
+    "score": 96,
+    "date": "2026-07-31T07:44:12.000Z",
+    "earnedBadges": {
+      "Company & Identity": false,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": false,
+      "Sustainability/ESG": true,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "esg-7",
+        "clue": "Which patented Haycarb technology uses heat from the charcoaling process to generate electricity?",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 47,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "failed",
+        "timeRemaining": 44,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  },
+  {
+    "name": "Mia Jackson",
+    "email": "mia.jackson@gmail.com",
+    "score": 87,
+    "date": "2026-07-31T09:18:36.000Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": false,
+      "Sustainability/ESG": true,
+      "Performance & Growth": false
+    },
+    "answerHistory": [
+      {
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 49,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "failed",
+        "timeRemaining": 45,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  },
+  {
+    "name": "Benjamin White",
+    "email": "benjamin.white@gmail.com",
+    "score": 74,
+    "date": "2026-07-31T11:53:58.000Z",
+    "earnedBadges": {
+      "Company & Identity": false,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": false,
+      "Sustainability/ESG": false,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 48,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "esg-9",
+        "clue": "Haycarb expanded renewable energy adoption through solar power and waste ______ recovery",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 46,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  },
+  {
+    "name": "Charlotte Harris",
+    "email": "charlotte.harris@gmail.com",
+    "score": 58,
+    "date": "2026-07-31T14:27:41.000Z",
+    "earnedBadges": {
+      "Company & Identity": false,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": false,
+      "Performance & Growth": false
+    },
+    "answerHistory": [
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 47,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 42,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
   }
 ]
