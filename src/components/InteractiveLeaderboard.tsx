@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { TrophyIcon, CheckBadgeIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import type { LeaderboardEntry } from "@/types";
@@ -8,17 +8,37 @@ import { CATEGORY_COLORS, getAllCategories } from "@/data/config";
 
 const ALL_CATEGORIES = getAllCategories();
 
+const EMPTY_SUBSCRIBE = () => () => {};
+
+function readSessionEmail(): string | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem("horizon-puzzle-session");
+    if (!raw) return null;
+    return (JSON.parse(raw) as { email?: string }).email ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export default function InteractiveLeaderboard({
   players,
 }: {
   players: LeaderboardEntry[];
 }) {
   const [selectedEmail, setSelectedEmail] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    EMPTY_SUBSCRIBE,
+    () => true,
+    () => false
+  );
+
+  const currentUserEmail = useSyncExternalStore(
+    EMPTY_SUBSCRIBE,
+    readSessionEmail,
+    () => null
+  );
 
   const selectedPlayer = selectedEmail
     ? players.find((p) => p.email === selectedEmail)
@@ -40,9 +60,11 @@ export default function InteractiveLeaderboard({
         {players.map((player, i) => {
           const rank = i + 1;
           const isSelected = selectedEmail === player.email;
+          const isCurrentUser = player.email === currentUserEmail;
 
           let rowClasses =
-            "flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer";
+            "flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 transition-colors" +
+            (isCurrentUser ? " cursor-pointer hover:bg-white/10" : " cursor-default");
           if (isSelected) {
             rowClasses += " ring-2 ring-white/40";
           }
@@ -74,7 +96,11 @@ export default function InteractiveLeaderboard({
             <div
               key={player.email}
               className={rowClasses}
-              onClick={() => setSelectedEmail(isSelected ? null : player.email)}
+              onClick={
+                isCurrentUser
+                  ? () => setSelectedEmail(isSelected ? null : player.email)
+                  : undefined
+              }
             >
               <div className="flex items-center gap-4 min-w-0">
                 {rankIcon}
