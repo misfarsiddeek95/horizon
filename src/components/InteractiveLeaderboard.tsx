@@ -33,20 +33,26 @@ interface PodiumStyle {
   avatarSize: string;
   avatarText: string;
   snakeGradient: string;
+  ringGradient: string;
   glowShadow: string;
-  rippleClass: string;
+  crownAura: string;
+  avatarCyanGlow: string;
   scoreClass: string;
 }
 
 const PODIUM_STYLES: Record<1 | 2 | 3, PodiumStyle> = {
   1: {
     orderClass: "order-2",
-    avatarSize: "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24",
+    avatarSize: "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28",
     avatarText: "text-2xl sm:text-3xl",
     snakeGradient:
-      "bg-[conic-gradient(from_0deg,transparent_70%,rgba(250,204,21,1)_100%)]",
-    glowShadow: "shadow-[0_0_25px_rgba(250,204,21,0.6)]",
-    rippleClass: "bg-yellow-400 opacity-20 animate-[ping_3s_ease-out_infinite]",
+      "bg-[conic-gradient(from_0deg,transparent_70%,rgba(253,224,71,1)_100%)]",
+    ringGradient: "bg-gradient-to-b from-yellow-400 via-yellow-500 to-teal-600",
+    glowShadow: "",
+    crownAura:
+      "absolute -top-10 left-1/2 -translate-x-1/2 w-32 h-32 bg-yellow-400/50 rounded-full blur-[40px] pointer-events-none z-0",
+    avatarCyanGlow:
+      "absolute inset-0 rounded-full shadow-[0_20px_50px_-10px_#00FFFF] pointer-events-none z-0",
     scoreClass: "text-yellow-300",
   },
   2: {
@@ -55,8 +61,10 @@ const PODIUM_STYLES: Record<1 | 2 | 3, PodiumStyle> = {
     avatarText: "text-xl sm:text-2xl",
     snakeGradient:
       "bg-[conic-gradient(from_0deg,transparent_70%,rgba(203,213,225,1)_100%)]",
+    ringGradient: "",
     glowShadow: "",
-    rippleClass: "",
+    crownAura: "",
+    avatarCyanGlow: "",
     scoreClass: "text-slate-300",
   },
   3: {
@@ -65,8 +73,10 @@ const PODIUM_STYLES: Record<1 | 2 | 3, PodiumStyle> = {
     avatarText: "text-xl sm:text-2xl",
     snakeGradient:
       "bg-[conic-gradient(from_0deg,transparent_70%,rgba(217,119,6,1)_100%)]",
+    ringGradient: "",
     glowShadow: "",
-    rippleClass: "",
+    crownAura: "",
+    avatarCyanGlow: "",
     scoreClass: "text-amber-500",
   },
 };
@@ -160,7 +170,7 @@ export default function InteractiveLeaderboard({
     if (topThree.length === 0) return null;
 
     return (
-      <div className="flex justify-center items-end gap-2 sm:gap-3 md:gap-4 pt-12 md:pt-16 pb-6">
+      <div className="flex justify-center items-end gap-2 sm:gap-3 md:gap-4 pt-16 md:pt-20 pb-6">
         {topThree.map((player, i) => {
           const rank = (i + 1) as 1 | 2 | 3;
           const isSelected = selectedEmail === player.email;
@@ -176,6 +186,8 @@ export default function InteractiveLeaderboard({
             podium.avatarSize +
             " " +
             podium.glowShadow +
+            " " +
+            podium.ringGradient +
             (isSelected ? " scale-105" : isCurrentUser ? " hover:scale-105" : "");
 
           return (
@@ -189,17 +201,19 @@ export default function InteractiveLeaderboard({
               }
             >
               <div className="relative">
-                {podium.rippleClass && (
-                  <span
-                    className={`absolute inset-0 rounded-full pointer-events-none ${podium.rippleClass}`}
-                    aria-hidden="true"
-                  />
+                {podium.crownAura && (
+                  <span className={podium.crownAura} aria-hidden="true" />
+                )}
+                {podium.avatarCyanGlow && (
+                  <span className={podium.avatarCyanGlow} aria-hidden="true" />
                 )}
                 <div className={snakeClasses}>
-                  <span
-                    className={`absolute inset-[-50%] ${podium.snakeGradient} animate-[spin_3s_linear_infinite]`}
-                    aria-hidden="true"
-                  />
+                  {podium.snakeGradient && (
+                    <span
+                      className={`absolute inset-[-50%] ${podium.snakeGradient} animate-[spin_3s_linear_infinite]`}
+                      aria-hidden="true"
+                    />
+                  )}
                   <div
                     className={`absolute inset-[4px] rounded-full z-10 flex items-center justify-center font-bold text-white select-none bg-brand-main ${podium.avatarText}`}
                   >
@@ -208,7 +222,7 @@ export default function InteractiveLeaderboard({
                 </div>
                 {rank === 1 && (
                   <span
-                    className="absolute -top-8 sm:-top-10 md:-top-12 left-1/2 -translate-x-1/2 text-5xl sm:text-6xl md:text-7xl z-50"
+                    className="absolute -top-10 sm:-top-11 md:-top-12 left-1/2 -translate-x-1/2 text-6xl md:text-7xl z-50 drop-shadow-[0_0_5px_#FFD700]"
                     aria-hidden="true"
                   >
                     👑
