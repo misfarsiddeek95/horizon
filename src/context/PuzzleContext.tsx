@@ -104,6 +104,9 @@ const initialState: GameState = {
   isPaused: false,
   aiAssistedQuestions: [],
   answerHistory: [],
+  badgeQueue: [],
+  isMuted: false,
+  elapsedSeconds: 0,
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -432,6 +435,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
         gridHeight: state.gridHeight,
         aiAssistedQuestions: state.aiAssistedQuestions,
         answerHistory: state.answerHistory,
+        elapsedSeconds: state.elapsedSeconds,
       };
       localStorage.setItem(
         "horizon-puzzle-game-state",

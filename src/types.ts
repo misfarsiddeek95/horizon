@@ -36,6 +36,15 @@ export interface SessionData {
   consented: boolean;
 }
 
+export type BadgeType = 'category' | 'achievement';
+
+export interface BadgeDefinition {
+  id: string;
+  type: BadgeType;
+  title: string;
+  description: string;
+}
+
 export type QuestionStatus = 'pending' | 'active' | 'completed' | 'failed' | 'timeout';
 
 export interface QuestionState {
@@ -81,6 +90,17 @@ export interface GameState {
   isPaused: boolean;
   aiAssistedQuestions: string[];
   answerHistory: AnswerRecord[];
+  badgeQueue: string[];
+  isMuted: boolean;
+  elapsedSeconds: number;
+}
+
+export interface BadgeEvaluation {
+  earnedBadges: Record<Category, boolean>;
+  phase: GameState['phase'];
+  allCorrect: boolean;
+  aiUsedCount: number;
+  elapsedSeconds: number;
 }
 
 export interface SavedGameState {
@@ -97,6 +117,7 @@ export interface SavedGameState {
   gridHeight: number;
   aiAssistedQuestions: string[];
   answerHistory: AnswerRecord[];
+  elapsedSeconds: number;
 }
 
 export interface StartGamePayload {
@@ -119,4 +140,9 @@ export type GameAction =
   | { type: 'RESUME_GAME' }
   | { type: 'RESTORE_GAME'; payload: SavedGameState }
   | { type: 'RESTART_GAME'; payload: StartGamePayload }
-  | { type: 'RESET' };
+  | { type: 'RESET' }
+  | { type: 'ENQUEUE_BADGES'; payload: { badgeIds: string[] } }
+  | { type: 'DISMISS_BADGE' }
+  | { type: 'TOGGLE_MUTE' }
+  | { type: 'SET_MUTED'; payload: boolean }
+  | { type: 'TICK_GAME_CLOCK' };
