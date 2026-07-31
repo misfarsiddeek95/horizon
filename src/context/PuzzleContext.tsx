@@ -403,7 +403,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case "RESET":
-      return { ...initialState };
+      return { ...initialState, isMuted: state.isMuted };
 
     default:
       return state;
