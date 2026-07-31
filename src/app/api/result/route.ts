@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
-import { CONFIG } from '@/data/config';
 import type { AnswerRecord } from '@/types';
 
 const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'results.json');
