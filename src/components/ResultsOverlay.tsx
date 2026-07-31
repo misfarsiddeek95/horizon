@@ -184,6 +184,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
             name={session?.name ?? 'Player'}
             score={score}
             time={formatTime(elapsedSeconds)}
+            badges={earnedCount}
           />
         </div>
       </div>

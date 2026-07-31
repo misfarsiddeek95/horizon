@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
+import { CONFIG } from '@/data/config';
 
 export const dynamic = 'force-dynamic';
 
 type Props = {
-  searchParams: Promise<{ name?: string; score?: string; time?: string }>;
+  searchParams: Promise<{ name?: string; score?: string; time?: string; badges?: string }>;
 };
 
 async function getOrigin() {
@@ -20,11 +21,12 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const name = sp.name || 'A Player';
   const score = sp.score || '0';
   const time = sp.time || '0:00';
+  const badges = sp.badges || '0';
 
-  const imageUrl = `${await getOrigin()}/api/og?name=${encodeURIComponent(name)}&score=${encodeURIComponent(score)}&time=${encodeURIComponent(time)}`;
+  const imageUrl = `${await getOrigin()}/api/og?name=${encodeURIComponent(name)}&score=${encodeURIComponent(score)}&time=${encodeURIComponent(time)}&badges=${encodeURIComponent(badges)}`;
 
-  const title = `${name} scored ${score}/8 in the Haycarb Crossword Challenge!`;
-  const description = `Can you beat ${name}'s score of ${score}/8 completed in ${time}? Take the Haycarb FY2025/26 Crossword Challenge and find out.`;
+  const title = `${name} scored ${score}/${CONFIG.MAX_TOTAL_QUESTIONS} in the Haycarb Crossword Challenge!`;
+  const description = `${name} completed the puzzle in ${time} and earned ${badges} category badges. Can you beat this score?`;
 
   return {
     title,
@@ -49,6 +51,7 @@ export default async function SharePage({ searchParams }: Props) {
   const name = sp.name || 'A Player';
   const score = sp.score || '0';
   const time = sp.time || '0:00';
+  const badges = sp.badges || '0';
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#0d1b2a] via-[#147385] to-[#0d1b2a] px-4 py-12">
@@ -68,10 +71,14 @@ export default async function SharePage({ searchParams }: Props) {
           </p>
           <p className="text-6xl font-extrabold text-yellow-400">
             {score}
-            <span className="text-2xl text-white/70"> / 8</span>
+            <span className="text-2xl text-white/70"> / {CONFIG.MAX_TOTAL_QUESTIONS}</span>
           </p>
           <p className="text-sm font-medium text-white/60">
             Completed in {time}
+          </p>
+          <p className="inline-flex items-center gap-1.5 rounded-full bg-yellow-400/10 px-3 py-1 text-xs font-bold text-yellow-400">
+            <span aria-hidden="true">🏆</span>
+            {badges} Category Badge{badges === '1' ? '' : 's'} Earned
           </p>
         </div>
 
