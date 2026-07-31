@@ -233,7 +233,7 @@ export default function CrosswordGrid() {
       <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
         <div className="flex items-start bg-gray-50/50 rounded-lg p-2 md:p-6">
           <div
-            className="grid w-max min-w-full [--cell-size:24px] md:[--cell-size:48px]"
+            className="grid w-max min-w-full [--cell-size:24px] lg:[--cell-size:48px]"
           style={{
             gridTemplateColumns: `repeat(${gridWidth}, var(--cell-size))`,
             gridTemplateRows: `repeat(${gridHeight}, var(--cell-size))`,
@@ -247,7 +247,7 @@ export default function CrosswordGrid() {
                 return (
                   <div
                     key={`${x}-${y}`}
-                    className="relative w-[24px] h-[24px] md:w-[48px] md:h-[48px] flex-none shrink-0 bg-transparent pointer-events-none"
+                    className="relative w-[24px] h-[24px] lg:w-[48px] lg:h-[48px] flex-none shrink-0 bg-transparent pointer-events-none"
                     style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                   />
                 );
@@ -271,13 +271,13 @@ export default function CrosswordGrid() {
               return (
                 <div
                   key={`${x}-${y}`}
-                  className="relative w-[24px] h-[24px] md:w-[48px] md:h-[48px] flex-none shrink-0"
+                  className="relative w-[24px] h-[24px] lg:w-[48px] lg:h-[48px] flex-none shrink-0"
                   style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                 >
                   <div className={overlayClasses} />
 
                   {number && (
-                    <span className="absolute top-1 left-1 text-[5px] md:text-[10px] font-semibold font-sans text-gray-500 pointer-events-none z-20">
+                    <span className="absolute top-1 left-1 text-[5px] lg:text-[10px] font-semibold font-sans text-gray-500 pointer-events-none z-20">
                       {number}
                     </span>
                   )}
@@ -293,12 +293,12 @@ export default function CrosswordGrid() {
                       value={cellLetter ?? ''}
                       onChange={(e) => handleInput(x, y, e.target.value)}
                       onKeyDown={(e) => handleKeyDown(e, x, y)}
-                      className="absolute inset-0 w-full h-full text-center text-base md:text-2xl font-bold font-sans uppercase outline-none bg-transparent z-30"
+                      className="absolute inset-0 w-full h-full text-center text-base lg:text-2xl font-bold font-sans uppercase outline-none bg-transparent z-30"
                       aria-label={`Cell ${x},${y}${number ? ' Clue ' + number : ''}`}
                     />
                   ) : (
                     showLetter && (
-                      <span className={`absolute inset-0 flex items-center justify-center text-base md:text-2xl font-bold z-30${status === 'completed' ? ' text-green-700' : status === 'failed' ? ' text-red-600' : status === 'timeout' ? ' text-gray-400' : ''}`}>
+                      <span className={`absolute inset-0 flex items-center justify-center text-base lg:text-2xl font-bold z-30${status === 'completed' ? ' text-green-700' : status === 'failed' ? ' text-red-600' : status === 'timeout' ? ' text-gray-400' : ''}`}>
                         {cellLetter}
                       </span>
                     )
