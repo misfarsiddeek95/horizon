@@ -75,7 +75,7 @@ export interface LeaderboardEntry {
 }
 
 export interface GameState {
-  phase: 'onboarding' | 'playing' | 'finished';
+  phase: 'onboarding' | 'idle' | 'playing' | 'finished';
   session: SessionData | null;
   questions: QuestionState[];
   activeIndex: number | null;
@@ -131,6 +131,7 @@ export interface StartGamePayload {
 
 export type GameAction =
   | { type: 'START_GAME'; payload: StartGamePayload }
+  | { type: 'ENTER_LOBBY'; payload: SessionData }
   | { type: 'SELECT_QUESTION'; payload: number }
   | { type: 'UPDATE_CELL'; payload: { x: number; y: number; letter: string } }
   | { type: 'SUBMIT_ANSWER' }
@@ -139,7 +140,8 @@ export type GameAction =
   | { type: 'PAUSE_GAME' }
   | { type: 'RESUME_GAME' }
   | { type: 'RESTORE_GAME'; payload: SavedGameState }
-  | { type: 'RESTART_GAME'; payload: StartGamePayload }
+  | { type: 'RESTART_GAME' }
+  | { type: 'LOGOUT' }
   | { type: 'RESET' }
   | { type: 'ENQUEUE_BADGES'; payload: { badgeIds: string[] } }
   | { type: 'DISMISS_BADGE' }

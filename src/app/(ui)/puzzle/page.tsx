@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { PuzzleProvider, usePuzzle } from '@/context/PuzzleContext';
 import Onboarding from '@/components/Onboarding';
+import InstructionLobby from '@/components/InstructionLobby';
 import CategoryBadges from '@/components/CategoryBadges';
 import CrosswordGrid from '@/components/CrosswordGrid';
 import ActiveCluePanel from '@/components/ActiveCluePanel';
@@ -13,10 +14,11 @@ import ResultsOverlay from '@/components/ResultsOverlay';
 import ConfirmDialog from '@/components/ConfirmDialog';
 import BadgeUnlockModal from '@/components/BadgeUnlockModal';
 import MuteToggle from '@/components/MuteToggle';
+import ExitButton from '@/components/ExitButton';
 import { getBadgeDefinition } from '@/data/badges';
 
 function PuzzleGame() {
-  const { state, dispatch, startGame, restartGame } = usePuzzle();
+  const { state, dispatch, enterLobby, restartGame } = usePuzzle();
   const [showRestartDialog, setShowRestartDialog] = useState(false);
   const [lastPhase, setLastPhase] = useState(state.phase);
   const [showResults, setShowResults] = useState(state.phase === 'finished');
@@ -62,10 +64,14 @@ function PuzzleGame() {
       <>
         {forceLandscape}
         <div className="max-md:portrait:hidden">
-          <Onboarding onStart={startGame} />
+          <Onboarding onStart={enterLobby} />
         </div>
       </>
     );
+  }
+
+  if (state.phase === 'idle') {
+    return <InstructionLobby />;
   }
 
   return (
@@ -81,6 +87,7 @@ function PuzzleGame() {
         </div>
         <div className="flex items-center gap-3">
           <MuteToggle />
+          <ExitButton />
           <button
             onClick={() => setShowRestartDialog(true)}
             className="inline-flex cursor-pointer items-center gap-1.5 rounded-ui-element border border-red-200 px-3 py-2 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"

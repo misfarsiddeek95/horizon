@@ -135,6 +135,29 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       };
     }
 
+    case "ENTER_LOBBY": {
+      return {
+        ...state,
+        phase: "idle",
+        session: action.payload,
+        questions: [],
+        activeIndex: null,
+        gridCells: [],
+        wordPlacements: [],
+        score: 0,
+        categoryCounts: { ...categoryDefaults },
+        earnedBadges: { ...badgeDefaults },
+        timerRemaining: 60,
+        gridWidth: 0,
+        gridHeight: 0,
+        isPaused: false,
+        aiAssistedQuestions: [],
+        answerHistory: [],
+        badgeQueue: [],
+        elapsedSeconds: 0,
+      };
+    }
+
     case "SELECT_QUESTION": {
       if (state.activeIndex !== null) return state;
       const idx = action.payload;
@@ -355,18 +378,18 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case "RESTART_GAME": {
       return {
         ...state,
-        phase: "playing",
-        session: action.payload.session,
-        questions: action.payload.questions,
-        gridCells: action.payload.gridCells,
-        wordPlacements: action.payload.wordPlacements,
-        gridWidth: action.payload.gridWidth,
-        gridHeight: action.payload.gridHeight,
+        phase: "idle",
+        session: state.session,
+        questions: [],
         activeIndex: null,
+        gridCells: [],
+        wordPlacements: [],
         score: 0,
         categoryCounts: { ...categoryDefaults },
         earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
+        gridWidth: 0,
+        gridHeight: 0,
         isPaused: false,
         aiAssistedQuestions: [],
         answerHistory: [],
@@ -403,6 +426,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case "RESET":
+    case "LOGOUT":
       return { ...initialState, isMuted: state.isMuted };
 
     default:
@@ -413,8 +437,10 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 interface PuzzleContextValue {
   state: GameState;
   dispatch: React.Dispatch<GameAction>;
-  startGame: (session: SessionData) => void;
+  enterLobby: (session: SessionData) => void;
+  startGame: () => void;
   restartGame: () => void;
+  logout: () => void;
 }
 
 const PuzzleContext = createContext<PuzzleContextValue | null>(null);
@@ -549,21 +575,30 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     sessionRef.current = state.session;
   }, [state.session]);
 
-  const startGame = useCallback((session: SessionData) => {
+  const enterLobby = useCallback((session: SessionData) => {
+    localStorage.setItem("horizon-puzzle-session", JSON.stringify(session));
+    dispatch({ type: "ENTER_LOBBY", payload: session });
+  }, []);
+
+  const startGame = useCallback(() => {
     const gameData = initializeGame();
     dispatch({
       type: "START_GAME",
-      payload: { ...gameData, session },
+      payload: { ...gameData, session: sessionRef.current! },
     });
   }, []);
 
   const restartGame = useCallback(() => {
     localStorage.removeItem("horizon-puzzle-game-state");
-    const gameData = initializeGame();
-    dispatch({
-      type: "RESTART_GAME",
-      payload: { ...gameData, session: sessionRef.current! },
-    });
+    dispatch({ type: "RESTART_GAME" });
+  }, []);
+
+  const logout = useCallback(() => {
+    localStorage.removeItem("horizon-puzzle-session");
+    localStorage.removeItem("horizon-puzzle-game-state");
+    localStorage.removeItem("horizon-puzzle-score");
+    localStorage.removeItem("horizon-puzzle-badges");
+    dispatch({ type: "LOGOUT" });
   }, []);
 
   useEffect(() => {
@@ -582,15 +617,17 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     if (saved) {
       try {
         const session = JSON.parse(saved) as SessionData;
-        startGame(session);
+        enterLobby(session);
       } catch {
         localStorage.removeItem("horizon-puzzle-session");
       }
     }
-  }, [startGame]);
+  }, [enterLobby]);
 
   return (
-    <PuzzleContext.Provider value={{ state, dispatch, startGame, restartGame }}>
+    <PuzzleContext.Provider
+      value={{ state, dispatch, enterLobby, startGame, restartGame, logout }}
+    >
       {children}
     </PuzzleContext.Provider>
   );
