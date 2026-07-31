@@ -79,38 +79,29 @@ export default function EnergyConsumptionChart() {
       })
     );
 
-    function createLineSeries(name: string, field: string) {
+    function createColumnSeries(name: string, field: string) {
       const series = chart.series.push(
-        am5xy.LineSeries.new(root, {
+        am5xy.ColumnSeries.new(root, {
           name,
           xAxis,
           yAxis,
           valueYField: field,
           categoryXField: "year",
+          clustered: true,
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
             labelText: "{name} in {categoryX}: {valueY} {info}",
           }),
         })
       );
-      series.strokes.template.setAll({ strokeWidth: 3, templateField: "strokeSettings" });
+      series.columns.template.setAll({ tooltipY: am5.percent(10) });
       series.data.setAll(energyConsumptionData);
-      series.bullets.push(() =>
-        am5.Bullet.new(root, {
-          sprite: am5.Circle.new(root, {
-            strokeWidth: 3,
-            stroke: series.get("stroke"),
-            radius: 5,
-            fill: root.interfaceColors.get("background"),
-          }),
-        })
-      );
       return series;
     }
 
-    const s1 = createLineSeries("Renewable energy consumption (GJ)", "renewable_energy");
-    createLineSeries("Non - renewable energy consumptions (GJ)", "non_renewable");
-    createLineSeries("Total energy consumption (GJ)", "total_consumption");
+    createColumnSeries("Renewable energy consumption (GJ)", "renewable_energy");
+    createColumnSeries("Non - renewable energy consumptions (GJ)", "non_renewable");
+    createColumnSeries("Total energy consumption (GJ)", "total_consumption");
 
     chart.set("cursor", am5xy.XYCursor.new(root, {}));
 
@@ -121,7 +112,6 @@ export default function EnergyConsumptionChart() {
     legend.data.setAll(chart.series.values);
 
     chart.appear(1000, 100);
-    s1.appear();
 
     return () => {
       root.dispose();

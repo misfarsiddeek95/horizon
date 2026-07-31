@@ -6,6 +6,7 @@ import TabController from "./TabController";
 import ChartTypeTabs from "./ChartTypeTabs";
 import ProfitabilityChart from "./Financial/ProfitabilityChart";
 import FinancialPositionChart from "./Financial/FinancialPositionChart";
+import FinancialRatiosChart from "./Financial/FinancialRatiosChart";
 import EmissionsChart from "./NonFinancial/EmissionsChart";
 import EnergyConsumptionChart from "./NonFinancial/EnergyConsumptionChart";
 import MaterialsWaterChart from "./NonFinancial/MaterialsWaterChart";
@@ -49,6 +50,15 @@ export default function TailorMadeForYouPage() {
                       Slide to explore
                     </p>
                     <FinancialPositionChart />
+                  </div>
+                  <div>
+                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
+                      Financial Ratios
+                    </h2>
+                    <p className="text-center text-sm font-bold text-content-primary mb-2">
+                      Slide to explore
+                    </p>
+                    <FinancialRatiosChart />
                   </div>
                 </>
               ) : (

@@ -87,13 +87,14 @@ export default function EmissionsChart() {
           yAxis,
           valueYField: field,
           categoryXField: "year",
+          clustered: true,
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
             labelText: "{name} in {categoryX}: {valueY} {info}",
           }),
         })
       );
-      series.columns.template.setAll({ tooltipY: am5.percent(10), templateField: "columnSettings" });
+      series.columns.template.setAll({ tooltipY: am5.percent(10) });
       series.data.setAll(emissionsData);
       return series;
     }

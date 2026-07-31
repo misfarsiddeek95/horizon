@@ -60,7 +60,7 @@ export default function SocialGovernanceChart() {
     xRenderer.grid.template.setAll({ location: 0.5 });
     xAxis.data.setAll(socialGovernanceData);
 
-    const yAxis = chart.yAxes.push(
+    const yAxisBar = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         min: 0,
         extraMax: 0.2,
@@ -68,10 +68,29 @@ export default function SocialGovernanceChart() {
       })
     );
 
-    yAxis.children.unshift(
+    yAxisBar.children.unshift(
       am5.Label.new(root, {
         rotation: -90,
-        text: "Rs. Mn / No.",
+        text: "Rs. Mn",
+        y: am5.p50,
+        centerX: am5.p50,
+        fontSize: 14,
+        fontWeight: "bold",
+      })
+    );
+
+    const yAxisLine = chart.yAxes.push(
+      am5xy.ValueAxis.new(root, {
+        min: 0,
+        extraMax: 0.2,
+        renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1, opposite: true }),
+      })
+    );
+
+    yAxisLine.children.push(
+      am5.Label.new(root, {
+        rotation: 90,
+        text: "No.",
         y: am5.p50,
         centerX: am5.p50,
         fontSize: 14,
@@ -84,9 +103,10 @@ export default function SocialGovernanceChart() {
         am5xy.ColumnSeries.new(root, {
           name,
           xAxis,
-          yAxis,
+          yAxis: yAxisBar,
           valueYField: field,
           categoryXField: "year",
+          clustered: true,
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
             labelText: "{name} in {categoryX}: {valueY}",
@@ -107,7 +127,7 @@ export default function SocialGovernanceChart() {
         am5xy.LineSeries.new(root, {
           name,
           xAxis,
-          yAxis,
+          yAxis: yAxisLine,
           valueYField: field,
           categoryXField: "year",
           tooltip: am5.Tooltip.new(root, {
@@ -136,10 +156,10 @@ export default function SocialGovernanceChart() {
     createBarSeries("Investment in R&D (Rs. Mn)", "investment_rd", "#a5a5a5");
     createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", "#ffbf00");
     createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", "#4472c4");
-    createBarSeries("Total audits conducted on management systems (No.)", "total_audits", "#71ad47");
 
     createLineSeries("Average training hours per employee (No.)", "avg_training_hours", "#5b9cd5");
     createLineSeries("New products developed (No.)", "new_products", "#ee7d30");
+    createLineSeries("Total audits conducted on management systems (No.)", "total_audits", "#71ad47");
     createLineSeries("Instances of environmental non-compliance (No.)", "env_non_compliance", "#5b9cd5");
 
     chart.set("cursor", am5xy.XYCursor.new(root, {}));
