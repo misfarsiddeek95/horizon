@@ -7,6 +7,7 @@ export const CONFIG = {
   EXCLUDED_CATEGORIES: [] as string[],
   BASE_POINTS_PER_QUESTION: 10,
   TIME_BONUS_MULTIPLIER: 5,
+  SPEED_BADGE_TIME_LIMIT_SECONDS: 180,
 };
 
 export function getAllCategories(): Category[] {
