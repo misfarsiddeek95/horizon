@@ -1236,5 +1236,185 @@
         "totalPointsEarned": 0
       }
     ]
+  },
+  {
+    "name": "Ayaal Shahim",
+    "email": "ayaalshahim@gmail.com",
+    "score": 187,
+    "date": "2026-07-31T09:24:17.699Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": true,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "comp-2",
+        "clue": "What lies beyond every achievement, according to this year's report narrative?",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 42,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "tech-3",
+        "clue": "What organisational capability allows Haycarb to respond effectively to changing markets and operating conditions?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 52,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-2",
+        "clue": "What type of energy is Haycarb expanding to support its transition towards lower-carbon operations?",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 47,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "tech-2",
+        "clue": "Which country is home to Haycarb's progressing greenfield manufacturing expansion?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 37,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 50,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 41,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "prod-5",
+        "clue": "Haycarb progressed the development of fine carbon products for ______ grade applications",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 48,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-5",
+        "clue": "The type of harvesting Haycarb uses, alongside recycling and reuse, for sustainable water management",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 49,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-3",
+        "clue": "What environmental resource is the focus of Haycarb's stewardship, recycling and reuse initiatives?",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 52,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "prod-3",
+        "clue": "What characteristic best describes Haycarb's portfolio of over 1,500 activated carbon products?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 50,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "comp-7",
+        "clue": "At Haycarb, structures, delegation and strategic leadership support strong ______",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 10,
+        "basePoints": 10,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 10
+      },
+      {
+        "questionId": "prod-1",
+        "clue": "Which emerging sector is highlighted as a major future growth opportunity for Haycarb?",
+        "category": "Products & Solutions",
+        "status": "failed",
+        "timeRemaining": 54,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "perf-2",
+        "clue": "What operational quality helps Haycarb maintain consistent product delivery across global markets?",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 43,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "perf-5",
+        "clue": "Haycarb generated over Rs. 916 million from new ______ during FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 51,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "perf-6",
+        "clue": "Haycarb achieved over Rs. 100 million in lean ______ during FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 50,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      }
+    ]
   }
 ]

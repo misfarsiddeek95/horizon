@@ -6,12 +6,19 @@ import type { LeaderboardEntry } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { getLeaderboard } from '@/data/leaderboard';
 import { getAllCategories } from '@/data/config';
+import ShareResults from '@/components/ShareResults';
 
 const CATEGORY_ORDER = getAllCategories();
 
+function formatTime(seconds: number) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
 export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
   const { state, dispatch } = usePuzzle();
-  const { score, questions, categoryCounts, earnedBadges, session } = state;
+  const { score, questions, categoryCounts, earnedBadges, session, elapsedSeconds } = state;
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [copied, setCopied] = useState(false);
 
@@ -167,6 +174,17 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
           >
             Play Again
           </button>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 border-t border-zinc-100 pt-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-content-primary/40">
+            Brag about it
+          </p>
+          <ShareResults
+            name={session?.name ?? 'Player'}
+            score={score}
+            time={formatTime(elapsedSeconds)}
+          />
         </div>
       </div>
     </div>
