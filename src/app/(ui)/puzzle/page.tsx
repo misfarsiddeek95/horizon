@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { PuzzleProvider, usePuzzle } from '@/context/PuzzleContext';
@@ -15,18 +15,55 @@ import ConfirmDialog from '@/components/ConfirmDialog';
 function PuzzleGame() {
   const { state, startGame, restartGame } = usePuzzle();
   const [showRestartDialog, setShowRestartDialog] = useState(false);
-  const [showResults, setShowResults] = useState(true);
+  const [lastPhase, setLastPhase] = useState(state.phase);
+  const [showResults, setShowResults] = useState(state.phase === 'finished');
 
-  useEffect(() => {
-    if (state.phase === 'finished') setShowResults(true);
-  }, [state.phase]);
+  if (lastPhase !== state.phase) {
+    setLastPhase(state.phase);
+    if (state.phase === 'finished') {
+      setShowResults(true);
+    }
+  }
+
+  const forceLandscape = (
+    <div className="fixed inset-0 z-[9999] bg-gray-900 text-white flex-col items-center justify-center p-6 text-center hidden max-md:portrait:flex">
+      <svg
+        className="mb-6 h-16 w-16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="7" y="2" width="10" height="20" rx="2" />
+        <path d="M11 18h2" />
+        <path d="M2 6a9 9 0 0 1 18 0" />
+        <path d="M2 6h4" />
+        <path d="M2 6V2" />
+      </svg>
+      <p className="text-lg font-semibold">
+        Please rotate your device to landscape to play.
+      </p>
+    </div>
+  );
 
   if (state.phase === 'onboarding') {
-    return <Onboarding onStart={startGame} />;
+    return (
+      <>
+        {forceLandscape}
+        <div className="max-md:portrait:hidden">
+          <Onboarding onStart={startGame} />
+        </div>
+      </>
+    );
   }
 
   return (
-    <main className="flex flex-col p-4 sm:p-6 lg:p-12 overflow-x-hidden">
+    <>
+      {forceLandscape}
+      <main className="flex flex-col p-4 sm:p-6 lg:p-12 overflow-x-hidden max-md:portrait:hidden">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-gray-700">
@@ -78,6 +115,7 @@ function PuzzleGame() {
 
       {state.phase === 'finished' && showResults && <ResultsOverlay onClose={() => setShowResults(false)} />}
     </main>
+    </>
   );
 }
 
