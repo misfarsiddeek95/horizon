@@ -115,15 +115,35 @@ export type GameAction =
   | { type: 'TICK_GAME_CLOCK' };
 ```
 
-- [ ] **Step 5: Verify type-check**
+- [ ] **Step 5: Initialize the new state fields in PuzzleContext**
+
+Two literals must include the new fields so `npx tsc --noEmit` passes until Task 5 adds the full reducer logic.
+
+In `src/context/PuzzleContext.tsx`, in `initialState` (currently lines 91–107), add after `answerHistory: [],`:
+
+```ts
+  badgeQueue: [],
+  isMuted: false,
+  elapsedSeconds: 0,
+```
+
+In the finished-game save effect (the `saveData: SavedGameState = { ... }` literal, currently around line 421), add after `answerHistory: state.answerHistory,`:
+
+```ts
+        elapsedSeconds: state.elapsedSeconds,
+```
+
+These fields are fully handled (reset on start/restart, restored on restore, clock ticking) in Task 5.
+
+- [ ] **Step 6: Verify type-check**
 
 Run: `npx tsc --noEmit`
 Expected: exits 0, no output.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git add src/types.ts
+git add src/types.ts src/context/PuzzleContext.tsx
 git commit -m "Badge unlock types added"
 ```
 
