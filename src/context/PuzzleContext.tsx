@@ -23,6 +23,8 @@ import { questionPool } from "@/data/questions";
 import { generateGrid } from "@/utils/gridGenerator";
 import { saveResult } from "@/data/leaderboard";
 import { CONFIG, getAllCategories } from "@/data/config";
+import { evaluateBadges } from "@/data/badges";
+import { isMuted, setMuted } from "@/utils/sound";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -128,6 +130,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         timerRemaining: 60,
         aiAssistedQuestions: [],
         answerHistory: [],
+        badgeQueue: [],
+        elapsedSeconds: 0,
       };
     }
 
@@ -344,6 +348,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         gridHeight: action.payload.gridHeight,
         aiAssistedQuestions: action.payload.aiAssistedQuestions ?? [],
         answerHistory: action.payload.answerHistory ?? [],
+        elapsedSeconds: action.payload.elapsedSeconds ?? 0,
       };
     }
 
@@ -365,7 +370,36 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         isPaused: false,
         aiAssistedQuestions: [],
         answerHistory: [],
+        badgeQueue: [],
+        elapsedSeconds: 0,
       };
+    }
+
+    case "ENQUEUE_BADGES": {
+      const badgeIds = action.payload.badgeIds.filter(
+        (id) => !state.badgeQueue.includes(id)
+      );
+      if (badgeIds.length === 0) return state;
+      return { ...state, badgeQueue: [...state.badgeQueue, ...badgeIds] };
+    }
+
+    case "DISMISS_BADGE": {
+      return { ...state, badgeQueue: state.badgeQueue.slice(1) };
+    }
+
+    case "TOGGLE_MUTE": {
+      const next = !state.isMuted;
+      setMuted(next);
+      return { ...state, isMuted: next };
+    }
+
+    case "SET_MUTED": {
+      return { ...state, isMuted: action.payload };
+    }
+
+    case "TICK_GAME_CLOCK": {
+      if (state.phase !== "playing" || state.isPaused) return state;
+      return { ...state, elapsedSeconds: state.elapsedSeconds + 1 };
     }
 
     case "RESET":
@@ -402,6 +436,40 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
       }
     };
   }, [state.activeIndex, state.phase]);
+
+  useEffect(() => {
+    if (state.phase !== "playing" || state.isPaused) return;
+    const clock = setInterval(() => {
+      dispatch({ type: "TICK_GAME_CLOCK" });
+    }, 1000);
+    return () => clearInterval(clock);
+  }, [state.phase, state.isPaused]);
+
+  useEffect(() => {
+    dispatch({ type: "SET_MUTED", payload: isMuted() });
+  }, []);
+
+  useEffect(() => {
+    const allCorrect =
+      state.questions.length > 0 &&
+      state.questions.every((q) => q.status === "completed");
+    const newly = evaluateBadges({
+      earnedBadges: state.earnedBadges,
+      phase: state.phase,
+      allCorrect,
+      aiUsedCount: state.aiAssistedQuestions.length,
+      elapsedSeconds: state.elapsedSeconds,
+    });
+    if (newly.length > 0) {
+      dispatch({ type: "ENQUEUE_BADGES", payload: { badgeIds: newly } });
+    }
+  }, [
+    state.earnedBadges,
+    state.phase,
+    state.questions,
+    state.aiAssistedQuestions,
+    state.elapsedSeconds,
+  ]);
 
   useEffect(() => {
     if (state.phase === "finished" && state.session) {
@@ -455,7 +523,9 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     state.activeIndex,
     state.gridWidth,
     state.gridHeight,
+    state.aiAssistedQuestions,
     state.answerHistory,
+    state.elapsedSeconds,
   ]);
 
   useEffect(() => {
