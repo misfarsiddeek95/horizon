@@ -40,24 +40,23 @@ export default function Onboarding({ onStart }: OnboardingProps) {
   }
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center px-4">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-brand-main px-4 py-8">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md space-y-6 rounded-ui-card bg-surface-default p-8 shadow-sm"
+        className="mx-auto w-11/12 max-w-md space-y-6 rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-md md:p-10"
       >
-        <div className="space-y-2 text-center">
-          <h1 className="font-heading text-2xl font-bold text-content-primary">
-            Crossword Puzzle
+        <div className="space-y-3 text-center">
+          <h1 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl">
+            Haycarb FY2025/26{" "}
+            <span className="text-yellow-400">Crossword Challenge</span>
           </h1>
-          <p className="text-sm text-content-primary/60">
-            Enter your details to begin
-          </p>
+          <p className="text-sm text-white/70">Enter your details to begin</p>
         </div>
 
         <div className="space-y-2">
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-content-primary"
+            className="block text-sm font-medium text-white/80"
           >
             Name
           </label>
@@ -66,18 +65,16 @@ export default function Onboarding({ onStart }: OnboardingProps) {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-ui-element border border-zinc-300 bg-white px-3 py-2 text-sm text-content-primary outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/20"
+            className="w-full rounded-ui-element border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/40 outline-none transition-all duration-300 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400"
             placeholder="Your name"
           />
-          {errors.name && (
-            <p className="text-xs text-red-500">{errors.name}</p>
-          )}
+          {errors.name && <p className="text-xs text-red-400">{errors.name}</p>}
         </div>
 
         <div className="space-y-2">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-content-primary"
+            className="block text-sm font-medium text-white/80"
           >
             Email
           </label>
@@ -86,12 +83,10 @@ export default function Onboarding({ onStart }: OnboardingProps) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-ui-element border border-zinc-300 bg-white px-3 py-2 text-sm text-content-primary outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/20"
+            className="w-full rounded-ui-element border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/40 outline-none transition-all duration-300 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400"
             placeholder="your@email.com"
           />
-          {errors.email && (
-            <p className="text-xs text-red-500">{errors.email}</p>
-          )}
+          {errors.email && <p className="text-xs text-red-400">{errors.email}</p>}
         </div>
 
         <div className="flex items-start gap-3">
@@ -100,26 +95,26 @@ export default function Onboarding({ onStart }: OnboardingProps) {
             type="checkbox"
             checked={consented}
             onChange={(e) => setConsented(e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-zinc-300 text-brand-main focus:ring-brand-main/20"
+            className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 accent-yellow-400 focus:ring-2 focus:ring-yellow-400"
           />
-          <label htmlFor="consent" className="text-sm text-content-primary/70">
+          <label htmlFor="consent" className="text-sm text-white/70">
             I consent to store my score and email
           </label>
         </div>
         {errors.consent && (
-          <p className="text-xs text-red-500">{errors.consent}</p>
+          <p className="text-xs text-red-400">{errors.consent}</p>
         )}
 
-        <div className="flex items-center justify-between rounded-ui-element border border-zinc-200 px-3 py-2">
-          <span className="text-sm font-medium text-content-primary">
+        <div className="flex items-center justify-between rounded-ui-element border border-white/20 bg-white/5 px-3 py-2">
+          <span className="text-sm font-medium text-white/80">
             Sound effects
           </span>
-          <MuteToggle />
+          <MuteToggle variant="dark" />
         </div>
 
         <button
           type="submit"
-          className="w-full cursor-pointer rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
+          className="w-full cursor-pointer rounded-ui-element bg-accent-main px-4 py-3 text-base font-semibold text-content-inverse transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(250,204,21,0.5)] active:scale-95"
         >
           Start Game
         </button>
