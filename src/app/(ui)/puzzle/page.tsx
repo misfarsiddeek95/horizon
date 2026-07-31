@@ -11,12 +11,20 @@ import ActiveCluePanel from '@/components/ActiveCluePanel';
 import QuestionDeck from '@/components/QuestionDeck';
 import ResultsOverlay from '@/components/ResultsOverlay';
 import ConfirmDialog from '@/components/ConfirmDialog';
+import BadgeUnlockModal from '@/components/BadgeUnlockModal';
+import MuteToggle from '@/components/MuteToggle';
+import { getBadgeDefinition } from '@/data/badges';
 
 function PuzzleGame() {
-  const { state, startGame, restartGame } = usePuzzle();
+  const { state, dispatch, startGame, restartGame } = usePuzzle();
   const [showRestartDialog, setShowRestartDialog] = useState(false);
   const [lastPhase, setLastPhase] = useState(state.phase);
   const [showResults, setShowResults] = useState(state.phase === 'finished');
+
+  const activeBadgeId = state.badgeQueue[0] ?? null;
+  const activeBadge = activeBadgeId
+    ? getBadgeDefinition(activeBadgeId)
+    : null;
 
   if (lastPhase !== state.phase) {
     setLastPhase(state.phase);
@@ -72,6 +80,7 @@ function PuzzleGame() {
           <span className="text-sm text-gray-400">Score: {state.score}/{state.questions.length}</span>
         </div>
         <div className="flex items-center gap-3">
+          <MuteToggle />
           <button
             onClick={() => setShowRestartDialog(true)}
             className="inline-flex cursor-pointer items-center gap-1.5 rounded-ui-element border border-red-200 px-3 py-2 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
@@ -113,8 +122,20 @@ function PuzzleGame() {
         </div>
       </div>
 
-      {state.phase === 'finished' && showResults && <ResultsOverlay onClose={() => setShowResults(false)} />}
+      {state.phase === 'finished' &&
+        showResults &&
+        state.badgeQueue.length === 0 && (
+          <ResultsOverlay onClose={() => setShowResults(false)} />
+        )}
     </main>
+
+    {activeBadge && (
+      <BadgeUnlockModal
+        key={activeBadge.id}
+        badge={activeBadge}
+        onClose={() => dispatch({ type: 'DISMISS_BADGE' })}
+      />
+    )}
     </>
   );
 }
