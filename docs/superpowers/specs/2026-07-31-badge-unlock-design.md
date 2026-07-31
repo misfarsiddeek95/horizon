@@ -93,6 +93,7 @@ elapsedSeconds: number; // total active (non-paused) play time this game
 | { type: 'ENQUEUE_BADGES'; payload: { badgeIds: string[] } }
 | { type: 'DISMISS_BADGE' }          // shifts badgeQueue[0]
 | { type: 'TOGGLE_MUTE' }            // flips isMuted + persists
+| { type: 'SET_MUTED'; payload: boolean } // sets isMuted (mount init from localStorage)
 | { type: 'TICK_GAME_CLOCK' }        // increments elapsedSeconds
 ```
 
@@ -104,7 +105,7 @@ A `setInterval` ticking `TICK_GAME_CLOCK` every second while `phase === 'playing
 
 ### Central badge evaluation effect
 
-Watches `[state.earnedBadges, state.phase]` (plus the scalar values it consumes). On each change it builds a `BadgeEvaluation` from current state and dispatches `ENQUEUE_BADGES` with the result of `evaluateBadges(...)`, calling `markUnlocked(id)` for each returned id first.
+Watches `[state.earnedBadges, state.phase]` (plus the scalar values it consumes). On each change it builds a `BadgeEvaluation` from current state and calls `evaluateBadges(...)`, which **persists each newly-earned badge internally via `markUnlocked` and returns only the new ids**; the effect then dispatches `ENQUEUE_BADGES` with that array.
 
 - **Mid-game:** only category certs are satisfiable → they enqueue the moment a category is completed (per UX rule).
 - **Game end:** achievements become satisfiable; a cert earned on the final question is already persisted by the same effect's earlier tick, so it is not double-enqueued.
