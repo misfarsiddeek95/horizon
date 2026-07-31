@@ -7,8 +7,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Responsive from "@amcharts/amcharts5/themes/Responsive";
 import { materialsWaterData } from "@/data/chartData";
 import ChartContainer from "../ChartContainer";
-
-am5.addLicense("AM5C-0771-7551-3415-0172");
+import "@/utils/amChartsSetup";
 
 interface HoverableDataContext {
   hover: () => void;
