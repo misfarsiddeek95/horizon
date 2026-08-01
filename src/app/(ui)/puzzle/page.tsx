@@ -125,10 +125,26 @@ function PuzzleGame() {
         <div className="w-full flex-1 min-h-0 overflow-hidden flex flex-col lg:flex-row lg:items-start lg:gap-8 lg:overflow-visible lg:w-full">
           
           {/* LEFT COLUMN: Grid Container */}
-          <div className="w-full h-full overflow-auto px-4 lg:px-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible min-w-0 relative">
-            <div className="w-max mx-auto py-12 lg:py-0 lg:w-full lg:flex lg:flex-col lg:items-center lg:justify-center lg:min-h-full">
-              <CrosswordGrid />
+          {/* Added p-4 for mobile spacing around the canvas */}
+          <div className="w-full h-full flex flex-col p-4 min-w-0 lg:p-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible">
+            
+            {/* THE WHITE CANVAS (Fixed on mobile, transparent on desktop) */}
+            <div className="w-full h-full bg-white rounded-xl shadow-sm flex flex-col overflow-hidden lg:bg-transparent lg:shadow-none lg:overflow-visible">
+              
+              {/* THE SCROLLABLE INTERIOR */}
+              {/* CRITICAL FIX: overflow-auto is now INSIDE the canvas. 
+                  Added pb-32 to allow the user to scroll the bottom of the grid far above the clue bar. 
+                  Added touch-pan-x touch-pan-y to ensure the grid doesn't steal touch events. */}
+              <div className="flex-1 overflow-auto w-full h-full p-4 pb-32 touch-pan-x touch-pan-y lg:p-0 lg:flex lg:flex-col lg:items-center lg:justify-center lg:overflow-visible">
+                
+                {/* THE GRID SCIZER */}
+                <div className="w-max mx-auto">
+                  <CrosswordGrid />
+                </div>
+                
+              </div>
             </div>
+            
           </div>
 
           {/* RIGHT COLUMN: Cards (Desktop Only) */}
