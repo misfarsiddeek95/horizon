@@ -124,7 +124,7 @@ export default function BadgeUnlockModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex overflow-y-auto bg-black/70 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -134,7 +134,7 @@ export default function BadgeUnlockModal({
     >
       <ConfettiBurst />
       <div
-        className={`relative flex w-full max-w-sm flex-col items-center gap-4 rounded-ui-card bg-surface-default p-8 text-center shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+        className={`relative m-auto flex w-full max-w-sm flex-col items-center gap-4 rounded-ui-card bg-surface-default p-8 text-center shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
           mounted ? "scale-100" : "scale-0"
         }`}
       >

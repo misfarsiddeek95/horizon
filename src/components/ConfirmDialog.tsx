@@ -24,8 +24,8 @@ export default function ConfirmDialog({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-sm space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
+    <div className="fixed inset-0 z-50 flex overflow-y-auto bg-black/50 p-4">
+      <div className="m-auto w-full max-w-sm space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
             <ExclamationTriangleIcon className="h-5 w-5 text-red-600" />

@@ -35,39 +35,8 @@ function PuzzleGame() {
     }
   }
 
-  const forceLandscape = (
-    <div className="fixed inset-0 z-[9999] bg-gray-900 text-white flex-col items-center justify-center p-6 text-center hidden max-md:portrait:flex">
-      <svg
-        className="mb-6 h-16 w-16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <rect x="7" y="2" width="10" height="20" rx="2" />
-        <path d="M11 18h2" />
-        <path d="M2 6a9 9 0 0 1 18 0" />
-        <path d="M2 6h4" />
-        <path d="M2 6V2" />
-      </svg>
-      <p className="text-lg font-semibold">
-        Please rotate your device to landscape to play.
-      </p>
-    </div>
-  );
-
   if (state.phase === 'onboarding') {
-    return (
-      <>
-        {forceLandscape}
-        <div className="max-md:portrait:hidden">
-          <Onboarding onStart={enterLobby} />
-        </div>
-      </>
-    );
+    return <Onboarding onStart={enterLobby} />;
   }
 
   if (state.phase === 'idle') {
@@ -76,8 +45,7 @@ function PuzzleGame() {
 
   return (
     <>
-      {forceLandscape}
-      <main className="flex flex-col p-4 sm:p-6 lg:p-12 overflow-x-hidden max-md:portrait:hidden">
+      <main className="flex flex-col p-4 sm:p-6 lg:p-12 overflow-x-hidden">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-gray-700">
@@ -85,7 +53,7 @@ function PuzzleGame() {
           </span>
           <span className="text-sm text-gray-400">Score: {state.score}/{state.questions.length}</span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 justify-end">
           <MuteToggle />
           <ExitButton />
           <button
@@ -111,7 +79,7 @@ function PuzzleGame() {
             href="/leaderboard"
             className="px-4 py-2 bg-brand-main hover:bg-brand-hover text-white rounded-lg font-semibold shadow-md transition-all text-sm"
           >
-            View Leaderboard
+            Leaderboard
           </Link>
         </div>
       </div>

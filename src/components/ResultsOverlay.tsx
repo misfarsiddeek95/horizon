@@ -67,8 +67,8 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
   const earnedCount = CATEGORY_ORDER.filter((c) => earnedBadges?.[c]).length;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="relative w-full max-w-lg space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
+    <div className="fixed inset-0 z-50 flex overflow-y-auto bg-black/50 p-4">
+      <div className="relative m-auto w-full max-w-lg space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
         {onClose && (
           <button
             onClick={onClose}
