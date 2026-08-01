@@ -17,6 +17,7 @@ import MuteToggle from '@/components/MuteToggle';
 import ExitButton from '@/components/ExitButton';
 import MobileClueBar from '@/components/MobileClueBar';
 import MobileActionStrip from '@/components/MobileActionStrip';
+import MobileTimer from '@/components/MobileTimer';
 import { getBadgeDefinition } from '@/data/badges';
 
 function PuzzleGame() {
@@ -110,6 +111,11 @@ function PuzzleGame() {
           </div>
         </div>
 
+        {/* MOBILE TIMER */}
+        <div className="block lg:hidden w-full px-4 py-3 shrink-0 bg-white border-b border-slate-200 z-10 relative">
+          <MobileTimer />
+        </div>
+
         {/* CATEGORIES (Desktop Only) */}
         <div className="hidden lg:block w-full">
           <CategoryBadges />
@@ -119,16 +125,13 @@ function PuzzleGame() {
         <div className="w-full flex-1 min-h-0 overflow-hidden flex flex-col lg:flex-row lg:items-start lg:gap-8 lg:overflow-visible lg:w-full">
           
           {/* LEFT COLUMN: Grid Container */}
-          {/* CRITICAL FIX: Added min-w-0 and lg:shrink-0 to absolutely prevent flex blowout. */}
-          <div className="w-full h-full overflow-auto px-4 lg:px-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible min-w-0">
-            {/* CRITICAL FIX: Overrode w-max on desktop (lg:w-full) so it doesn't force the parent to grow */}
-            <div className="min-h-full w-max mx-auto flex flex-col items-center justify-center py-6 lg:w-full lg:mx-0 lg:py-0">
+          <div className="w-full h-full overflow-auto px-4 lg:px-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible min-w-0 relative">
+            <div className="w-max mx-auto py-12 lg:py-0 lg:w-full lg:flex lg:flex-col lg:items-center lg:justify-center lg:min-h-full">
               <CrosswordGrid />
             </div>
           </div>
 
           {/* RIGHT COLUMN: Cards (Desktop Only) */}
-          {/* CRITICAL FIX: Added min-w-0 and lg:shrink-0 to enforce strict 40% width. */}
           <div className="hidden lg:flex lg:flex-col lg:w-[40%] lg:shrink-0 lg:gap-6 min-w-0">
             <ActiveCluePanel />
             <QuestionDeck />
