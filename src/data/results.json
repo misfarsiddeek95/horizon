@@ -1416,5 +1416,185 @@
         "totalPointsEarned": 0
       }
     ]
+  },
+  {
+    "name": "Misfar Siddeek",
+    "email": "asm.misfar@gmail.com",
+    "score": 197,
+    "date": "2026-08-01T11:29:49.229Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": true,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "perf-6",
+        "clue": "Haycarb achieved over Rs. 100 million in lean ______ during FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 32,
+        "basePoints": 10,
+        "timeBonus": 2,
+        "aiUsed": false,
+        "totalPointsEarned": 12
+      },
+      {
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 29,
+        "basePoints": 10,
+        "timeBonus": 2,
+        "aiUsed": false,
+        "totalPointsEarned": 12
+      },
+      {
+        "questionId": "comp-5",
+        "clue": "What stage represents \"Moving With Direction and Purpose\"?",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 45,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "tech-2",
+        "clue": "Which country is home to Haycarb's progressing greenfield manufacturing expansion?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 51,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-8",
+        "clue": "61% of Haycarb's raw material came from ______ charcoaling sources in FY2025/26",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 48,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "perf-5",
+        "clue": "Haycarb generated over Rs. 916 million from new ______ during FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 42,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "esg-5",
+        "clue": "The type of harvesting Haycarb uses, alongside recycling and reuse, for sustainable water management",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 41,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 51,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "prod-1",
+        "clue": "Which emerging sector is highlighted as a major future growth opportunity for Haycarb?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 42,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "prod-3",
+        "clue": "What characteristic best describes Haycarb's portfolio of over 1,500 activated carbon products?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 43,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "tech-3",
+        "clue": "What organisational capability allows Haycarb to respond effectively to changing markets and operating conditions?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 46,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "comp-1",
+        "clue": "The 2025/26 Annual Report centres on a journey towards which future destination",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 42,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "comp-2",
+        "clue": "What lies beyond every achievement, according to this year's report narrative?",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 48,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "esg-1",
+        "clue": "Which assessment approach considers both financial and impact perspectives when identifying priorities?",
+        "category": "Sustainability/ESG",
+        "status": "completed",
+        "timeRemaining": 37,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 39,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      }
+    ]
   }
 ]

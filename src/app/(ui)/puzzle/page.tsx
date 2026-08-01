@@ -59,25 +59,27 @@ function PuzzleGame() {
 
   return (
     <>
-      <main className="grid grid-rows-[auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-[#f8f9fa]">
+      <main className="grid grid-rows-[auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-[#f8f9fa]">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
-        <div className="shrink-0 w-full flex items-center justify-between px-4 py-3 lg:px-0 lg:py-0">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="text-sm font-semibold text-gray-700 truncate">
+        <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap px-3 py-3 lg:px-0 lg:py-0">
+          <div className="flex flex-col items-start justify-center overflow-hidden mr-2 lg:flex-row lg:items-center lg:gap-2">
+            <span className="font-bold text-sm truncate w-full max-w-[120px] lg:max-w-none">
               {state.session?.name ?? 'Player'}
             </span>
-            <span className="text-sm text-gray-400 whitespace-nowrap">Score: {state.score}/{state.questions.length}</span>
+            <span className="text-xs text-slate-500 whitespace-nowrap">
+              Score: {state.score}/{state.questions.length}
+            </span>
           </div>
           <div className="flex items-center gap-1 lg:gap-3 justify-end shrink-0">
             <MuteToggle />
             <ExitButton />
             <button
               onClick={() => setShowRestartDialog(true)}
-              className="inline-flex cursor-pointer items-center justify-center w-8 h-8 rounded-ui-element border border-red-200 text-red-600 transition-colors hover:bg-red-50"
+              className="inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-red-200 text-red-600 transition-colors hover:bg-red-50"
               aria-label="Restart game"
             >
-              <ArrowPathIcon className="h-4 w-4" />
+              <ArrowPathIcon className="h-3.5 w-3.5" />
             </button>
             <ConfirmDialog
               open={showRestartDialog}
@@ -93,16 +95,16 @@ function PuzzleGame() {
             />
             <Link
               href="/leaderboard"
-              className="inline-flex items-center justify-center w-8 h-8 lg:w-auto lg:h-auto lg:px-4 lg:py-2 bg-brand-main hover:bg-brand-hover text-white rounded-lg font-semibold shadow-md transition-all text-sm"
+              className="inline-flex items-center justify-center w-7 h-7 lg:w-auto lg:h-auto lg:px-4 lg:py-2 bg-brand-main hover:bg-brand-hover text-white rounded-lg font-semibold shadow-md transition-all text-sm"
             >
-              <TrophyIcon className="h-4 w-4 lg:hidden" />
+              <TrophyIcon className="h-3.5 w-3.5 lg:hidden" />
               <span className="hidden lg:inline">Leaderboard</span>
             </Link>
           </div>
         </div>
 
         {/* COMPACT CATEGORIES (Mobile Only) */}
-        <div className="block lg:hidden w-full px-2 py-1 border-b border-slate-200 bg-slate-50 overflow-x-auto no-scrollbar shrink-0">
+        <div className="block lg:hidden w-full px-2 py-2 border-b border-slate-200 bg-slate-50 overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
           <div className="flex items-center min-w-max scale-90 origin-left">
             <CategoryBadges/>
           </div>
@@ -113,15 +115,25 @@ function PuzzleGame() {
           <CategoryBadges />
         </div>
 
-        {/* ROW 2 (Mobile) / TWO-COLUMN LAYOUT (Desktop) */}
-        <div className="flex flex-col items-center justify-center min-h-0 min-w-0 w-full overflow-hidden lg:flex-row lg:items-start lg:gap-12 lg:flex-1 lg:overflow-visible">
-          <div className="w-full h-full flex flex-col items-center justify-center lg:w-3/5 lg:h-auto">
-            <CrosswordGrid />
+        {/* MIDDLE SECTION: Grid (Mobile) / TWO-COLUMN LAYOUT (Desktop) */}
+        <div className="w-full flex-1 min-h-0 overflow-hidden flex flex-col lg:flex-row lg:items-start lg:gap-8 lg:overflow-visible lg:w-full">
+          
+          {/* LEFT COLUMN: Grid Container */}
+          {/* CRITICAL FIX: Added min-w-0 and lg:shrink-0 to absolutely prevent flex blowout. */}
+          <div className="w-full h-full overflow-auto px-4 lg:px-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible min-w-0">
+            {/* CRITICAL FIX: Overrode w-max on desktop (lg:w-full) so it doesn't force the parent to grow */}
+            <div className="min-h-full w-max mx-auto flex flex-col items-center justify-center py-6 lg:w-full lg:mx-0 lg:py-0">
+              <CrosswordGrid />
+            </div>
           </div>
-          <div className="hidden lg:flex lg:flex-col lg:w-2/5 lg:gap-6">
+
+          {/* RIGHT COLUMN: Cards (Desktop Only) */}
+          {/* CRITICAL FIX: Added min-w-0 and lg:shrink-0 to enforce strict 40% width. */}
+          <div className="hidden lg:flex lg:flex-col lg:w-[40%] lg:shrink-0 lg:gap-6 min-w-0">
             <ActiveCluePanel />
             <QuestionDeck />
           </div>
+
         </div>
 
         {/* ROW 3 & 4 (Mobile Only) */}
