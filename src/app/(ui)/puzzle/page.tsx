@@ -137,8 +137,9 @@ function PuzzleGame() {
                   Added touch-pan-x touch-pan-y to ensure the grid doesn't steal touch events. */}
               <div className="flex-1 overflow-auto w-full h-full p-4 pb-32 touch-pan-x touch-pan-y lg:p-0 lg:flex lg:flex-col lg:items-center lg:justify-center lg:overflow-visible">
                 
-                {/* THE GRID SCIZER */}
-                <div className="w-max mx-auto">
+                {/* THE GRID SIZER */}
+                {/* CRITICAL FIX: Added lg:w-full lg:mx-0 so it doesn't force the parent to grow on desktop */}
+                <div className="w-max mx-auto lg:w-full lg:mx-0">
                   <CrosswordGrid />
                 </div>
                 
