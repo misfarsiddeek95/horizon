@@ -7,12 +7,12 @@ interface ChartTypeTabsProps {
   onTypeChange: (type: string) => void;
 }
 
-export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTabsProps) {
-  const tabs = [
-    { id: "financial", label: "Financial" },
-    { id: "non-financial", label: "Non-financial" },
-  ];
+const tabs = [
+  { id: "financial", label: "Financial" },
+  { id: "non-financial", label: "Non-financial" },
+];
 
+export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTabsProps) {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const handleKeyDown = useCallback(
@@ -35,7 +35,7 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
       onTypeChange(tabs[newIndex].id);
       tabRefs.current[newIndex]?.focus();
     },
-    [tabs, onTypeChange]
+    [onTypeChange]
   );
 
   return (
