@@ -1,9 +1,59 @@
-import type { CrroData } from "@/data/climateDashboard";
+import type { CrroData, CrroDriverData, CrroFinancialItem } from "@/data/climateDashboard";
 import CrroSummaryStrip from "./CrroSummaryStrip";
 import CrroLineChart from "./CrroLineChart";
+import ExplorerEvidence from "./ExplorerEvidence";
 
 interface CrroSectionProps {
   crro: CrroData;
+}
+
+function formatRangeValue(low: number, high: number, format: string, unit: string): string {
+  const fmt = (v: number) => {
+    if (format === "percent") return `${v}%`;
+    if (format === "multiple") return `${v}×`;
+    return `${v} ${unit}`;
+  };
+  if (low === high) return fmt(low);
+  return `${fmt(low)} – ${fmt(high)}`;
+}
+
+function EstimatedRange({ metric }: { metric: CrroDriverData | CrroFinancialItem }) {
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+      <span className="font-extrabold text-[#344257]">Estimated range</span>
+      {metric.values.map((v) => (
+        <span key={v.h} className="text-[#4A586B]">
+          <span className="font-bold text-[#344257]">{v.h}</span>{" "}
+          {formatRangeValue(v.low, v.high, metric.format, metric.unit)}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function WhatThisMeans({ meaning }: { meaning: string }) {
+  return (
+    <div className="bg-[#F5F8FB] rounded-lg p-3">
+      <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
+        What this means
+      </div>
+      <div className="text-xs text-[#4A586B] leading-[1.5]">{meaning}</div>
+    </div>
+  );
+}
+
+function ScopeAndAssumptions({ note }: { note: string }) {
+  return (
+    <details className="group">
+      <summary className="text-xs font-extrabold text-[#344257] cursor-pointer hover:text-brand-main transition-colors list-none flex items-center gap-1.5">
+        <span className="text-[10px] transition-transform group-open:rotate-90">▶</span>
+        Scope and assumptions
+      </summary>
+      <div className="mt-2 text-xs text-[#4A586B] leading-[1.5] pl-3.5">
+        {note}
+      </div>
+    </details>
+  );
 }
 
 export default function CrroSection({ crro }: CrroSectionProps) {
@@ -12,9 +62,7 @@ export default function CrroSection({ crro }: CrroSectionProps) {
   return (
     <article className="space-y-5">
       <div>
-        <h3
-          className="text-xl font-black text-brand-main"
-        >
+        <h3 className="text-xl font-black text-brand-main">
           {crro.name}
         </h3>
         <p className="text-sm text-[#4C5C70] mt-1 leading-relaxed">
@@ -33,6 +81,7 @@ export default function CrroSection({ crro }: CrroSectionProps) {
             {crro.driver.subtitle}
           </p>
         </div>
+        <EstimatedRange metric={crro.driver} />
         <CrroLineChart
           data={crro.driver.values}
           axis={crro.driver.axis}
@@ -40,9 +89,8 @@ export default function CrroSection({ crro }: CrroSectionProps) {
           format={crro.driver.format}
           accentColor={crro.color}
         />
-        <div className="bg-[#F5F8FB] border-l-[3px] rounded-lg p-3 text-xs text-[#4A586B] leading-[1.45]" style={{ borderLeftColor: crro.color }}>
-          {crro.driver.note}
-        </div>
+        <WhatThisMeans meaning={crro.driver.meaning} />
+        <ScopeAndAssumptions note={crro.driver.note} />
       </div>
 
       {financialData && (
@@ -55,6 +103,7 @@ export default function CrroSection({ crro }: CrroSectionProps) {
               {financialData.subtitle}
             </p>
           </div>
+          <EstimatedRange metric={financialData} />
           <CrroLineChart
             data={financialData.values}
             axis={financialData.axis}
@@ -62,11 +111,12 @@ export default function CrroSection({ crro }: CrroSectionProps) {
             format={financialData.format}
             accentColor={crro.color}
           />
-          <div className="bg-[#F5F8FB] border-l-[3px] rounded-lg p-3 text-xs text-[#4A586B] leading-[1.45]" style={{ borderLeftColor: crro.color }}>
-            {financialData.note}
-          </div>
+          <WhatThisMeans meaning={financialData.meaning} />
+          <ScopeAndAssumptions note={financialData.note} />
         </div>
       )}
+
+      <ExplorerEvidence evidence={crro.evidence} color={crro.color} />
     </article>
   );
 }

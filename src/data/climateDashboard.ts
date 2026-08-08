@@ -6,6 +6,7 @@ export interface CrroDriverData {
   format: "percent" | "number" | "multiple";
   values: { h: string; low: number; high: number }[];
   note: string;
+  meaning: string;
 }
 
 export interface CrroFinancialItem {
@@ -16,6 +17,13 @@ export interface CrroFinancialItem {
   format: "percent" | "number" | "multiple";
   values: { h: string; low: number; high: number }[];
   note: string;
+  meaning: string;
+}
+
+export interface CrroEvidenceItem {
+  id: string;
+  title: string;
+  insight: string;
 }
 
 export interface CrroData {
@@ -29,6 +37,8 @@ export interface CrroData {
   description: string;
   keyDriver: string;
   keyFinancial: string;
+  businessInterpretation: string;
+  evidence: CrroEvidenceItem[];
   driver: CrroDriverData;
   financial: CrroFinancialItem[];
 }
@@ -45,6 +55,14 @@ export const CRROS: CrroData[] = [
     description: "Climate risk to raw material supply, covering coconut shell and coconut shell charcoal.",
     keyDriver: "Coconut shell charcoal cost pressure",
     keyFinancial: "Incremental raw material cost",
+    businessInterpretation: "Climate variability, demand expansion and structural agricultural constraints progressively tighten feedstock and charcoal supply.",
+    evidence: [
+      { id: "rainfall", title: "Rainfall Projection — Manufacturing and Sourcing Countries", insight: "Rainfall projections across Sri Lanka, India, Indonesia and Thailand indicate increasing variability, affecting coconut yields and shell availability." },
+      { id: "enso", title: "ENSO Phase Distribution", insight: "El Niño–Southern Oscillation phases influence rainfall patterns and coconut production across sourcing regions." },
+      { id: "yieldCompare", title: "Coconut Yield Comparison — Historical vs Projected", insight: "Projected yields under climate scenarios show potential declines relative to historical baselines." },
+      { id: "yoyYield", title: "Year-on-Year Yield Change", insight: "Annual yield variability is expected to increase as climate extremes become more frequent." },
+      { id: "shellIndex", title: "Coconut Shell Availability Index", insight: "Shell supply availability is projected to tighten as demand grows and yields face climate pressure." },
+    ],
     driver: {
       title: "Estimated Average Coconut Shell Charcoal Cost Increase Across Major Sourcing Regions",
       subtitle: "Compared with the FY 2025/26 baseline",
@@ -57,6 +75,7 @@ export const CRROS: CrroData[] = [
         { h: "LT", low: 108, high: 160 },
       ],
       note: "The estimates represent the combined average increase in coconut shell charcoal costs across Sri Lanka, India, Indonesia and Thailand. The ranges reflect increasing supply pressure from climate variability, higher production demand, tightening coconut-shell availability and greater reliance on higher-cost sourcing channels.",
+      meaning: "Coconut shell charcoal costs are expected to rise progressively as climate variability, demand growth and structural feedstock constraints intensify.",
     },
     financial: [
       {
@@ -71,6 +90,7 @@ export const CRROS: CrroData[] = [
           { h: "LT", low: 29.2, high: 43.9 },
         ],
         note: "The estimated financial effect represents the additional raw material cost arising from the projected increase in coconut shell charcoal prices and does not represent total raw material expenditure. Near-term impacts are expected to be concentrated in Sri Lanka, while medium- and long-term exposure increases across all sourcing regions.",
+        meaning: "Higher charcoal procurement costs translate into a progressively larger incremental raw-material cost exposure.",
       },
     ],
   },
@@ -85,6 +105,12 @@ export const CRROS: CrroData[] = [
     description: "Water risk arising from changes in water availability, water quality and hydrological variability.",
     keyDriver: "Loss of usable washing water",
     keyFinancial: "Incremental revenue loss",
+    businessInterpretation: "Hydrological stress can constrain washing-dependent grades, with exposure increasing as production and water demand grow.",
+    evidence: [
+      { id: "rainfall", title: "Rainfall Projection — Manufacturing and Sourcing Countries", insight: "Rainfall projections indicate increasing variability in water availability across manufacturing regions." },
+      { id: "enso", title: "ENSO Phase Distribution", insight: "ENSO phases significantly influence hydrological conditions and water quality in sourcing regions." },
+      { id: "waterScenario", title: "Water Resilience Conditions", insight: "Storage, treatment, reuse and abstraction management determine whether rainfall variability becomes a binding operational constraint." },
+    ],
     driver: {
       title: "Estimated Loss of Usable Water for Product Washing",
       subtitle: "Percentage reduction in available washing water",
@@ -97,6 +123,7 @@ export const CRROS: CrroData[] = [
         { h: "LT", low: 20, high: 30 },
       ],
       note: "Washing is required for selected activated carbon grades, including all energy storage carbons and certain air- and water-purification products. The model separately assesses water demand for washing and steam generation, recognising that steam generation requires considerably less water per metric tonne of output.",
+      meaning: "Usable water available for product washing may decline as hydrological and water-quality pressures increase.",
     },
     financial: [
       {
@@ -111,6 +138,7 @@ export const CRROS: CrroData[] = [
           { h: "LT", low: 3, high: 8 },
         ],
         note: "The estimated revenue loss mainly reflects reduced production of washing-dependent grades. Energy Storage Carbon production is expected to be prioritised, but may also be affected under more severe or prolonged water constraints where resilience measures are insufficient. Revenue loss is presented as a range to reflect variability across scenarios.",
+        meaning: "Reduced usable washing water may constrain washing-dependent grades and create revenue exposure, particularly under prolonged stress.",
       },
     ],
   },
@@ -125,6 +153,11 @@ export const CRROS: CrroData[] = [
     description: "Opportunity to scale renewable energy adoption in response to fossil-fuel price volatility and supply disruption.",
     keyDriver: "Renewable energy share",
     keyFinancial: "Fossil-fuel-related cost reduction",
+    businessInterpretation: "Higher renewable and waste-heat use progressively reduces fossil-fuel exposure and improves cost predictability.",
+    evidence: [
+      { id: "transitionScenario", title: "Transition Pathway", insight: "Net Zero provides clearer renewable investment signals; Divergence retains energy-security and physical-adaptation demand." },
+      { id: "renewableScenario", title: "Energy Resilience Levers", insight: "Solar, dendro and newer waste-heat conversion reduce exposure to fossil-fuel volatility." },
+    ],
     driver: {
       title: "Renewable Energy Share under the ACTIVATE 2030 Boundary",
       subtitle: "Projected increase in renewable energy share",
@@ -137,6 +170,7 @@ export const CRROS: CrroData[] = [
         { h: "LT", low: 50, high: 50 },
       ],
       note: "Haycarb has historically used waste heat to generate steam, which remains a major component of its renewable energy use. However, the ACTIVATE 2030 renewable energy target excludes this legacy utilisation and measures progress from the FY 2022/23 baseline through additional renewable energy sources.",
+      meaning: "A rising renewable-energy share reduces dependence on fossil fuels and strengthens long-term energy resilience.",
     },
     financial: [
       {
@@ -151,6 +185,7 @@ export const CRROS: CrroData[] = [
           { h: "LT", low: 10, high: 15 },
         ],
         note: "No cost reduction is anticipated in the short term due to the initial investment required to expand renewable energy capacity. Financial benefits are expected to materialise over the medium and long term as renewable energy use increases. The percentages are presented as positive values to show the magnitude of the anticipated reduction in fossil-fuel-related cost of sales; they do not represent an increase in cost.",
+        meaning: "Initial investment precedes financial benefit; cost-pressure reductions are expected to emerge over the medium and long term.",
       },
     ],
   },
@@ -165,6 +200,11 @@ export const CRROS: CrroData[] = [
     description: "Opportunity from growing demand for value-added carbons used in energy storage, advanced water purification and air purification.",
     keyDriver: "Climate-solution-focused ESC production expansion",
     keyFinancial: "Climate-solution revenue opportunity",
+    businessInterpretation: "Transition and adaptation demand support Energy Storage Carbon upside while purification demand provides portfolio resilience.",
+    evidence: [
+      { id: "growthMultiples", title: "Growth Multiples — Climate-Solution Demand", insight: "Climate-solution applications drive production multiples relative to baseline, with energy storage as the primary growth lever." },
+      { id: "transitionScenario", title: "Transition Pathway", insight: "Net Zero provides clearer renewable investment signals; Divergence retains energy-security and physical-adaptation demand." },
+    ],
     driver: {
       title: "Indicative Energy Storage Carbon Production Expansion",
       subtitle: "Production index relative to FY 2025/26 (baseline = 1.0)",
@@ -177,6 +217,7 @@ export const CRROS: CrroData[] = [
         { h: "LT", low: 3, high: 3.4 },
       ],
       note: "Production values are presented as an index relative to FY 2025/26, which is set at 1.0. The chart shows the indicative expansion in Energy Storage Carbon production attributable specifically to climate-solution demand, rather than total Energy Storage Carbon expansion, and does not disclose absolute production volumes.",
+      meaning: "Climate-solution demand supports a phased expansion in Energy Storage Carbon production relative to FY 2025/26.",
     },
     financial: [
       {
@@ -191,6 +232,7 @@ export const CRROS: CrroData[] = [
           { h: "LT", low: 5, high: 8 },
         ],
         note: "The estimated revenue uplift reflects only climate-solution applications of Energy Storage Carbons. Revenue from other Energy Storage Carbon applications not directly linked to climate solutions, as well as Haycarb's other major product applications, including air and water purification, has been excluded.",
+        meaning: "The revenue opportunity grows as climate-solution-focused Energy Storage Carbon demand and production capacity scale.",
       },
     ],
   },
