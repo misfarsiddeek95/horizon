@@ -10,6 +10,7 @@ import PillarHero from "./PillarHero";
 import TargetsPanel from "./TargetsPanel";
 import HighlightsSection from "./HighlightsSection";
 import TargetDetailModal from "./TargetDetailModal";
+import ClimateDashboardPage from "./ClimateDashboardPage";
 
 const mainTabs = [
   { id: "activate", label: "Activate Dashboard" },
@@ -28,7 +29,7 @@ export default function ActivateDashboardPage() {
 
   return (
     <InnerPageLayout
-      title="ACTIVATE 2030 Progress"
+      title="Dashboard"
       description={`Progress towards 2030 targets and ${META.reportingYear} highlights`}
       tabs={mainTabs}
       activeTab={activeTab}
@@ -39,7 +40,7 @@ export default function ActivateDashboardPage() {
           {/* Title zone with PDF buttons */}
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-5 pb-4">
             <div>
-              <h1 className="font-heading text-[#071D43] text-[40px] leading-[1.05] tracking-[-0.035em]">
+              <h1 className="font-heading text-brand-main text-[40px] leading-[1.05] tracking-[-0.035em]">
                 ACTIVATE 2030 Progress
               </h1>
               <p className="text-[#41516A] text-base mt-2">
@@ -87,12 +88,7 @@ export default function ActivateDashboardPage() {
         </>
       )}
 
-      {activeTab === "climate" && (
-        <div className="text-center py-20 text-[#667085]">
-          <p className="text-lg font-heading">Climate Dashboard</p>
-          <p className="text-sm mt-2">Coming soon.</p>
-        </div>
-      )}
+      {activeTab === "climate" && <ClimateDashboardPage />}
 
       {selectedTarget && (
         <TargetDetailModal
