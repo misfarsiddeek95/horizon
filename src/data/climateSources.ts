@@ -93,6 +93,13 @@ export const SOURCE_LIBRARY: Record<string, SourceItem> = {
     year: "2024–2035",
     supports: "Market size projections for value-added carbon segments under selected scenarios.",
   },
+  haycarb_report: {
+    title: "Haycarb PLC Annual Report 2025/26 — Climate-related risks, opportunities and resilience",
+    organisation: "Haycarb PLC",
+    year: "2026",
+    url: "https://cdn.cse.lk/cmt/upload_report_file/494_1780912833539.pdf",
+    supports: "Published CRRO definitions, quantified estimate ranges, anticipated financial effects, scenario analysis, resilience sensitivity and management responses.",
+  },
 };
 
 export const SOURCE_MAP: Record<string, SourceMapEntry> = {

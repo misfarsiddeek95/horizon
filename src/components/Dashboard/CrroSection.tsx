@@ -35,10 +35,10 @@ function EstimatedRange({ metric }: { metric: CrroDriverData | CrroFinancialItem
 function WhatThisMeans({ meaning }: { meaning: string }) {
   return (
     <div className="bg-[#F5F8FB] rounded-lg p-3">
-      <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
+      <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
         What this means
       </div>
-      <div className="text-xs text-[#4A586B] leading-[1.5]">{meaning}</div>
+      <div className="text-sm text-[#4A586B] leading-[1.6]">{meaning}</div>
     </div>
   );
 }
@@ -61,7 +61,7 @@ function ScopeAndAssumptions({ note }: { note: string }) {
         style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
       >
         <div className="min-h-0 overflow-hidden">
-          <div className="mt-2 text-xs text-[#4A586B] leading-[1.5] pl-3.5">
+          <div className="mt-2 text-sm text-[#4A586B] leading-[1.6] pl-3.5">
             {note}
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function CrroSection({ crro }: CrroSectionProps) {
           <h4 className="text-base font-extrabold text-brand-main">
             {crro.driver.title}
           </h4>
-          <p className="text-xs text-[#667085] mt-0.5">
+          <p className="text-sm text-[#667085] mt-0.5">
             {crro.driver.subtitle}
           </p>
         </div>
@@ -113,9 +113,9 @@ export default function CrroSection({ crro }: CrroSectionProps) {
             <h4 className="text-base font-extrabold text-brand-main">
               {financialData.title}
             </h4>
-            <p className="text-xs text-[#667085] mt-0.5">
-              {financialData.subtitle}
-            </p>
+          <p className="text-sm text-[#667085] mt-0.5">
+            {financialData.subtitle}
+          </p>
           </div>
           <EstimatedRange metric={financialData} />
           <CrroLineChart

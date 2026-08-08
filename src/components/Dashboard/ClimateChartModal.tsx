@@ -424,10 +424,10 @@ export default function ClimateChartModal({
         <div className="px-6 pb-4 space-y-3">
           {isSignalChart && (
             <div className="border-l-4 border-[#168E95] bg-[#F0FAF9] rounded-r-lg p-3">
-              <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#168E95] mb-1">
+              <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#168E95] mb-1">
                 Signal Note
               </div>
-              <p className="text-xs text-[#4A586B] leading-[1.5] m-0">
+              <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
                 These are climate signals, not direct measurements. They
                 represent modelled projections based on historical patterns and
                 climate scenario data.
@@ -437,10 +437,10 @@ export default function ClimateChartModal({
 
           {hasProjection && (
             <div className="border-l-4 border-[#7C3AED] bg-[#F5F0FF] rounded-r-lg p-3">
-              <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#7C3AED] mb-1">
+              <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#7C3AED] mb-1">
                 Projection Note
               </div>
-              <p className="text-xs text-[#4A586B] leading-[1.5] m-0">
+              <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
                 Projected values are modelled outcomes based on SSP scenarios and
                 should not be treated as deterministic forecasts. Dashed lines
                 indicate projected data beyond the observation period.
@@ -450,10 +450,10 @@ export default function ClimateChartModal({
 
           {chart.insight && (
             <div className="border-l-4 border-[#D2DDE6] bg-[#F5F8FB] rounded-r-lg p-3">
-              <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
+              <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
                 Insight
               </div>
-              <p className="text-xs text-[#4A586B] leading-[1.5] m-0">
+              <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
                 {chart.insight}
               </p>
             </div>

@@ -46,7 +46,7 @@ export default function SourceModal({ sourceKey, onClose }: SourceModalProps) {
       aria-modal="true"
       aria-labelledby="source-modal-title"
     >
-      <div className={`bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[80vh] flex flex-col overflow-hidden transition-all duration-300 ease-out ${isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"}`}>
+      <div className={`bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[85vh] flex flex-col overflow-hidden transition-all duration-300 ease-out ${isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"}`}>
         <div className="px-6 py-4 border-b border-[#E2E8ED] flex items-start justify-between gap-4">
           <div>
             <h2
@@ -55,7 +55,6 @@ export default function SourceModal({ sourceKey, onClose }: SourceModalProps) {
             >
               Sources · {entry.name}
             </h2>
-            <p className="text-sm text-[#667085] mt-0.5 m-0">{entry.supports}</p>
           </div>
           <button
             onClick={handleClose}
@@ -79,64 +78,89 @@ export default function SourceModal({ sourceKey, onClose }: SourceModalProps) {
           </button>
         </div>
 
-        <div className="px-6 py-4 flex-1 overflow-y-auto">
-          <p className="text-xs text-[#667085] mb-4">
-            The following sources were used in the preparation of this analysis.
+        <div className="px-6 py-5 flex-1 overflow-y-auto space-y-5">
+          <p className="text-sm text-[#526174] leading-[1.55] m-0">
+            {entry.supports}
           </p>
+
           <div className="space-y-3">
             {entry.sources.map((id) => {
               const source = SOURCE_LIBRARY[id];
               if (!source) return null;
               return (
-                <div
+                <article
                   key={id}
-                  className="border border-[#E2E8ED] rounded-lg p-3"
+                  className="border border-[#DCE5ED] rounded-[14px] p-4 bg-white"
                 >
-                  <div className="text-sm font-extrabold text-[#344257]">
+                  <h4 className="text-[15px] font-heading font-bold text-[#071D43] m-0 mb-2">
                     {source.title}
+                  </h4>
+                  <div className="flex flex-wrap gap-x-3.5 gap-y-1 text-[13px] text-[#5F6E80] mb-2">
+                    <span>
+                      <strong className="text-[#344257]">Organisation:</strong>{" "}
+                      {source.organisation}
+                    </span>
+                    <span>
+                      <strong className="text-[#344257]">Year:</strong>{" "}
+                      {source.year}
+                    </span>
                   </div>
-                  <div className="text-xs text-[#667085] mt-1">
-                    {source.organisation} · {source.year}
-                  </div>
-                  {source.url && (
-                    <a
-                      href={source.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-brand-main hover:underline mt-1 inline-block"
-                    >
-                      View source &rarr;
-                    </a>
-                  )}
                   {source.supports && (
-                    <div className="text-[11px] text-[#4A586B] mt-2 leading-[1.45]">
-                      {source.supports}
+                    <div className="text-[13px] text-[#405065] bg-[#F5F8FB] rounded-[9px] px-3 py-2.5 leading-[1.5] mb-3">
+                      <strong>Relevance:</strong> {source.supports}
                     </div>
                   )}
-                </div>
+                  <div className="flex flex-wrap gap-2">
+                    {source.url ? (
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 no-underline rounded-[9px] px-2.5 py-2 text-[13px] font-[850] bg-[#EAF5F6] text-[#116D72] hover:underline"
+                      >
+                        View original source ↗
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center rounded-[9px] px-2.5 py-2 bg-[#F2F4F7] text-[#667085] text-[13px] font-[750]">
+                        Cited in the Annual Report; no single public link identified
+                      </span>
+                    )}
+                  </div>
+                </article>
               );
             })}
           </div>
-        </div>
 
-        {entry.annualReport && entry.annualReport.length > 0 && (
-          <div className="px-6 py-3 border-t border-[#E2E8ED] bg-[#F5F8FB]">
-            <div className="text-xs font-extrabold text-[#344257] mb-1">
-              Annual Report References
-            </div>
-            {entry.annualReport.map((ref, i) => (
-              <a
-                key={i}
-                href={`${ANNUAL_REPORT_URL}#page=${ref.pdfPage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-brand-main hover:underline block"
-              >
-                {ref.label}
-              </a>
-            ))}
+          <div className="border-l-[3px] border-[#168E95] bg-[#F7FAFC] rounded-lg px-3 py-3 text-[13px] text-[#526174] leading-[1.45]">
+            <strong>Primary disclosure:</strong> Haycarb PLC Annual Report 2025/26
+            <br />
+            <strong>Dashboard role:</strong> Interactive presentation of the
+            published climate-risk, opportunity, financial-effect and resilience
+            disclosures.
           </div>
-        )}
+
+          {entry.annualReport && entry.annualReport.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {entry.annualReport.map((ref, i) => (
+                <a
+                  key={i}
+                  href={`${ANNUAL_REPORT_URL}#page=${ref.pdfPage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 no-underline rounded-[9px] px-2.5 py-2 text-[13px] font-[850] bg-[#EDF2FB] text-[#174A7E] hover:underline"
+                >
+                  View Annual Report disclosure · {ref.label} ↗
+                </a>
+              ))}
+            </div>
+          )}
+
+          <div className="text-[12px] text-[#667085] leading-[1.45]">
+            External links open in a new browser tab. Where the Annual Report
+            cites a source category but does not identify one exact public URL,
+            this is stated clearly.
+          </div>
+        </div>
       </div>
     </div>
   );

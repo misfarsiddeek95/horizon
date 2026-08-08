@@ -98,7 +98,7 @@ export default function TargetDetailModal({
               >
                 {target.current}
               </div>
-              <div className="text-[#667085] text-[11px] mt-1">
+              <div className="text-[#667085] text-xs mt-1">
                 {target.unit}
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function TargetDetailModal({
               <div className="text-[17px] font-black leading-none">
                 {statusNumber}
               </div>
-              <div className="text-[8.5px] font-[850] leading-[1.25] mt-1">
+              <div className="text-[10px] font-[850] leading-[1.25] mt-1">
                 {target.status}
               </div>
             </div>
@@ -117,43 +117,43 @@ export default function TargetDetailModal({
 
           <div className="grid grid-cols-4 gap-[9px] my-[15px] max-md:grid-cols-2">
             <div className="bg-[#F6F8FA] border border-[#E4EAEF] rounded-[10px] p-2.5">
-              <span className="block text-[8px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
+              <span className="block text-[9.5px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
                 Baseline
               </span>
-              <b className="block mt-1 text-[11px] text-[#071D43]">
+              <b className="block mt-1 text-xs text-[#071D43]">
                 {target.baseline}
               </b>
             </div>
             <div className="bg-[#F6F8FA] border border-[#E4EAEF] rounded-[10px] p-2.5">
-              <span className="block text-[8px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
+              <span className="block text-[9.5px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
                 2027 milestone
               </span>
-              <b className="block mt-1 text-[11px] text-[#071D43]">
+              <b className="block mt-1 text-xs text-[#071D43]">
                 {target.milestone2027}
               </b>
             </div>
             <div className="bg-[#F6F8FA] border border-[#E4EAEF] rounded-[10px] p-2.5">
-              <span className="block text-[8px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
+              <span className="block text-[9.5px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
                 2028 milestone
               </span>
-              <b className="block mt-1 text-[11px] text-[#071D43]">
+              <b className="block mt-1 text-xs text-[#071D43]">
                 {target.milestone2028}
               </b>
             </div>
             <div className="bg-[#F6F8FA] border border-[#E4EAEF] rounded-[10px] p-2.5">
-              <span className="block text-[8px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
+              <span className="block text-[9.5px] uppercase tracking-[0.05em] text-[#667085] font-extrabold">
                 2030 target
               </span>
-              <b className="block mt-1 text-[11px] text-[#071D43]">
+              <b className="block mt-1 text-xs text-[#071D43]">
                 {target.target2030}
               </b>
             </div>
           </div>
 
-          <p className="text-xs leading-[1.55] text-[#4C5C70]">
+          <p className="text-sm leading-[1.6] text-[#4C5C70]">
             <b>{target.summary}</b>
           </p>
-          <p className="text-xs leading-[1.55] text-[#4C5C70]">
+          <p className="text-sm leading-[1.6] text-[#4C5C70]">
             {target.detail}
           </p>
 
@@ -162,7 +162,7 @@ export default function TargetDetailModal({
               href={sourceLink(target.page)}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#E7F4F5] text-[#08727B] no-underline rounded-[9px] px-[11px] py-2 text-[10px] font-black hover:brightness-95 active:scale-[0.97] transition-all duration-150"
+              className="bg-[#E7F4F5] text-[#08727B] no-underline rounded-[9px] px-[11px] py-2 text-[11px] font-black hover:brightness-95 active:scale-[0.97] transition-all duration-150"
             >
               View {target.source} ↗
             </a>

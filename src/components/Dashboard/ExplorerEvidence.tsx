@@ -36,7 +36,7 @@ export default function ExplorerEvidence({
           <div className="text-sm font-extrabold text-white">
             Supporting climate-resilience evidence
           </div>
-          <div className="text-[11px] text-white/70 mt-0.5">
+          <div className="text-xs text-white/70 mt-0.5">
             {evidence.length} supporting evidence{" "}
             {evidence.length === 1 ? "source" : "sources"} &middot; Expand to
             explore the underlying climate, feedstock and market context.

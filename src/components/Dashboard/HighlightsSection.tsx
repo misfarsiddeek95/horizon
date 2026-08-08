@@ -46,7 +46,7 @@ export default function HighlightsSection({
             {h.icon}
           </div>
           <div>
-            <div className="text-[8.5px] font-black uppercase text-[#28364B]">
+            <div className="text-[10px] font-black uppercase text-[#28364B]">
               {h.title}
             </div>
             <div
@@ -55,7 +55,7 @@ export default function HighlightsSection({
             >
               {h.value}
             </div>
-            <div className="text-[9px] leading-[1.25] text-[#47566A]">
+            <div className="text-[10px] leading-[1.25] text-[#47566A]">
               {h.unit} · View disclosure ↗
             </div>
           </div>
@@ -64,14 +64,14 @@ export default function HighlightsSection({
 
       <div className="relative overflow-hidden bg-gradient-to-br from-[#EDF7FB] to-[#DCEEF6] border border-[#D5E5EE] rounded-[13px] p-4 flex items-center justify-between gap-3 max-md:col-span-1 max-lg:col-span-full">
         <div className="after:absolute after:right-[-25px] after:bottom-[-42px] after:w-[180px] after:h-[105px] after:rounded-full after:bg-[rgba(72,160,186,.13)]">
-          <div className="relative z-10 text-[11px] leading-[1.4] max-w-[180px]">
+          <div className="relative z-10 text-xs leading-[1.5] max-w-[180px]">
             Explore Haycarb&apos;s climate-related risks, opportunities and
             resilience analysis.
           </div>
         </div>
         <a
           href={META.climateDashboardUrl}
-          className="relative z-10 no-underline rounded-full bg-[#006A78] text-white px-3.5 py-2.5 text-[9px] font-black whitespace-nowrap"
+          className="relative z-10 no-underline rounded-full bg-[#006A78] text-white px-3.5 py-2.5 text-[10px] font-black whitespace-nowrap"
         >
           Climate Risk &amp; Resilience →
         </a>

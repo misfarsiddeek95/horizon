@@ -50,7 +50,7 @@ export default function SummaryCards() {
             {c.icon}
           </div>
           <div>
-            <div className="text-[11px] font-[850] text-[#253148]">
+            <div className="text-sm font-[850] text-[#253148]">
               {c.label}
             </div>
             <div
@@ -59,7 +59,7 @@ export default function SummaryCards() {
             >
               {c.value}
             </div>
-            <div className="text-[9.5px] text-[#667085]">{c.note}</div>
+            <div className="text-xs text-[#667085]">{c.note}</div>
           </div>
         </article>
       ))}

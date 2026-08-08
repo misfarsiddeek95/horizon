@@ -46,7 +46,7 @@ export default function TargetCard({ target, pillar, isMany, onSelect }: TargetC
         <div className="min-w-0 flex-1">
           <div
             className={`font-[850] leading-[1.3] ${
-              isMany ? "text-[10.5px]" : "text-[11.5px]"
+              isMany ? "text-xs" : "text-sm"
             }`}
           >
             {target.indicator}
@@ -57,7 +57,7 @@ export default function TargetCard({ target, pillar, isMany, onSelect }: TargetC
           >
             {target.current}
           </div>
-          <div className={`text-[#667085] mt-0.5 ${isMany ? "text-[8.5px]" : "text-[9px]"}`}>
+          <div className={`text-[#667085] mt-0.5 ${isMany ? "text-[10px]" : "text-xs"}`}>
             {target.unit}
           </div>
         </div>
@@ -71,10 +71,10 @@ export default function TargetCard({ target, pillar, isMany, onSelect }: TargetC
           <div className={`font-black leading-none ${isMany ? "text-sm" : "text-[17px]"}`}>
             {statusMain}
           </div>
-          <div className={`font-[850] leading-[1.25] mt-1 ${isMany ? "text-[7.8px]" : "text-[8.5px]"}`}>
+          <div className={`font-[850] leading-[1.25] mt-1 ${isMany ? "text-[10px]" : "text-[10px]"}`}>
             {target.status}
           </div>
-          <div className={`mt-1 opacity-80 ${isMany ? "text-[7px]" : "text-[7.5px]"}`}>
+          <div className={`mt-1 opacity-80 ${isMany ? "text-[9px]" : "text-[10px]"}`}>
             View details
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function TargetCard({ target, pillar, isMany, onSelect }: TargetC
       <div>
         <div
           className={`grid grid-cols-3 font-bold ${
-            isMany ? "text-[7.5px]" : "text-[8px]"
+            isMany ? "text-[9px]" : "text-[10px]"
           } text-[#5D6B7C]`}
         >
           <span>Baseline</span>
@@ -92,7 +92,7 @@ export default function TargetCard({ target, pillar, isMany, onSelect }: TargetC
         </div>
         <div
           className={`grid grid-cols-3 gap-1.5 mt-1 ${
-            isMany ? "text-[8.5px]" : "text-[9.5px]"
+            isMany ? "text-[11px]" : "text-xs"
           } text-[#344257]`}
         >
           <span>{target.baseline}</span>
@@ -113,7 +113,7 @@ export default function TargetCard({ target, pillar, isMany, onSelect }: TargetC
             />
           </div>
         ) : (
-          <div className="text-[9px] text-[#6B7787] mt-[7px] leading-[1.3]">
+          <div className="text-[11px] text-[#6B7787] mt-[7px] leading-[1.3]">
             {target.status === "Requires acceleration"
               ? "Gap-based or multi-part indicator"
               : "Qualitative / status-based commitment"}

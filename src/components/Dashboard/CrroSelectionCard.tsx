@@ -32,7 +32,7 @@ export default function CrroSelectionCard({
     >
       <div className="flex items-start justify-between gap-2.5 mb-2">
         <div className="min-w-0 flex-1">
-          <div className="text-[10.5px] font-[850] leading-[1.3]">
+          <div className="text-xs font-[850] leading-[1.3]">
             {crro.id}
           </div>
           <div
@@ -41,7 +41,7 @@ export default function CrroSelectionCard({
           >
             {crro.shortName}
           </div>
-          <div className="text-[8.5px] text-[#667085] mt-0.5">
+          <div className="text-[10px] text-[#667085] mt-0.5">
             {crro.classification}
           </div>
         </div>
@@ -54,10 +54,10 @@ export default function CrroSelectionCard({
             className="w-5 h-5 flex items-center justify-center"
             dangerouslySetInnerHTML={{ __html: crro.iconSvg }}
           />
-          <div className="text-[7.8px] font-[850] leading-[1.25] mt-1">
+          <div className="text-[9.5px] font-[850] leading-[1.25] mt-1">
             {crro.classification}
           </div>
-          <div className="text-[7px] opacity-80 mt-1">View details</div>
+          <div className="text-[8.5px] opacity-80 mt-1">View details</div>
         </div>
       </div>
     </button>

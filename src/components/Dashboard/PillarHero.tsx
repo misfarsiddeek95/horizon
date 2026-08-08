@@ -33,13 +33,13 @@ export default function PillarHero({ pillar, pillarName }: PillarHeroProps) {
             >
               {pillarName}
             </div>
-            <div className="text-xs text-[#28613F] mt-1">
+            <div className="text-sm text-[#28613F] mt-1">
               {pillar.descriptor}
             </div>
           </div>
         </div>
 
-        <p className="text-[12.5px] leading-[1.5] text-[#314056] mt-3 mb-3.5">
+        <p className="text-sm leading-[1.6] text-[#314056] mt-3 mb-3.5">
           {pillar.purpose}
         </p>
 
@@ -51,10 +51,10 @@ export default function PillarHero({ pillar, pillarName }: PillarHeroProps) {
             ★
           </div>
           <div>
-            <div className="text-[9px] font-black uppercase tracking-[0.04em]" style={{ color: pillar.color }}>
+            <div className="text-[10px] font-black uppercase tracking-[0.04em]" style={{ color: pillar.color }}>
               FY2025/26 standout
             </div>
-            <div className="text-[11px] leading-[1.4] mt-1">
+            <div className="text-xs leading-[1.5] mt-1">
               {pillar.standout}
             </div>
           </div>
