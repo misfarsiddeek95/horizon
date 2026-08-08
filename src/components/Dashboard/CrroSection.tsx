@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { CrroData, CrroDriverData, CrroFinancialItem } from "@/data/climateDashboard";
 import CrroSummaryStrip from "./CrroSummaryStrip";
 import CrroLineChart from "./CrroLineChart";
@@ -43,16 +44,29 @@ function WhatThisMeans({ meaning }: { meaning: string }) {
 }
 
 function ScopeAndAssumptions({ note }: { note: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <details className="group">
-      <summary className="text-xs font-extrabold text-[#344257] cursor-pointer hover:text-brand-main transition-colors list-none flex items-center gap-1.5">
-        <span className="text-[10px] transition-transform group-open:rotate-90">▶</span>
+    <div className="border-t border-[#E2E8ED] pt-3">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full text-left text-xs font-extrabold text-[#344257] cursor-pointer hover:text-brand-main transition-colors flex items-center gap-1.5 bg-transparent border-0 p-0"
+      >
+        <span className={`text-[10px] transition-transform duration-200 ease-in-out ${isOpen ? "rotate-90" : ""}`}>▶</span>
         Scope and assumptions
-      </summary>
-      <div className="mt-2 text-xs text-[#4A586B] leading-[1.5] pl-3.5">
-        {note}
+      </button>
+      <div
+        className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="mt-2 text-xs text-[#4A586B] leading-[1.5] pl-3.5">
+            {note}
+          </div>
+        </div>
       </div>
-    </details>
+    </div>
   );
 }
 

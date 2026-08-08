@@ -1,4 +1,6 @@
-import { useEffect, useCallback } from "react";
+"use client";
+
+import { useEffect, useCallback, useState } from "react";
 import type { Target, Pillar } from "@/data/activateDashboard";
 import { STATUS_COLORS, STATUS_BG, META } from "@/data/activateDashboard";
 
@@ -19,6 +21,7 @@ export default function TargetDetailModal({
 }: TargetDetailModalProps) {
   const statusColor = STATUS_COLORS[target.status] || "#667085";
   const statusBg = STATUS_BG[target.status] || "#F5F7F9";
+  const [isVisible, setIsVisible] = useState(false);
 
   const statusNumber =
     target.progress !== null
@@ -27,16 +30,22 @@ export default function TargetDetailModal({
         : `${target.progress}%`
       : "";
 
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(onClose, 300);
+  }, [onClose]);
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     },
-    [onClose]
+    [handleClose]
   );
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => setIsVisible(true));
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
@@ -45,17 +54,17 @@ export default function TargetDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-5"
+      className={`fixed inset-0 z-50 flex items-center justify-center p-5 transition-opacity duration-300 ease-out ${isVisible ? "opacity-100" : "opacity-0"}`}
       style={{ backgroundColor: "rgba(4,18,43,.58)" }}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === e.currentTarget) handleClose();
       }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div
-        className="w-full max-w-[880px] max-h-[88vh] overflow-auto bg-white rounded-[17px] shadow-[0_25px_70px_rgba(0,0,0,.28)]"
+        className={`w-full max-w-[880px] max-h-[88vh] overflow-auto bg-white rounded-[17px] shadow-[0_25px_70px_rgba(0,0,0,.28)] transition-all duration-300 ease-out ${isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"}`}
         style={
           {
             "--accent": pillar.color,
@@ -72,9 +81,9 @@ export default function TargetDetailModal({
             {target.indicator}
           </h2>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             aria-label="Close"
-            className="w-[34px] h-[34px] rounded-full border-0 bg-[#EEF3F6] text-lg cursor-pointer hover:bg-[#DDE5EB] transition-colors"
+            className="w-[34px] h-[34px] rounded-full border-0 bg-[#EEF3F6] text-lg cursor-pointer hover:bg-[#DDE5EB] active:scale-95 transition-all duration-150"
           >
             ×
           </button>
@@ -153,7 +162,7 @@ export default function TargetDetailModal({
               href={sourceLink(target.page)}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#E7F4F5] text-[#08727B] no-underline rounded-[9px] px-[11px] py-2 text-[10px] font-black"
+              className="bg-[#E7F4F5] text-[#08727B] no-underline rounded-[9px] px-[11px] py-2 text-[10px] font-black hover:brightness-95 active:scale-[0.97] transition-all duration-150"
             >
               View {target.source} ↗
             </a>

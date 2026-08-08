@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
@@ -29,17 +29,24 @@ export default function ClimateChartModal({
 }: ClimateChartModalProps) {
   const chartRef = useRef<HTMLDivElement>(null);
   const chart = CLIMATE_CHARTS[chartId];
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(onClose, 300);
+  }, [onClose]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     },
-    [onClose]
+    [handleClose]
   );
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => setIsVisible(true));
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
@@ -365,15 +372,17 @@ export default function ClimateChartModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm transition-opacity duration-300 ease-out ${isVisible ? "opacity-100" : "opacity-0"}`}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === e.currentTarget) handleClose();
       }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="chart-modal-title"
     >
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full mx-4 max-h-[90vh] flex flex-col overflow-hidden">
+      <div
+        className={`bg-white rounded-xl shadow-2xl max-w-5xl w-full mx-4 max-h-[90vh] flex flex-col overflow-hidden transition-all duration-300 ease-out ${isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"}`}
+      >
         <div className="px-6 py-4 border-b border-[#E2E8ED] flex items-start justify-between gap-4">
           <div>
             <h2
@@ -387,9 +396,9 @@ export default function ClimateChartModal({
             </p>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             aria-label="Close"
-            className="p-2 rounded-lg hover:bg-[#F2F6F8] transition-colors text-[#667085]"
+            className="p-2 rounded-lg hover:bg-slate-200/80 active:scale-95 transition-all duration-150 text-[#667085]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
