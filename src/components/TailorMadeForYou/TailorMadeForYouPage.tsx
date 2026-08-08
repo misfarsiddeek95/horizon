@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import HeroBanner from "./HeroBanner";
-import TabController from "./TabController";
+import InnerPageLayout from "@/components/InnerPageLayout";
 import ChartTypeTabs from "./ChartTypeTabs";
 import ProfitabilityChart from "./Financial/ProfitabilityChart";
 import FinancialPositionChart from "./Financial/FinancialPositionChart";
@@ -23,94 +22,38 @@ export default function TailorMadeForYouPage() {
   const [activeChartType, setActiveChartType] = useState("financial");
 
   return (
-    <div className="min-h-screen">
-      <HeroBanner />
-
-      <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <TabController tabs={mainTabs} activeTab={activeTab} onTabChange={setActiveTab} />
-
-        {activeTab === "chart-generator" && (
-          <div role="tabpanel" id="tabpanel-chart-generator" aria-labelledby="tab-chart-generator">
-            <ChartTypeTabs activeType={activeChartType} onTypeChange={setActiveChartType} />
-
-            <div className="py-6 space-y-8">
-              {activeChartType === "financial" ? (
-                <>
-                  <div>
-                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
-                      Earnings and Profitability (Rs. Bn)
-                    </h2>
-                    <ProfitabilityChart />
-                  </div>
-                  <div>
-                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
-                      Financial Position (Rs. Bn)
-                    </h2>
-                    <p className="text-center text-sm font-bold text-content-primary mb-2">
-                      Slide to explore
-                    </p>
-                    <FinancialPositionChart />
-                  </div>
-                  <div>
-                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
-                      Financial Ratios
-                    </h2>
-                    <p className="text-center text-sm font-bold text-content-primary mb-2">
-                      Slide to explore
-                    </p>
-                    <FinancialRatiosChart />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
-                      Emissions (tCO2e)
-                    </h2>
-                    <p className="text-center text-sm font-bold text-content-primary mb-2">
-                      Slide to explore
-                    </p>
-                    <EmissionsChart />
-                  </div>
-                  <div>
-                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
-                      Energy Consumption (GJ)
-                    </h2>
-                    <p className="text-center text-sm font-bold text-content-primary mb-2">
-                      Slide to explore
-                    </p>
-                    <EnergyConsumptionChart />
-                  </div>
-                  <div>
-                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
-                      Materials (MT) and Water Management (m<sup>3</sup>)
-                    </h2>
-                    <p className="text-center text-sm font-bold text-content-primary mb-2">
-                      Slide to explore
-                    </p>
-                    <MaterialsWaterChart />
-                  </div>
-                  <div>
-                    <h2 className="font-heading text-2xl sm:text-3xl text-center text-brand-main mb-4">
-                      Social and Governance Performance
-                    </h2>
-                    <p className="text-center text-sm font-bold text-content-primary mb-2">
-                      Slide to explore
-                    </p>
-                    <SocialGovernanceChart />
-                  </div>
-                </>
-              )}
-            </div>
+    <InnerPageLayout
+      title="Tailor Made For You"
+      description="Explore your company's performance with interactive charts and reports."
+      tabs={mainTabs}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+    >
+      {activeTab === "chart-generator" && (
+        <>
+          <ChartTypeTabs
+            activeType={activeChartType}
+            onTypeChange={setActiveChartType}
+          />
+          <div className="mt-8 space-y-8">
+            {activeChartType === "financial" ? (
+              <>
+                <ProfitabilityChart />
+                <FinancialPositionChart />
+                <FinancialRatiosChart />
+              </>
+            ) : (
+              <>
+                <EmissionsChart />
+                <EnergyConsumptionChart />
+                <MaterialsWaterChart />
+                <SocialGovernanceChart />
+              </>
+            )}
           </div>
-        )}
-
-        {activeTab === "generate-report" && (
-          <div role="tabpanel" id="tabpanel-generate-report" aria-labelledby="tab-generate-report" className="py-6">
-            <ReportGenerator />
-          </div>
-        )}
-      </div>
-    </div>
+        </>
+      )}
+      {activeTab === "generate-report" && <ReportGenerator />}
+    </InnerPageLayout>
   );
 }
