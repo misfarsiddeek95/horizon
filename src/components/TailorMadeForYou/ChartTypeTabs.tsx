@@ -39,34 +39,36 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
   );
 
   return (
-    <div
-      role="tablist"
-      aria-label="Chart type"
-      className="flex flex-wrap gap-2 py-4"
-    >
-      {tabs.map((tab, index) => {
-        const isActive = tab.id === activeType;
-        return (
-          <button
-            key={tab.id}
-            ref={(el) => { tabRefs.current[index] = el; }}
-            role="tab"
-            id={`charttype-tab-${tab.id}`}
-            aria-selected={isActive}
-            aria-controls={`charttype-panel-${tab.id}`}
-            tabIndex={isActive ? 0 : -1}
-            onKeyDown={(e) => handleKeyDown(e, index)}
-            onClick={() => onTypeChange(tab.id)}
-            className={`px-6 py-2 rounded-ui-element text-sm font-medium transition-all min-h-[44px] cursor-pointer ${
-              isActive
-                ? "bg-brand-main text-content-inverse"
-                : "bg-surface-muted text-content-primary hover:bg-surface-default"
-            }`}
-          >
-            {tab.label}
-          </button>
-        );
-      })}
+    <div className="flex justify-center py-4">
+      <div
+        role="tablist"
+        aria-label="Chart type"
+        className="flex gap-2 bg-surface-default p-1 rounded-ui-element"
+      >
+        {tabs.map((tab, index) => {
+          const isActive = tab.id === activeType;
+          return (
+            <button
+              key={tab.id}
+              ref={(el) => { tabRefs.current[index] = el; }}
+              role="tab"
+              id={`charttype-tab-${tab.id}`}
+              aria-selected={isActive}
+              aria-controls={`charttype-panel-${tab.id}`}
+              tabIndex={isActive ? 0 : -1}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              onClick={() => onTypeChange(tab.id)}
+              className={`px-6 py-2.5 rounded-ui-element text-sm font-bold transition-all min-h-[44px] cursor-pointer ${
+                isActive
+                  ? "bg-brand-main text-content-inverse shadow-sm"
+                  : "text-content-primary hover:bg-surface-muted hover:text-content-primary"
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
