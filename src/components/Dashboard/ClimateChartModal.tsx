@@ -6,8 +6,16 @@ import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Responsive from "@amcharts/amcharts5/themes/Responsive";
 import ChartContainer from "@/components/TailorMadeForYou/ChartContainer";
-import { CLIMATE_CHARTS, COUNTRY_COLORS, SCENARIO_COLORS } from "@/data/climateCharts";
-import { transformLineData, transformBarData, getSeriesNames } from "@/utils/climateChartTransform";
+import {
+  CLIMATE_CHARTS,
+  COUNTRY_COLORS,
+  SCENARIO_COLORS,
+} from "@/data/climateCharts";
+import {
+  transformLineData,
+  transformBarData,
+  getSeriesNames,
+} from "@/utils/climateChartTransform";
 import "@/utils/amChartsSetup";
 
 interface ClimateChartModalProps {
@@ -15,7 +23,10 @@ interface ClimateChartModalProps {
   onClose: () => void;
 }
 
-export default function ClimateChartModal({ chartId, onClose }: ClimateChartModalProps) {
+export default function ClimateChartModal({
+  chartId,
+  onClose,
+}: ClimateChartModalProps) {
   const chartRef = useRef<HTMLDivElement>(null);
   const chart = CLIMATE_CHARTS[chartId];
 
@@ -163,6 +174,23 @@ export default function ClimateChartModal({ chartId, onClose }: ClimateChartModa
       const lineData = transformLineData(chart);
       xAxis.data.setAll(lineData);
 
+      if (chart.bands && chart.bands.length > 0) {
+        chart.bands.forEach((band) => {
+          const isProjected = band.label.includes("Projected");
+          const rangeDataItem = xAxis.makeDataItem({
+            category: String(band.start),
+            endCategory: String(band.end),
+          });
+          const range = xAxis.createAxisRange(rangeDataItem);
+          range.get("axisFill")?.setAll({
+            fill: am5.color(isProjected ? "#E9DDD7" : "#BFE5E5"),
+            fillOpacity: 0.6,
+            visible: true,
+          });
+          range.get("grid")?.set("forceHidden", true);
+        });
+      }
+
       const seriesNames = getSeriesNames(chart);
       const projectionStart = chart.projectionStart
         ? String(chart.projectionStart)
@@ -270,23 +298,48 @@ export default function ClimateChartModal({ chartId, onClose }: ClimateChartModa
       });
 
       if (projectionStart) {
-        const range = xAxis.createAxisRange(xAxis.makeDataItem({}));
-        range.set("category", projectionStart);
-        range.get("grid")?.setAll({
+        const separatorItem = xAxis.makeDataItem({
+          category: projectionStart,
+        });
+        const separatorRange = xAxis.createAxisRange(separatorItem);
+
+        separatorRange.get("grid")?.setAll({
           stroke: am5.color("#7C3AED"),
           strokeDasharray: [4, 4],
           strokeWidth: 2,
           strokeOpacity: 0.7,
           location: 0,
         });
-        range.get("label")?.setAll({
-          text: "Historical | Projected",
-          fontSize: 11,
-          fontWeight: "bold",
-          fill: am5.color("#7C3AED"),
-          y: -8,
-          centerX: am5.p50,
-        });
+
+        const historicalLabel = separatorItem.get("label");
+        if (historicalLabel) {
+          historicalLabel.setAll({
+            text: "Historical",
+            fontSize: 10,
+            fontWeight: "bold",
+            fill: am5.color("#7C3AED"),
+            y: -8,
+            centerX: am5.p100,
+            dx: -5,
+          });
+        }
+
+        const projectedLabel = xAxis.createAxisRange(
+          xAxis.makeDataItem({ category: projectionStart })
+        );
+        const projectedLbl = projectedLabel.get("label");
+        if (projectedLbl) {
+          projectedLbl.setAll({
+            text: "Projected",
+            fontSize: 10,
+            fontWeight: "bold",
+            fill: am5.color("#7C3AED"),
+            y: -8,
+            centerX: am5.p0,
+            dx: 5,
+          });
+          projectedLabel.get("grid")?.set("forceHidden", true);
+        }
       }
     }
 
@@ -307,6 +360,9 @@ export default function ClimateChartModal({ chartId, onClose }: ClimateChartModa
 
   if (!chart) return null;
 
+  const isSignalChart = chartId === "rainfall" || chartId === "enso";
+  const hasProjection = !!chart.projectionStart;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
@@ -326,7 +382,9 @@ export default function ClimateChartModal({ chartId, onClose }: ClimateChartModa
             >
               {chart.title}
             </h2>
-            <p className="text-sm text-[#667085] mt-0.5 m-0">{chart.subtitle}</p>
+            <p className="text-sm text-[#667085] mt-0.5 m-0">
+              {chart.subtitle}
+            </p>
           </div>
           <button
             onClick={onClose}
@@ -354,11 +412,44 @@ export default function ClimateChartModal({ chartId, onClose }: ClimateChartModa
           <ChartContainer ref={chartRef} />
         </div>
 
-        {chart.insight && (
-          <div className="px-6 py-3 border-t border-[#E2E8ED] bg-[#F5F8FB]">
-            <p className="text-sm text-[#4C5C70] m-0">{chart.insight}</p>
-          </div>
-        )}
+        <div className="px-6 pb-4 space-y-3">
+          {isSignalChart && (
+            <div className="border-l-4 border-[#168E95] bg-[#F0FAF9] rounded-r-lg p-3">
+              <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#168E95] mb-1">
+                Signal Note
+              </div>
+              <p className="text-xs text-[#4A586B] leading-[1.5] m-0">
+                These are climate signals, not direct measurements. They
+                represent modelled projections based on historical patterns and
+                climate scenario data.
+              </p>
+            </div>
+          )}
+
+          {hasProjection && (
+            <div className="border-l-4 border-[#7C3AED] bg-[#F5F0FF] rounded-r-lg p-3">
+              <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#7C3AED] mb-1">
+                Projection Note
+              </div>
+              <p className="text-xs text-[#4A586B] leading-[1.5] m-0">
+                Projected values are modelled outcomes based on SSP scenarios and
+                should not be treated as deterministic forecasts. Dashed lines
+                indicate projected data beyond the observation period.
+              </p>
+            </div>
+          )}
+
+          {chart.insight && (
+            <div className="border-l-4 border-[#D2DDE6] bg-[#F5F8FB] rounded-r-lg p-3">
+              <div className="text-[11px] font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
+                Insight
+              </div>
+              <p className="text-xs text-[#4A586B] leading-[1.5] m-0">
+                {chart.insight}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

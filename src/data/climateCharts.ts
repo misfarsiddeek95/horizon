@@ -23,6 +23,12 @@ export interface ClimateChartSegment {
   divergence: number;
 }
 
+export interface ClimateChartBand {
+  start: number;
+  end: number;
+  label: string;
+}
+
 export interface ClimateChartData {
   id: string;
   title: string;
@@ -33,6 +39,7 @@ export interface ClimateChartData {
   series?: ClimateChartSeries;
   segments?: ClimateChartSegment[];
   projectionStart?: number;
+  bands?: ClimateChartBand[];
   insight?: string;
 }
 
@@ -92,6 +99,12 @@ export const CLIMATE_CHARTS: Record<string, ClimateChartData> = {
       ],
     },
     projectionStart: 2027,
+    bands: [
+      { start: 2015, end: 2016, label: "El Niño" },
+      { start: 2023, end: 2024, label: "El Niño" },
+      { start: 2027, end: 2027, label: "Projected El Niño" },
+      { start: 2031, end: 2031, label: "Projected El Niño" },
+    ],
     insight:
       "The composite yield index shows sharp downward spikes in historical and projected El Niño periods, especially 2027 and 2031.",
   },
