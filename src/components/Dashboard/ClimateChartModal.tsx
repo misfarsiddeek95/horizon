@@ -57,6 +57,7 @@ export default function ClimateChartModal({
     if (!chartRef.current || !chart) return;
 
     const root = am5.Root.new(chartRef.current);
+    root.container.set("layout", root.verticalLayout);
 
     const responsive = am5themes_Responsive.new(root);
 
@@ -76,13 +77,13 @@ export default function ClimateChartModal({
         }
       },
       removing() {
-        xyChart.set("layout", root.horizontalLayout);
+        xyChart.set("layout", root.verticalLayout);
         if (legendRef) {
           legendRef.setAll({
-            y: am5.p50,
-            centerY: am5.p50,
-            x: undefined,
-            centerX: undefined,
+            y: undefined,
+            centerY: undefined,
+            x: am5.p50,
+            centerX: am5.p50,
           });
         }
       },
@@ -325,7 +326,7 @@ export default function ClimateChartModal({
             fontSize: 10,
             fontWeight: "bold",
             fill: am5.color("#7C3AED"),
-            y: -8,
+            dy: -25,
             centerX: am5.p100,
             dx: -5,
           });
@@ -341,7 +342,7 @@ export default function ClimateChartModal({
             fontSize: 10,
             fontWeight: "bold",
             fill: am5.color("#7C3AED"),
-            y: -8,
+            dy: -25,
             centerX: am5.p0,
             dx: 5,
           });
@@ -350,8 +351,17 @@ export default function ClimateChartModal({
       }
     }
 
-    const legend = xyChart.children.push(
-      am5.Legend.new(root, { centerX: am5.p50, x: am5.p50 })
+    const legend = root.container.children.push(
+      am5.Legend.new(root, {
+        centerX: am5.p50,
+        x: am5.p50,
+        width: am5.percent(100),
+        layout: am5.GridLayout.new(root, {
+          maxColumns: 3,
+        }),
+        paddingTop: 16,
+        paddingBottom: 8,
+      })
     );
     legendRef = legend;
     legend.data.pushAll(xyChart.series.values);
@@ -417,47 +427,49 @@ export default function ClimateChartModal({
           </button>
         </div>
 
-        <div className="px-6 py-4 flex-1 min-h-[400px]">
-          <ChartContainer ref={chartRef} />
-        </div>
+        <div className="px-6 py-4 flex-1 overflow-y-auto flex flex-col gap-6">
+          <div className="min-h-[450px] mb-4">
+            <ChartContainer ref={chartRef} />
+          </div>
 
-        <div className="px-6 pb-4 space-y-3">
-          {isSignalChart && (
-            <div className="border-l-4 border-[#168E95] bg-[#F0FAF9] rounded-r-lg p-3">
-              <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#168E95] mb-1">
-                Signal Note
+          <div className="space-y-3 shrink-0">
+            {isSignalChart && (
+              <div className="border-l-4 border-[#168E95] bg-[#F0FAF9] rounded-r-lg p-3">
+                <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#168E95] mb-1">
+                  Signal Note
+                </div>
+                <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
+                  These are climate signals, not direct measurements. They
+                  represent modelled projections based on historical patterns and
+                  climate scenario data.
+                </p>
               </div>
-              <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
-                These are climate signals, not direct measurements. They
-                represent modelled projections based on historical patterns and
-                climate scenario data.
-              </p>
-            </div>
-          )}
+            )}
 
-          {hasProjection && (
-            <div className="border-l-4 border-[#7C3AED] bg-[#F5F0FF] rounded-r-lg p-3">
-              <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#7C3AED] mb-1">
-                Projection Note
+            {hasProjection && (
+              <div className="border-l-4 border-[#7C3AED] bg-[#F5F0FF] rounded-r-lg p-3">
+                <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#7C3AED] mb-1">
+                  Projection Note
+                </div>
+                <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
+                  Projected values are modelled outcomes based on SSP scenarios and
+                  should not be treated as deterministic forecasts. Dashed lines
+                  indicate projected data beyond the observation period.
+                </p>
               </div>
-              <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
-                Projected values are modelled outcomes based on SSP scenarios and
-                should not be treated as deterministic forecasts. Dashed lines
-                indicate projected data beyond the observation period.
-              </p>
-            </div>
-          )}
+            )}
 
-          {chart.insight && (
-            <div className="border-l-4 border-[#D2DDE6] bg-[#F5F8FB] rounded-r-lg p-3">
-              <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
-                Insight
+            {chart.insight && (
+              <div className="border-l-4 border-[#D2DDE6] bg-[#F5F8FB] rounded-r-lg p-3">
+                <div className="text-xs font-extrabold uppercase tracking-[0.05em] text-[#667085] mb-1">
+                  Insight
+                </div>
+                <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
+                  {chart.insight}
+                </p>
               </div>
-              <p className="text-sm text-[#4A586B] leading-[1.6] m-0">
-                {chart.insight}
-              </p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
