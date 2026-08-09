@@ -41,7 +41,7 @@ export default function TargetsPanel({
       <div
         className={
           isMany
-            ? "grid grid-cols-2 gap-x-3 gap-y-2 content-start"
+            ? "grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-2 content-start"
             : "grid"
         }
       >
