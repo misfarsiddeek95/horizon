@@ -12,11 +12,15 @@ function sourceLink(page: number): string {
 export default function HighlightsSection({
   pillar,
 }: HighlightsSectionProps) {
-  const highlights = pillar.highlights.slice(0, 3);
+  const highlights = pillar.highlights;
 
   return (
     <section
-      className="grid grid-cols-[150px_repeat(3,minmax(150px,1fr))_minmax(255px,1.2fr)] gap-2.5 mt-3.5 max-md:grid-cols-1 max-lg:grid-cols-[140px_repeat(2,1fr)]"
+      className={`grid gap-2.5 mt-3.5 max-md:grid-cols-1 max-lg:grid-cols-[140px_repeat(2,1fr)] ${
+        highlights.length === 3
+          ? "grid-cols-[150px_repeat(3,minmax(150px,1fr))_minmax(255px,1.2fr)]"
+          : "grid-cols-[150px_repeat(2,minmax(150px,1fr))_minmax(255px,1.2fr)]"
+      }`}
       aria-label="FY2025/26 impact highlights"
       style={
         {
