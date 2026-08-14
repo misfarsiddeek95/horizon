@@ -9,7 +9,7 @@ import {
   Cog8ToothIcon,
 } from "@heroicons/react/24/outline";
 import { usePuzzle } from "@/context/PuzzleContext";
-import MuteToggle from "@/components/MuteToggle";
+// import MuteToggle from "@/components/MuteToggle";
 import ExitButton from "@/components/ExitButton";
 
 interface LobbyCardProps {
@@ -127,12 +127,12 @@ export default function InstructionLobby() {
         </div>
 
         <footer className="mt-10 flex flex-col items-center gap-6">
-          <div className="flex items-center gap-3 rounded-ui-element border border-white/20 bg-surface-glass px-4 py-2 backdrop-blur-lg">
+          {/* <div className="flex items-center gap-3 rounded-ui-element border border-white/20 bg-surface-glass px-4 py-2 backdrop-blur-lg">
             <span className="text-sm font-medium text-white/70">
               Sound effects
             </span>
             <MuteToggle variant="dark" />
-          </div>
+          </div> */}
           <button
             onClick={startGame}
             className="cursor-pointer rounded-ui-element bg-accent-main px-14 py-5 font-heading text-2xl font-bold text-content-inverse shadow-[0_0_50px_rgba(245,197,66,0.55)] transition-all hover:brightness-110 active:scale-95"
