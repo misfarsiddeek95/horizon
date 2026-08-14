@@ -1,4 +1,5 @@
 import type { MetricGroup } from "@/data/userProfiles";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 interface MetricsBandProps {
   groups: MetricGroup[];
@@ -14,7 +15,7 @@ export default function MetricsBand({ groups }: MetricsBandProps) {
   return (
     <section
       aria-label="Key metrics"
-      className="relative -mx-4 overflow-hidden px-4 py-16 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+      className="group relative -mx-4 px-4 py-16 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
     >
       <div
         aria-hidden="true"
@@ -51,7 +52,9 @@ export default function MetricsBand({ groups }: MetricsBandProps) {
                       key={metric.label}
                       className="flex flex-col justify-center border-l-2 border-brand-main/30 pl-4 sm:pl-5"
                     >
-                      <p className={valueClass}>{metric.value}</p>
+                      <p className={valueClass}>
+                        <AnimatedCounter value={metric.value} />
+                      </p>
                       <p className={labelClass}>{metric.label}</p>
                     </div>
                   ))}
@@ -66,13 +69,20 @@ export default function MetricsBand({ groups }: MetricsBandProps) {
                 key={metric.label}
                 className="flex flex-col justify-center border-l-2 border-brand-main/30 pl-4 sm:pl-5"
               >
-                <p className={valueClass}>{metric.value}</p>
+                <p className={valueClass}>
+                  <AnimatedCounter value={metric.value} />
+                </p>
                 <p className={labelClass}>{metric.label}</p>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -bottom-4 h-[2px] scale-x-0 bg-gradient-to-r from-transparent via-brand-main/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:scale-x-100 group-hover:opacity-100"
+      />
     </section>
   );
 }

@@ -16,7 +16,7 @@ export default function StrategyImageSection({
   return (
     <section
       aria-label={title}
-      className="relative w-full overflow-hidden bg-surface-muted"
+      className="group relative w-full bg-surface-muted"
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-2xl animate-user-profile-fade-up">
@@ -56,6 +56,11 @@ export default function StrategyImageSection({
           </div>
         </div>
       </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -bottom-4 h-[2px] scale-x-0 bg-gradient-to-r from-transparent via-brand-main/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:scale-x-100 group-hover:opacity-100"
+      />
     </section>
   );
 }

@@ -27,7 +27,10 @@ export default function GovernanceStrategySection({
   strategy,
 }: GovernanceStrategySectionProps) {
   return (
-    <section aria-label="Governance and strategy" className="w-full">
+    <section
+      aria-label="Governance and strategy"
+      className="group relative -mx-4 rounded-2xl p-4 transition-colors duration-500 hover:bg-brand-main/[0.02]"
+    >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
         <div className="animate-user-profile-fade-up">
           {governance ? (
@@ -99,6 +102,11 @@ export default function GovernanceStrategySection({
           </div>
         </div>
       </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -bottom-4 h-[2px] scale-x-0 bg-gradient-to-r from-transparent via-brand-main/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:scale-x-100 group-hover:opacity-100"
+      />
     </section>
   );
 }

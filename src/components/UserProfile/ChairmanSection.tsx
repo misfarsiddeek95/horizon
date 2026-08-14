@@ -7,7 +7,10 @@ interface ChairmanSectionProps {
 
 export default function ChairmanSection({ title, text }: ChairmanSectionProps) {
   return (
-    <section aria-label={title} className="relative w-full overflow-hidden">
+    <section
+      aria-label={title}
+      className="group relative -mx-4 rounded-2xl p-4 transition-colors duration-500 hover:bg-brand-main/[0.02]"
+    >
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
         <div className="animate-user-profile-fade-up">
           <p className="text-sm font-bold uppercase tracking-[0.25em] text-brand-main">
@@ -52,6 +55,11 @@ export default function ChairmanSection({ title, text }: ChairmanSectionProps) {
           />
         </div>
       </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -bottom-4 h-[2px] scale-x-0 bg-gradient-to-r from-transparent via-brand-main/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:scale-x-100 group-hover:opacity-100"
+      />
     </section>
   );
 }

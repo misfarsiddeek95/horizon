@@ -20,7 +20,7 @@ export default function KeyFeaturesBanner() {
   return (
     <section
       aria-label="Key Features Unveiled"
-      className="relative -mx-4 overflow-hidden px-4 py-20 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+      className="group relative -mx-4 px-4 py-20 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
     >
       <div
         aria-hidden="true"
@@ -91,6 +91,11 @@ export default function KeyFeaturesBanner() {
           </ul>
         </div>
       </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -bottom-4 h-[2px] scale-x-0 bg-gradient-to-r from-transparent via-brand-main/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:scale-x-100 group-hover:opacity-100"
+      />
     </section>
   );
 }
