@@ -64,3 +64,69 @@
 .animate-sun-glow {
   animation: sun-glow 4s ease-in-out infinite;
 }
+
+@utility hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes user-profile-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-user-profile-in {
+  animation: user-profile-in 0.5s ease-out both;
+}
+
+@keyframes user-profile-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-user-profile-fade-up {
+  animation: user-profile-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes user-profile-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-user-profile-float {
+  animation: user-profile-float 6s ease-in-out infinite;
+}
+
+@keyframes user-profile-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-user-profile-grow {
+  animation: user-profile-grow 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left;
+}
