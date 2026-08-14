@@ -88,5 +88,12 @@ export default function AnimatedCounter({ value, duration = 1500 }: AnimatedCoun
     };
   }, [value, duration]);
 
-  return <span ref={ref}>{display}</span>;
+  return (
+    <span
+      ref={ref}
+      className="animate-shimmer bg-gradient-to-r from-brand-main via-cyan-600 to-brand-main bg-[length:200%_auto] bg-clip-text text-transparent"
+    >
+      {display}
+    </span>
+  );
 }

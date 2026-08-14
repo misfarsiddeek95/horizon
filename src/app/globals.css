@@ -130,3 +130,26 @@
   animation: user-profile-grow 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
   transform-origin: left;
 }
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 8s linear infinite;
+}
+
+@keyframes portrait-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-portrait-float {
+  animation: portrait-float 6s ease-in-out infinite;
+}

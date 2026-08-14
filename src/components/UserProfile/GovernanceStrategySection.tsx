@@ -33,7 +33,7 @@ export default function GovernanceStrategySection({
     <section
       ref={ref}
       aria-label="Governance and strategy"
-      className={`group relative -mx-4 rounded-2xl p-4 transition-all duration-1000 ease-out hover:bg-brand-main/[0.02] ${
+      className={`group relative -mx-4 rounded-2xl p-4 transition-all duration-1000 ease-out will-change-opacity will-change-transform hover:bg-brand-main/[0.02] ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >

@@ -19,11 +19,9 @@ function AmbientGlow() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      className="pointer-events-none absolute inset-0 z-[15] overflow-hidden"
     >
-      <div className="absolute -left-1/4 top-0 h-[800px] w-[800px] max-w-[200vw] rounded-full bg-brand-main/[0.04] blur-[120px]" />
-      <div className="absolute -right-1/4 bottom-0 h-[700px] w-[700px] max-w-[200vw] rounded-full bg-accent-main/[0.05] blur-[120px]" />
-      <div className="absolute left-[5%] top-[45%] h-[500px] w-[500px] max-w-[200vw] rounded-full bg-brand-hover/[0.03] blur-[100px]" />
+      <div className="absolute bottom-0 -left-60 h-[700px] w-[700px] rounded-full bg-cyan-500 opacity-30 blur-[120px] transform-gpu backface-hidden translate-z-0" />
     </div>
   );
 }
@@ -36,7 +34,7 @@ export default function UserProfilePage() {
   const isGeneralUser = activeTab === "generalUser";
 
   return (
-    <div className="w-full max-w-[100vw] overflow-x-hidden">
+    <div className="relative w-full max-w-[100vw] overflow-x-hidden">
       <AmbientGlow />
       <InnerPageLayout
         title="User Profiles"

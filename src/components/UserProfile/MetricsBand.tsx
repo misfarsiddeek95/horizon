@@ -18,7 +18,7 @@ export default function MetricsBand({ groups }: MetricsBandProps) {
     <section
       ref={ref}
       aria-label="Key metrics"
-      className={`group relative -mx-4 px-4 py-16 transition-all duration-1000 ease-out sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 ${
+      className={`group relative -mx-4 px-4 py-16 transition-all duration-1000 ease-out will-change-opacity will-change-transform sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >

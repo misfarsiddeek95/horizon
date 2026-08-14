@@ -25,7 +25,7 @@ export default function KeyFeaturesBanner() {
     <section
       ref={ref}
       aria-label="Key Features Unveiled"
-      className={`group relative -mx-4 px-4 py-20 transition-all duration-1000 ease-out sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 ${
+      className={`group relative -mx-4 px-4 py-20 transition-all duration-1000 ease-out will-change-opacity will-change-transform sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
@@ -35,11 +35,11 @@ export default function KeyFeaturesBanner() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-main/30 blur-3xl"
+        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-main/30 blur-3xl transform-gpu backface-hidden translate-z-0"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-accent-main/10 blur-3xl"
+        className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-accent-main/10 blur-3xl transform-gpu backface-hidden translate-z-0"
       />
 
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[1fr_1.5fr] lg:gap-14">
