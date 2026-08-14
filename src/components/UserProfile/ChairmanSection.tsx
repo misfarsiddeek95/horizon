@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface ChairmanSectionProps {
   title: string;
@@ -6,26 +7,31 @@ interface ChairmanSectionProps {
 }
 
 export default function ChairmanSection({ title, text }: ChairmanSectionProps) {
+  const { ref, revealed } = useScrollReveal<HTMLElement>();
+
   return (
     <section
+      ref={ref}
       aria-label={title}
-      className="group relative -mx-4 rounded-2xl p-4 transition-colors duration-500 hover:bg-brand-main/[0.02]"
+      className={`group relative -mx-4 rounded-2xl p-4 transition-all duration-1000 ease-out hover:bg-brand-main/[0.02] ${
+        revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      }`}
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
         <div className="animate-user-profile-fade-up">
           <p className="text-sm font-bold uppercase tracking-[0.25em] text-brand-main">
             Chairman&rsquo;s &amp; Managing Director&rsquo;s Message
           </p>
-          <h2 className="mt-4 font-sans text-3xl font-bold leading-tight tracking-tight text-slate-800 sm:text-4xl">
+          <h2 className="mt-4 font-sans text-4xl font-extrabold leading-tight tracking-tighter text-slate-900 md:text-5xl">
             {title}
           </h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 md:text-lg">
             {text}
           </p>
         </div>
 
         <div
-          className="relative min-h-[400px] animate-user-profile-fade-up sm:min-h-[440px] lg:min-h-[480px]"
+          className="relative min-h-[400px] animate-user-profile-fade-up sm:min-h-[440px] lg:-mt-16 lg:min-h-[480px]"
           style={{ animationDelay: "150ms" }}
         >
           <div className="absolute inset-0 flex items-end justify-center">
@@ -46,6 +52,15 @@ export default function ChairmanSection({ title, text }: ChairmanSectionProps) {
                 height={464}
                 className="h-auto w-full object-contain object-bottom"
               />
+            </div>
+
+            <div className="absolute right-0 top-6 z-30 hidden rounded-2xl border border-white/40 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-md md:block">
+              <p className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-brand-main">
+                Leadership
+              </p>
+              <p className="mt-0.5 text-sm font-semibold text-slate-700">
+                One vision, one horizon
+              </p>
             </div>
           </div>
 

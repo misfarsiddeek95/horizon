@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface StrategyImageSectionProps {
   title: string;
@@ -13,20 +14,27 @@ export default function StrategyImageSection({
   caption,
   isGeneralUser = false,
 }: StrategyImageSectionProps) {
+  const { ref, revealed } = useScrollReveal<HTMLElement>();
+
   return (
     <section
+      ref={ref}
       aria-label={title}
-      className="group relative w-full bg-surface-muted"
+      className={`group relative w-full bg-surface-muted transition-all duration-1000 ease-out ${
+        revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      }`}
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-2xl animate-user-profile-fade-up">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-main">
             In Focus
           </p>
-          <h2 className="mt-3 font-sans text-2xl font-bold tracking-tight text-slate-800 sm:text-3xl">
+          <h2 className="mt-3 font-sans text-4xl font-extrabold tracking-tighter text-slate-900 md:text-5xl">
             {title}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-slate-600">{caption}</p>
+          <p className="mt-4 text-lg leading-relaxed text-slate-600 md:text-lg">
+            {caption}
+          </p>
         </div>
 
         <div
@@ -48,7 +56,7 @@ export default function StrategyImageSection({
                 className="mx-auto block h-auto w-full object-contain"
               />
             </div>
-            <div className="absolute -bottom-6 left-8 hidden rounded-xl border border-slate-100 bg-white px-5 py-3 shadow-lg sm:block">
+            <div className="absolute -bottom-6 left-8 hidden rounded-xl border border-white/40 bg-white/70 px-5 py-3 shadow-sm backdrop-blur-md sm:block">
               <p className="font-sans text-sm font-bold tracking-tight text-brand-main">
                 {title}
               </p>

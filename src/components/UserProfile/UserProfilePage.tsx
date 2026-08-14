@@ -15,6 +15,19 @@ const TAB_LABELS = PROFILE_TABS.map((tab) => ({
   title: tab.title,
 }));
 
+function AmbientGlow() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+    >
+      <div className="absolute -left-1/4 top-0 h-[800px] w-[800px] max-w-[200vw] rounded-full bg-brand-main/[0.04] blur-[120px]" />
+      <div className="absolute -right-1/4 bottom-0 h-[700px] w-[700px] max-w-[200vw] rounded-full bg-accent-main/[0.05] blur-[120px]" />
+      <div className="absolute left-[5%] top-[45%] h-[500px] w-[500px] max-w-[200vw] rounded-full bg-brand-hover/[0.03] blur-[100px]" />
+    </div>
+  );
+}
+
 export default function UserProfilePage() {
   const [activeTab, setActiveTab] = useState<TabId>("shareholders");
 
@@ -23,29 +36,31 @@ export default function UserProfilePage() {
   const isGeneralUser = activeTab === "generalUser";
 
   return (
-    <InnerPageLayout
-      title="User Profiles"
-      description="Explore Haycarb through the lens that matters to you — performance, strategy, and sustainable value creation."
-    >
-      <UserProfileTabs
-        tabs={TAB_LABELS}
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-      />
+    <div className="w-full max-w-[100vw] overflow-x-hidden">
+      <AmbientGlow />
+      <InnerPageLayout
+        title="User Profiles"
+        description="Explore Haycarb through the lens that matters to you — performance, strategy, and sustainable value creation."
+      >
+        <UserProfileTabs
+          tabs={TAB_LABELS}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
 
-      <div className="flex w-full flex-col gap-8 md:gap-12">
-        <div
-          key={activeTab}
-          id={`panel-${activeTab}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${activeTab}`}
-          className="animate-user-profile-in flex w-full flex-col gap-8 md:gap-12"
-        >
-          {tab.intro && (
-            <p className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-slate-600 sm:text-xl animate-user-profile-fade-up">
-              {tab.intro}
-            </p>
-          )}
+        <div className="relative z-10 flex w-full flex-col gap-12 md:gap-16">
+          <div
+            key={activeTab}
+            id={`panel-${activeTab}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${activeTab}`}
+            className="animate-user-profile-in flex w-full flex-col gap-12 md:gap-16"
+          >
+            {tab.intro && (
+              <p className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-slate-600 sm:text-xl">
+                {tab.intro}
+              </p>
+            )}
 
           <MetricsBand groups={tab.metricGroups} />
 
@@ -70,7 +85,8 @@ export default function UserProfilePage() {
         </div>
 
         <KeyFeaturesBanner />
-      </div>
-    </InnerPageLayout>
+        </div>
+      </InnerPageLayout>
+    </div>
   );
 }

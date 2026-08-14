@@ -1,5 +1,6 @@
 import { ArrowRightIcon, CheckCircleIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import type { DownloadLink } from "@/data/userProfiles";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import DownloadButton from "./DownloadButton";
 
 interface GovernanceStrategySectionProps {
@@ -19,17 +20,22 @@ interface GovernanceStrategySectionProps {
 
 const eyebrowClass = "text-xs font-bold uppercase tracking-[0.25em] text-brand-main";
 const headingClass =
-  "mt-3 font-sans text-2xl font-bold tracking-tight text-slate-800 sm:text-3xl";
+  "mt-3 font-sans text-4xl font-extrabold tracking-tighter text-slate-900 md:text-5xl";
 
 export default function GovernanceStrategySection({
   governance,
   highlights,
   strategy,
 }: GovernanceStrategySectionProps) {
+  const { ref, revealed } = useScrollReveal<HTMLElement>();
+
   return (
     <section
+      ref={ref}
       aria-label="Governance and strategy"
-      className="group relative -mx-4 rounded-2xl p-4 transition-colors duration-500 hover:bg-brand-main/[0.02]"
+      className={`group relative -mx-4 rounded-2xl p-4 transition-all duration-1000 ease-out hover:bg-brand-main/[0.02] ${
+        revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      }`}
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
         <div className="animate-user-profile-fade-up">
@@ -92,8 +98,8 @@ export default function GovernanceStrategySection({
             </div>
           )}
 
-          <div className="mt-10 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-main/10 text-brand-main">
+          <div className="mt-10 flex items-center gap-3 rounded-2xl border border-white/40 bg-white/70 px-5 py-4 shadow-sm backdrop-blur-md">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-main/10 text-brand-main">
               <ShieldCheckIcon className="h-5 w-5" />
             </span>
             <p className="text-sm font-medium text-slate-500">
