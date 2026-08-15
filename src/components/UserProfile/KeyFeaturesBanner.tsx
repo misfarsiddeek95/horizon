@@ -54,10 +54,7 @@ export default function KeyFeaturesBanner() {
         </div>
 
         <div>
-          <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-accent-main lg:text-left">
-            This Year in Focus
-          </p>
-          <h2 className="mt-3 text-center font-sans text-4xl font-extrabold tracking-tighter text-white sm:text-5xl lg:text-left">
+          <h2 className="mt-3 font-heading text-center text-4xl font-extrabold tracking-tighter text-white sm:text-5xl lg:text-left">
             Key Features Unveiled
           </h2>
 

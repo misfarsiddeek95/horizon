@@ -26,10 +26,7 @@ export default function StrategyImageSection({
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-2xl animate-user-profile-fade-up">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-main">
-            In Focus
-          </p>
-          <h2 className="mt-3 font-sans text-4xl font-extrabold tracking-tighter text-slate-900 md:text-5xl">
+          <h2 className="font-heading text-4xl font-extrabold tracking-tighter text-section-title md:text-5xl">
             {title}
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-600 md:text-lg">

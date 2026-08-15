@@ -12,6 +12,9 @@
   --color-brand-main: #147385;
   --color-brand-hover: #0f5c6b;
 
+  /* --- SECTION TITLE COLOR --- */
+  --color-section-title: oklch(0.484 0.0899 223.74);
+
   /* --- ACCENT COLORS --- */
   --color-accent-main: oklch(0.7 0.18 45);
 

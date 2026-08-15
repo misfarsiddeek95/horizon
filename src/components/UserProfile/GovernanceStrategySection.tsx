@@ -18,9 +18,8 @@ interface GovernanceStrategySectionProps {
   };
 }
 
-const eyebrowClass = "text-xs font-bold uppercase tracking-[0.25em] text-brand-main";
 const headingClass =
-  "mt-3 font-sans text-4xl font-extrabold tracking-tighter text-slate-900 md:text-5xl";
+  "font-heading text-4xl font-extrabold tracking-tighter text-section-title md:text-5xl";
 
 export default function GovernanceStrategySection({
   governance,
@@ -41,7 +40,6 @@ export default function GovernanceStrategySection({
         <div className="animate-user-profile-fade-up">
           {governance ? (
             <>
-              <p className={eyebrowClass}>Accountability</p>
               <h2 className={headingClass}>{governance.title}</h2>
               <p className="mt-6 text-lg leading-relaxed text-slate-600">
                 {governance.text}
@@ -52,7 +50,6 @@ export default function GovernanceStrategySection({
             </>
           ) : (
             <>
-              <p className={eyebrowClass}>Highlights</p>
               <h2 className={headingClass}>Key Highlights</h2>
               <ul className="mt-8 space-y-4">
                 {highlights?.map((highlight) => (
@@ -72,7 +69,6 @@ export default function GovernanceStrategySection({
           className="animate-user-profile-fade-up"
           style={{ animationDelay: "150ms" }}
         >
-          <p className={eyebrowClass}>Direction</p>
           <h2 className={headingClass}>{strategy.title}</h2>
 
           {strategy.text ? (
