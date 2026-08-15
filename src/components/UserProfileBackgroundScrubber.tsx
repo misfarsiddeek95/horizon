@@ -25,10 +25,11 @@ export default function UserProfileBackgroundScrubber() {
       images.push(img);
     }
 
+    const CROSSFADE_FRAMES = 30;
+    const LOOP_LENGTH = FRAME_COUNT - CROSSFADE_FRAMES;
     const VIDEO_LOOPS_PER_PAGE = 2;
 
     let animationFrameId: number;
-    let lastFrameIndex = -1;
 
     const renderLoop = () => {
       const contentBlock = document.querySelector(".original-content-block");
@@ -37,29 +38,64 @@ export default function UserProfileBackgroundScrubber() {
         return;
       }
 
-      const scrollHeight = contentBlock.scrollHeight - window.innerHeight;
-      const scrollProgress = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
+      const contentHeight = contentBlock.getBoundingClientRect().height;
+      const currentScrollY = window.scrollY;
+      const scrollProgress = contentHeight > 0 ? currentScrollY / contentHeight : 0;
 
-      const totalFramesScrolled = scrollProgress * VIDEO_LOOPS_PER_PAGE * FRAME_COUNT;
-      let frameIndex = Math.floor(totalFramesScrolled) % FRAME_COUNT;
-      if (frameIndex < 0) frameIndex = 0;
-      if (Number.isNaN(frameIndex)) frameIndex = 0;
+      const totalFramesScrolled = scrollProgress * VIDEO_LOOPS_PER_PAGE * LOOP_LENGTH;
 
-      if (frameIndex !== lastFrameIndex && images[frameIndex]?.complete) {
-        lastFrameIndex = frameIndex;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        const img = images[frameIndex];
-        const hRatio = canvas.width / img.width;
-        const vRatio = canvas.height / img.height;
-        const ratio = Math.max(hRatio, vRatio);
-        const centerShift_x = (canvas.width - img.width * ratio) / 2;
-        const centerShift_y = (canvas.height - img.height * ratio) / 2;
+      let t = Math.floor(totalFramesScrolled) % LOOP_LENGTH;
+      if (t < 0 || Number.isNaN(t)) t = 0;
 
-        context.drawImage(
-          img, 0, 0, img.width, img.height,
-          centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
-        );
+      const baseImg = images[0];
+      if (!baseImg) {
+        animationFrameId = requestAnimationFrame(renderLoop);
+        return;
       }
+
+      const hRatio = canvas.width / baseImg.width;
+      const vRatio = canvas.height / baseImg.height;
+      const ratio = Math.max(hRatio, vRatio);
+      const centerShift_x = (canvas.width - baseImg.width * ratio) / 2;
+      const centerShift_y = (canvas.height - baseImg.height * ratio) / 2;
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (t < CROSSFADE_FRAMES) {
+        const alphaA = t / CROSSFADE_FRAMES;
+        const alphaB = 1.0 - alphaA;
+
+        const imgA = images[t];
+        const imgB = images[t + LOOP_LENGTH];
+
+        if (imgB) {
+          context.globalAlpha = alphaB;
+          context.drawImage(
+            imgB, 0, 0, imgB.width, imgB.height,
+            centerShift_x, centerShift_y, imgB.width * ratio, imgB.height * ratio
+          );
+        }
+
+        if (imgA) {
+          context.globalAlpha = alphaA;
+          context.drawImage(
+            imgA, 0, 0, imgA.width, imgA.height,
+            centerShift_x, centerShift_y, imgA.width * ratio, imgA.height * ratio
+          );
+        }
+
+        context.globalAlpha = 1.0;
+      } else {
+        const img = images[t];
+        if (img) {
+          context.globalAlpha = 1.0;
+          context.drawImage(
+            img, 0, 0, img.width, img.height,
+            centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
+          );
+        }
+      }
+
       animationFrameId = requestAnimationFrame(renderLoop);
     };
 
