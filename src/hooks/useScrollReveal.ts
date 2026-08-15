@@ -5,12 +5,11 @@ import { useEffect, useRef, useState } from "react";
 interface UseScrollRevealOptions {
   threshold?: number;
   rootMargin?: string;
-  stagger?: number;
 }
 
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
-  threshold = 0.15,
-  rootMargin = "0px 0px -40px 0px",
+  threshold = 0.1,
+  rootMargin = "0px",
 }: UseScrollRevealOptions = {}) {
   const ref = useRef<T>(null);
   const revealedRef = useRef(false);

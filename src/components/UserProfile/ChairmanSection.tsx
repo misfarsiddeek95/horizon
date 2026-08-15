@@ -23,7 +23,7 @@ export default function ChairmanSection({ title, text }: ChairmanSectionProps) {
       />
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
         <div className="animate-user-profile-fade-up">
-          <h2 className="mt-4 font-heading text-4xl font-extrabold leading-tight tracking-tighter text-section-title md:text-5xl">
+          <h2 className="mt-4 font-['Minion_Pro'] font-medium text-4xl leading-tight tracking-tight text-heading md:text-5xl">
             {title}
           </h2>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 md:text-lg">

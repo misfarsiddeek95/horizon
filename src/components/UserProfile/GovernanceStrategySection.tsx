@@ -19,7 +19,7 @@ interface GovernanceStrategySectionProps {
 }
 
 const headingClass =
-  "font-heading text-4xl font-extrabold tracking-tighter text-section-title md:text-5xl";
+  "font-['Minion_Pro'] font-medium text-4xl tracking-tight text-heading md:text-5xl";
 
 export default function GovernanceStrategySection({
   governance,
@@ -40,6 +40,7 @@ export default function GovernanceStrategySection({
         <div className="animate-user-profile-fade-up">
           {governance ? (
             <>
+
               <h2 className={headingClass}>{governance.title}</h2>
               <p className="mt-6 text-lg leading-relaxed text-slate-600">
                 {governance.text}
@@ -50,6 +51,7 @@ export default function GovernanceStrategySection({
             </>
           ) : (
             <>
+
               <h2 className={headingClass}>Key Highlights</h2>
               <ul className="mt-8 space-y-4">
                 {highlights?.map((highlight) => (
@@ -69,6 +71,7 @@ export default function GovernanceStrategySection({
           className="animate-user-profile-fade-up"
           style={{ animationDelay: "150ms" }}
         >
+
           <h2 className={headingClass}>{strategy.title}</h2>
 
           {strategy.text ? (

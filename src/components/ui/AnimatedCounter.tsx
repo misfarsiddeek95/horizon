@@ -91,7 +91,7 @@ export default function AnimatedCounter({ value, duration = 1500 }: AnimatedCoun
   return (
     <span
       ref={ref}
-      className="animate-shimmer bg-gradient-to-r from-brand-main via-cyan-600 to-brand-main bg-[length:200%_auto] bg-clip-text text-transparent"
+      className="inline-block"
     >
       {display}
     </span>

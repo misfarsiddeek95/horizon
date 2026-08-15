@@ -54,7 +54,7 @@ export default function KeyFeaturesBanner() {
         </div>
 
         <div>
-          <h2 className="mt-3 font-heading text-center text-4xl font-extrabold tracking-tighter text-white sm:text-5xl lg:text-left">
+          <h2 className="mt-3 text-center font-['Minion_Pro'] font-medium text-4xl tracking-tight text-white sm:text-5xl lg:text-left">
             Key Features Unveiled
           </h2>
 
@@ -105,7 +105,7 @@ function HeroFeature({ feature }: { feature: (typeof KEY_FEATURES)[number] }) {
         <Icon className="h-7 w-7" />
       </span>
       <div>
-        <h3 className="font-sans text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+        <h3 className="font-['Minion_Pro'] font-medium text-xl tracking-tight text-white sm:text-2xl">
           {feature.title}
         </h3>
         <p className="mt-2 max-w-2xl text-base leading-relaxed text-white/80">
