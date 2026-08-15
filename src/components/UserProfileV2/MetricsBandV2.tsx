@@ -21,7 +21,7 @@ export default function MetricsBandV2({ groups }: MetricsBandV2Props) {
                 </h3>
                 <span className="h-px flex-1 bg-white/25" />
               </div>
-              <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-5 lg:gap-6">
+              <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 lg:gap-6">
                 {group.metrics.map((metric) => (
                   <MetricCard key={metric.label} metric={metric} />
                 ))}
@@ -30,7 +30,7 @@ export default function MetricsBandV2({ groups }: MetricsBandV2Props) {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-5 lg:gap-6">
+        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 lg:gap-6">
           {groups[0]?.metrics.map((metric) => (
             <MetricCard key={metric.label} metric={metric} />
           ))}
@@ -48,7 +48,7 @@ function MetricCard({
   return (
     <div
       data-animate
-      className="group bg-slate-900/70 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:bg-slate-800/70 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]"
+      className="group bg-slate-900/70 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:bg-slate-800/70 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] min-w-[160px] sm:min-w-[200px] lg:min-w-[220px] flex-1 max-w-[280px]"
     >
       <p className="whitespace-nowrap text-lg md:text-2xl font-extrabold tracking-tight text-white lg:text-3xl">
         <AnimatedCounter value={metric.value} />
