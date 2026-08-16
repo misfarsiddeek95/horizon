@@ -137,12 +137,28 @@ export default function UserProfilePageV2() {
     return () => observers.forEach((o) => o.disconnect());
   }, [activeTab]);
 
+  useEffect(() => {
+    const handlePointerMove = (e: MouseEvent) => {
+      document.documentElement.style.setProperty("--pointer-x", `${e.clientX}px`);
+      document.documentElement.style.setProperty("--pointer-y", `${e.clientY}px`);
+    };
+
+    document.addEventListener("mousemove", handlePointerMove, { passive: true });
+    return () => document.removeEventListener("mousemove", handlePointerMove);
+  }, []);
+
   return (
     <main
       ref={mainRef}
       className="relative w-full min-h-screen text-white font-sans selection:bg-brand-main selection:text-white"
     >
       <UserProfileBackgroundScrubber />
+
+      {/* CURSOR AURA */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-[90] cursor-aura"
+      />
 
       {/* FIXED HEADER */}
       <div className="fixed top-4 left-0 right-0 z-[100] flex justify-center pointer-events-none px-4">
