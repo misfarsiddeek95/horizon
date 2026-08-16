@@ -1,41 +1,40 @@
+import { useCallback } from "react";
 import type { MetricGroup } from "@/data/userProfiles";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 interface MetricsBandV2Props {
   groups: MetricGroup[];
+  tabTitle?: string;
+  tabIntro?: string;
 }
 
-export default function MetricsBandV2({ groups }: MetricsBandV2Props) {
-  const grouped = groups.some((group) => group.title);
-
+export default function MetricsBandV2({
+  groups,
+  tabTitle,
+  tabIntro,
+}: MetricsBandV2Props) {
   return (
     <section aria-label="Key metrics" className="w-full">
-      {grouped ? (
-        <div className="flex flex-col gap-8 md:gap-12">
-          {groups.map((group) => (
-            <div key={group.title}>
-              <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-8">
-                <span className="h-px flex-1 bg-white/25" />
-                <h3 className="shrink-0 font-['Minion_Pro'] font-medium text-xs md:text-sm uppercase tracking-[0.25em] bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
-                  {group.title}
-                </h3>
-                <span className="h-px flex-1 bg-white/25" />
-              </div>
-              <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 lg:gap-6">
-                {group.metrics.map((metric) => (
-                  <MetricCard key={metric.label} metric={metric} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 lg:gap-6">
-          {groups[0]?.metrics.map((metric) => (
-            <MetricCard key={metric.label} metric={metric} />
-          ))}
+      {tabTitle && (
+        <div className="text-center mb-8 md:mb-12 max-w-2xl mx-auto">
+          <h2 className="font-['Minion_Pro'] font-medium text-2xl md:text-3xl lg:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-3 md:mb-4">
+            {tabTitle} metrics
+          </h2>
+          {tabIntro && (
+            <p className="font-sans text-sm md:text-base text-slate-300 leading-relaxed">
+              {tabIntro}
+            </p>
+          )}
         </div>
       )}
+
+      <div className="flex flex-wrap justify-center items-stretch gap-4 md:gap-5 lg:gap-6">
+        {groups.map((group) =>
+          group.metrics.map((metric) => (
+            <MetricCard key={metric.label} metric={metric} />
+          ))
+        )}
+      </div>
     </section>
   );
 }
@@ -45,16 +44,28 @@ function MetricCard({
 }: {
   metric: { value: string; label: string };
 }) {
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+      e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
+    },
+    []
+  );
+
   return (
     <div
       data-animate
-      className="group bg-slate-900/70 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 md:p-6 flex flex-col items-center justify-center text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:bg-slate-800/70 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] min-w-[160px] sm:min-w-[200px] lg:min-w-[220px] flex-1 max-w-[280px]"
+      onMouseMove={handleMouseMove}
+      className="metric flex flex-col justify-between p-5 md:p-6 rounded-2xl min-w-[160px] sm:min-w-[200px] lg:min-w-[220px] flex-1 max-w-[280px]"
     >
-      <p className="whitespace-nowrap text-lg md:text-2xl font-extrabold tracking-tight text-white lg:text-3xl">
-        <AnimatedCounter value={metric.value} />
-      </p>
-      <p className="mt-1.5 md:mt-2 text-xs md:text-sm font-medium leading-snug text-slate-300">
+      <p className="font-sans text-[10px] md:text-xs font-medium uppercase tracking-widest text-[#d5e7ee] relative z-10">
         {metric.label}
+      </p>
+      <p className="font-['Minion_Pro'] text-2xl md:text-3xl lg:text-4xl font-semibold text-white mt-3 relative z-10">
+        <AnimatedCounter value={metric.value} />
       </p>
     </div>
   );

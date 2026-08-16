@@ -239,7 +239,11 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 2: Key Metrics */}
             <section id="scene-metrics" className={SCENE_SECTION} data-scene>
-              <MetricsBandV2 groups={tab.metricGroups} />
+              <MetricsBandV2
+                groups={tab.metricGroups}
+                tabTitle={tab.title}
+                tabIntro={tab.intro}
+              />
             </section>
 
             {/* SCENE 3: Chairman / MD Message */}
