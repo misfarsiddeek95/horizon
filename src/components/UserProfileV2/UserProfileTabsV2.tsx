@@ -79,11 +79,9 @@ export default function UserProfileTabsV2({
             onClick={() => onTabChange(tab.id)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             onMouseMove={handleSpotlightMove}
-            className={`group relative flex shrink-0 snap-start cursor-pointer flex-col items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 text-center transition-all duration-300 persona-spotlight rounded-lg border ${
-              isActive
-                ? "bg-tab-active border-tab-active-border shadow-[0_10px_28px_rgba(0,30,42,0.22)] opacity-100"
-                : "bg-tab-default border-glass-border opacity-50 hover:-translate-y-0.5 hover:bg-tab-hover hover:border-tab-hover-border hover:opacity-100"
-            } focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900`}
+            className={`group relative flex shrink-0 snap-start cursor-pointer flex-col items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 text-center transition-all duration-300 persona-spotlight focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
+              isActive ? "opacity-100" : "opacity-50 hover:opacity-80"
+            }`}
           >
             <Image
               src={TAB_GIFS[tab.id]}
@@ -98,7 +96,7 @@ export default function UserProfileTabsV2({
             />
             <span
               className={`text-[10px] md:text-xs lg:text-sm font-semibold tracking-wide transition-colors duration-300 whitespace-nowrap ${
-                isActive ? "text-white" : "text-slate-300 group-hover:text-white"
+                isActive ? "text-white" : "text-slate-400 group-hover:text-white"
               }`}
             >
               {tab.title}
