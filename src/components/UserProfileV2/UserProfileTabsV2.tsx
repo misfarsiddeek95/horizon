@@ -80,7 +80,9 @@ export default function UserProfileTabsV2({
             onKeyDown={(e) => handleKeyDown(e, index)}
             onMouseMove={handleSpotlightMove}
             className={`group relative flex shrink-0 snap-start cursor-pointer flex-col items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 text-center transition-all duration-300 persona-spotlight focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
-              isActive ? "opacity-100" : "opacity-50 hover:opacity-80"
+              isActive
+                ? "opacity-100 text-white"
+                : "opacity-60 text-slate-300 hover:opacity-100 hover:text-white"
             }`}
           >
             <Image
@@ -90,22 +92,22 @@ export default function UserProfileTabsV2({
               unoptimized
               width={96}
               height={96}
-            className={`h-10 w-10 object-contain transition-all duration-500 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 ${
-              isActive
-                ? "scale-110 brightness-125 drop-shadow-[0_0_8px_rgba(91,178,200,0.5)]"
-                : "scale-100 group-hover:scale-105"
-            }`}
+              className={`h-10 w-10 object-contain transition-all duration-500 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 ${
+                isActive
+                  ? "scale-110 brightness-125 drop-shadow-[0_0_8px_rgba(91,178,200,0.5)]"
+                  : "scale-100 group-hover:scale-105"
+              }`}
             />
             <span
               className={`text-[10px] md:text-xs lg:text-sm font-semibold tracking-wide transition-colors duration-300 whitespace-nowrap ${
-                isActive ? "text-teal-2" : "text-slate-400 group-hover:text-white"
+                isActive ? "text-white" : "text-slate-300 group-hover:text-white"
               }`}
             >
               {tab.title}
             </span>
             <span
               aria-hidden="true"
-              className={`absolute inset-x-3 md:inset-x-4 bottom-0 h-0.5 rounded-full bg-teal-2 transition-all duration-500 ${
+              className={`absolute inset-x-3 md:inset-x-4 bottom-0 h-0.5 rounded-full bg-[rgba(199,237,246,0.68)] transition-all duration-500 ${
                 isActive ? "scale-x-100" : "scale-x-0"
               }`}
             />

@@ -162,7 +162,7 @@ export default function UserProfilePageV2() {
 
       {/* FIXED HEADER */}
       <div className="fixed top-4 left-0 right-0 z-[100] flex justify-center pointer-events-none px-4">
-        <div className="pointer-events-auto relative bg-glass-strong backdrop-blur-2xl border border-glass-border rounded-full px-4 md:px-6 py-2 shadow-2xl">
+        <div className="pointer-events-auto relative bg-[rgba(1,34,46,0.76)] border border-[rgba(199,237,246,0.24)] backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl">
           <UserProfileTabsV2
             tabs={TAB_LABELS}
             activeTab={activeTab}
@@ -240,6 +240,7 @@ export default function UserProfilePageV2() {
             {/* SCENE 2: Key Metrics */}
             <section id="scene-metrics" className={SCENE_SECTION} data-scene>
               <MetricsBandV2
+                key={activeTab}
                 groups={tab.metricGroups}
                 tabTitle={tab.title}
                 tabIntro={tab.intro}
