@@ -157,7 +157,7 @@ export default function UserProfilePageV2() {
       {/* CURSOR AURA */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[90] cursor-aura"
+        className="pointer-events-none fixed inset-0 z-[90] cursor-aura mix-blend-screen"
       />
 
       {/* FIXED HEADER */}
