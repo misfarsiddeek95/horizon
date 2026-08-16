@@ -184,3 +184,39 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
+/* --- Persona Tab Spotlight Effect --- */
+.persona-spotlight {
+  position: relative;
+}
+
+.persona-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    var(--color-spotlight-center) 0%,
+    var(--color-spotlight-mid) 38%,
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.persona-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* --- Global Cursor Aura Effect --- */
+.cursor-aura {
+  background: radial-gradient(
+    600px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    var(--color-aura-center) 0%,
+    var(--color-aura-mid) 34%,
+    rgba(3, 105, 132, 0) 70%
+  );
+}
