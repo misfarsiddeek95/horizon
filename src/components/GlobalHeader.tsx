@@ -18,8 +18,6 @@ export default function GlobalHeader() {
   useEffect(() => {
     if (!isOpen) return;
 
-    const scrollY = window.scrollY;
-
     const preventScroll = (e: Event) => {
       e.preventDefault();
     };
@@ -37,7 +35,7 @@ export default function GlobalHeader() {
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
+    document.body.style.inset = "0";
     document.body.style.width = "100%";
 
     document.addEventListener("wheel", preventScroll, { passive: false });
@@ -48,14 +46,12 @@ export default function GlobalHeader() {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.body.style.position = "";
-      document.body.style.top = "";
+      document.body.style.inset = "";
       document.body.style.width = "";
 
       document.removeEventListener("wheel", preventScroll);
       document.removeEventListener("touchmove", preventScroll);
       document.removeEventListener("keydown", preventKeyScroll);
-
-      window.scrollTo(0, scrollY);
     };
   }, [isOpen]);
 
