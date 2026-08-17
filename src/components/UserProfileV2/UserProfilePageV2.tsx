@@ -27,7 +27,7 @@ const SCENE_SECTION =
   "relative w-full min-h-screen flex flex-col items-center justify-center py-32 px-4 md:px-8 z-10";
 
 const GLASS_PANEL =
-  "w-full max-w-7xl glass-card rounded-3xl p-6 md:p-8 lg:p-10 glass-card-hover";
+  "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
 
 const SCENES = [
   { id: "scene-hero", label: "Intro" },
@@ -250,12 +250,10 @@ export default function UserProfilePageV2() {
             {/* SCENE 3: Chairman / MD Message */}
             {tab.message && (
               <section id="scene-leadership" className={SCENE_SECTION} data-scene>
-                <div data-parallax className={GLASS_PANEL}>
-                  <ChairmanSectionV2
-                    title={tab.message.title}
-                    text={tab.message.text}
-                  />
-                </div>
+                <ChairmanSectionV2
+                  title={tab.message.title}
+                  text={tab.message.text}
+                />
               </section>
             )}
 
