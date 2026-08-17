@@ -17,7 +17,7 @@ export default function MetricsBandV2({
   return (
     <section aria-label="Key metrics" className="w-full">
       {tabTitle && (
-        <div className="text-center mb-8 md:mb-12 max-w-2xl mx-auto">
+        <div className="text-center mb-4 md:mb-6 max-w-2xl mx-auto">
           <h2
             data-animate
             className="font-heading font-medium text-3xl leading-tight md:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 mb-3 md:mb-4"

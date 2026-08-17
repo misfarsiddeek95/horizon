@@ -32,7 +32,7 @@ export default function KeyFeaturesBannerV2() {
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-6 md:gap-8 lg:grid-cols-[1fr_1.5fr] lg:gap-14">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-3 md:gap-4 lg:grid-cols-[1fr_1.5fr] lg:gap-7">
         <div data-animate className="animate-user-profile-float flex items-center justify-center lg:justify-start">
           <Image
             src="/images/innerpage/kfu_book.svg"

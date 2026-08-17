@@ -83,7 +83,7 @@ export default function GovernanceStrategySectionV2({
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:gap-14 lg:grid-cols-2 lg:gap-20">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:gap-7 lg:grid-cols-2 lg:gap-10">
         <div data-animate className="flex flex-col">
           {governance ? (
             <>

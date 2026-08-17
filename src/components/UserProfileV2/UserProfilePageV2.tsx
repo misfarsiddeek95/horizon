@@ -25,7 +25,7 @@ const HEADING_GRADIENT =
   "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
 
 const SCENE_SECTION =
-  "relative w-full min-h-screen flex flex-col items-center justify-center py-32 px-4 md:px-8 z-10";
+  "relative w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 z-10";
 
 const GLASS_PANEL =
   "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
