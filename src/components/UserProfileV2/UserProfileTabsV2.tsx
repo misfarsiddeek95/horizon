@@ -94,7 +94,7 @@ export default function UserProfileTabsV2({
               height={96}
               className={`h-10 w-10 object-contain transition-all duration-500 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 ${
                 isActive
-                  ? "scale-110 brightness-125 drop-shadow-[0_0_8px_rgba(91,178,200,0.5)]"
+                  ? "scale-110 brightness-125 drop-shadow-icon-glow"
                   : "scale-100 group-hover:scale-105"
               }`}
             />
@@ -107,7 +107,7 @@ export default function UserProfileTabsV2({
             </span>
             <span
               aria-hidden="true"
-              className={`absolute inset-x-3 md:inset-x-4 bottom-0 h-0.5 rounded-full bg-[rgba(199,237,246,0.68)] transition-all duration-500 ${
+              className={`absolute inset-x-3 md:inset-x-4 bottom-0 h-0.5 rounded-full bg-tab-active-border transition-all duration-500 ${
                 isActive ? "scale-x-100" : "scale-x-0"
               }`}
             />

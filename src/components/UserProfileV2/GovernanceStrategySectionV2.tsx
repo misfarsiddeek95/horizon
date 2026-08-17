@@ -19,7 +19,7 @@ interface GovernanceStrategySectionV2Props {
 }
 
 const HEADING_GRADIENT =
-  "font-['Minion_Pro'] font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
+  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
 
 export default function GovernanceStrategySectionV2({
   governance,
@@ -90,7 +90,7 @@ export default function GovernanceStrategySectionV2({
               <DownloadButtonV2 download={strategy.download} />
             )}
 
-            <div className="flex items-center gap-2 md:gap-3 rounded-2xl border border-white/10 bg-slate-900/50 px-4 md:px-5 py-3 md:py-4 shadow-lg backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:bg-slate-800/60 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]">
+            <div className="flex items-center gap-2 md:gap-3 rounded-2xl border border-white/10 bg-glass/50 px-4 md:px-5 py-3 md:py-4 shadow-lg backdrop-blur-xl glass-card-hover">
               <span className="flex h-8 w-8 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full bg-brand-main/20 text-brand-main">
                 <ShieldCheckIcon className="h-4 w-4 md:h-5 md:w-5" />
               </span>

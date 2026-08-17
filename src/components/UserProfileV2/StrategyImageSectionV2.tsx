@@ -9,7 +9,7 @@ interface StrategyImageSectionV2Props {
 }
 
 const HEADING_GRADIENT =
-  "font-['Minion_Pro'] font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
+  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
 
 export default function StrategyImageSectionV2({
   title,
@@ -40,7 +40,7 @@ export default function StrategyImageSectionV2({
             aria-hidden="true"
             className="absolute -inset-3 translate-x-4 translate-y-4 rounded-[24px] bg-gradient-to-br from-brand-main/25 via-accent-main/20 to-transparent"
           />
-          <div className="relative overflow-hidden rounded-[24px] shadow-[0_24px_60px_rgba(0,0,0,0.4)] ring-1 ring-white/10 transition-all duration-500 ease-out hover:ring-white/20">
+          <div className="relative overflow-hidden rounded-[24px] shadow-elevated ring-1 ring-white/10 transition-all duration-500 ease-out hover:ring-white/20">
             <Image
               src={image}
               alt={title}
@@ -50,7 +50,7 @@ export default function StrategyImageSectionV2({
               className="w-full h-auto object-contain"
             />
           </div>
-          <div className="absolute -bottom-4 md:-bottom-6 left-4 md:left-8 hidden rounded-xl border border-white/20 bg-slate-900/70 px-4 md:px-5 py-2 md:py-3 shadow-lg backdrop-blur-xl sm:block transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:bg-slate-800/70 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]">
+          <div className="absolute -bottom-4 md:-bottom-6 left-4 md:left-8 hidden rounded-xl border border-white/20 bg-glass px-4 md:px-5 py-2 md:py-3 shadow-lg backdrop-blur-xl sm:block glass-card-hover">
             <p className="font-sans text-xs md:text-sm font-bold tracking-tight text-white">
               {title}
             </p>

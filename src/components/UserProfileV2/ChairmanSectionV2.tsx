@@ -7,7 +7,7 @@ interface ChairmanSectionV2Props {
 }
 
 const HEADING_GRADIENT =
-  "font-['Minion_Pro'] font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
+  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
 
 export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Props) {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
@@ -60,7 +60,7 @@ export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Prop
               />
             </div>
 
-            <div className="absolute right-0 top-6 z-30 hidden rounded-2xl border border-white/20 bg-slate-900/70 px-4 py-3 shadow-lg backdrop-blur-xl md:block transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:bg-slate-800/70 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]">
+            <div className="absolute right-0 top-6 z-30 hidden rounded-2xl border border-white/20 bg-glass px-4 py-3 shadow-lg backdrop-blur-xl md:block glass-card-hover">
               <p className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-brand-main">
                 Leadership
               </p>

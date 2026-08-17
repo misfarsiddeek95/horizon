@@ -56,4 +56,26 @@
   --color-spotlight-mid: rgba(183, 235, 248, 0.035);
   --color-aura-center: rgba(122, 214, 238, 0.12);
   --color-aura-mid: rgba(3, 105, 132, 0.055);
+
+  /* --- CONTENT COLORS (V2) --- */
+  --color-content-muted: #d5e7ee;
+
+  /* --- GLASS SURFACES (V2) --- */
+  --color-glass-faint: rgba(2, 44, 59, 0.34);
+  --color-glass-header: rgba(1, 34, 46, 0.76);
+  --color-glass-card-hover: rgba(3, 71, 92, 0.78);
+
+  /* --- BORDER COLORS (V2) --- */
+  --color-border-subtle: rgba(255, 255, 255, 0.16);
+  --color-border-faint: rgba(199, 237, 246, 0.24);
+  --color-border-card-hover: rgba(199, 237, 246, 0.66);
+
+  /* --- SHADOW TOKENS (V2) --- */
+  --shadow-glass-card: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --shadow-glass-panel: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  --shadow-glass-hover: 0 0 30px rgba(255, 255, 255, 0.08);
+  --shadow-metric-hover: 0 26px 60px rgba(0, 21, 31, 0.34);
+  --shadow-elevated: 0 24px 60px rgba(0, 0, 0, 0.4);
+  --shadow-icon-glow: 0 0 8px rgba(91, 178, 200, 0.5);
+  --shadow-scene-active: 0 0 12px rgba(255, 255, 255, 0.6);
 }

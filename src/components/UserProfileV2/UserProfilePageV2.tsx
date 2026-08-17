@@ -21,13 +21,13 @@ const TAB_LABELS = PROFILE_TABS.map((tab) => ({
 }));
 
 const HEADING_GRADIENT =
-  "font-['Minion_Pro'] font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
+  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
 
 const SCENE_SECTION =
   "relative w-full min-h-screen flex flex-col items-center justify-center py-32 px-4 md:px-8 z-10";
 
 const GLASS_PANEL =
-  "w-full max-w-7xl bg-slate-900/70 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:bg-slate-800/70 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]";
+  "w-full max-w-7xl glass-card rounded-3xl p-6 md:p-8 lg:p-10 glass-card-hover";
 
 const SCENES = [
   { id: "scene-hero", label: "Intro" },
@@ -162,7 +162,7 @@ export default function UserProfilePageV2() {
 
       {/* FIXED HEADER */}
       <div className="fixed top-4 left-0 right-0 z-[100] flex justify-center pointer-events-none px-4">
-        <div className="pointer-events-auto relative bg-[rgba(1,34,46,0.76)] border border-[rgba(199,237,246,0.24)] backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl">
+        <div className="pointer-events-auto relative bg-glass-header border border-border-faint backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl">
           <UserProfileTabsV2
             tabs={TAB_LABELS}
             activeTab={activeTab}
@@ -190,7 +190,7 @@ export default function UserProfilePageV2() {
               <span
                 className={`block rounded-full transition-all duration-300 ${
                   isActive
-                    ? "h-3 w-3 bg-white shadow-[0_0_12px_rgba(255,255,255,0.6)] scale-125"
+                    ? "h-3 w-3 bg-white shadow-scene-active scale-125"
                     : "h-2 w-2 bg-white/30 group-hover:bg-white/60 group-hover:scale-125"
                 }`}
               />
