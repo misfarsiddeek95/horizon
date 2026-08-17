@@ -25,7 +25,7 @@ const HEADING_GRADIENT =
   "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
 
 const SCENE_SECTION =
-  "relative w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 z-10";
+  "relative w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform]";
 
 const GLASS_PANEL =
   "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
@@ -148,10 +148,44 @@ export default function UserProfilePageV2() {
     return () => document.removeEventListener("mousemove", handlePointerMove);
   }, []);
 
+  useEffect(() => {
+    const revealSections = gsap.utils.toArray<HTMLElement>(".blur-reveal-section");
+
+    const ctx = gsap.context(() => {
+      revealSections.forEach((section) => {
+        gsap.set(section, {
+          filter: "blur(24px)",
+          opacity: 0,
+          y: 100,
+          scale: 0.9,
+          rotationX: 15,
+          transformPerspective: 1200,
+        });
+
+        gsap.to(section, {
+          filter: "blur(0px)",
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotationX: 0,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 95%",
+            end: "top 45%",
+            scrub: 1.5,
+          },
+        });
+      });
+    });
+
+    return () => ctx.revert();
+  }, [activeTab]);
+
   return (
     <main
       ref={mainRef}
-      className="relative w-full min-h-screen text-white font-sans selection:bg-brand-main selection:text-white"
+      className="relative w-full min-h-screen overflow-x-hidden text-white font-sans selection:bg-brand-main selection:text-white"
     >
       <UserProfileBackgroundScrubber />
 
