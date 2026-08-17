@@ -45,7 +45,7 @@ export default function GlobalHeader() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-6 left-6 z-[100] bg-transparent hover:bg-white/10 rounded-full p-3 transition-colors duration-300"
+        className="fixed top-6 left-6 z-[9999] bg-transparent hover:bg-white/10 rounded-full p-3 transition-colors duration-300"
         aria-label={isOpen ? "Close menu" : "Open menu"}
       >
         <span className="flex flex-col justify-center items-center w-7 h-7 gap-1.5">
@@ -68,7 +68,7 @@ export default function GlobalHeader() {
       </button>
 
       <nav
-        className={`fixed inset-0 z-50 bg-glass-strong backdrop-blur-3xl transition-transform duration-700 ease-in-out ${
+        className={`fixed inset-0 z-[9998] bg-glass-strong backdrop-blur-3xl transition-transform duration-700 ease-in-out ${
           isOpen
             ? "translate-y-0 md:translate-y-0 translate-x-0"
             : "-translate-y-full md:-translate-y-full -translate-x-full"

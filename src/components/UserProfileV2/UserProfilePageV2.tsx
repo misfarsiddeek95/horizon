@@ -196,8 +196,8 @@ export default function UserProfilePageV2() {
       />
 
       {/* FIXED HEADER */}
-      <div className="fixed top-4 left-0 right-0 z-[100] flex justify-center pointer-events-none px-4">
-        <div className="pointer-events-auto relative bg-glass-header border border-border-faint backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl">
+      <div className="fixed top-20 md:top-8 z-40 left-0 right-0 flex justify-center pointer-events-none px-4 md:px-0">
+        <div className="pointer-events-auto relative bg-glass-header border border-border-faint backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl max-w-full">
           <UserProfileTabsV2
             tabs={TAB_LABELS}
             activeTab={activeTab}

@@ -61,7 +61,7 @@ export default function UserProfileTabsV2({
     <div
       role="tablist"
       aria-label="Stakeholder profiles"
-      className="flex flex-nowrap overflow-x-auto no-scrollbar max-w-[100vw] px-2 md:px-4 snap-x snap-mandatory gap-1 md:gap-2"
+      className="flex flex-nowrap overflow-x-auto no-scrollbar px-2 md:px-4 snap-x snap-mandatory gap-1 md:gap-2"
     >
       {tabs.map((tab, index) => {
         const isActive = tab.id === activeTab;

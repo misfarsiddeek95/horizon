@@ -51,7 +51,7 @@ export default function KeyFeaturesBannerV2() {
           <div className="grid grid-cols-1 gap-4 md:gap-5 sm:grid-cols-2">
             <div
               data-animate
-              className="animate-user-profile-fade-up rounded-3xl glass-card p-4 md:p-6 glass-card-hover sm:col-span-2"
+              className="animate-user-profile-fade-up rounded-3xl bg-glass p-4 md:p-6 glass-card-hover sm:col-span-2"
             >
               <HeroFeature feature={heroFeature} />
             </div>
@@ -62,7 +62,7 @@ export default function KeyFeaturesBannerV2() {
                 <div
                   key={feature.title}
                   data-animate
-                  className="animate-user-profile-fade-up rounded-3xl glass-card p-4 md:p-6 glass-card-hover"
+                  className="animate-user-profile-fade-up rounded-3xl bg-glass p-4 md:p-6 glass-card-hover"
                   style={{ animationDelay: `${150 + index * 120}ms` }}
                 >
                   <span className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-xl bg-brand-main/20 text-white ring-1 ring-white/20">
