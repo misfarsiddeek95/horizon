@@ -33,9 +33,9 @@ const SCENES = [
   { id: "scene-hero", label: "Intro" },
   { id: "scene-metrics", label: "Metrics" },
   { id: "scene-leadership", label: "Leadership" },
+  { id: "scene-features", label: "Features" },
   { id: "scene-governance", label: "Governance" },
   { id: "scene-strategy", label: "Strategy" },
-  { id: "scene-features", label: "Features" },
 ];
 
 export default function UserProfilePageV2() {
@@ -257,7 +257,14 @@ export default function UserProfilePageV2() {
               </section>
             )}
 
-            {/* SCENE 4: Governance & Strategy */}
+            {/* SCENE 4: Key Features */}
+            <section id="scene-features" className={SCENE_SECTION} data-scene>
+              <div data-parallax className={GLASS_PANEL}>
+                <KeyFeaturesBannerV2 />
+              </div>
+            </section>
+
+            {/* SCENE 5: Governance & Strategy */}
             <section id="scene-governance" className={SCENE_SECTION} data-scene>
               <div data-parallax className={GLASS_PANEL}>
                 <GovernanceStrategySectionV2
@@ -268,7 +275,7 @@ export default function UserProfilePageV2() {
               </div>
             </section>
 
-            {/* SCENE 5: Strategy Image */}
+            {/* SCENE 6: Strategy Image */}
             {tab.strategyImage && (
               <section id="scene-strategy" className={SCENE_SECTION} data-scene>
                 <div data-parallax className={GLASS_PANEL}>
@@ -281,13 +288,6 @@ export default function UserProfilePageV2() {
                 </div>
               </section>
             )}
-
-            {/* SCENE 6: Key Features */}
-            <section id="scene-features" className={SCENE_SECTION} data-scene>
-              <div data-parallax className={GLASS_PANEL}>
-                <KeyFeaturesBannerV2 />
-              </div>
-            </section>
 
           </div>
         </InfiniteScrollWrapper>
