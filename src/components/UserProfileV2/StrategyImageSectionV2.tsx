@@ -35,25 +35,16 @@ export default function StrategyImageSectionV2({
           </p>
         </div>
 
-        <div className="relative mx-auto max-w-5xl" data-animate>
-          <div
-            aria-hidden="true"
-            className="absolute -inset-3 translate-x-4 translate-y-4 rounded-[24px] bg-gradient-to-br from-brand-main/25 via-accent-main/20 to-transparent"
-          />
-          <div className="relative overflow-hidden rounded-[24px] shadow-elevated ring-1 ring-white/10 transition-all duration-500 ease-out hover:ring-white/20">
+        <div className="relative -mx-6 -mb-6 md:-mx-8 md:-mb-8 lg:-mx-10 lg:-mb-10" data-animate>
+          <div className="relative overflow-hidden rounded-b-[24px] ring-1 ring-white/10 transition-all duration-500 ease-out hover:ring-white/20">
             <Image
               src={image}
               alt={title}
               width={3001}
               height={2232}
-              sizes="(min-width: 1024px) 60vw, 100vw"
+              sizes="(min-width: 1024px) 100vw, 100vw"
               className="w-full h-auto object-contain"
             />
-          </div>
-          <div className="absolute -bottom-4 md:-bottom-6 left-4 md:left-8 hidden rounded-xl border border-white/20 bg-glass px-4 md:px-5 py-2 md:py-3 shadow-lg backdrop-blur-xl sm:block glass-card-hover">
-            <p className="font-sans text-xs md:text-sm font-bold tracking-tight text-white">
-              {title}
-            </p>
           </div>
         </div>
       </div>

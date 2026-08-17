@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { PROFILE_TABS, type TabId } from "@/data/userProfiles";
 import UserProfileBackgroundScrubber from "@/components/UserProfileBackgroundScrubber";
 import InfiniteScrollWrapper from "@/components/InfiniteScrollWrapper";
@@ -13,7 +14,7 @@ import GovernanceStrategySectionV2 from "./GovernanceStrategySectionV2";
 import StrategyImageSectionV2 from "./StrategyImageSectionV2";
 import KeyFeaturesBannerV2 from "./KeyFeaturesBannerV2";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const TAB_LABELS = PROFILE_TABS.map((tab) => ({
   id: tab.id,
@@ -208,7 +209,7 @@ export default function UserProfilePageV2() {
           <div className="flex flex-col w-full original-content-block relative">
 
             {/* SCENE 1: Hero / Intro */}
-            <section id="scene-hero" className={SCENE_SECTION} data-scene>
+            <section id="scene-hero" className="relative w-full min-h-screen flex flex-col items-center justify-center pt-[180px] pb-32 px-4 md:px-8 z-10" data-scene>
               <div className="flex flex-col items-center text-center gap-6 max-w-4xl">
                 <h1
                   data-animate
@@ -227,13 +228,39 @@ export default function UserProfilePageV2() {
                   <div
                     data-animate
                     data-parallax
-                    className="max-w-3xl bg-slate-900/50 backdrop-blur-md p-5 md:p-6 rounded-2xl border border-white/10 transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:bg-slate-800/60 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]"
+                    className="mt-8 max-w-3xl text-lg text-slate-200 leading-relaxed text-center bg-glass-faint backdrop-blur-2xl border border-border-subtle shadow-glass-panel rounded-3xl p-8 transition-all duration-500 hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover hover:-translate-y-1"
                   >
                     <p className="text-base md:text-lg lg:text-xl text-slate-200 leading-relaxed">
                       {tab.intro}
                     </p>
                   </div>
                 )}
+                <button
+                  onClick={() => {
+                    const target = document.getElementById('scene-metrics');
+                    if (target) {
+                      const y = target.getBoundingClientRect().top + window.scrollY;
+                      gsap.to(window, { scrollTo: { y, autoKill: false }, duration: 1.5, ease: "power2.inOut" });
+                    }
+                  }}
+                  className="mt-16 flex flex-col items-center gap-3 text-white/60 hover:text-white transition-colors duration-300 group cursor-pointer"
+                >
+                  <span className="text-xs font-light tracking-[0.2em] uppercase">Scroll Down</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-6 h-6 animate-bounce"
+                  >
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                  </svg>
+                </button>
               </div>
             </section>
 
