@@ -1,7 +1,12 @@
-import { ArrowRightIcon, CheckCircleIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CheckCircleIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import type { DownloadLink } from "@/data/userProfiles";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import DownloadButtonV2 from "./DownloadButtonV2";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface GovernanceStrategySectionV2Props {
   governance?: {
@@ -27,6 +32,48 @@ export default function GovernanceStrategySectionV2({
   strategy,
 }: GovernanceStrategySectionV2Props) {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
+  const timelineContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = timelineContainerRef.current;
+    if (!container || !strategy.items || strategy.text) return;
+
+    const ctx = gsap.context(() => {
+      const nodes = gsap.utils.toArray<HTMLElement>(".strategy-node-wrapper");
+      if (nodes.length === 0) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top 75%",
+        },
+      });
+
+      nodes.forEach((node) => {
+        const dot = node.querySelector(".strategy-dot");
+        const text = node.querySelector(".strategy-text");
+        const line = node.querySelector(".strategy-line");
+
+        tl.to([dot, text], {
+          scale: 1,
+          opacity: 1,
+          x: 0,
+          duration: 0.4,
+          ease: "back.out(1.5)",
+        });
+
+        if (line) {
+          tl.to(line, {
+            scaleY: 1,
+            duration: 0.3,
+            ease: "power1.inOut",
+          });
+        }
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, [strategy.items, strategy.text]);
 
   return (
     <section
@@ -73,16 +120,33 @@ export default function GovernanceStrategySectionV2({
               {strategy.text}
             </p>
           ) : (
-            <ul className="space-y-3 md:space-y-4">
-              {strategy.items?.map((item) => (
-                <li key={item} className="flex items-start gap-2 md:gap-3">
-                  <ArrowRightIcon className="mt-1.5 h-3 w-3 md:h-4 md:w-4 shrink-0 text-brand-main" />
-                  <span className="text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-sm">
+            <div
+              ref={timelineContainerRef}
+              className="relative strategy-timeline-container flex flex-col"
+            >
+              {strategy.items?.map((item, index) => (
+                <div
+                  key={index}
+                  className={`relative pl-14 strategy-node-wrapper ${
+                    index !== (strategy.items?.length ?? 0) - 1 ? "pb-10" : ""
+                  }`}
+                >
+                  <div className="absolute left-0 top-0 w-8 h-8 rounded-full bg-glass-faint border-2 border-brand-main flex items-center justify-center z-10 strategy-dot scale-0 shadow-lg">
+                    <span className="text-white text-xs font-bold font-sans">
+                      {index + 1}
+                    </span>
+                  </div>
+
+                  {index !== (strategy.items?.length ?? 0) - 1 && (
+                    <div className="absolute left-[15px] top-8 bottom-0 w-[2px] bg-brand-main origin-top scale-y-0 strategy-line" />
+                  )}
+
+                  <p className="text-slate-200 text-sm md:text-base leading-relaxed strategy-text opacity-0 translate-x-4 pt-1">
                     {item}
-                  </span>
-                </li>
+                  </p>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
 
           <div className="mt-6 md:mt-8 flex flex-col gap-3 md:gap-4">
