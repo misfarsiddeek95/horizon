@@ -17,7 +17,7 @@ export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Prop
   const [expanded, setExpanded] = useState(false);
 
   const handleScrollToStrategy = () => {
-    document.getElementById("scene-strategy")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("scene-strategy")?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   return (

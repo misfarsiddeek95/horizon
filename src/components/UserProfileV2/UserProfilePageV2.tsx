@@ -238,7 +238,7 @@ export default function UserProfilePageV2() {
 
       {/* VERTICAL SCENE NAVIGATION */}
       <nav
-        className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-[100] flex-col items-center gap-5 pointer-events-auto hidden lg:flex"
+        className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-[100] flex-col items-center gap-2 pointer-events-auto hidden lg:flex"
         aria-label="Scene navigation"
       >
         {getScenesForTab(tab).map(({ id, label }) => {
@@ -247,9 +247,9 @@ export default function UserProfilePageV2() {
             <button
               key={id}
               onClick={() => {
-                document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
               }}
-              className="group relative flex items-center justify-center"
+              className="group relative flex h-8 w-8 items-center justify-center cursor-pointer"
               aria-label={`Go to ${label}`}
             >
               <span
