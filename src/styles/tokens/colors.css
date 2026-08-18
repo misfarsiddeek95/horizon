@@ -39,9 +39,9 @@
   --color-ink: #15332f;
 
   /* --- GLASS SURFACES --- */
-  --color-glass: rgba(2, 44, 59, 0.72);
-  --color-glass-strong: rgba(1, 34, 46, 0.80);
-  --color-glass-soft: rgba(2, 44, 59, 0.62);
+  --color-glass: rgba(20, 115, 133, 0.72);
+  --color-glass-strong: rgba(20, 115, 133, 0.8);
+  --color-glass-soft: rgba(20, 115, 133, 0.62);
   --color-glass-border: rgba(220, 242, 248, 0.22);
 
   /* --- TAB STATE COLORS --- */
@@ -61,14 +61,21 @@
   --color-content-muted: #d5e7ee;
 
   /* --- GLASS SURFACES (V2) --- */
-  --color-glass-faint: rgba(2, 44, 59, 0.34);
-  --color-glass-header: rgba(1, 34, 46, 0.76);
+  --color-glass-faint: rgba(20, 115, 133, 0.34);
+  --color-glass-header: rgba(20, 115, 133, 0.76);
   --color-glass-card-hover: rgba(3, 71, 92, 0.78);
 
   /* --- BORDER COLORS (V2) --- */
   --color-border-subtle: rgba(255, 255, 255, 0.16);
   --color-border-faint: rgba(199, 237, 246, 0.24);
   --color-border-card-hover: rgba(199, 237, 246, 0.66);
+
+  /* --- HEADING GRADIENT --- */
+  --color-heading-start: #fce8b2;
+  --color-heading-end: #83deed;
+
+  /* --- OVERLAY COLORS --- */
+  --color-overlay: #1c5e70;
 
   /* --- SHADOW TOKENS (V2) --- */
   --shadow-glass-card: 0 8px 32px 0 rgba(0, 0, 0, 0.4);

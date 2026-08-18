@@ -9,7 +9,7 @@ interface StrategyImageSectionV2Props {
 }
 
 const HEADING_GRADIENT =
-  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
+  "font-heading font-medium heading-gradient drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
 
 export default function StrategyImageSectionV2({
   title,

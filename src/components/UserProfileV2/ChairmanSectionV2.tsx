@@ -7,7 +7,7 @@ interface ChairmanSectionV2Props {
 }
 
 const HEADING_GRADIENT =
-  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
+  "font-heading font-medium heading-gradient drop-shadow-2xl";
 
 const CARD_BASE =
   "rounded-2xl bg-glass-faint border border-border-subtle p-6 md:p-8 lg:p-10 backdrop-blur-xl transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";

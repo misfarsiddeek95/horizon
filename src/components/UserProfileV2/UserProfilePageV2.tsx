@@ -22,7 +22,7 @@ const TAB_LABELS = PROFILE_TABS.map((tab) => ({
 }));
 
 const HEADING_GRADIENT =
-  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl";
+  "font-heading font-medium heading-gradient drop-shadow-2xl";
 
 const SCENE_SECTION =
   "relative w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform]";

@@ -83,6 +83,13 @@
   }
 }
 
+@utility heading-gradient {
+  background: linear-gradient(40deg, var(--color-heading-start), var(--color-heading-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 @utility glass-card {
   background: var(--color-glass);
   border: 1px solid var(--color-glass-border);

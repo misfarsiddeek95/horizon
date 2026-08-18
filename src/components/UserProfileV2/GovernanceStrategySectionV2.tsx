@@ -24,7 +24,7 @@ interface GovernanceStrategySectionV2Props {
 }
 
 const HEADING_GRADIENT =
-  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
+  "font-heading font-medium heading-gradient drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
 
 export default function GovernanceStrategySectionV2({
   governance,
@@ -155,7 +155,7 @@ export default function GovernanceStrategySectionV2({
             )}
 
             <div className="flex items-center gap-2 md:gap-3 rounded-2xl border border-white/10 bg-glass/50 px-4 md:px-5 py-3 md:py-4 shadow-lg backdrop-blur-xl glass-card-hover">
-              <span className="flex h-8 w-8 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full bg-brand-main/20 text-brand-main">
+              <span className="flex h-8 w-8 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">
                 <ShieldCheckIcon className="h-4 w-4 md:h-5 md:w-5" />
               </span>
               <p className="text-xs md:text-sm font-medium text-slate-300">

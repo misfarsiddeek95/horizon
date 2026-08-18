@@ -18,7 +18,7 @@ const FEATURE_ICONS = {
 } as const;
 
 const HEADING_GRADIENT =
-  "font-heading font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl text-center text-3xl tracking-tight sm:text-4xl lg:text-left lg:text-5xl";
+  "font-heading font-medium heading-gradient drop-shadow-2xl text-center text-3xl tracking-tight sm:text-4xl lg:text-left lg:text-5xl";
 
 export default function KeyFeaturesBannerV2() {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
@@ -68,7 +68,7 @@ export default function KeyFeaturesBannerV2() {
                   <span className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-xl bg-brand-main/20 text-white ring-1 ring-white/20">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <h3 className="mt-3 md:mt-4 font-heading font-medium text-base md:text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
+                  <h3 className="mt-3 md:mt-4 font-heading font-medium text-base md:text-lg tracking-tight heading-gradient">
                     {feature.title}
                   </h3>
                   <p className="mt-2 text-xs md:text-sm leading-relaxed text-slate-300">
@@ -92,7 +92,7 @@ function HeroFeature({ feature }: { feature: (typeof KEY_FEATURES)[number] }) {
         <Icon className="h-6 w-6 md:h-7 md:w-7" />
       </span>
       <div>
-        <h3 className="font-heading font-medium text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 sm:text-xl md:text-2xl">
+        <h3 className="font-heading font-medium text-lg tracking-tight heading-gradient sm:text-xl md:text-2xl">
           {feature.title}
         </h3>
         <p className="mt-2 max-w-2xl text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-md">
