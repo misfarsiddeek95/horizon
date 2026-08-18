@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -11,11 +12,9 @@ interface ChairmanSectionV2Props {
 const HEADING_GRADIENT =
   "font-heading font-medium heading-gradient drop-shadow-2xl";
 
-const CARD_BASE =
-  "rounded-2xl bg-glass-faint border border-border-subtle p-6 md:p-8 lg:p-10 backdrop-blur-xl transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
-
 export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Props) {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
+  const [expanded, setExpanded] = useState(false);
 
   const handleScrollToStrategy = () => {
     document.getElementById("scene-strategy")?.scrollIntoView({ behavior: "smooth" });
@@ -29,15 +28,14 @@ export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Prop
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-      <div data-animate className={`${CARD_BASE} mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 md:gap-12 items-center`}>
-        <div className="flex items-center justify-center">
-          <div className="relative w-full animate-portrait-float drop-shadow-2xl">
+      <div data-animate className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 items-stretch">
+        <div className="flex items-start justify-center w-full h-full pt-0 px-4 pb-4 lg:px-6 lg:pb-6">
+          <div className="relative w-full h-full max-h-full rounded-2xl overflow-hidden">
             <Image
               src="/images/user-profile/chariman.png"
               alt="Chairman"
-              width={339}
-              height={464}
-              className="h-auto w-full object-contain object-bottom"
+              fill
+              className="object-contain object-center w-full h-full"
               priority
             />
           </div>
@@ -47,9 +45,17 @@ export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Prop
           <h2 className={`${HEADING_GRADIENT} text-3xl leading-tight md:text-4xl lg:text-5xl mb-6`}>
             {title}
           </h2>
-          <p className="max-w-xl text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md">
+          <p className={`max-w-xl text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md ${expanded ? "" : "line-clamp-5"}`}>
             {text}
           </p>
+          {text.length > 200 && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="mt-2 text-brand-main text-sm font-semibold hover:opacity-70 transition-opacity cursor-pointer self-start"
+            >
+              {expanded ? "Read less" : "Read more"}
+            </button>
+          )}
           <button
             onClick={handleScrollToStrategy}
             className="mt-8 inline-flex items-center gap-2 text-white font-semibold text-sm md:text-base transition-colors duration-300 hover:opacity-70 self-end cursor-pointer"

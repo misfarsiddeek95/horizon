@@ -268,7 +268,7 @@ export default function UserProfilePageV2() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <div className="relative z-10 w-full min-w-0 lg:ml-64 xl:ml-72">
+      <div className="relative z-10 w-full min-w-0 lg:ml-32 xl:ml-40">
         <InfiniteScrollWrapper>
           <div className="flex flex-col w-full original-content-block relative">
 
