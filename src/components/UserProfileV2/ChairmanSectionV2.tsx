@@ -28,20 +28,20 @@ export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Prop
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-      <div data-animate className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 items-stretch">
-        <div className="flex items-start justify-center w-full h-full pt-0 px-4 pb-4 lg:px-6 lg:pb-6">
-          <div className="relative w-full h-full max-h-full rounded-2xl overflow-hidden">
+      <div data-animate className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 items-stretch p-4 lg:p-6">
+        <div className="flex items-start w-full h-full">
+          <div className="relative w-full h-full min-h-[300px] sm:min-h-[400px] lg:min-h-0 rounded-2xl overflow-hidden">
             <Image
               src="/images/user-profile/chariman.png"
               alt="Chairman"
               fill
-              className="object-contain object-center w-full h-full"
+              className="object-contain object-top w-full h-full"
               priority
             />
           </div>
         </div>
 
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-start h-full lg:mt-8">
           <h2 className={`${HEADING_GRADIENT} text-3xl leading-tight md:text-4xl lg:text-5xl mb-6`}>
             {title}
           </h2>
@@ -51,7 +51,7 @@ export default function ChairmanSectionV2({ title, text }: ChairmanSectionV2Prop
           {text.length > 200 && (
             <button
               onClick={() => setExpanded(!expanded)}
-              className="mt-2 text-brand-main text-sm font-semibold hover:opacity-70 transition-opacity cursor-pointer self-start"
+              className="mt-2 text-white-main text-sm font-semibold hover:opacity-70 transition-opacity cursor-pointer self-start"
             >
               {expanded ? "Read less" : "Read more"}
             </button>

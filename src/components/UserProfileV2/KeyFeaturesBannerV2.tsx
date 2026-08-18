@@ -35,14 +35,14 @@ export default function KeyFeaturesBannerV2() {
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-3 md:gap-4 lg:grid-cols-[1fr_1.5fr] lg:gap-7">
         <div
           data-animate
-          className="animate-user-profile-float flex items-center justify-center lg:justify-start"
+          className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-0 -mt-6 -mx-6 md:-mt-8 md:-mx-8 lg:-mt-10 lg:-mb-10 lg:-ml-10 lg:mr-0 lg:h-[calc(100%+5rem)]"
         >
           <Image
             src="/images/innerpage/book.jpeg"
             alt="Key Features report"
-            width={619}
-            height={477}
-            className="w-full max-w-[200px] sm:max-w-xs drop-shadow-[0_24px_48px_rgba(0,0,0,0.5)] lg:max-w-sm"
+            fill
+            className="object-cover object-center rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl w-full h-full"
+            priority
           />
         </div>
 
