@@ -77,6 +77,7 @@ export default function UserProfileTabsV2({
         const isActive = tab.id === activeTab;
         return (
           <button
+            type="button"
             key={tab.id}
             ref={(el) => {
               tabRefs.current[index] = el;

@@ -80,13 +80,13 @@ export default function GlobalHeader() {
               key={link.path}
               href={link.path}
               onClick={handleLinkClick}
-              className="group py-3 font-sans text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight hover:text-brand-main transition-colors duration-300"
+              className="group py-3 font-sans text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight hover:text-[var(--color-heading-start)] transition-colors duration-300"
             >
               {link.name}
               {pathname === link.path && (
                 <span className="ml-4 inline-block">
                   <svg
-                    className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-brand-main"
+                    className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-[var(--color-heading-start)]"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="2.5"
