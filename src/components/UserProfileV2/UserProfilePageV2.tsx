@@ -10,7 +10,8 @@ import InfiniteScrollWrapper from "@/components/InfiniteScrollWrapper";
 import UserProfileTabsV2 from "./UserProfileTabsV2";
 import MetricsBandV2 from "./MetricsBandV2";
 import ChairmanSectionV2 from "./ChairmanSectionV2";
-import GovernanceStrategySectionV2 from "./GovernanceStrategySectionV2";
+import HighlightsStrategySectionV2 from "./HighlightsStrategySectionV2";
+import LeadershipSectionV2 from "./LeadershipSectionV2";
 import StrategyImageSectionV2 from "./StrategyImageSectionV2";
 import KeyFeaturesBannerV2 from "./KeyFeaturesBannerV2";
 
@@ -19,25 +20,36 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 const TAB_LABELS = PROFILE_TABS.map((tab) => ({
   id: tab.id,
   title: tab.title,
+  heroTitle: tab.heroTitle,
 }));
 
 const HEADING_GRADIENT =
   "font-heading font-medium heading-gradient drop-shadow-2xl";
 
 const SCENE_SECTION =
-  "relative w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform]";
+  "relative w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
 
 const GLASS_PANEL =
   "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
 
-const SCENES = [
+const ALL_SCENES = [
   { id: "scene-hero", label: "Intro" },
   { id: "scene-metrics", label: "Metrics" },
   { id: "scene-leadership", label: "Leadership" },
   { id: "scene-features", label: "Features" },
-  { id: "scene-governance", label: "Governance" },
+  { id: "scene-highlights", label: "Highlights & Strategy" },
+  { id: "scene-leadership-governance", label: "Governance" },
   { id: "scene-strategy", label: "Strategy" },
 ];
+
+function getScenesForTab(tab: ReturnType<typeof PROFILE_TABS[number]>) {
+  return ALL_SCENES.filter(({ id }) => {
+    if (id === "scene-leadership") return !!tab.message;
+    if (id === "scene-leadership-governance") return !!tab.governance;
+    if (id === "scene-strategy") return !!tab.strategyImage;
+    return true;
+  });
+}
 
 export default function UserProfilePageV2() {
   const [activeTab, setActiveTab] = useState<TabId>("shareholders");
@@ -115,8 +127,9 @@ export default function UserProfilePageV2() {
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
+    const scenes = getScenesForTab(tab);
 
-    SCENES.forEach(({ id }) => {
+    scenes.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (!el) return;
 
@@ -139,6 +152,13 @@ export default function UserProfilePageV2() {
   }, [activeTab]);
 
   useEffect(() => {
+    const scenes = getScenesForTab(tab);
+    if (scenes.length > 0) {
+      setActiveScene(scenes[0].id);
+    }
+  }, [activeTab]);
+
+  useEffect(() => {
     const handlePointerMove = (e: MouseEvent) => {
       document.documentElement.style.setProperty("--pointer-x", `${e.clientX}px`);
       document.documentElement.style.setProperty("--pointer-y", `${e.clientY}px`);
@@ -154,7 +174,7 @@ export default function UserProfilePageV2() {
     const ctx = gsap.context(() => {
       revealSections.forEach((section) => {
         gsap.set(section, {
-          filter: "blur(24px)",
+          filter: "filter: blur(24px)",
           opacity: 0,
           y: 100,
           scale: 0.9,
@@ -185,7 +205,7 @@ export default function UserProfilePageV2() {
   return (
     <main
       ref={mainRef}
-      className="relative w-full min-h-screen overflow-x-hidden text-white font-sans selection:bg-brand-main selection:text-white"
+      className="relative w-full min-h-screen overflow-x-hidden text-white font-sans selection:bg-brand-main selection:text-white flex"
     >
       <UserProfileBackgroundScrubber />
 
@@ -195,8 +215,18 @@ export default function UserProfilePageV2() {
         className="pointer-events-none fixed inset-0 z-[90] cursor-aura mix-blend-screen"
       />
 
-      {/* FIXED HEADER */}
-      <div className="fixed top-20 md:top-8 z-40 left-0 right-0 flex justify-center pointer-events-none px-4 md:px-0">
+      {/* LEFT SIDEBAR - Desktop */}
+      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-64 xl:w-72 flex-col items-start justify-center pl-4 z-50 pointer-events-auto">
+        <UserProfileTabsV2
+          tabs={TAB_LABELS}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          vertical
+        />
+      </aside>
+
+      {/* FIXED HEADER - Mobile */}
+      <div className="fixed top-20 md:top-8 z-40 left-0 right-0 flex justify-center pointer-events-none px-4 md:px-0 lg:hidden">
         <div className="pointer-events-auto relative bg-glass-header border border-border-faint backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl max-w-full">
           <UserProfileTabsV2
             tabs={TAB_LABELS}
@@ -211,7 +241,7 @@ export default function UserProfilePageV2() {
         className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-[100] flex-col items-center gap-5 pointer-events-auto hidden lg:flex"
         aria-label="Scene navigation"
       >
-        {SCENES.map(({ id, label }) => {
+        {getScenesForTab(tab).map(({ id, label }) => {
           const isActive = activeScene === id;
           return (
             <button
@@ -237,19 +267,19 @@ export default function UserProfilePageV2() {
         })}
       </nav>
 
-      {/* INFINITE SCROLL CONTENT */}
-      <div className="relative z-10 w-full">
+      {/* MAIN CONTENT */}
+      <div className="relative z-10 w-full min-w-0 lg:ml-64 xl:ml-72">
         <InfiniteScrollWrapper>
           <div className="flex flex-col w-full original-content-block relative">
 
             {/* SCENE 1: Hero / Intro */}
-            <section id="scene-hero" className="relative w-full min-h-screen flex flex-col items-center justify-center pt-[180px] pb-32 px-4 md:px-8 z-10" data-scene>
+            <section id="scene-hero" className="relative w-full min-h-screen flex flex-col items-center justify-center pt-[180px] pb-32 px-4 md:px-8 z-10 scroll-mt-28" data-scene>
               <div className="flex flex-col items-center text-center gap-6 max-w-4xl">
                 <h1
                   data-animate
                   className={`${HEADING_GRADIENT} text-5xl md:text-6xl lg:text-8xl`}
                 >
-                  User Profiles
+                   {tab.heroTitle}
                 </h1>
                 <p
                   data-animate
@@ -325,18 +355,26 @@ export default function UserProfilePageV2() {
               </div>
             </section>
 
-            {/* SCENE 5: Governance & Strategy */}
-            <section id="scene-governance" className={SCENE_SECTION} data-scene>
+            {/* SCENE 5: Highlights & Strategy */}
+            <section id="scene-highlights" className={SCENE_SECTION} data-scene>
               <div data-parallax className={GLASS_PANEL}>
-                <GovernanceStrategySectionV2
-                  governance={tab.governance}
+                <HighlightsStrategySectionV2
                   highlights={tab.highlights}
                   strategy={tab.strategy}
                 />
               </div>
             </section>
 
-            {/* SCENE 6: Strategy Image */}
+            {/* SCENE 6: Leadership & Governance */}
+            {tab.governance && (
+              <section id="scene-leadership-governance" className={SCENE_SECTION} data-scene>
+                <div data-parallax className={GLASS_PANEL}>
+                  <LeadershipSectionV2 governance={tab.governance} />
+                </div>
+              </section>
+            )}
+
+            {/* SCENE 7: Strategy Image */}
             {tab.strategyImage && (
               <section id="scene-strategy" className={SCENE_SECTION} data-scene>
                 <div data-parallax className={GLASS_PANEL}>

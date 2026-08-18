@@ -33,9 +33,12 @@ export default function KeyFeaturesBannerV2() {
       }`}
     >
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-3 md:gap-4 lg:grid-cols-[1fr_1.5fr] lg:gap-7">
-        <div data-animate className="animate-user-profile-float flex items-center justify-center lg:justify-start">
+        <div
+          data-animate
+          className="animate-user-profile-float flex items-center justify-center lg:justify-start"
+        >
           <Image
-            src="/images/innerpage/kfu_book.svg"
+            src="/images/innerpage/book.jpeg"
             alt="Key Features report"
             width={619}
             height={477}

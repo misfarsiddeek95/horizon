@@ -23,6 +23,7 @@ export interface DownloadLink {
 export interface ProfileTab {
   id: TabId;
   title: string;
+  heroTitle: string;
   intro?: string;
   metricGroups: MetricGroup[];
   message?: {
@@ -59,7 +60,8 @@ export const KEY_FEATURES: KeyFeature[] = [
   {
     icon: "ai",
     title: "AI-Enabled Digital Report",
-    detail: "Intelligence woven through every page of the digital annual report.",
+    detail:
+      "Intelligence woven through every page of the digital annual report.",
     subItems: [
       "Conversational Report Intelligence",
       "Adaptive Stakeholder Experiences",
@@ -108,6 +110,7 @@ export const PROFILE_TABS: ProfileTab[] = [
   {
     id: "shareholders",
     title: "Shareholders",
+    heroTitle: "Performance with a clearer line of sight",
     intro:
       "As the guiding current beneath our journey, you steer Haycarb's course. Dive into a clear view of our performance, strategy, and sustainable growth.",
     metricGroups: [
@@ -151,12 +154,14 @@ export const PROFILE_TABS: ProfileTab[] = [
     strategyImage: {
       title: "Investor Ratios",
       image: "/images/innerpage/user-profile/investor_ratio.jpg",
-      caption: "A clear view of the financial ratios that define shareholder value.",
+      caption:
+        "A clear view of the financial ratios that define shareholder value.",
     },
   },
   {
     id: "employees",
     title: "Employees",
+    heroTitle: "People powering what comes next",
     intro:
       "You are the strength behind our journey and your contribution helps us move confidently towards new horizons, transforming possibilities into lasting impact for all our stakeholders.",
     metricGroups: [
@@ -203,6 +208,7 @@ export const PROFILE_TABS: ProfileTab[] = [
   {
     id: "customers",
     title: "Customers",
+    heroTitle: "Innovation designed around customer value",
     intro:
       "With you, we look Beyond the Beyond. Discover how Haycarb delivers consistency, quality, and sustainability while pursuing new opportunities and advancing towards a future of greater possibilities.",
     metricGroups: [
@@ -243,13 +249,15 @@ export const PROFILE_TABS: ProfileTab[] = [
     },
     strategyImage: {
       title: "Our Customer Value Proposition",
-      image: "/images/innerpage/user-profile/our_customer_value_proposition.jpg",
+      image:
+        "/images/innerpage/user-profile/our_customer_value_proposition.jpg",
       caption: "What we deliver, and why our customers stay with us.",
     },
   },
   {
     id: "suppliers",
     title: "Suppliers",
+    heroTitle: "Strong partnerships. More resilient supply chains",
     intro:
       "Strong partnerships are the foundation of our progress. Together, we go Beyond the Beyond, strengthening resilient and responsible supply chains that drive shared growth and long-term sustainability.",
     metricGroups: [
@@ -259,15 +267,23 @@ export const PROFILE_TABS: ProfileTab[] = [
             value: "Rs. 32.0 Bn",
             label: "Payments to Coconut Shell and Charcoal Suppliers",
           },
-          { value: "Rs. 19.0 Mn", label: "Investment in Supplier Capacity Building" },
+          {
+            value: "Rs. 19.0 Mn",
+            label: "Investment in Supplier Capacity Building",
+          },
           {
             value: ">500",
-            label: "Total No. of Coconut Shell and Charcoal Suppliers Supported",
+            label:
+              "Total No. of Coconut Shell and Charcoal Suppliers Supported",
           },
-          { value: "> 200", label: "Total no. of other material and service Suppliers" },
+          {
+            value: "> 200",
+            label: "Total no. of other material and service Suppliers",
+          },
           {
             value: "71%",
-            label: "Procurement Spend Paid to Coconut Shell and Charcoal Suppliers",
+            label:
+              "Procurement Spend Paid to Coconut Shell and Charcoal Suppliers",
           },
         ],
       },
@@ -298,13 +314,16 @@ export const PROFILE_TABS: ProfileTab[] = [
     },
     strategyImage: {
       title: "Our Supplier Value Proposition",
-      image: "/images/innerpage/user-profile/our_supplier_value_proposition.jpg",
-      caption: "Building resilient, responsible supply chains that move as one.",
+      image:
+        "/images/innerpage/user-profile/our_supplier_value_proposition.jpg",
+      caption:
+        "Building resilient, responsible supply chains that move as one.",
     },
   },
   {
     id: "generalUser",
     title: "General User",
+    heroTitle: "A faster way to understand Haycarb",
     metricGroups: [
       {
         title: "Financial",
@@ -339,7 +358,8 @@ export const PROFILE_TABS: ProfileTab[] = [
     strategyImage: {
       title: "Our Strategic Levers for Sustainable Growth",
       image: "/images/innerpage/user-profile/our_strategic_level_growth.jpg",
-      caption: "The levers powering Haycarb's sustainable global value creation.",
+      caption:
+        "The levers powering Haycarb's sustainable global value creation.",
     },
   },
 ];

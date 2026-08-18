@@ -6,6 +6,7 @@ interface UserProfileTabsV2Props {
   tabs: { id: TabId; title: string }[];
   activeTab: TabId;
   onTabChange: (tabId: TabId) => void;
+  vertical?: boolean;
 }
 
 const TAB_GIF = "/icons/user-profile/tab_icons.gif";
@@ -14,6 +15,7 @@ export default function UserProfileTabsV2({
   tabs,
   activeTab,
   onTabChange,
+  vertical = false,
 }: UserProfileTabsV2Props) {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -21,15 +23,25 @@ export default function UserProfileTabsV2({
     (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
       let newIndex = index;
 
-      if (e.key === "ArrowRight") {
-        newIndex = (index + 1) % tabs.length;
-      } else if (e.key === "ArrowLeft") {
-        newIndex = (index - 1 + tabs.length) % tabs.length;
-      } else if (e.key === "Home") {
+      if (vertical) {
+        if (e.key === "ArrowDown") {
+          newIndex = (index + 1) % tabs.length;
+        } else if (e.key === "ArrowUp") {
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+        }
+      } else {
+        if (e.key === "ArrowRight") {
+          newIndex = (index + 1) % tabs.length;
+        } else if (e.key === "ArrowLeft") {
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+        }
+      }
+
+      if (e.key === "Home") {
         newIndex = 0;
       } else if (e.key === "End") {
         newIndex = tabs.length - 1;
-      } else {
+      } else if (newIndex === index) {
         return;
       }
 
@@ -37,7 +49,7 @@ export default function UserProfileTabsV2({
       onTabChange(tabs[newIndex].id);
       tabRefs.current[newIndex]?.focus();
     },
-    [tabs, onTabChange]
+    [tabs, onTabChange, vertical]
   );
 
   const handleSpotlightMove = useCallback(
@@ -55,7 +67,11 @@ export default function UserProfileTabsV2({
     <div
       role="tablist"
       aria-label="Stakeholder profiles"
-      className="flex flex-nowrap overflow-x-auto no-scrollbar px-2 md:px-4 snap-x snap-mandatory gap-1 md:gap-2"
+      className={`flex overflow-y-auto no-scrollbar snap-mandatory gap-1 md:gap-2 ${
+        vertical
+          ? "flex-col items-center snap-y py-4"
+          : "flex-nowrap overflow-x-auto px-2 md:px-4 snap-x"
+      }`}
     >
       {tabs.map((tab, index) => {
         const isActive = tab.id === activeTab;
@@ -75,8 +91,8 @@ export default function UserProfileTabsV2({
             onMouseMove={handleSpotlightMove}
             className={`group relative flex shrink-0 snap-start cursor-pointer flex-col items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 text-center transition-all duration-300 persona-spotlight focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
               isActive
-                ? "opacity-100 text-white"
-                : "opacity-60 text-slate-300 hover:opacity-100 hover:text-white"
+                ? "opacity-100 text-white bg-white/10 backdrop-blur-sm rounded-xl"
+                : "opacity-60 text-slate-300 hover:opacity-100 hover:text-white hover:bg-white/5 rounded-xl"
             }`}
           >
             <Image
@@ -99,12 +115,22 @@ export default function UserProfileTabsV2({
             >
               {tab.title}
             </span>
-            <span
-              aria-hidden="true"
-              className={`absolute inset-x-3 md:inset-x-4 bottom-0 h-0.5 rounded-full bg-tab-active-border transition-all duration-500 ${
-                isActive ? "scale-x-100" : "scale-x-0"
-              }`}
-            />
+            {!vertical && (
+              <span
+                aria-hidden="true"
+                className={`absolute inset-x-3 md:inset-x-4 bottom-0 h-0.5 rounded-full bg-tab-active-border transition-all duration-500 ${
+                  isActive ? "scale-x-100" : "scale-x-0"
+                }`}
+              />
+            )}
+            {vertical && (
+              <span
+                aria-hidden="true"
+                className={`absolute inset-y-3 md:inset-y-4 right-0 w-0.5 rounded-full bg-tab-active-border transition-all duration-500 ${
+                  isActive ? "scale-y-100" : "scale-y-0"
+                }`}
+              />
+            )}
           </button>
         );
       })}
