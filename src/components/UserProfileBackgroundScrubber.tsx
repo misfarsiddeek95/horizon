@@ -144,7 +144,7 @@ export default function UserProfileBackgroundScrubber() {
         className="absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(28, 94, 112, 0.5), rgba(0, 0, 0, 0.5))",
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5))",
         }}
       />
     </div>

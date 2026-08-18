@@ -8,13 +8,7 @@ interface UserProfileTabsV2Props {
   onTabChange: (tabId: TabId) => void;
 }
 
-const TAB_GIFS: Record<TabId, string> = {
-  shareholders: "/icons/user-profile/shareholders.gif",
-  employees: "/icons/user-profile/employees.gif",
-  customers: "/icons/user-profile/customers.gif",
-  suppliers: "/icons/user-profile/suppliers.gif",
-  generalUser: "/icons/user-profile/general_user.gif",
-};
+const TAB_GIF = "/icons/user-profile/tab_icons.gif";
 
 export default function UserProfileTabsV2({
   tabs,
@@ -86,7 +80,7 @@ export default function UserProfileTabsV2({
             }`}
           >
             <Image
-              src={TAB_GIFS[tab.id]}
+              src={TAB_GIF}
               alt=""
               aria-hidden="true"
               unoptimized
