@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { PROFILE_TABS, type TabId } from "@/data/userProfiles";
+import { PROFILE_TABS, type TabId, type ProfileTab } from "@/data/userProfiles";
 import UserProfileBackgroundScrubber from "@/components/UserProfileBackgroundScrubber";
 import InfiniteScrollWrapper from "@/components/InfiniteScrollWrapper";
 import UserProfileTabsV2 from "./UserProfileTabsV2";
@@ -42,7 +42,7 @@ const ALL_SCENES = [
   { id: "scene-strategy", label: "Strategy" },
 ];
 
-function getScenesForTab(tab: ReturnType<typeof PROFILE_TABS[number]>) {
+function getScenesForTab(tab: ProfileTab) {
   return ALL_SCENES.filter(({ id }) => {
     if (id === "scene-leadership") return !!tab.message;
     if (id === "scene-leadership-governance") return !!tab.governance;
