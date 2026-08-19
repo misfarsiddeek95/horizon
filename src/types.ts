@@ -85,6 +85,7 @@ export interface GameState {
   categoryCounts: Record<Category, number>;
   earnedBadges: Record<Category, boolean>;
   timerRemaining: number;
+  timerDeadline: number;
   gridWidth: number;
   gridHeight: number;
   isPaused: boolean;
@@ -112,6 +113,7 @@ export interface SavedGameState {
   categoryCounts: Record<Category, number>;
   earnedBadges: Record<Category, boolean>;
   timerRemaining: number;
+  timerDeadline: number;
   activeIndex: number | null;
   gridWidth: number;
   gridHeight: number;

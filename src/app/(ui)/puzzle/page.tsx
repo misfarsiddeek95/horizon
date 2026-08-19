@@ -35,7 +35,7 @@ function PuzzleGame() {
     if (activeQ) {
       dispatch({ type: 'USE_AI_ASSIST', payload: { questionId: activeQ.question.id } });
     }
-    window.open('/chat-help', '_blank', 'noopener,noreferrer');
+    window.location.href = '/chat-help';
   }
 
   const activeBadgeId = state.badgeQueue[0] ?? null;

@@ -101,6 +101,7 @@ const initialState: GameState = {
   categoryCounts: { ...categoryDefaults },
   earnedBadges: { ...badgeDefaults },
   timerRemaining: 60,
+  timerDeadline: 0,
   gridWidth: 0,
   gridHeight: 0,
   isPaused: false,
@@ -128,6 +129,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         categoryCounts: { ...categoryDefaults },
         earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
+        timerDeadline: 0,
         aiAssistedQuestions: [],
         answerHistory: [],
         badgeQueue: [],
@@ -148,6 +150,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         categoryCounts: { ...categoryDefaults },
         earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
+        timerDeadline: 0,
         gridWidth: 0,
         gridHeight: 0,
         isPaused: false,
@@ -169,11 +172,13 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         status: i === idx ? ("active" as const) : q.status,
       }));
 
+      const timeLimit = state.questions[idx].question.timeLimit;
       return {
         ...state,
         activeIndex: idx,
         questions,
-        timerRemaining: state.questions[idx].question.timeLimit,
+        timerRemaining: timeLimit,
+        timerDeadline: Date.now() + timeLimit * 1000,
       };
     }
 
@@ -304,13 +309,14 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         answerHistory: [...state.answerHistory, answerRecord],
         phase: allDone ? "finished" : "playing",
         timerRemaining: 60,
+        timerDeadline: 0,
       };
     }
 
     case "TICK_TIMER": {
       if (state.activeIndex === null) return state;
       if (state.isPaused) return state;
-      const next = state.timerRemaining - 1;
+      const next = Math.max(0, Math.ceil((state.timerDeadline - Date.now()) / 1000));
       if (next <= 0) {
         const timeoutActiveQ = state.questions[state.activeIndex];
         const timeoutRecord: AnswerRecord = {
@@ -337,6 +343,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           answerHistory: [...state.answerHistory, timeoutRecord],
           phase: allDone ? "finished" : "playing",
           timerRemaining: 0,
+          timerDeadline: 0,
           isPaused: false,
         };
       }
@@ -354,6 +361,10 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case "RESTORE_GAME": {
+      const restoredDeadline = action.payload.timerDeadline ?? 0;
+      const restoredRemaining = restoredDeadline > 0
+        ? Math.max(0, Math.ceil((restoredDeadline - Date.now()) / 1000))
+        : action.payload.timerRemaining;
       return {
         ...state,
         phase: "playing",
@@ -365,7 +376,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         score: action.payload.score,
         categoryCounts: action.payload.categoryCounts,
         earnedBadges: action.payload.earnedBadges ?? { ...badgeDefaults },
-        timerRemaining: action.payload.timerRemaining,
+        timerRemaining: restoredRemaining,
+        timerDeadline: restoredDeadline,
         activeIndex: action.payload.activeIndex,
         gridWidth: action.payload.gridWidth,
         gridHeight: action.payload.gridHeight,
@@ -390,6 +402,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         categoryCounts: { ...categoryDefaults },
         earnedBadges: { ...badgeDefaults },
         timerRemaining: 60,
+        timerDeadline: 0,
         isPaused: false,
         aiAssistedQuestions: [],
         answerHistory: [],
@@ -524,6 +537,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
         categoryCounts: state.categoryCounts,
         earnedBadges: state.earnedBadges,
         timerRemaining: state.timerRemaining,
+        timerDeadline: state.timerDeadline,
         activeIndex: state.activeIndex,
         gridWidth: state.gridWidth,
         gridHeight: state.gridHeight,
@@ -546,6 +560,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     state.categoryCounts,
     state.earnedBadges,
     state.timerRemaining,
+    state.timerDeadline,
     state.activeIndex,
     state.gridWidth,
     state.gridHeight,
@@ -554,20 +569,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     state.elapsedSeconds,
   ]);
 
-  useEffect(() => {
-    if (state.phase !== "playing") return;
 
-    function handleVisibilityChange() {
-      if (document.hidden) {
-        dispatch({ type: "PAUSE_GAME" });
-      }
-    }
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [state.phase]);
 
   const sessionRef = useRef(state.session);
 
