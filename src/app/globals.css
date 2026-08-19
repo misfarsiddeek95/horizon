@@ -64,3 +64,262 @@
 .animate-sun-glow {
   animation: sun-glow 4s ease-in-out infinite;
 }
+
+@utility hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility heading-gradient {
+  background: linear-gradient(40deg, var(--color-heading-start), var(--color-heading-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility glass-card {
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--shadow-glass-panel);
+  backdrop-filter: blur(2xl);
+  -webkit-backdrop-filter: blur(2xl);
+}
+
+@utility glass-card-hover {
+  transition: all 0.5s ease-out;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(30, 41, 59, 0.7);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-glass-hover);
+  }
+}
+
+@keyframes user-profile-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-user-profile-in {
+  animation: user-profile-in 0.5s ease-out both;
+}
+
+@keyframes user-profile-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-user-profile-fade-up {
+  animation: user-profile-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes metric-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.metric-card-enter {
+  animation: metric-card-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes user-profile-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-user-profile-float {
+  animation: user-profile-float 6s ease-in-out infinite;
+}
+
+@keyframes user-profile-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-user-profile-grow {
+  animation: user-profile-grow 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left;
+}
+
+/* --- Expandable Text — Slow Height Reveal --- */
+@utility expanding-text {
+  overflow: hidden;
+  transition: max-height 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 8s linear infinite;
+}
+
+@keyframes portrait-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-portrait-float {
+  animation: portrait-float 6s ease-in-out infinite;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* --- Persona Tab Spotlight Effect --- */
+.persona-spotlight {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.persona-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(
+    280px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(183, 235, 248, 0.13),
+    rgba(183, 235, 248, 0.035) 38%,
+    transparent 72%
+  );
+  transition: opacity 0.25s ease;
+}
+
+.persona-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* --- Global Cursor Aura Effect --- */
+.cursor-aura {
+  background: radial-gradient(
+    600px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    var(--color-aura-center) 0%,
+    var(--color-aura-mid) 34%,
+    rgba(3, 105, 132, 0) 70%
+  );
+}
+
+/* --- METRIC CARD — SUPER POP BORDER GLINT --- */
+@supports (-webkit-mask-composite: xor) {
+  .super-pop-card {
+    will-change: transform;
+  }
+
+  .super-pop-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      112deg,
+      rgba(199, 237, 246, 0.12) 0%,
+      rgba(199, 237, 246, 0.28) 28%,
+      rgba(199, 237, 246, 0.92) 47%,
+      rgba(184, 214, 92, 0.68) 56%,
+      rgba(199, 237, 246, 0.18) 68%,
+      rgba(199, 237, 246, 0.08) 100%
+    );
+    background-size: 260% 100%;
+    background-position: 120% 0;
+    -webkit-mask: linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform: inherit;
+  }
+
+  .super-pop-card:hover::after {
+    opacity: 1;
+    animation: metricBorderGlint 1.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes metricBorderGlint {
+  from {
+    background-position: 120% 0;
+    opacity: 0.45;
+  }
+  45% {
+    opacity: 1;
+  }
+  to {
+    background-position: -120% 0;
+    opacity: 0.62;
+  }
+}

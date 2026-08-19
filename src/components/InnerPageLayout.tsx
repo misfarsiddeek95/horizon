@@ -98,13 +98,13 @@ export default function InnerPageLayout({
         />
 
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-30 transform-gpu backface-hidden translate-z-0"
           style={{ filter: "url(#horizon-texture)" }}
         />
 
         <div className="absolute bottom-[36%] left-1/2 -translate-x-1/2">
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] lg:w-[360px] lg:h-[360px] rounded-full opacity-50"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] lg:w-[360px] lg:h-[360px] rounded-full opacity-50 transform-gpu backface-hidden translate-z-0"
             style={{
               background: "radial-gradient(circle, rgba(255,180,60,0.8) 0%, rgba(255,140,40,0.4) 40%, transparent 70%)",
               filter: "blur(40px)",
