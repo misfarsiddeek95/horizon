@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { DownloadLink } from "@/data/userProfiles";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import DownloadButtonV2 from "./DownloadButtonV2";
@@ -26,17 +27,29 @@ export default function LeadershipSectionV2({
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-      <h2 data-animate className={HEADING_GRADIENT + " mb-6"}>
-        {governance.title}
-      </h2>
-      <p
+      <div
         data-animate
-        className="text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md max-w-4xl"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full items-stretch"
       >
-        {governance.text}
-      </p>
-      <div data-animate className="mt-6 md:mt-8">
-        <DownloadButtonV2 download={governance.download} />
+        <div className="flex flex-col justify-center w-full h-full">
+          <h2 className={HEADING_GRADIENT + " mb-6"}>{governance.title}</h2>
+          <p className="text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md">
+            {governance.text}
+          </p>
+          <div className="mt-6 md:mt-8">
+            <DownloadButtonV2 download={governance.download} />
+          </div>
+        </div>
+
+        <div className="relative w-full h-full min-h-96 md:min-h-full rounded-2xl overflow-hidden">
+          <Image
+            src="/images/placeholder_one_on_one.png"
+            alt={governance.title}
+            fill
+            className="object-fill w-full h-full rounded-3xl!"
+            priority
+          />
+        </div>
       </div>
     </section>
   );
