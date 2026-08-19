@@ -2,8 +2,8 @@ import type { Category } from '@/types';
 import { questionPool } from './questions';
 
 export const CONFIG = {
-  MAX_TOTAL_QUESTIONS: 15,
-  QUESTIONS_PER_CATEGORY: 3,
+  MAX_TOTAL_QUESTIONS: 10,
+  QUESTIONS_PER_CATEGORY: 2,
   EXCLUDED_CATEGORIES: [] as string[],
   BASE_POINTS_PER_QUESTION: 10,
   TIME_BONUS_MULTIPLIER: 5,

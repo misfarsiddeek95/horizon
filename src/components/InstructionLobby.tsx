@@ -9,6 +9,7 @@ import {
   Cog8ToothIcon,
 } from "@heroicons/react/24/outline";
 import { usePuzzle } from "@/context/PuzzleContext";
+import { CONFIG, getAllCategories } from "@/data/config";
 // import MuteToggle from "@/components/MuteToggle";
 import ExitButton from "@/components/ExitButton";
 
@@ -66,8 +67,8 @@ export default function InstructionLobby() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <LobbyCard icon={<Squares2X2Icon className="h-5 w-5" />} title="Board & Cards">
             <p>
-              There are <strong className="text-white">5 categories</strong> with{" "}
-              <strong className="text-white">3 questions each</strong> — 15 questions
+              There are <strong className="text-white">{getAllCategories().length} categories</strong> with{" "}
+              <strong className="text-white">{CONFIG.QUESTIONS_PER_CATEGORY} questions each</strong> — {CONFIG.MAX_TOTAL_QUESTIONS} questions
               total. Click a question card to select it and answer in any order.
             </p>
           </LobbyCard>
@@ -86,8 +87,8 @@ export default function InstructionLobby() {
 
           <LobbyCard icon={<TrophyIcon className="h-5 w-5" />} title="Badges">
             <p>
-              Answer all <strong className="text-white">3 questions in a category</strong>{" "}
-              to earn a <strong className="text-white">Certification Badge</strong>. Play
+              Answer all <strong className="text-white">{CONFIG.QUESTIONS_PER_CATEGORY} questions in a category</strong>{" "}
+              to earn a <strong className="text-white">Category Expert Badge</strong>. Play
               perfectly or quickly to unlock special{" "}
               <strong className="text-white">hidden achievements</strong>.
             </p>
