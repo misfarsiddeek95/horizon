@@ -259,9 +259,17 @@ export default function UserProfilePageV2() {
             <button
               key={id}
               onClick={() => {
-                document
-                  .getElementById(id)
-                  ?.scrollIntoView({ behavior: "smooth", block: "center" });
+                const el = document.getElementById(id);
+                if (!el) return;
+                const targetY =
+                  el.getBoundingClientRect().top +
+                  window.scrollY -
+                  window.innerHeight / 2;
+                gsap.to(window, {
+                  scrollTo: { y: targetY, autoKill: false },
+                  duration: 1.2,
+                  ease: "power2.inOut",
+                });
               }}
               className="group relative flex items-center justify-center"
               aria-label={`Go to ${label}`}
