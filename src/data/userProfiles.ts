@@ -153,7 +153,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     },
     strategyImage: {
       title: "Investor Ratios",
-      image: "/images/innerpage/user-profile/investor_ratio.jpg",
+      image: "/images/placeholder_landscape_image.png",
       caption:
         "A clear view of the financial ratios that define shareholder value.",
     },
@@ -201,7 +201,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     },
     strategyImage: {
       title: "Our HR Strategy",
-      image: "/images/innerpage/user-profile/our_hr_strategy.jpg",
+      image: "/images/placeholder_landscape_image.png",
       caption: "Investing in our people to fuel innovation and shared growth.",
     },
   },
@@ -249,8 +249,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     },
     strategyImage: {
       title: "Our Customer Value Proposition",
-      image:
-        "/images/innerpage/user-profile/our_customer_value_proposition.jpg",
+      image: "/images/placeholder_landscape_image.png",
       caption: "What we deliver, and why our customers stay with us.",
     },
   },
@@ -314,8 +313,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     },
     strategyImage: {
       title: "Our Supplier Value Proposition",
-      image:
-        "/images/innerpage/user-profile/our_supplier_value_proposition.jpg",
+      image: "/images/placeholder_landscape_image.png",
       caption:
         "Building resilient, responsible supply chains that move as one.",
     },
@@ -357,7 +355,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     },
     strategyImage: {
       title: "Our Strategic Levers for Sustainable Growth",
-      image: "/images/innerpage/user-profile/our_strategic_level_growth.jpg",
+      image: "/images/placeholder_landscape_image.png",
       caption:
         "The levers powering Haycarb's sustainable global value creation.",
     },

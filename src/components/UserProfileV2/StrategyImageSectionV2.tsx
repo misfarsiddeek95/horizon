@@ -40,8 +40,8 @@ export default function StrategyImageSectionV2({
             <Image
               src={image}
               alt={title}
-              width={3001}
-              height={2232}
+              width={1448}
+              height={1086}
               sizes="(min-width: 1024px) 100vw, 100vw"
               className="w-full h-auto object-contain"
             />
