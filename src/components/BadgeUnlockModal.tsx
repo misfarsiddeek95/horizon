@@ -146,7 +146,7 @@ export default function BadgeUnlockModal({
           </div>
         </div>
 
-        <p className="text-xs font-bold uppercase tracking-widest text-amber-500">
+        <p className="font-sans text-xs font-bold uppercase tracking-widest text-amber-500">
           Badge Unlocked
         </p>
         <h2 className="font-heading text-2xl font-bold text-content-primary">

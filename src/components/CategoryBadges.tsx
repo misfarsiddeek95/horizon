@@ -28,7 +28,7 @@ export default function CategoryBadges() {
               <div className="flex flex-col">
                 <span className="text-yellow-800">{cat}</span>
                 <span className="text-[10px] font-bold text-yellow-600 tracking-wider uppercase">
-                  Certified
+                  Expert
                 </span>
               </div>
             </div>

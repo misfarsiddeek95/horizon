@@ -28,7 +28,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
 
   function handleCopy() {
     const earned = CATEGORY_ORDER.filter((c) => earnedBadges?.[c]).map(
-      (c) => `  \u2705 ${c} Certified`,
+      (c) => `  \u2705 ${c} Expert`,
     );
     const text = [
       `Crossword Puzzle Results`,
@@ -37,7 +37,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
       ...CATEGORY_ORDER.map(
         (c) => `  ${c}: ${categoryCounts[c] ?? 0} completed`,
       ),
-      ...(earned.length > 0 ? ['', 'Certifications Earned:', ...earned] : []),
+      ...(earned.length > 0 ? ['', 'Expertise Earned:', ...earned] : []),
       '',
       'Leaderboard:',
       ...leaderboard.slice(0, 5).map(

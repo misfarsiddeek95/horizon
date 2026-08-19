@@ -18,8 +18,8 @@ const categoryDefinitions: BadgeDefinition[] = getAllCategories().map(
   (category) => ({
     id: getCategoryBadgeId(category),
     type: 'category' as const,
-    title: `${category} Certified`,
-    description: `Correctly answered every question in ${category}.`,
+    title: `${category} Expert`,
+    description: `You've successfully answered every question in this challenge.`,
   })
 );
 
