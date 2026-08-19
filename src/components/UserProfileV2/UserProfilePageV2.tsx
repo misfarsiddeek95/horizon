@@ -27,7 +27,7 @@ const HEADING_GRADIENT =
   "font-heading font-medium heading-gradient drop-shadow-2xl";
 
 const SCENE_SECTION =
-  "relative w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
+  "relative w-full flex flex-col items-center justify-center py-8 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
 
 const GLASS_PANEL =
   "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
@@ -59,6 +59,15 @@ export default function UserProfilePageV2() {
   const tab = PROFILE_TABS.find((t) => t.id === activeTab) ?? PROFILE_TABS[0];
 
   const isGeneralUser = activeTab === "generalUser";
+
+  const handleTabChange = useCallback((tabId: TabId) => {
+    setActiveTab(tabId);
+    const nextTab = PROFILE_TABS.find((t) => t.id === tabId) ?? PROFILE_TABS[0];
+    const scenes = getScenesForTab(nextTab);
+    if (scenes.length > 0) {
+      setActiveScene(scenes[0].id);
+    }
+  }, []);
 
   const animateScene = useCallback((container: Element) => {
     const targets = container.querySelectorAll("[data-animate]");
@@ -149,27 +158,30 @@ export default function UserProfilePageV2() {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, [activeTab]);
-
-  useEffect(() => {
-    const scenes = getScenesForTab(tab);
-    if (scenes.length > 0) {
-      setActiveScene(scenes[0].id);
-    }
-  }, [activeTab]);
+  }, [activeTab, tab]);
 
   useEffect(() => {
     const handlePointerMove = (e: MouseEvent) => {
-      document.documentElement.style.setProperty("--pointer-x", `${e.clientX}px`);
-      document.documentElement.style.setProperty("--pointer-y", `${e.clientY}px`);
+      document.documentElement.style.setProperty(
+        "--pointer-x",
+        `${e.clientX}px`
+      );
+      document.documentElement.style.setProperty(
+        "--pointer-y",
+        `${e.clientY}px`
+      );
     };
 
-    document.addEventListener("mousemove", handlePointerMove, { passive: true });
+    document.addEventListener("mousemove", handlePointerMove, {
+      passive: true,
+    });
     return () => document.removeEventListener("mousemove", handlePointerMove);
   }, []);
 
   useEffect(() => {
-    const revealSections = gsap.utils.toArray<HTMLElement>(".blur-reveal-section");
+    const revealSections = gsap.utils.toArray<HTMLElement>(
+      ".blur-reveal-section"
+    );
 
     const ctx = gsap.context(() => {
       revealSections.forEach((section) => {
@@ -212,7 +224,7 @@ export default function UserProfilePageV2() {
       {/* CURSOR AURA */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[90] cursor-aura mix-blend-screen"
+        className="pointer-events-none fixed inset-0 z-90 cursor-aura mix-blend-screen"
       />
 
       {/* LEFT SIDEBAR - Desktop */}
@@ -220,7 +232,7 @@ export default function UserProfilePageV2() {
         <UserProfileTabsV2
           tabs={TAB_LABELS}
           activeTab={activeTab}
-          onTabChange={setActiveTab}
+          onTabChange={handleTabChange}
           vertical
         />
       </aside>
@@ -231,14 +243,14 @@ export default function UserProfilePageV2() {
           <UserProfileTabsV2
             tabs={TAB_LABELS}
             activeTab={activeTab}
-            onTabChange={setActiveTab}
+            onTabChange={handleTabChange}
           />
         </div>
       </div>
 
       {/* VERTICAL SCENE NAVIGATION */}
       <nav
-        className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-[100] flex-col items-center gap-5 pointer-events-auto hidden lg:flex"
+        className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-100 flex-col items-center gap-5 pointer-events-auto hidden lg:flex"
         aria-label="Scene navigation"
       >
         {getScenesForTab(tab).map(({ id, label }) => {
@@ -247,7 +259,9 @@ export default function UserProfilePageV2() {
             <button
               key={id}
               onClick={() => {
-                document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
+                document
+                  .getElementById(id)
+                  ?.scrollIntoView({ behavior: "smooth", block: "center" });
               }}
               className="group relative flex items-center justify-center"
               aria-label={`Go to ${label}`}
@@ -271,15 +285,18 @@ export default function UserProfilePageV2() {
       <div className="relative z-10 w-full min-w-0 lg:ml-32 xl:ml-40">
         <InfiniteScrollWrapper>
           <div className="flex flex-col w-full original-content-block relative">
-
             {/* SCENE 1: Hero / Intro */}
-            <section id="scene-hero" className="relative w-full min-h-screen flex flex-col items-center justify-center pt-[180px] pb-32 px-4 md:px-8 z-10 scroll-mt-28" data-scene>
+            <section
+              id="scene-hero"
+              className="relative w-full min-h-screen flex flex-col items-center justify-center pt-45 pb-32 px-4 md:px-8 z-10 scroll-mt-28"
+              data-scene
+            >
               <div className="flex flex-col items-center text-center gap-6 max-w-4xl">
                 <h1
                   data-animate
                   className={`${HEADING_GRADIENT} text-5xl md:text-6xl lg:text-8xl`}
                 >
-                   {tab.heroTitle}
+                  {tab.heroTitle}
                 </h1>
                 <p
                   data-animate
@@ -301,15 +318,22 @@ export default function UserProfilePageV2() {
                 )}
                 <button
                   onClick={() => {
-                    const target = document.getElementById('scene-metrics');
+                    const target = document.getElementById("scene-metrics");
                     if (target) {
-                      const y = target.getBoundingClientRect().top + window.scrollY;
-                      gsap.to(window, { scrollTo: { y, autoKill: false }, duration: 1.5, ease: "power2.inOut" });
+                      const y =
+                        target.getBoundingClientRect().top + window.scrollY;
+                      gsap.to(window, {
+                        scrollTo: { y, autoKill: false },
+                        duration: 1.5,
+                        ease: "power2.inOut",
+                      });
                     }
                   }}
                   className="mt-16 flex flex-col items-center gap-3 text-white/60 hover:text-white transition-colors duration-300 group cursor-pointer"
                 >
-                  <span className="text-xs font-light tracking-[0.2em] uppercase">Scroll Down</span>
+                  <span className="text-xs font-light tracking-[0.2em] uppercase">
+                    Scroll Down
+                  </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -322,7 +346,7 @@ export default function UserProfilePageV2() {
                     strokeLinejoin="round"
                     className="w-6 h-6 animate-bounce"
                   >
-                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                    <path d="M12 5v14M19 12l-7 7-7-7" />
                   </svg>
                 </button>
               </div>
@@ -340,7 +364,11 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 3: Chairman / MD Message */}
             {tab.message && (
-              <section id="scene-leadership" className={SCENE_SECTION} data-scene>
+              <section
+                id="scene-leadership"
+                className={SCENE_SECTION}
+                data-scene
+              >
                 <ChairmanSectionV2
                   title={tab.message.title}
                   text={tab.message.text}
@@ -350,14 +378,14 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 4: Key Features */}
             <section id="scene-features" className={SCENE_SECTION} data-scene>
-              <div data-parallax className={GLASS_PANEL}>
+              <div className={GLASS_PANEL}>
                 <KeyFeaturesBannerV2 />
               </div>
             </section>
 
             {/* SCENE 5: Highlights & Strategy */}
             <section id="scene-highlights" className={SCENE_SECTION} data-scene>
-              <div data-parallax className={GLASS_PANEL}>
+              <div className={GLASS_PANEL}>
                 <HighlightsStrategySectionV2
                   highlights={tab.highlights}
                   strategy={tab.strategy}
@@ -367,8 +395,12 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 6: Leadership & Governance */}
             {tab.governance && (
-              <section id="scene-leadership-governance" className={SCENE_SECTION} data-scene>
-                <div data-parallax className={GLASS_PANEL}>
+              <section
+                id="scene-leadership-governance"
+                className={SCENE_SECTION}
+                data-scene
+              >
+                <div className={GLASS_PANEL}>
                   <LeadershipSectionV2 governance={tab.governance} />
                 </div>
               </section>
@@ -377,7 +409,7 @@ export default function UserProfilePageV2() {
             {/* SCENE 7: Strategy Image */}
             {tab.strategyImage && (
               <section id="scene-strategy" className={SCENE_SECTION} data-scene>
-                <div data-parallax className={GLASS_PANEL}>
+                <div className={GLASS_PANEL}>
                   <StrategyImageSectionV2
                     title={tab.strategyImage.title}
                     image={tab.strategyImage.image}
@@ -387,7 +419,6 @@ export default function UserProfilePageV2() {
                 </div>
               </section>
             )}
-
           </div>
         </InfiniteScrollWrapper>
       </div>
