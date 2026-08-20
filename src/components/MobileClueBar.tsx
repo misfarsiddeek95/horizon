@@ -4,11 +4,21 @@ import { usePuzzle } from '@/context/PuzzleContext';
 
 export default function MobileClueBar() {
   const { state, dispatch } = usePuzzle();
-  const { activeIndex, questions, wordPlacements, isPaused, phase } = state;
+  const { activeIndex, questions, wordPlacements, isPaused, phase, answerHistory } = state;
 
   const activeQ = activeIndex !== null ? questions[activeIndex] : null;
   const placement = activeQ
     ? wordPlacements.find((p) => p.questionId === activeQ.question.id) ?? null
+    : null;
+
+  const lastRecord = answerHistory[answerHistory.length - 1];
+  const showReveal =
+    !activeQ &&
+    lastRecord &&
+    (lastRecord.status === 'failed' || lastRecord.status === 'timeout');
+
+  const revealQuestion = showReveal
+    ? questions.find((q) => q.question.id === lastRecord.questionId)
     : null;
 
   const pendingIndices = questions
@@ -79,6 +89,18 @@ export default function MobileClueBar() {
                 {activeClue.text}
               </span>
             </>
+          ) : showReveal && revealQuestion ? (
+            <div className="w-full px-2 py-2 bg-red-500/20 border border-red-400/50 rounded flex flex-col items-center gap-1">
+              <span className="text-red-200 text-[10px] font-medium">
+                {lastRecord.status === 'timeout' ? "Time's Up!" : 'Incorrect!'}
+              </span>
+              <span className="text-white text-xs">
+                Correct Answer:{' '}
+                <span className="font-bold uppercase tracking-wider">
+                  {revealQuestion.question.word}
+                </span>
+              </span>
+            </div>
           ) : (
             <span className="text-white/70 text-sm">Tap a grid square to select a question</span>
           )}

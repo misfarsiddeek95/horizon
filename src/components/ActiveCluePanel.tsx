@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { usePuzzle } from "@/context/PuzzleContext";
 
 export default function ActiveCluePanel() {
@@ -40,11 +41,34 @@ export default function ActiveCluePanel() {
   }
 
   if (!activeQ) {
+    const lastRecord = state.answerHistory[state.answerHistory.length - 1];
+    const showReveal =
+      lastRecord && (lastRecord.status === "failed" || lastRecord.status === "timeout");
+
     return (
-      <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 text-center shadow-sm mb-4">
-        <p className="text-xl sm:text-2xl font-medium text-gray-500">
-          Select a question to begin
-        </p>
+      <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4">
+        {showReveal ? (
+          <div className="p-3 bg-red-50 border border-red-100 rounded-lg flex items-start gap-2">
+            <ExclamationCircleIcon className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+            <div className="text-sm text-red-800">
+              <p className="font-semibold mb-1">
+                {lastRecord.status === "timeout" ? "Time's Up!" : "Incorrect!"}
+              </p>
+              <p>
+                The correct answer is:{" "}
+                <span className="font-bold uppercase tracking-wider">
+                  {lastRecord.questionId &&
+                    questions.find((q) => q.question.id === lastRecord.questionId)
+                      ?.question.word}
+                </span>
+              </p>
+            </div>
+          </div>
+        ) : (
+          <p className="text-xl sm:text-2xl font-medium text-gray-500 text-center">
+            Select a question to begin
+          </p>
+        )}
       </div>
     );
   }

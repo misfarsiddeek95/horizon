@@ -78,6 +78,12 @@ export default function QuestionDeck() {
                 {cfg.icon} {cfg.label}
               </span>
             </div>
+
+            {(qs.status === 'failed' || qs.status === 'timeout') && (
+              <div className="mt-3 inline-block px-2.5 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded border border-slate-200">
+                Correct Answer: <span className="font-bold text-slate-800 uppercase">{qs.question.word}</span>
+              </div>
+            )}
           </button>
         );
       })}
