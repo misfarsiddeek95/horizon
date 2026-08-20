@@ -5,7 +5,7 @@ import { CheckBadgeIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import type { LeaderboardEntry } from '@/types';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { getLeaderboard } from '@/data/leaderboard';
-import { getAllCategories } from '@/data/config';
+import { CONFIG, getAllCategories } from '@/data/config';
 import ShareResults from '@/components/ShareResults';
 
 const CATEGORY_ORDER = getAllCategories();
@@ -185,6 +185,8 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
             score={score}
             time={formatTime(elapsedSeconds)}
             badges={earnedCount}
+            correct={questions.filter((q) => q.status === 'completed').length}
+            total={CONFIG.MAX_TOTAL_QUESTIONS}
           />
         </div>
       </div>

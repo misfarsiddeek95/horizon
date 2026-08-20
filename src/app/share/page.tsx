@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
-import { CONFIG } from '@/data/config';
 
 export const dynamic = 'force-dynamic';
 
 type Props = {
-  searchParams: Promise<{ name?: string; score?: string; time?: string; badges?: string }>;
+  searchParams: Promise<{ name?: string; score?: string; time?: string; badges?: string; correct?: string; total?: string }>;
 };
 
 async function getOrigin() {
@@ -22,11 +21,13 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const score = sp.score || '0';
   const time = sp.time || '0:00';
   const badges = sp.badges || '0';
+  const correct = sp.correct || '0';
+  const total = sp.total || '0';
 
   const imageUrl = `${await getOrigin()}/api/og?name=${encodeURIComponent(name)}&score=${encodeURIComponent(score)}&time=${encodeURIComponent(time)}&badges=${encodeURIComponent(badges)}`;
 
-  const title = `${name} scored ${score}/${CONFIG.MAX_TOTAL_QUESTIONS} in the Haycarb Crossword Challenge!`;
-  const description = `${name} completed the puzzle in ${time} and earned ${badges} category badges. Can you beat this score?`;
+  const title = `${name} scored ${score} points in the Haycarb Crossword Challenge!`;
+  const description = `${name} got ${correct} of ${total} correct in ${time} and earned ${badges} category badges. Can you beat this score?`;
 
   return {
     title,
@@ -52,13 +53,15 @@ export default async function SharePage({ searchParams }: Props) {
   const score = sp.score || '0';
   const time = sp.time || '0:00';
   const badges = sp.badges || '0';
+  const correct = sp.correct || '0';
+  const total = sp.total || '0';
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#0d1b2a] via-[#147385] to-[#0d1b2a] px-4 py-12">
       <div className="w-full max-w-xl rounded-ui-card border border-white/20 bg-surface-glass p-8 shadow-2xl backdrop-blur-lg sm:p-12">
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-yellow-400">
-            Haycarb FY2025/26
+            HAYCARB ANNUAL REPORT 2025/26
           </p>
           <h1 className="mt-2 font-heading text-3xl font-bold text-content-inverse sm:text-4xl">
             Crossword Challenge
@@ -66,12 +69,11 @@ export default async function SharePage({ searchParams }: Props) {
         </div>
 
         <div className="mt-10 space-y-3 text-center">
-          <p className="text-lg text-white/80">
-            Check out <span className="font-bold text-white">{name}</span>&apos;s score!
-          </p>
           <p className="text-6xl font-extrabold text-yellow-400">
-            {score}
-            <span className="text-2xl text-white/70"> / {CONFIG.MAX_TOTAL_QUESTIONS}</span>
+            {score} Points
+          </p>
+          <p className="text-lg font-medium text-white/80">
+            {correct} of {total} Correct
           </p>
           <p className="text-sm font-medium text-white/60">
             Completed in {time}
@@ -83,11 +85,14 @@ export default async function SharePage({ searchParams }: Props) {
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-4">
+          <p className="text-sm font-semibold text-white/70">
+            Think you can beat this score?
+          </p>
           <Link
             href="/puzzle"
             className="w-full rounded-ui-button bg-yellow-400 px-6 py-4 text-center text-lg font-bold text-slate-900 shadow-lg transition-colors hover:bg-yellow-300 sm:w-auto sm:px-10"
           >
-            Play the Game
+            Play the Challenge
           </Link>
           <Link
             href="/leaderboard"

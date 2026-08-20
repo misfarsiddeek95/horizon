@@ -5,11 +5,13 @@ interface ShareResultsProps {
   score: number;
   time: string;
   badges: number;
+  correct: number;
+  total: number;
 }
 
-export default function ShareResults({ name, score, time, badges }: ShareResultsProps) {
+export default function ShareResults({ name, score, time, badges, correct, total }: ShareResultsProps) {
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
-  const shareUrl = `${origin}/share?name=${encodeURIComponent(name)}&score=${encodeURIComponent(score)}&time=${encodeURIComponent(time)}&badges=${encodeURIComponent(badges)}`;
+  const shareUrl = `${origin}/share?name=${encodeURIComponent(name)}&score=${encodeURIComponent(score)}&time=${encodeURIComponent(time)}&badges=${encodeURIComponent(badges)}&correct=${encodeURIComponent(correct)}&total=${encodeURIComponent(total)}`;
 
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
