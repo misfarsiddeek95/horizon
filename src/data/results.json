@@ -1596,5 +1596,130 @@
         "totalPointsEarned": 13
       }
     ]
+  },
+  {
+    "name": "Yahya",
+    "email": "yahya@arbolsoft.com",
+    "score": 103,
+    "date": "2026-08-20T19:06:44.922Z",
+    "earnedBadges": {
+      "Company & Identity": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": true,
+      "Sustainability/ESG": false,
+      "Performance & Growth": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "esg-3",
+        "clue": "What environmental resource is the focus of Haycarb's stewardship, recycling and reuse initiatives?",
+        "category": "Sustainability/ESG",
+        "status": "timeout",
+        "timeRemaining": 0,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "comp-6",
+        "clue": "The 2025/26 Annual Report reimagines reporting as an intelligent reporting ______",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 45,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "comp-4",
+        "clue": "What guides Haycarb's journey alongside innovation and sustainability?",
+        "category": "Company & Identity",
+        "status": "completed",
+        "timeRemaining": 44,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "prod-4",
+        "clue": "Which engineering segment extends Haycarb's offering beyond activated carbon products?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 50,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "prod-5",
+        "clue": "Haycarb progressed the development of fine carbon products for ______ grade applications",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 39,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "tech-2",
+        "clue": "Which country is home to Haycarb's progressing greenfield manufacturing expansion?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 36,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "tech-3",
+        "clue": "What organisational capability allows Haycarb to respond effectively to changing markets and operating conditions?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "completed",
+        "timeRemaining": 4,
+        "basePoints": 10,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 10
+      },
+      {
+        "questionId": "esg-1",
+        "clue": "Which assessment approach considers both financial and impact perspectives when identifying priorities?",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 43,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 38,
+        "basePoints": 10,
+        "timeBonus": 3,
+        "aiUsed": false,
+        "totalPointsEarned": 13
+      },
+      {
+        "questionId": "perf-1",
+        "clue": "Haycarb invested Rs. 231 million in ______ and development during FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 48,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      }
+    ]
   }
 ]

@@ -4,6 +4,14 @@ import { TrophyIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { getAllCategories, CATEGORY_COLORS, CONFIG } from '@/data/config';
 
+const CATEGORY_HEX: Record<string, string> = {
+  'Company & Identity': '#3b82f6',
+  'Products & Solutions': '#14b8a6',
+  'Innovation, Technology & Future Growth': '#06b6d4',
+  'Sustainability/ESG': '#22c55e',
+  'Performance & Growth': '#f59e0b',
+};
+
 export default function CategoryBadges() {
   const { state } = usePuzzle();
   const categories = getAllCategories();
@@ -15,19 +23,26 @@ export default function CategoryBadges() {
         const earned = state.earnedBadges?.[cat] ?? false;
         const s = CATEGORY_COLORS[cat];
         const required = CONFIG.QUESTIONS_PER_CATEGORY;
+        const hex = CATEGORY_HEX[cat] ?? '#6b7280';
 
         if (earned) {
           return (
             <div
               key={cat}
-              className="inline-flex items-center gap-2 rounded-full border-2 border-yellow-400 bg-gradient-to-r from-yellow-50 to-amber-50 px-4 py-1.5 text-xs font-semibold shadow-md shadow-yellow-200/50"
+              className="inline-flex items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-md transition-all"
+              style={{
+                backgroundColor: `${hex}15`,
+                borderColor: hex,
+                color: hex,
+                boxShadow: `0 4px 12px ${hex}30`,
+              }}
             >
-              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-gradient-to-br from-yellow-400 to-amber-500 shadow-lg shadow-yellow-300/50 animate-pulse">
+              <div className={`h-8 w-8 rounded-full flex items-center justify-center shadow-lg animate-pulse ${s.full}`}>
                 <CheckBadgeIcon className="h-5 w-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-yellow-800">{cat}</span>
-                <span className="text-[10px] font-bold text-yellow-600 tracking-wider uppercase">
+                <span>{cat}</span>
+                <span className="text-[10px] font-bold tracking-wider uppercase opacity-80">
                   Expert
                 </span>
               </div>
