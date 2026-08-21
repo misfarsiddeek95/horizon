@@ -25,13 +25,13 @@ export default function ExitButton({ variant = "light" }: ExitButtonProps) {
         className={`inline-flex cursor-pointer items-center gap-1.5 rounded-ui-element border px-3 py-2 text-sm font-semibold transition-colors ${styleClass}`}
       >
         <ArrowRightStartOnRectangleIcon className="h-4 w-4" />
-        Exit
+        Logout
       </button>
       <ConfirmDialog
         open={showDialog}
-        title="Exit Game?"
-        message="Are you sure you want to exit? Your session, badges, and current game progress will be permanently deleted."
-        confirmLabel="Exit"
+        title="Logout?"
+        message="Are you sure you want to log out? Please note that only completed game scores and badges will be saved."
+        confirmLabel="Logout"
         cancelLabel="Cancel"
         onConfirm={() => {
           setShowDialog(false);
