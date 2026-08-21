@@ -10,7 +10,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { usePuzzle } from "@/context/PuzzleContext";
 import { CONFIG, getAllCategories } from "@/data/config";
-// import MuteToggle from "@/components/MuteToggle";
 import ExitButton from "@/components/ExitButton";
 
 interface LobbyCardProps {
@@ -47,100 +46,94 @@ function LobbyCard({
 
 export default function InstructionLobby() {
   const { state, startGame } = usePuzzle();
-  const playerName = state.session?.name ?? "Player";
 
   return (
     <div className="min-h-screen bg-brand-main">
       <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-8 sm:py-12">
-        <div className="mb-4 flex justify-end">
-          <ExitButton variant="dark" />
+        <div className="mb-4 flex items-center justify-between">
+          <p className="text-sm text-white/60 hidden sm:block">
+            How well do you know Haycarb's Annual Report 2025/26?
+          </p>
+          <div className="flex items-center gap-3">
+            <ExitButton variant="dark" />
+            <button
+              onClick={startGame}
+              className="cursor-pointer rounded-ui-element bg-accent-main px-5 py-2 text-sm font-bold text-content-inverse shadow-lg transition-all hover:brightness-110 active:scale-95"
+            >
+              Take the Challenge &rarr;
+            </button>
+          </div>
         </div>
         <header className="mb-8 text-center">
           <h1 className="font-heading text-3xl font-bold text-white sm:text-4xl">
-            Ready, {playerName}?
+            Ready for the Challenge?
           </h1>
           <p className="mt-2 text-sm text-white/70 sm:text-base">
-            Everything you need to know before diving into the puzzle.
+            Here's everything you need to know before you get started.
           </p>
         </header>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <LobbyCard icon={<Squares2X2Icon className="h-5 w-5" />} title="Board & Cards">
+          <LobbyCard icon={<Squares2X2Icon className="h-5 w-5" />} title="The Challenge">
             <p>
               There are <strong className="text-white">{getAllCategories().length} categories</strong> with{" "}
               <strong className="text-white">{CONFIG.QUESTIONS_PER_CATEGORY} questions each</strong> — {CONFIG.MAX_TOTAL_QUESTIONS} questions
-              total. Click a question card to select it and answer in any order.
+              in total. Choose any question from the puzzle and answer in any preferred order.
             </p>
           </LobbyCard>
 
           <LobbyCard
             icon={<SparklesIcon className="h-5 w-5" />}
-            title="AI Assist Penalty"
+            title="Need a Hint?"
             highlight
           >
             <p>
-              Stuck? The <strong className="text-white">&quot;Need Help?&quot;</strong> button
-              provides AI assistance, but it costs{" "}
-              <strong className="text-yellow-400">50% of that word&apos;s points</strong>.
+              Stuck in a question? Use <strong className="text-white">&quot;Need Help?&quot;</strong> for
+              AI-powered assistance. Choose wisely. Each time it's used, the{" "}
+              <strong className="text-yellow-400">points available for that question are reduced by 50%</strong>.
             </p>
           </LobbyCard>
 
-          <LobbyCard icon={<TrophyIcon className="h-5 w-5" />} title="Badges">
+          <LobbyCard icon={<TrophyIcon className="h-5 w-5" />} title="Earn Category Badges">
             <p>
-              Answer all <strong className="text-white">{CONFIG.QUESTIONS_PER_CATEGORY} questions in a category</strong>{" "}
-              to earn a <strong className="text-white">Category Expert Badge</strong>. Play
-              perfectly or quickly to unlock special{" "}
-              <strong className="text-white">hidden achievements</strong>.
+              Answer all available questions in each category correctly to earn a{" "}
+              <strong className="text-white">certification badge</strong>. Put your knowledge to the
+              test and try to earn them all!
             </p>
           </LobbyCard>
 
           <LobbyCard
             icon={<ChartBarIcon className="h-5 w-5" />}
-            title="Leaderboard & Scoring"
+            title="Scoring & Leaderboard"
           >
             <p>
-              Correct answers earn points — including a{" "}
-              <strong className="text-white">speed bonus</strong>. The leaderboard tracks
-              the <strong className="text-white">top global scores</strong>.
+              Earn points for every correct answer, with{" "}
+              <strong className="text-white">bonus points for faster answers</strong>. Complete the
+              challenge and see how your score ranks on the leaderboard.
             </p>
           </LobbyCard>
 
           <LobbyCard
             icon={<Cog8ToothIcon className="h-5 w-5" />}
-            title="Game Controls"
+            title="Good to Know"
             wide
           >
             <ul className="list-inside list-disc space-y-2">
               <li>
-                <strong className="text-white">Refresh:</strong> safe — your progress is
-                automatically saved.
+                <strong className="text-white">Refresh:</strong> Your progress is automatically
+                saved, so you can safely refresh the page.
               </li>
               <li>
-                <strong className="text-white">Restart:</strong> wipes all progress and
-                starts a fresh session.
+                <strong className="text-white">Restart:</strong> Start the challenge again from
+                the beginning and clear your current progress.
               </li>
               <li>
-                <strong className="text-white">Speaker icon:</strong> mutes or unmutes
-                the game&apos;s sound effects.
+                <strong className="text-white">Sound:</strong> Use the speaker icon to turn game
+                notifications on or off.
               </li>
             </ul>
           </LobbyCard>
         </div>
-
-        <footer className="mt-10 flex flex-col items-center gap-6">
-          {/* <div className="flex items-center gap-3 rounded-ui-element border border-white/20 bg-surface-glass px-4 py-2 backdrop-blur-lg">
-            <span className="text-sm font-medium text-white/70">
-              Sound effects
-            </span>
-            <MuteToggle variant="dark" />
-          </div> */}
-          <button
-            onClick={startGame}
-            className="cursor-pointer rounded-ui-element bg-accent-main px-14 py-5 font-heading text-2xl font-bold text-content-inverse shadow-[0_0_50px_rgba(245,197,66,0.55)] transition-all hover:brightness-110 active:scale-95"
-          >
-            Start Game
-          </button>
-        </footer>
       </div>
     </div>
   );
