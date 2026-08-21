@@ -26,7 +26,7 @@ export default function MobileActionStrip({ onSubmit, onHelp }: MobileActionStri
     });
   }, [activeQ, placement, gridCells]);
 
-  const showHelp = timerRemaining <= 40 && timerRemaining > 0 && !isPaused;
+  const showHelp = timerRemaining <= 30 && timerRemaining > 0 && !isPaused;
   const canSubmit = allFilled && !isPaused && activeQ?.status === 'active';
   const canBypass = !isPaused && activeQ?.status === 'active';
 

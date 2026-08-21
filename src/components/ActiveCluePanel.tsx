@@ -26,7 +26,7 @@ export default function ActiveCluePanel() {
   }, [activeQ, placement, gridCells]);
 
   const timerRatio = activeQ ? timerRemaining / activeQ.question.timeLimit : 1;
-  const showHelp = timerRemaining <= 40 && timerRemaining > 0 && !state.isPaused;
+  const showHelp = timerRemaining <= 30 && timerRemaining > 0 && !state.isPaused;
   const urgent = timerRemaining <= 10 && timerRemaining > 0;
 
   function handleSubmit() {
