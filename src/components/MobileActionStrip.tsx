@@ -9,7 +9,7 @@ interface MobileActionStripProps {
 }
 
 export default function MobileActionStrip({ onSubmit, onHelp }: MobileActionStripProps) {
-  const { state } = usePuzzle();
+  const { state, dispatch } = usePuzzle();
   const { activeIndex, questions, gridCells, wordPlacements, timerRemaining, isPaused } = state;
 
   const activeQ = activeIndex !== null ? questions[activeIndex] : null;
@@ -28,6 +28,11 @@ export default function MobileActionStrip({ onSubmit, onHelp }: MobileActionStri
 
   const showHelp = timerRemaining <= 40 && timerRemaining > 0 && !isPaused;
   const canSubmit = allFilled && !isPaused && activeQ?.status === 'active';
+  const canBypass = !isPaused && activeQ?.status === 'active';
+
+  function handleBypass() {
+    dispatch({ type: 'BYPASS_QUESTION' });
+  }
 
   return (
     <div className="block lg:hidden w-full bg-white border-t border-slate-200 px-4 pt-4 pb-8 z-50">
@@ -40,6 +45,13 @@ export default function MobileActionStrip({ onSubmit, onHelp }: MobileActionStri
             Need Help?
           </button>
         )}
+        <button
+          onClick={handleBypass}
+          disabled={!canBypass}
+          className="cursor-pointer rounded-ui-element border border-slate-300 px-4 py-3 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 whitespace-nowrap"
+        >
+          Skip
+        </button>
         <button
           onClick={onSubmit}
           disabled={!canSubmit}

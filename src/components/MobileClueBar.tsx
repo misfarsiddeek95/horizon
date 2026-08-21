@@ -23,7 +23,7 @@ export default function MobileClueBar() {
 
   const pendingIndices = questions
     .map((q, i) => ({ q, i }))
-    .filter(({ q }) => q.status === 'pending')
+    .filter(({ q }) => q.status === 'pending' || q.status === 'bypassed')
     .map(({ i }) => i);
 
   const canNavigate = !isPaused && phase === 'playing' && pendingIndices.length > 0;

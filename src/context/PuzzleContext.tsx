@@ -165,20 +165,25 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       if (state.activeIndex !== null) return state;
       const idx = action.payload;
       if (idx < 0 || idx >= state.questions.length) return state;
-      if (state.questions[idx].status !== "pending") return state;
+      const targetStatus = state.questions[idx].status;
+      if (targetStatus !== "pending" && targetStatus !== "bypassed") return state;
+
+      const savedTime = state.questions[idx].savedTimeRemaining;
+      const timeLimit = state.questions[idx].question.timeLimit;
+      const resumeTime = savedTime ?? timeLimit;
 
       const questions = state.questions.map((q, i) => ({
         ...q,
         status: i === idx ? ("active" as const) : q.status,
+        savedTimeRemaining: i === idx ? undefined : q.savedTimeRemaining,
       }));
 
-      const timeLimit = state.questions[idx].question.timeLimit;
       return {
         ...state,
         activeIndex: idx,
         questions,
-        timerRemaining: timeLimit,
-        timerDeadline: Date.now() + timeLimit * 1000,
+        timerRemaining: resumeTime,
+        timerDeadline: Date.now() + resumeTime * 1000,
       };
     }
 
@@ -436,6 +441,31 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case "TICK_GAME_CLOCK": {
       if (state.phase !== "playing" || state.isPaused) return state;
       return { ...state, elapsedSeconds: state.elapsedSeconds + 1 };
+    }
+
+    case "BYPASS_QUESTION": {
+      if (state.activeIndex === null) return state;
+      const activeQ = state.questions[state.activeIndex];
+      if (activeQ.status !== "active") return state;
+
+      const savedTimeRemaining = Math.max(
+        0,
+        Math.ceil((state.timerDeadline - Date.now()) / 1000)
+      );
+
+      const questions = state.questions.map((q, i) =>
+        i === state.activeIndex
+          ? { ...q, status: "bypassed" as const, savedTimeRemaining }
+          : q
+      );
+
+      return {
+        ...state,
+        activeIndex: null,
+        questions,
+        timerRemaining: 0,
+        timerDeadline: 0,
+      };
     }
 
     case "RESET":

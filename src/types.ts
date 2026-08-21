@@ -45,12 +45,13 @@ export interface BadgeDefinition {
   description: string;
 }
 
-export type QuestionStatus = 'pending' | 'active' | 'completed' | 'failed' | 'timeout';
+export type QuestionStatus = 'pending' | 'active' | 'completed' | 'failed' | 'timeout' | 'bypassed';
 
 export interface QuestionState {
   question: Question;
   status: QuestionStatus;
   number: number;
+  savedTimeRemaining?: number;
 }
 
 export interface AnswerRecord {
@@ -149,4 +150,5 @@ export type GameAction =
   | { type: 'DISMISS_BADGE' }
   | { type: 'TOGGLE_MUTE' }
   | { type: 'SET_MUTED'; payload: boolean }
-  | { type: 'TICK_GAME_CLOCK' };
+  | { type: 'TICK_GAME_CLOCK' }
+  | { type: 'BYPASS_QUESTION' };

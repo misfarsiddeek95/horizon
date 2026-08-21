@@ -33,6 +33,10 @@ export default function ActiveCluePanel() {
     dispatch({ type: "SUBMIT_ANSWER" });
   }
 
+  function handleBypass() {
+    dispatch({ type: "BYPASS_QUESTION" });
+  }
+
   function openHelp() {
     if (activeQ) {
       dispatch({ type: "USE_AI_ASSIST", payload: { questionId: activeQ.question.id } });
@@ -135,13 +139,22 @@ export default function ActiveCluePanel() {
         </button>
       )}
 
-      <button
-        onClick={handleSubmit}
-        disabled={!allFilled || state.isPaused}
-        className="w-full cursor-pointer rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-40"
-      >
-        Submit Answer
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={handleBypass}
+          disabled={state.isPaused}
+          className="flex-1 cursor-pointer rounded-ui-element border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Skip for Now
+        </button>
+        <button
+          onClick={handleSubmit}
+          disabled={!allFilled || state.isPaused}
+          className="flex-[2] cursor-pointer rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Submit Answer
+        </button>
+      </div>
     </div>
   );
 }

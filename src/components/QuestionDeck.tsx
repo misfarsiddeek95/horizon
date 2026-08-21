@@ -14,6 +14,7 @@ const STATUS_CONFIG: Record<
   completed: { bg: 'bg-green-50 border-green-300', icon: '✓', label: 'Completed' },
   failed: { bg: 'bg-red-50 border-red-300', icon: '✕', label: 'Failed' },
   timeout: { bg: 'bg-zinc-100 border-zinc-300', icon: '⌛', label: 'Timeout' },
+  bypassed: { bg: 'bg-amber-50 border-amber-300', icon: '⏭', label: 'Skipped' },
 };
 
 export default function QuestionDeck() {
@@ -24,7 +25,7 @@ export default function QuestionDeck() {
   const handleSelect = (index: number) => {
     if (hasActive || state.isPaused) return;
     const qs = questions[index];
-    if (qs.status !== 'pending') return;
+    if (qs.status !== 'pending' && qs.status !== 'bypassed') return;
     dispatch({ type: 'SELECT_QUESTION', payload: index });
   };
 
@@ -40,7 +41,7 @@ export default function QuestionDeck() {
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
       {questions.map((qs, i) => {
         const cfg = STATUS_CONFIG[qs.status];
-        const canSelect = !hasActive && qs.status === 'pending';
+        const canSelect = !hasActive && (qs.status === 'pending' || qs.status === 'bypassed');
         const catColor = CATEGORY_COLORS[qs.question.category]?.card ?? 'bg-zinc-100 text-zinc-600';
         const wLen = wordLengths[qs.question.id] ?? 0;
         const dashes = Array.from({ length: wLen }, () => '_').join(' ');
@@ -82,6 +83,12 @@ export default function QuestionDeck() {
             {(qs.status === 'failed' || qs.status === 'timeout') && (
               <div className="mt-3 inline-block px-2.5 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded border border-slate-200">
                 Correct Answer: <span className="font-bold text-slate-800 uppercase">{qs.question.word}</span>
+              </div>
+            )}
+
+            {qs.status === 'bypassed' && qs.savedTimeRemaining != null && (
+              <div className="mt-3 inline-block px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-medium rounded border border-amber-200">
+                Skipped ({qs.savedTimeRemaining}s left)
               </div>
             )}
           </button>
