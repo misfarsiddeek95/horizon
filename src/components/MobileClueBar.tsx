@@ -23,7 +23,7 @@ export default function MobileClueBar() {
 
   const pendingIndices = questions
     .map((q, i) => ({ q, i }))
-    .filter(({ q }) => q.status === 'pending' || q.status === 'bypassed')
+    .filter(({ q }) => q.status === 'pending')
     .map(({ i }) => i);
 
   const canNavigate = !isPaused && phase === 'playing' && pendingIndices.length > 0;
@@ -41,14 +41,18 @@ export default function MobileClueBar() {
     if (!canNavigate) return;
     if (activeIndex === null) {
       if (pendingIndices.length > 0) {
-        dispatch({ type: 'SELECT_QUESTION', payload: pendingIndices[0] });
+        dispatch({ type: 'SELECT_QUESTION', payload: pendingIndices[pendingIndices.length - 1] });
       }
       return;
     }
     const currentPos = pendingIndices.indexOf(activeIndex);
-    let nextPos = currentPos - 1;
-    if (nextPos < 0) nextPos = pendingIndices.length - 1;
-    dispatch({ type: 'SELECT_QUESTION', payload: pendingIndices[nextPos] });
+    if (currentPos === -1) {
+      dispatch({ type: 'SELECT_QUESTION', payload: pendingIndices[pendingIndices.length - 1] });
+      return;
+    }
+    let prevPos = currentPos - 1;
+    if (prevPos < 0) prevPos = pendingIndices.length - 1;
+    dispatch({ type: 'SELECT_QUESTION', payload: pendingIndices[prevPos] });
   }
 
   function handleNext() {
@@ -60,6 +64,10 @@ export default function MobileClueBar() {
       return;
     }
     const currentPos = pendingIndices.indexOf(activeIndex);
+    if (currentPos === -1) {
+      dispatch({ type: 'SELECT_QUESTION', payload: pendingIndices[0] });
+      return;
+    }
     let nextPos = currentPos + 1;
     if (nextPos >= pendingIndices.length) nextPos = 0;
     dispatch({ type: 'SELECT_QUESTION', payload: pendingIndices[nextPos] });
@@ -70,7 +78,11 @@ export default function MobileClueBar() {
       <div className="flex items-center justify-between w-full max-w-md mx-auto">
         
         {/* Left SVG Arrow */}
-        <button onClick={handlePrev} className="p-2 shrink-0 text-white/70 hover:text-white">
+        <button
+          onClick={handlePrev}
+          disabled={!canNavigate}
+          className="p-2 shrink-0 text-white/70 hover:text-white disabled:opacity-30 disabled:cursor-default"
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m15 18-6-6 6-6"/></svg>
         </button>
         
@@ -107,7 +119,11 @@ export default function MobileClueBar() {
         </div>
 
         {/* Right SVG Arrow */}
-        <button onClick={handleNext} className="p-2 shrink-0 text-white/70 hover:text-white">
+        <button
+          onClick={handleNext}
+          disabled={!canNavigate}
+          className="p-2 shrink-0 text-white/70 hover:text-white disabled:opacity-30 disabled:cursor-default"
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m9 18 6-6-6-6"/></svg>
         </button>
         

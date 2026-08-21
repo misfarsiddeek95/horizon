@@ -60,7 +60,7 @@ function PuzzleGame() {
 
   return (
     <>
-      <main className="grid grid-rows-[auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-[#f8f9fa]">
+      <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-[#f8f9fa]">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
         <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap px-3 py-3 lg:px-0 lg:py-0">
@@ -110,6 +110,35 @@ function PuzzleGame() {
             <CategoryBadges/>
           </div>
         </div>
+
+        {/* MOBILE SKIPPED NUMBER PAD (Mobile Only) */}
+        {state.questions.some((q) => q.status === 'bypassed') && (
+          <div className="block lg:hidden w-full px-4 py-3 bg-slate-50 border-b border-slate-200 shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative">
+            <div className="flex items-center gap-3 min-w-max">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex-none">Skipped:</span>
+              <div className="flex items-center gap-2">
+                {state.questions
+                  .map((q, i) => ({ q, i }))
+                  .filter(({ q }) => q.status === 'bypassed')
+                  .map(({ q, i }) => (
+                    <button
+                      key={q.question.id}
+                      onClick={() => {
+                        if (state.activeIndex === null && !state.isPaused) {
+                          dispatch({ type: 'SELECT_QUESTION', payload: i });
+                        }
+                      }}
+                      disabled={state.activeIndex !== null || state.isPaused}
+                      className="w-8 h-8 rounded bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold flex items-center justify-center shadow-sm active:scale-95 transition-transform shrink-0 disabled:opacity-50 disabled:cursor-default"
+                      aria-label={`Resume skipped question ${q.number}`}
+                    >
+                      {q.number}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* MOBILE TIMER */}
         <div className="block lg:hidden w-full px-4 py-3 shrink-0 bg-white border-b border-slate-200 z-10 relative">

@@ -1601,21 +1601,109 @@
     "name": "Yahya",
     "email": "yahya@arbolsoft.com",
     "score": 103,
-    "date": "2026-08-20T19:06:44.922Z",
+    "date": "2026-08-21T13:04:36.626Z",
     "earnedBadges": {
-      "Company & Identity": true,
-      "Products & Solutions": true,
-      "Innovation, Technology & Future Growth": true,
+      "Company & Identity": false,
+      "Products & Solutions": false,
+      "Innovation, Technology & Future Growth": false,
       "Sustainability/ESG": false,
-      "Performance & Growth": true
+      "Performance & Growth": false
     },
     "answerHistory": [
       {
-        "questionId": "esg-3",
-        "clue": "What environmental resource is the focus of Haycarb's stewardship, recycling and reuse initiatives?",
+        "questionId": "esg-6",
+        "clue": "\"Behold the ___\" is Haycarb's ongoing coastal conservation project protecting hatchlings",
         "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 44,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "tech-3",
+        "clue": "What organisational capability allows Haycarb to respond effectively to changing markets and operating conditions?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 54,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "prod-3",
+        "clue": "What characteristic best describes Haycarb's portfolio of over 1,500 activated carbon products?",
+        "category": "Products & Solutions",
         "status": "timeout",
         "timeRemaining": 0,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "esg-8",
+        "clue": "61% of Haycarb's raw material came from ______ charcoaling sources in FY2025/26",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 51,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "perf-1",
+        "clue": "Haycarb invested Rs. 231 million in ______ and development during FY2025/26",
+        "category": "Performance & Growth",
+        "status": "failed",
+        "timeRemaining": 49,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "tech-2",
+        "clue": "Which country is home to Haycarb's progressing greenfield manufacturing expansion?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 55,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "comp-3",
+        "clue": "Which word best describes the long-term benefit Haycarb aims to create for all stakeholders?",
+        "category": "Company & Identity",
+        "status": "failed",
+        "timeRemaining": 31,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "prod-5",
+        "clue": "Haycarb progressed the development of fine carbon products for ______ grade applications",
+        "category": "Products & Solutions",
+        "status": "failed",
+        "timeRemaining": 52,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "perf-2",
+        "clue": "What operational quality helps Haycarb maintain consistent product delivery across global markets?",
+        "category": "Performance & Growth",
+        "status": "failed",
+        "timeRemaining": 53,
         "basePoints": 0,
         "timeBonus": 0,
         "aiUsed": false,
@@ -1625,100 +1713,12 @@
         "questionId": "comp-6",
         "clue": "The 2025/26 Annual Report reimagines reporting as an intelligent reporting ______",
         "category": "Company & Identity",
-        "status": "completed",
-        "timeRemaining": 45,
-        "basePoints": 10,
-        "timeBonus": 3,
-        "aiUsed": false,
-        "totalPointsEarned": 13
-      },
-      {
-        "questionId": "comp-4",
-        "clue": "What guides Haycarb's journey alongside innovation and sustainability?",
-        "category": "Company & Identity",
-        "status": "completed",
-        "timeRemaining": 44,
-        "basePoints": 10,
-        "timeBonus": 3,
-        "aiUsed": false,
-        "totalPointsEarned": 13
-      },
-      {
-        "questionId": "prod-4",
-        "clue": "Which engineering segment extends Haycarb's offering beyond activated carbon products?",
-        "category": "Products & Solutions",
-        "status": "completed",
-        "timeRemaining": 50,
-        "basePoints": 10,
-        "timeBonus": 4,
-        "aiUsed": false,
-        "totalPointsEarned": 14
-      },
-      {
-        "questionId": "prod-5",
-        "clue": "Haycarb progressed the development of fine carbon products for ______ grade applications",
-        "category": "Products & Solutions",
-        "status": "completed",
-        "timeRemaining": 39,
-        "basePoints": 10,
-        "timeBonus": 3,
-        "aiUsed": false,
-        "totalPointsEarned": 13
-      },
-      {
-        "questionId": "tech-2",
-        "clue": "Which country is home to Haycarb's progressing greenfield manufacturing expansion?",
-        "category": "Innovation, Technology & Future Growth",
-        "status": "completed",
-        "timeRemaining": 36,
-        "basePoints": 10,
-        "timeBonus": 3,
-        "aiUsed": false,
-        "totalPointsEarned": 13
-      },
-      {
-        "questionId": "tech-3",
-        "clue": "What organisational capability allows Haycarb to respond effectively to changing markets and operating conditions?",
-        "category": "Innovation, Technology & Future Growth",
-        "status": "completed",
-        "timeRemaining": 4,
-        "basePoints": 10,
-        "timeBonus": 0,
-        "aiUsed": false,
-        "totalPointsEarned": 10
-      },
-      {
-        "questionId": "esg-1",
-        "clue": "Which assessment approach considers both financial and impact perspectives when identifying priorities?",
-        "category": "Sustainability/ESG",
         "status": "failed",
-        "timeRemaining": 43,
+        "timeRemaining": 37,
         "basePoints": 0,
         "timeBonus": 0,
         "aiUsed": false,
         "totalPointsEarned": 0
-      },
-      {
-        "questionId": "perf-3",
-        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
-        "category": "Performance & Growth",
-        "status": "completed",
-        "timeRemaining": 38,
-        "basePoints": 10,
-        "timeBonus": 3,
-        "aiUsed": false,
-        "totalPointsEarned": 13
-      },
-      {
-        "questionId": "perf-1",
-        "clue": "Haycarb invested Rs. 231 million in ______ and development during FY2025/26",
-        "category": "Performance & Growth",
-        "status": "completed",
-        "timeRemaining": 48,
-        "basePoints": 10,
-        "timeBonus": 4,
-        "aiUsed": false,
-        "totalPointsEarned": 14
       }
     ]
   }

@@ -300,7 +300,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       }
 
       const allDone = questions.every(
-        (q) => q.status !== "pending" && q.status !== "active"
+        (q) => q.status !== "pending" && q.status !== "active" && q.status !== "bypassed"
       );
 
       return {
@@ -339,7 +339,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           i === state.activeIndex ? { ...q, status: "timeout" as const } : q
         );
         const allDone = questions.every(
-          (q) => q.status !== "pending" && q.status !== "active"
+          (q) => q.status !== "pending" && q.status !== "active" && q.status !== "bypassed"
         );
         return {
           ...state,
@@ -458,6 +458,23 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           ? { ...q, status: "bypassed" as const, savedTimeRemaining }
           : q
       );
+
+      const nextPendingIndex = questions.findIndex(
+        (q, i) => i !== state.activeIndex && q.status === "pending"
+      );
+
+      if (nextPendingIndex !== -1) {
+        const nextTimeLimit = questions[nextPendingIndex].question.timeLimit;
+        return {
+          ...state,
+          activeIndex: nextPendingIndex,
+          questions: questions.map((q, i) =>
+            i === nextPendingIndex ? { ...q, status: "active" as const } : q
+          ),
+          timerRemaining: nextTimeLimit,
+          timerDeadline: Date.now() + nextTimeLimit * 1000,
+        };
+      }
 
       return {
         ...state,
