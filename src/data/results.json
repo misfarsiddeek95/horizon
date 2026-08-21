@@ -1601,19 +1601,30 @@
     "name": "Yahya",
     "email": "yahya@arbolsoft.com",
     "score": 103,
-    "date": "2026-08-21T15:54:18.189Z",
+    "date": "2026-08-21T16:26:10.893Z",
     "earnedBadges": {
       "Company & Identity": false,
-      "Products & Solutions": false,
-      "Innovation, Technology & Future Growth": true,
+      "Products & Solutions": true,
+      "Innovation, Technology & Future Growth": false,
       "Sustainability/ESG": false,
       "Performance & Growth": false
     },
     "answerHistory": [
       {
-        "questionId": "perf-5",
-        "clue": "Haycarb generated over Rs. 916 million from new ______ during FY2025/26",
-        "category": "Performance & Growth",
+        "questionId": "tech-1",
+        "clue": "Which Haycarb subsidiary was recognised for the \"Innovative Export Product of the Year\" at the Presidential Export Awards 2024/25?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 51,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "esg-2",
+        "clue": "What type of energy is Haycarb expanding to support its transition towards lower-carbon operations?",
+        "category": "Sustainability/ESG",
         "status": "failed",
         "timeRemaining": 53,
         "basePoints": 0,
@@ -1633,92 +1644,81 @@
         "totalPointsEarned": 0
       },
       {
+        "questionId": "esg-7",
+        "clue": "Which patented Haycarb technology uses heat from the charcoaling process to generate electricity?",
+        "category": "Sustainability/ESG",
+        "status": "failed",
+        "timeRemaining": 58,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "perf-3",
+        "clue": "Haycarb achieved its highest-ever ______ of Rs. 67,084 million in FY2025/26",
+        "category": "Performance & Growth",
+        "status": "completed",
+        "timeRemaining": 54,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "comp-4",
+        "clue": "What guides Haycarb's journey alongside innovation and sustainability?",
+        "category": "Company & Identity",
+        "status": "failed",
+        "timeRemaining": 49,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "tech-3",
+        "clue": "What organisational capability allows Haycarb to respond effectively to changing markets and operating conditions?",
+        "category": "Innovation, Technology & Future Growth",
+        "status": "failed",
+        "timeRemaining": 57,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "prod-2",
+        "clue": "Which precious-metal recovery application was a key driver of Haycarb's performance in 2025/26?",
+        "category": "Products & Solutions",
+        "status": "completed",
+        "timeRemaining": 54,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
         "questionId": "comp-3",
         "clue": "Which word best describes the long-term benefit Haycarb aims to create for all stakeholders?",
         "category": "Company & Identity",
         "status": "failed",
-        "timeRemaining": 52,
+        "timeRemaining": 57,
         "basePoints": 0,
         "timeBonus": 0,
         "aiUsed": false,
         "totalPointsEarned": 0
       },
       {
-        "questionId": "prod-3",
-        "clue": "What characteristic best describes Haycarb's portfolio of over 1,500 activated carbon products?",
+        "questionId": "prod-5",
+        "clue": "Haycarb progressed the development of fine carbon products for ______ grade applications",
         "category": "Products & Solutions",
-        "status": "failed",
-        "timeRemaining": 51,
-        "basePoints": 0,
-        "timeBonus": 0,
-        "aiUsed": false,
-        "totalPointsEarned": 0
-      },
-      {
-        "questionId": "tech-4",
-        "clue": "Haycarb's manufacturing best practices include Lean Manufacturing, Six Sigma, 5S and ______",
-        "category": "Innovation, Technology & Future Growth",
         "status": "completed",
-        "timeRemaining": 55,
+        "timeRemaining": 48,
         "basePoints": 10,
         "timeBonus": 4,
         "aiUsed": false,
         "totalPointsEarned": 14
-      },
-      {
-        "questionId": "esg-6",
-        "clue": "\"Behold the ___\" is Haycarb's ongoing coastal conservation project protecting hatchlings",
-        "category": "Sustainability/ESG",
-        "status": "failed",
-        "timeRemaining": 47,
-        "basePoints": 0,
-        "timeBonus": 0,
-        "aiUsed": false,
-        "totalPointsEarned": 0
-      },
-      {
-        "questionId": "comp-2",
-        "clue": "What lies beyond every achievement, according to this year's report narrative?",
-        "category": "Company & Identity",
-        "status": "failed",
-        "timeRemaining": 42,
-        "basePoints": 0,
-        "timeBonus": 0,
-        "aiUsed": false,
-        "totalPointsEarned": 0
-      },
-      {
-        "questionId": "tech-2",
-        "clue": "Which country is home to Haycarb's progressing greenfield manufacturing expansion?",
-        "category": "Innovation, Technology & Future Growth",
-        "status": "completed",
-        "timeRemaining": 51,
-        "basePoints": 10,
-        "timeBonus": 4,
-        "aiUsed": false,
-        "totalPointsEarned": 14
-      },
-      {
-        "questionId": "prod-4",
-        "clue": "Which engineering segment extends Haycarb's offering beyond activated carbon products?",
-        "category": "Products & Solutions",
-        "status": "failed",
-        "timeRemaining": 45,
-        "basePoints": 0,
-        "timeBonus": 0,
-        "aiUsed": false,
-        "totalPointsEarned": 0
-      },
-      {
-        "questionId": "esg-8",
-        "clue": "61% of Haycarb's raw material came from ______ charcoaling sources in FY2025/26",
-        "category": "Sustainability/ESG",
-        "status": "failed",
-        "timeRemaining": 50,
-        "basePoints": 0,
-        "timeBonus": 0,
-        "aiUsed": false,
-        "totalPointsEarned": 0
       }
     ]
   }
