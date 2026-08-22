@@ -168,7 +168,7 @@ function PuzzleGame() {
                 
                 {/* THE GRID SIZER */}
                 {/* CRITICAL FIX: Added lg:w-full lg:mx-0 so it doesn't force the parent to grow on desktop */}
-                <div className="w-max mx-auto lg:w-full lg:mx-0">
+                <div className="w-max mx-auto lg:w-full lg:mx-auto">
                   <CrosswordGrid />
                 </div>
                 
