@@ -39,11 +39,11 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
   );
 
   return (
-    <div className="flex justify-center py-4">
+    <div className="flex justify-center py-6">
       <div
         role="tablist"
         aria-label="Chart type"
-        className="flex gap-2 bg-surface-default p-1 rounded-ui-element"
+        className="inline-flex gap-1 bg-surface-muted/80 p-1.5 rounded-ui-card shadow-sm ring-1 ring-content-primary/10"
       >
         {tabs.map((tab, index) => {
           const isActive = tab.id === activeType;
@@ -58,10 +58,10 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
               tabIndex={isActive ? 0 : -1}
               onKeyDown={(e) => handleKeyDown(e, index)}
               onClick={() => onTypeChange(tab.id)}
-              className={`px-6 py-2.5 rounded-ui-element text-sm font-bold transition-all min-h-[44px] cursor-pointer ${
+              className={`px-8 py-3 rounded-ui-element text-base font-bold transition-all min-h-[48px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-main focus-visible:ring-offset-2 focus-visible:ring-offset-surface-muted ${
                 isActive
-                  ? "bg-brand-main text-content-inverse shadow-sm"
-                  : "text-content-primary hover:bg-surface-muted hover:text-content-primary"
+                  ? "bg-brand-main text-content-inverse shadow-md"
+                  : "bg-surface-default text-content-primary hover:bg-brand-main/10 hover:text-brand-main ring-1 ring-content-primary/15"
               }`}
             >
               {tab.label}
