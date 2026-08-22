@@ -1,6 +1,8 @@
 import { PDFDocument } from "pdf-lib";
 import { saveAs } from "file-saver";
 
+const COVER_PAGE_PATH = "pdf/tbc/cover-page.pdf";
+
 export async function mergeAndDownloadPdfs(
   selectedFiles: string[]
 ): Promise<void> {
@@ -9,6 +11,22 @@ export async function mergeAndDownloadPdfs(
   }
 
   const mergedPdf = await PDFDocument.create();
+
+  try {
+    const coverResponse = await fetch(COVER_PAGE_PATH);
+    if (!coverResponse.ok) {
+      throw new Error(`Failed to fetch cover page: ${COVER_PAGE_PATH}`);
+    }
+    const coverBytes = await coverResponse.arrayBuffer();
+    const coverPdf = await PDFDocument.load(coverBytes);
+    const coverPages = await mergedPdf.copyPages(
+      coverPdf,
+      coverPdf.getPageIndices()
+    );
+    coverPages.forEach((page) => mergedPdf.addPage(page));
+  } catch (err) {
+    console.error("Failed to prepend cover page:", err);
+  }
 
   for (const file of selectedFiles) {
     const response = await fetch(file);
