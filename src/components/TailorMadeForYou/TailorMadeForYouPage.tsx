@@ -6,8 +6,7 @@ import ChartTypeTabs from "./ChartTypeTabs";
 import ProfitabilityChart from "./Financial/ProfitabilityChart";
 import FinancialPositionChart from "./Financial/FinancialPositionChart";
 import FinancialRatiosChart from "./Financial/FinancialRatiosChart";
-import EmissionsChart from "./NonFinancial/EmissionsChart";
-import EnergyConsumptionChart from "./NonFinancial/EnergyConsumptionChart";
+import EmissionsEnergyChart from "./NonFinancial/EmissionsEnergyChart";
 import MaterialsWaterChart from "./NonFinancial/MaterialsWaterChart";
 import SocialGovernanceChart from "./NonFinancial/SocialGovernanceChart";
 import ReportGenerator from "@/components/ReportGenerator";
@@ -44,8 +43,7 @@ export default function TailorMadeForYouPage() {
               </>
             ) : (
               <>
-                <EmissionsChart />
-                <EnergyConsumptionChart />
+                <EmissionsEnergyChart />
                 <MaterialsWaterChart />
                 <SocialGovernanceChart />
               </>

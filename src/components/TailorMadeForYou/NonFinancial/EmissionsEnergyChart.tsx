@@ -6,18 +6,28 @@ import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Responsive from "@amcharts/amcharts5/themes/Responsive";
 import type * as am5exporting from "@amcharts/amcharts5/plugins/exporting";
-import { materialsWaterData } from "@/data/chartData";
+import { emissionsData, energyConsumptionData } from "@/data/chartData";
 import ChartContainer from "../ChartContainer";
 import ChartExportButtons from "../ChartExportButtons";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
 
-interface HoverableDataContext {
-  hover: () => void;
-  unhover: () => void;
-}
+const combinedData = emissionsData.map((e) => {
+  const energy = energyConsumptionData.find((en) => en.year === e.year);
+  return {
+    year: e.year,
+    total_carbon_emission: e.total_carbon_emission,
+    scope_1_emission: e.scope_1_emission,
+    scope_2_emission: e.scope_2_emission,
+    scope_3_emission: e.scope_3_emission,
+    biogenic: e.biogenic,
+    renewable_energy: energy?.renewable_energy ?? 0,
+    non_renewable: energy?.non_renewable ?? 0,
+    total_consumption: energy?.total_consumption ?? 0,
+  };
+});
 
-export default function MaterialsWaterChart() {
+export default function EmissionsEnergyChart() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [exportingInstance, setExportingInstance] = useState<am5exporting.Exporting | null>(null);
 
@@ -50,18 +60,18 @@ export default function MaterialsWaterChart() {
 
     const chart = root.container.children.push(
       am5xy.XYChart.new(root, {
-        panX: true,
-        panY: true,
+        panX: false,
+        panY: false,
         wheelX: "panX",
         wheelY: "zoomX",
+        paddingLeft: 0,
         layout: root.verticalLayout,
-        pinchZoomX: true,
       })
     );
 
     chart.children.unshift(
       am5.Label.new(root, {
-        text: "Materials and Water Management",
+        text: "Emissions and Energy Consumption",
         fontSize: 26,
         fontFamily: "Minion Pro, serif",
         fill: am5.color(0x147385),
@@ -72,32 +82,47 @@ export default function MaterialsWaterChart() {
       })
     );
 
-    const xRenderer = am5xy.AxisRendererX.new(root, { minorGridEnabled: true });
-    xRenderer.grid.template.set("location", 0.5);
-    xRenderer.labels.template.setAll({ location: 0.5, multiLocation: 0.5 });
+    chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal" }));
 
+    const xRenderer = am5xy.AxisRendererX.new(root, { minorGridEnabled: true, minGridDistance: 60 });
     const xAxis = chart.xAxes.push(
-      am5xy.CategoryAxis.new(root, {
-        categoryField: "year",
-        renderer: xRenderer,
-        tooltip: am5.Tooltip.new(root, {}),
-        snapTooltip: true,
-      })
+      am5xy.CategoryAxis.new(root, { categoryField: "year", renderer: xRenderer, tooltip: am5.Tooltip.new(root, {}) })
     );
-
-    xAxis.data.setAll(materialsWaterData);
+    xRenderer.grid.template.setAll({ location: 1 });
+    xAxis.data.setAll(combinedData);
 
     const yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
+        min: 0,
+        max: 1250000,
+        strictMinMax: true,
         maxPrecision: 0,
-        renderer: am5xy.AxisRendererY.new(root, { inversed: false }),
+        renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 }),
       })
     );
+
+    yAxis.get("renderer").labels.template.setAll({ visible: false });
+    yAxis.get("renderer").grid.template.setAll({ visible: false });
+
+    for (let i = 0; i <= 1250000; i += 250000) {
+      const dataItem = yAxis.makeDataItem({ value: i });
+      const range = yAxis.createAxisRange(dataItem);
+
+      range.get("grid")?.setAll({
+        visible: true,
+        strokeOpacity: 0.1,
+      });
+
+      range.get("label")?.setAll({
+        visible: true,
+        text: new Intl.NumberFormat("en-US").format(i),
+      });
+    }
 
     yAxis.children.unshift(
       am5.Label.new(root, {
         rotation: -90,
-        text: "MT / m3",
+        text: "tCO2e",
         y: am5.p50,
         centerX: am5.p50,
         fontSize: 14,
@@ -105,14 +130,7 @@ export default function MaterialsWaterChart() {
       })
     );
 
-    const cursor = chart.set(
-      "cursor",
-      am5xy.XYCursor.new(root, { alwaysShow: false, xAxis, positionX: 1 })
-    );
-    cursor.lineY.set("visible", false);
-    cursor.lineX.set("focusable", true);
-
-    function createSeries(name: string, field: string) {
+    function createLineSeries(name: string, field: string) {
       const series = chart.series.push(
         am5xy.LineSeries.new(root, {
           name,
@@ -122,7 +140,7 @@ export default function MaterialsWaterChart() {
           categoryXField: "year",
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
-            labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+            labelText: "{name} in {categoryX}: {valueY}",
           }),
         })
       );
@@ -138,39 +156,60 @@ export default function MaterialsWaterChart() {
       series.mainContainer.states.create("hover", {});
       series.strokes.template.states.create("hover", { strokeWidth: 4 });
 
-      series.data.setAll(materialsWaterData);
+      series.data.setAll(combinedData);
       series.appear(1000);
     }
 
-    createSeries("Waste water treated through treatment plants (m3)", "waste_water");
-    createSeries("Water consumption (m3)", "water_consumption");
-    createSeries("Solid waste generated (MT)", "solid_waste_gen");
-    createSeries("Renewable raw material consumption (MT)", "renewable_raw_material");
+    function createBarSeries(name: string, field: string) {
+      const series = chart.series.push(
+        am5xy.ColumnSeries.new(root, {
+          name,
+          xAxis,
+          yAxis,
+          valueYField: field,
+          categoryXField: "year",
+          clustered: true,
+          tooltip: am5.Tooltip.new(root, {
+            pointerOrientation: "horizontal",
+            labelText: "{name} in {categoryX}: {valueY}",
+          }),
+        })
+      );
+      series.columns.template.setAll({ tooltipY: am5.percent(10) });
+      series.data.setAll(combinedData);
+      return series;
+    }
 
-    chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
+    createLineSeries("Total Carbon emissions (tCO2e)", "total_carbon_emission");
+    createLineSeries("Scope 1 emission (tCO2e)", "scope_1_emission");
+    createLineSeries("Scope 2 emission (tCO2e)", "scope_2_emission");
+    createLineSeries("Scope 3 emission (tCO2e)", "scope_3_emission");
+    createLineSeries("Biogenic emission (tCO2e)", "biogenic");
+
+    createBarSeries("Renewable energy consumption (GJ)", "renewable_energy");
+    createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable");
+    createBarSeries("Total energy consumption (GJ)", "total_consumption");
+
+    chart.set("cursor", am5xy.XYCursor.new(root, {}));
 
     const legend = chart.children.push(
       am5.Legend.new(root, { centerX: am5.p50, x: am5.p50 })
     );
     legendRef = legend;
+    legend.data.setAll(chart.series.values);
 
     legend.itemContainers.template.states.create("hover", {});
 
     legend.itemContainers.template.events.on("pointerover", function (e) {
-      const dataContext = e.target.dataItem?.dataContext as HoverableDataContext | undefined;
+      const dataContext = e.target.dataItem?.dataContext as { hover: () => void; unhover: () => void } | undefined;
       dataContext?.hover();
     });
     legend.itemContainers.template.events.on("pointerout", function (e) {
-      const dataContext = e.target.dataItem?.dataContext as HoverableDataContext | undefined;
+      const dataContext = e.target.dataItem?.dataContext as { hover: () => void; unhover: () => void } | undefined;
       dataContext?.unhover();
     });
 
-    legend.data.setAll(chart.series.values);
-
-    chart.plotContainer.events.on("pointerout", () => cursor.set("positionX", 1));
-    chart.plotContainer.events.on("pointerover", () => cursor.set("positionX", undefined));
-
-    setExportingInstance(setupChartExporting(root, "Materials_and_Water_Management"));
+    setExportingInstance(setupChartExporting(root, "Emissions_and_Energy_Consumption"));
 
     chart.appear(1000, 100);
 

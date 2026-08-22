@@ -54,6 +54,19 @@ export default function SocialGovernanceChart() {
       })
     );
 
+    chart.children.unshift(
+      am5.Label.new(root, {
+        text: "Social and Governance Performance",
+        fontSize: 26,
+        fontFamily: "Minion Pro, serif",
+        fill: am5.color(0x147385),
+        x: am5.p50,
+        centerX: am5.p50,
+        paddingTop: 10,
+        paddingBottom: 10,
+      })
+    );
+
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal" }));
 
     const xRenderer = am5xy.AxisRendererX.new(root, { minorGridEnabled: true, minGridDistance: 50 });
@@ -173,7 +186,7 @@ export default function SocialGovernanceChart() {
     legendRef = legend;
     legend.data.setAll(chart.series.values);
 
-    setExportingInstance(setupChartExporting(root));
+    setExportingInstance(setupChartExporting(root, "Social_and_Governance_Performance"));
 
     chart.appear(1000, 100);
 
