@@ -43,5 +43,5 @@ export async function mergeAndDownloadPdfs(
   const blob = new Blob([mergedBytes as unknown as BlobPart], {
     type: "application/pdf",
   });
-  saveAs(blob, "Merged_Document.pdf");
+  saveAs(blob, "Your Personalized Report-Haycarb PLC Annual Report 2025/26.pdf");
 }
