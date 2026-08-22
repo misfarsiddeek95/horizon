@@ -87,17 +87,67 @@ export default function MaterialsWaterChart() {
 
     xAxis.data.setAll(materialsWaterData);
 
-    const yAxis = chart.yAxes.push(
+    const yAxisM3 = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
+        min: 0,
+        max: 800000,
+        strictMinMax: true,
         maxPrecision: 0,
-        renderer: am5xy.AxisRendererY.new(root, { inversed: false }),
+        renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 }),
       })
     );
 
-    yAxis.children.unshift(
+    yAxisM3.get("renderer").labels.template.setAll({ visible: false });
+    yAxisM3.get("renderer").grid.template.setAll({ visible: false });
+
+    for (let i = 0; i <= 800000; i += 200000) {
+      const dataItem = yAxisM3.makeDataItem({ value: i });
+      const range = yAxisM3.createAxisRange(dataItem);
+      range.get("grid")?.setAll({ visible: true, strokeOpacity: 0.1 });
+      range.get("label")?.setAll({
+        visible: true,
+        text: new Intl.NumberFormat("en-US").format(i),
+      });
+    }
+
+    yAxisM3.children.unshift(
       am5.Label.new(root, {
         rotation: -90,
-        text: "MT / m3",
+        text: "m3",
+        y: am5.p50,
+        centerX: am5.p50,
+        fontSize: 14,
+        fontWeight: "bold",
+      })
+    );
+
+    const yAxisMT = chart.yAxes.push(
+      am5xy.ValueAxis.new(root, {
+        min: 0,
+        max: 200000,
+        strictMinMax: true,
+        maxPrecision: 0,
+        renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1, opposite: true }),
+      })
+    );
+
+    yAxisMT.get("renderer").labels.template.setAll({ visible: false });
+    yAxisMT.get("renderer").grid.template.setAll({ visible: false });
+
+    for (let i = 0; i <= 200000; i += 50000) {
+      const dataItem = yAxisMT.makeDataItem({ value: i });
+      const range = yAxisMT.createAxisRange(dataItem);
+      range.get("grid")?.setAll({ visible: true, strokeOpacity: 0.1 });
+      range.get("label")?.setAll({
+        visible: true,
+        text: new Intl.NumberFormat("en-US").format(i),
+      });
+    }
+
+    yAxisMT.children.push(
+      am5.Label.new(root, {
+        rotation: 90,
+        text: "MT",
         y: am5.p50,
         centerX: am5.p50,
         fontSize: 14,
@@ -112,12 +162,12 @@ export default function MaterialsWaterChart() {
     cursor.lineY.set("visible", false);
     cursor.lineX.set("focusable", true);
 
-    function createSeries(name: string, field: string) {
+    function createSeries(name: string, field: string, axis: am5xy.ValueAxis<am5xy.AxisRenderer>) {
       const series = chart.series.push(
         am5xy.LineSeries.new(root, {
           name,
           xAxis,
-          yAxis,
+          yAxis: axis,
           valueYField: field,
           categoryXField: "year",
           tooltip: am5.Tooltip.new(root, {
@@ -142,10 +192,10 @@ export default function MaterialsWaterChart() {
       series.appear(1000);
     }
 
-    createSeries("Waste water treated through treatment plants (m3)", "waste_water");
-    createSeries("Water consumption (m3)", "water_consumption");
-    createSeries("Solid waste generated (MT)", "solid_waste_gen");
-    createSeries("Renewable raw material consumption (MT)", "renewable_raw_material");
+    createSeries("Waste water treated through treatment plants (m3)", "waste_water", yAxisM3);
+    createSeries("Water consumption (m3)", "water_consumption", yAxisM3);
+    createSeries("Solid waste generated (MT)", "solid_waste_gen", yAxisMT);
+    createSeries("Renewable raw material consumption (MT)", "renewable_raw_material", yAxisMT);
 
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
 

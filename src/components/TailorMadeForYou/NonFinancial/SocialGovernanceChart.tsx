@@ -79,10 +79,22 @@ export default function SocialGovernanceChart() {
     const yAxisBar = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         min: 0,
-        extraMax: 0.2,
+        max: 280,
+        strictMinMax: true,
+        maxPrecision: 0,
         renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 }),
       })
     );
+
+    yAxisBar.get("renderer").labels.template.setAll({ visible: false });
+    yAxisBar.get("renderer").grid.template.setAll({ visible: false });
+
+    for (let i = 0; i <= 280; i += 20) {
+      const dataItem = yAxisBar.makeDataItem({ value: i });
+      const range = yAxisBar.createAxisRange(dataItem);
+      range.get("grid")?.setAll({ visible: true, strokeOpacity: 0.1 });
+      range.get("label")?.setAll({ visible: true, text: String(i) });
+    }
 
     yAxisBar.children.unshift(
       am5.Label.new(root, {
@@ -98,10 +110,22 @@ export default function SocialGovernanceChart() {
     const yAxisLine = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         min: 0,
-        extraMax: 0.2,
+        max: 240,
+        strictMinMax: true,
+        maxPrecision: 0,
         renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1, opposite: true }),
       })
     );
+
+    yAxisLine.get("renderer").labels.template.setAll({ visible: false });
+    yAxisLine.get("renderer").grid.template.setAll({ visible: false });
+
+    for (let i = 0; i <= 240; i += 20) {
+      const dataItem = yAxisLine.makeDataItem({ value: i });
+      const range = yAxisLine.createAxisRange(dataItem);
+      range.get("grid")?.setAll({ visible: true, strokeOpacity: 0.1 });
+      range.get("label")?.setAll({ visible: true, text: String(i) });
+    }
 
     yAxisLine.children.push(
       am5.Label.new(root, {
