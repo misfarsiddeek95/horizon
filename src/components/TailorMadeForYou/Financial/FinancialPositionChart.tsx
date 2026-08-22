@@ -59,6 +59,19 @@ export default function FinancialPositionChart() {
       })
     );
 
+    chart.children.unshift(
+      am5.Label.new(root, {
+        text: "Financial Position (Rs.Bn)",
+        fontSize: 26,
+        fontFamily: "Minion Pro, serif",
+        fill: am5.color(0x147385),
+        x: am5.p50,
+        centerX: am5.p50,
+        paddingTop: 10,
+        paddingBottom: 10,
+      })
+    );
+
     const xRenderer = am5xy.AxisRendererX.new(root, { minorGridEnabled: true });
     xRenderer.grid.template.set("location", 0.5);
     xRenderer.labels.template.setAll({ location: 0.5, multiLocation: 0.5 });
@@ -161,7 +174,7 @@ export default function FinancialPositionChart() {
     chart.plotContainer.events.on("pointerout", () => cursor.set("positionX", 1));
     chart.plotContainer.events.on("pointerover", () => cursor.set("positionX", undefined));
 
-    setExportingInstance(setupChartExporting(root));
+    setExportingInstance(setupChartExporting(root, "Financial_Position_Rs_Bn"));
 
     chart.appear(1000, 100);
 

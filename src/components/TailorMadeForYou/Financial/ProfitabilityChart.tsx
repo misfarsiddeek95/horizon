@@ -54,6 +54,19 @@ export default function ProfitabilityChart() {
       })
     );
 
+    chart.children.unshift(
+      am5.Label.new(root, {
+        text: "Profitability (Rs.Bn)",
+        fontSize: 26,
+        fontFamily: "Minion Pro, serif",
+        fill: am5.color(0x147385),
+        x: am5.p50,
+        centerX: am5.p50,
+        paddingTop: 10,
+        paddingBottom: 10,
+      })
+    );
+
     const legend = chart.children.push(
       am5.Legend.new(root, { centerX: am5.p50, x: am5.p50 })
     );
@@ -137,7 +150,7 @@ export default function ProfitabilityChart() {
     makeSeries("Profit attributable to equity holders of the parent", "profit_attr");
     makeSeries("Dividends", "dividends");
 
-    setExportingInstance(setupChartExporting(root));
+    setExportingInstance(setupChartExporting(root, "Profitability_Rs_Bn"));
 
     chart.appear(1000, 100);
 
