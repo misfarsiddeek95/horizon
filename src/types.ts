@@ -1,4 +1,4 @@
-export type Category = 'Company & Identity' | 'Products & Solutions' | 'Innovation, Technology & Future Growth' | 'Sustainability/ESG' | 'Performance & Growth';
+export type Category = 'Annual Report Experience' | 'Company, Governance & Performance' | 'Products, Solutions & Innovation' | 'Sustainability, People & Impact' | 'Markets, Operations & Future Readiness';
 
 export interface Question {
   id: string;

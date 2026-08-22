@@ -26,7 +26,15 @@ export const CATEGORY_COLORS: Record<
     card: string;
   }
 > = {
-  'Company & Identity': {
+  'Annual Report Experience': {
+    base: 'border-amber-400 text-amber-600',
+    halfBg: 'bg-amber-100',
+    iconHalf: 'relative z-10 text-amber-500',
+    full: 'bg-amber-500 border-amber-500 text-white shadow-md shadow-amber-200',
+    iconFull: 'text-white',
+    card: 'bg-amber-100 text-amber-600',
+  },
+  'Company, Governance & Performance': {
     base: 'border-blue-400 text-blue-600',
     halfBg: 'bg-blue-100',
     iconHalf: 'relative z-10 text-blue-500',
@@ -34,7 +42,7 @@ export const CATEGORY_COLORS: Record<
     iconFull: 'text-white',
     card: 'bg-blue-100 text-blue-600',
   },
-  'Products & Solutions': {
+  'Products, Solutions & Innovation': {
     base: 'border-teal-400 text-teal-600',
     halfBg: 'bg-teal-100',
     iconHalf: 'relative z-10 text-teal-500',
@@ -42,15 +50,7 @@ export const CATEGORY_COLORS: Record<
     iconFull: 'text-white',
     card: 'bg-teal-100 text-teal-600',
   },
-  'Innovation, Technology & Future Growth': {
-    base: 'border-cyan-400 text-cyan-600',
-    halfBg: 'bg-cyan-100',
-    iconHalf: 'relative z-10 text-cyan-500',
-    full: 'bg-cyan-500 border-cyan-500 text-white shadow-md shadow-cyan-200',
-    iconFull: 'text-white',
-    card: 'bg-cyan-100 text-cyan-600',
-  },
-  'Sustainability/ESG': {
+  'Sustainability, People & Impact': {
     base: 'border-green-400 text-green-600',
     halfBg: 'bg-green-100',
     iconHalf: 'relative z-10 text-green-500',
@@ -58,12 +58,12 @@ export const CATEGORY_COLORS: Record<
     iconFull: 'text-white',
     card: 'bg-emerald-100 text-emerald-600',
   },
-  'Performance & Growth': {
-    base: 'border-amber-400 text-amber-600',
-    halfBg: 'bg-amber-100',
-    iconHalf: 'relative z-10 text-amber-500',
-    full: 'bg-amber-500 border-amber-500 text-white shadow-md shadow-amber-200',
+  'Markets, Operations & Future Readiness': {
+    base: 'border-cyan-400 text-cyan-600',
+    halfBg: 'bg-cyan-100',
+    iconHalf: 'relative z-10 text-cyan-500',
+    full: 'bg-cyan-500 border-cyan-500 text-white shadow-md shadow-cyan-200',
     iconFull: 'text-white',
-    card: 'bg-amber-100 text-amber-600',
+    card: 'bg-cyan-100 text-cyan-600',
   },
 };

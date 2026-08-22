@@ -5,11 +5,11 @@ import { usePuzzle } from '@/context/PuzzleContext';
 import { getAllCategories, CATEGORY_COLORS, CONFIG } from '@/data/config';
 
 const CATEGORY_HEX: Record<string, string> = {
-  'Company & Identity': '#3b82f6',
-  'Products & Solutions': '#14b8a6',
-  'Innovation, Technology & Future Growth': '#06b6d4',
-  'Sustainability/ESG': '#22c55e',
-  'Performance & Growth': '#f59e0b',
+  'Annual Report Experience': '#f59e0b',
+  'Company, Governance & Performance': '#3b82f6',
+  'Products, Solutions & Innovation': '#14b8a6',
+  'Sustainability, People & Impact': '#22c55e',
+  'Markets, Operations & Future Readiness': '#06b6d4',
 };
 
 export default function CategoryBadges() {
