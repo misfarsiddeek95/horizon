@@ -1,13 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Responsive from "@amcharts/amcharts5/themes/Responsive";
+import type * as am5exporting from "@amcharts/amcharts5/plugins/exporting";
 import { materialsWaterData } from "@/data/chartData";
 import ChartContainer from "../ChartContainer";
+import ChartExportButtons from "../ChartExportButtons";
 import "@/utils/amChartsSetup";
+import { setupChartExporting } from "@/utils/amChartsExporting";
 
 interface HoverableDataContext {
   hover: () => void;
@@ -16,6 +19,7 @@ interface HoverableDataContext {
 
 export default function MaterialsWaterChart() {
   const chartRef = useRef<HTMLDivElement>(null);
+  const [exportingInstance, setExportingInstance] = useState<am5exporting.Exporting | null>(null);
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -153,6 +157,8 @@ export default function MaterialsWaterChart() {
     chart.plotContainer.events.on("pointerout", () => cursor.set("positionX", 1));
     chart.plotContainer.events.on("pointerover", () => cursor.set("positionX", undefined));
 
+    setExportingInstance(setupChartExporting(root));
+
     chart.appear(1000, 100);
 
     return () => {
@@ -160,5 +166,12 @@ export default function MaterialsWaterChart() {
     };
   }, []);
 
-  return <ChartContainer ref={chartRef} />;
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex justify-end">
+        <ChartExportButtons exporting={exportingInstance} />
+      </div>
+      <ChartContainer ref={chartRef} />
+    </div>
+  );
 }

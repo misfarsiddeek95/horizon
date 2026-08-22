@@ -1,16 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5themes_Responsive from "@amcharts/amcharts5/themes/Responsive";
+import type * as am5exporting from "@amcharts/amcharts5/plugins/exporting";
 import { profitabilityData } from "@/data/chartData";
 import ChartContainer from "../ChartContainer";
+import ChartExportButtons from "../ChartExportButtons";
 import "@/utils/amChartsSetup";
+import { setupChartExporting } from "@/utils/amChartsExporting";
 
 export default function ProfitabilityChart() {
   const chartRef = useRef<HTMLDivElement>(null);
+  const [exportingInstance, setExportingInstance] = useState<am5exporting.Exporting | null>(null);
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -133,6 +137,8 @@ export default function ProfitabilityChart() {
     makeSeries("Profit attributable to equity holders of the parent", "profit_attr");
     makeSeries("Dividends", "dividends");
 
+    setExportingInstance(setupChartExporting(root));
+
     chart.appear(1000, 100);
 
     return () => {
@@ -140,5 +146,12 @@ export default function ProfitabilityChart() {
     };
   }, []);
 
-  return <ChartContainer ref={chartRef} />;
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex justify-end">
+        <ChartExportButtons exporting={exportingInstance} />
+      </div>
+      <ChartContainer ref={chartRef} />
+    </div>
+  );
 }
