@@ -2,7 +2,9 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { PlayIcon } from "@heroicons/react/24/outline";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import Button from "@/components/ui/Button";
 
 interface ChairmanSectionV2Props {
   title: string;
@@ -22,12 +24,6 @@ export default function ChairmanSectionV2({
   const [expanded, setExpanded] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
   const expandedRef = useRef(false);
-
-  const handleScrollToStrategy = () => {
-    document
-      .getElementById("scene-strategy")
-      ?.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
 
   const handleToggle = () => {
     const el = textRef.current;
@@ -112,13 +108,16 @@ export default function ChairmanSectionV2({
               {expanded ? "Read less" : "Read more"}
             </button>
           )}
-          <button
-            onClick={handleScrollToStrategy}
-            className="mt-8 inline-flex items-center gap-2 text-white font-semibold text-sm md:text-base transition-colors duration-300 hover:opacity-70 self-end cursor-pointer"
-          >
-            Continue to Strategy
-            <span aria-hidden="true">&rarr;</span>
-          </button>
+          <div className="mt-8 self-start">
+            <Button
+              variant="primary"
+              radius="full"
+              icon={<PlayIcon />}
+              iconPosition="left"
+            >
+              Joint Message Video
+            </Button>
+          </div>
         </div>
       </div>
     </section>
