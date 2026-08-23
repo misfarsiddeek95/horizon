@@ -4,11 +4,22 @@ import { useMemo, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { CheckBadgeIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import type { LeaderboardEntry } from "@/types";
-import { CATEGORY_COLORS, getAllCategories } from "@/data/config";
+import { CATEGORY_COLORS, getAllCategories, CONFIG } from "@/data/config";
+import ShareResults from "@/components/ShareResults";
 
 const ALL_CATEGORIES = getAllCategories();
 
 const EMPTY_SUBSCRIBE = () => () => {};
+
+function formatTimeFromHistory(history: LeaderboardEntry["answerHistory"]): string {
+  const totalSeconds = history.reduce((acc, record) => {
+    if (record.status === "timeout") return acc + 60;
+    return acc + (60 - record.timeRemaining);
+  }, 0);
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
 
 function readSessionEmail(): string | null {
   if (typeof window === "undefined") return null;
@@ -264,52 +275,53 @@ export default function InteractiveLeaderboard({
 
       {mounted && selectedPlayer && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
           onClick={handleClose}
         >
           <div
-            className="relative w-full max-w-lg mt-10 mb-10 rounded-ui-card bg-surface-default p-6 shadow-xl max-h-[80vh] overflow-y-auto"
+            className="relative w-full max-w-lg max-h-[90vh] rounded-2xl bg-white shadow-xl flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 cursor-pointer rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
-              aria-label="Close"
-            >
-              <XMarkIcon className="h-5 w-5" />
-            </button>
 
-            <div className="mb-6 text-center">
+            {/* PINNED HEADER */}
+            <div className="shrink-0 p-6 pb-4 text-center relative border-b border-slate-100">
+              <button
+                onClick={handleClose}
+                className="absolute top-4 right-4 cursor-pointer rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+                aria-label="Close"
+              >
+                <XMarkIcon className="h-5 w-5" />
+              </button>
               <h2 className="font-heading text-xl font-bold text-content-primary">
                 {selectedPlayer.name}
               </h2>
               <p className="mt-1 text-3xl font-bold text-brand-main">
                 {selectedPlayer.score} pts
               </p>
-            </div>
-
-            <div className="mb-6">
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-content-primary/40">
-                Certifications Earned
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {ALL_CATEGORIES.filter((c) => selectedPlayer.earnedBadges[c]).length === 0 ? (
-                  <p className="text-sm text-content-primary/50">No certifications earned</p>
-                ) : (
-                  ALL_CATEGORIES.filter((c) => selectedPlayer.earnedBadges[c]).map((cat) => (
-                    <span
-                      key={cat}
-                      className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold ${CATEGORY_COLORS[cat]?.card ?? "bg-zinc-100 text-zinc-700"}`}
-                    >
-                      <CheckBadgeIcon className="h-3.5 w-3.5" />
-                      {cat}
-                    </span>
-                  ))
-                )}
+              <div className="mt-4">
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-content-primary/40">
+                  Certifications Earned
+                </h3>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {ALL_CATEGORIES.filter((c) => selectedPlayer.earnedBadges[c]).length === 0 ? (
+                    <p className="text-sm text-content-primary/50">No certifications earned</p>
+                  ) : (
+                    ALL_CATEGORIES.filter((c) => selectedPlayer.earnedBadges[c]).map((cat) => (
+                      <span
+                        key={cat}
+                        className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold ${CATEGORY_COLORS[cat]?.card ?? "bg-zinc-100 text-zinc-700"}`}
+                      >
+                        <CheckBadgeIcon className="h-3.5 w-3.5" />
+                        {cat}
+                      </span>
+                    ))
+                  )}
+                </div>
               </div>
             </div>
 
-            <div>
+            {/* SCROLLABLE BODY */}
+            <div className="flex-1 overflow-y-auto p-6">
               <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-content-primary/40">
                 Score Breakdown
               </h3>
@@ -374,6 +386,22 @@ export default function InteractiveLeaderboard({
                 </div>
               )}
             </div>
+
+            {/* PINNED FOOTER */}
+            <div className="shrink-0 p-6 pt-4 bg-slate-50 border-t border-slate-100">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-content-primary/40">
+                Share your achievement
+              </h3>
+              <ShareResults
+                name={selectedPlayer.name}
+                score={selectedPlayer.score}
+                time={formatTimeFromHistory(selectedPlayer.answerHistory)}
+                badges={Object.values(selectedPlayer.earnedBadges).filter(Boolean).length}
+                correct={selectedPlayer.answerHistory.filter((r) => r.status === "completed").length}
+                total={CONFIG.MAX_TOTAL_QUESTIONS}
+              />
+            </div>
+
           </div>
         </div>,
         document.body
