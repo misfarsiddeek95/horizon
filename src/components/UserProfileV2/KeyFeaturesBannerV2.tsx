@@ -18,7 +18,7 @@ const FEATURE_ICONS = {
 } as const;
 
 const HEADING_GRADIENT =
-  "font-heading font-medium heading-gradient drop-shadow-2xl text-center text-3xl tracking-tight sm:text-4xl lg:text-left lg:text-5xl";
+  "font-heading font-medium heading-gradient drop-shadow-2xl text-center text-3xl tracking-tight sm:text-4xl lg:text-5xl";
 
 export default function KeyFeaturesBannerV2() {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
@@ -32,47 +32,57 @@ export default function KeyFeaturesBannerV2() {
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-3 md:gap-4 lg:grid-cols-[1fr_1.5fr] lg:gap-7">
-        <div
+      <div className="mx-auto max-w-7xl flex flex-col items-center">
+        <h2 data-animate className={`${HEADING_GRADIENT} mb-4`}>
+          This year in focus: Key Features
+        </h2>
+        <p
           data-animate
-          className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-0 -mt-6 -mx-6 md:-mt-8 md:-mx-8 lg:-mt-10 lg:-mb-10 lg:-ml-10 lg:mr-0 lg:h-[calc(100%+5rem)]"
+          className="max-w-2xl text-center text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md mb-12"
         >
-          <Image
-            src="/images/innerpage/book.jpeg"
-            alt="Key Features report"
-            fill
-            className="object-cover object-center rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl w-full h-full"
-            priority
-          />
-        </div>
+          Donec hendrerit arcu vitae auctor imperdiet. Phasellus consequat
+          lectus vitae sapien posuere posuere. Donec sollicitudin ipsum vel
+          congue cursus. Praesent molestie tempor nunc at vestibulum.
+        </p>
 
-        <div className="flex flex-col">
-          <h2 data-animate className={`${HEADING_GRADIENT} mb-8`}>
-            This year in focus: Key Features
-          </h2>
-
-          <div className="grid grid-cols-1 gap-4 md:gap-5 sm:grid-cols-2">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="flex flex-col gap-8">
             {features.map((feature, index) => {
               const Icon = FEATURE_ICONS[feature.icon];
               return (
                 <div
                   key={feature.title}
                   data-animate
-                  className="animate-user-profile-fade-up rounded-3xl bg-glass p-4 md:p-6 glass-card-hover"
+                  className="flex flex-row items-start gap-5"
                   style={{ animationDelay: `${index * 120}ms` }}
                 >
-                  <span className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-xl bg-brand-main/20 text-white ring-1 ring-white/20">
-                    <Icon className="h-5 w-5" />
+                  <span className="shrink-0 flex h-16 w-16 items-center justify-center rounded-full bg-brand-main/20 text-white ring-1 ring-white/20">
+                    <Icon className="h-7 w-7" />
                   </span>
-                  <h3 className="mt-3 md:mt-4 font-heading font-medium text-base md:text-lg tracking-tight heading-gradient">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-xs md:text-sm leading-relaxed text-slate-300">
-                    {feature.detail}
-                  </p>
+                  <div className="flex flex-col">
+                    <h3 className="font-heading font-medium text-lg tracking-tight heading-gradient md:text-xl">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-2 text-sm md:text-base leading-relaxed text-slate-300">
+                      {feature.detail}
+                    </p>
+                  </div>
                 </div>
               );
             })}
+          </div>
+
+          <div
+            data-animate
+            className="relative w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]"
+          >
+            <Image
+              src="/images/innerpage/book.jpeg"
+              alt="Key Features report"
+              fill
+              className="object-cover object-center rounded-3xl w-full h-full"
+              priority
+            />
           </div>
         </div>
       </div>

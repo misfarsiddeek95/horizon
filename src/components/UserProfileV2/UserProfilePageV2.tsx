@@ -390,9 +390,7 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 4: Key Features */}
             <section id="scene-features" className={SCENE_SECTION} data-scene>
-              <div className={GLASS_PANEL}>
-                <KeyFeaturesBannerV2 />
-              </div>
+              <KeyFeaturesBannerV2 />
             </section>
 
             {/* SCENE 5: AI-Enabled Digital Report */}
