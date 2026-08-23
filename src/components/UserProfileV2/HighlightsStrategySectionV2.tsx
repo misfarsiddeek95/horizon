@@ -90,7 +90,7 @@ export default function HighlightsStrategySectionV2({
                   <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-700/30 ring-1 ring-white/10">
                     <CheckCircleIcon className="h-8 w-8 text-brand-main" />
                   </span>
-                  <p className="mt-4 text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
+                  <p className="mt-4 text-center text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
                     {highlight}
                   </p>
                 </div>
