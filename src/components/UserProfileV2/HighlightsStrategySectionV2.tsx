@@ -1,7 +1,13 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import {
+  ChartBarIcon,
+  ArrowTrendingUpIcon,
+  BuildingLibraryIcon,
+  ShieldCheckIcon,
+  StarIcon,
+} from "@heroicons/react/24/outline";
 import type { DownloadLink } from "@/data/userProfiles";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import DownloadButtonV2 from "./DownloadButtonV2";
@@ -20,6 +26,14 @@ interface HighlightsStrategySectionV2Props {
 
 const HEADING_GRADIENT =
   "font-heading font-medium heading-gradient drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
+
+const HIGHLIGHT_ICONS = [
+  ChartBarIcon,
+  ArrowTrendingUpIcon,
+  BuildingLibraryIcon,
+  ShieldCheckIcon,
+  StarIcon,
+];
 
 export default function HighlightsStrategySectionV2({
   highlights,
@@ -82,19 +96,22 @@ export default function HighlightsStrategySectionV2({
           <div data-animate className="flex flex-col">
             <h2 className={HEADING_GRADIENT + " mb-8 text-center"}>Key Highlights</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
-              {highlights.map((highlight) => (
-                <div
-                  key={highlight}
-                  className="flex flex-col items-center"
-                >
-                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-700/30 ring-1 ring-white/10">
-                    <CheckCircleIcon className="h-8 w-8 text-brand-main" />
-                  </span>
-                  <p className="mt-4 text-center text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
-                    {highlight}
-                  </p>
-                </div>
-              ))}
+              {highlights.map((highlight, index) => {
+                const Icon = HIGHLIGHT_ICONS[index] ?? ChartBarIcon;
+                return (
+                  <div
+                    key={highlight}
+                    className="flex flex-col items-center"
+                  >
+                    <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-700/30 ring-1 ring-white/10">
+                      <Icon className="h-8 w-8 text-white" />
+                    </span>
+                    <p className="mt-4 text-center text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
+                      {highlight}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
