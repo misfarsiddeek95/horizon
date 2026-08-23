@@ -27,7 +27,7 @@ export default function KeyFeaturesBannerV2() {
   return (
     <section
       ref={ref}
-      aria-label="Key Features Unveiled"
+      aria-label="This year in focus: Key Features"
       className={`group relative w-full transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
@@ -48,7 +48,7 @@ export default function KeyFeaturesBannerV2() {
 
         <div className="flex flex-col">
           <h2 data-animate className={`${HEADING_GRADIENT} mb-8`}>
-            Key Features Unveiled
+            This year in focus: Key Features
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:gap-5 sm:grid-cols-2">

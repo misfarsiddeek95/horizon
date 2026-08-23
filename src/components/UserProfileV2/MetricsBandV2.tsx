@@ -22,7 +22,7 @@ export default function MetricsBandV2({
             data-animate
             className="font-heading font-medium text-3xl leading-tight md:text-4xl lg:text-5xl heading-gradient mb-3 md:mb-4"
           >
-            {tabTitle} metrics
+            Performance in a snapshot
           </h2>
           {tabIntro && (
             <p

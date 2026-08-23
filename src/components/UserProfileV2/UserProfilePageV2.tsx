@@ -403,7 +403,7 @@ export default function UserProfilePageV2() {
               </div>
             </section>
 
-            {/* SCENE 6: Leadership & Governance */}
+            {/* SCENE 6: Leadership and Governance */}
             {tab.governance && (
               <section
                 id="scene-leadership-governance"

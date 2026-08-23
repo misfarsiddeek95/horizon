@@ -101,7 +101,7 @@ const corporateGovernanceDownload: DownloadLink = {
   pdf: "/pdf/tbc/Corporate%20Governance.pdf",
 };
 
-const chairmanMessageTitle = "Chairman's & Managing Director's Joint Message";
+const chairmanMessageTitle = "Chairman's and Managing Director's Message";
 
 const governanceText =
   "At Haycarb PLC, corporate governance is not merely a compliance obligation, it is a cornerstone of our leadership philosophy and strategic execution. Under the stewardship of a committed Board and guided by the principles of transparency, accountability, and integrity, our governance framework ensures that every decision aligns with the long-term interests of our stakeholders and the sustainability of our operations. This section outlines the roles and responsibilities of our leadership, including the Chairman and Managing Director, and details the mechanisms through which Haycarb maintains oversight across its geographically diverse subsidiaries. It also highlights the formation and function of key Board Committees such as the Nominations and Governance Committee, Audit Committee, and Remuneration Committee, which collectively uphold the standards of ethical leadership and sound governance. Through continuous evaluation, structured succession planning, and alignment with the Hayleys Group's ESG roadmap, Haycarb reinforces its commitment to responsible leadership and resilient governance practices.";
@@ -136,7 +136,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Corporate reputation",
     ],
     strategy: {
-      title: "Strategy & Performance",
+      title: "Strategy and Performance",
       items: [
         "Strategic interventions to secure adequate supplies of raw material to support stable volumes",
         "Revised prices upward to support margin management",
@@ -147,7 +147,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       ],
     },
     governance: {
-      title: "Leadership & Governance",
+      title: "Leadership and Governance",
       text: governanceText,
       download: corporateGovernanceDownload,
     },
@@ -186,7 +186,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Career progression",
     ],
     strategy: {
-      title: "Strategy & Performance",
+      title: "Strategy and Performance",
       items: [
         "Goal setting and Performance Appraisals with fair and equitable remuneration for all employees based on skills, competencies and performance",
         "Strengthened the safety culture within the Group",
@@ -234,7 +234,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Sustainable and ethical business practices",
     ],
     strategy: {
-      title: "Strategy & Performance",
+      title: "Strategy and Performance",
       items: [
         "New product development through R&D to deliver tailored solutions that fulfill specific customer needs",
         "Numerous initiatives to source adequate supplies of raw materials are procured from all countries in supply chain",
@@ -299,7 +299,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Environmental and social compliance",
     ],
     strategy: {
-      title: "Strategy & Performance",
+      title: "Strategy and Performance",
       items: [
         "Strengthened our supplier value proposition",
         "Maintained emphasis on ethical procurement practices and timely payments",
@@ -349,7 +349,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       },
     },
     governance: {
-      title: "Leadership & Governance",
+      title: "Leadership and Governance",
       text: governanceText,
       download: corporateGovernanceDownload,
     },
