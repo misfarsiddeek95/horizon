@@ -27,7 +27,11 @@ function parseValue(value: string) {
   return { prefix, numericValue, suffix, decimalPlaces, hasCommas };
 }
 
-function formatNumber(value: number, decimalPlaces: number, hasCommas: boolean) {
+function formatNumber(
+  value: number,
+  decimalPlaces: number,
+  hasCommas: boolean
+) {
   return value.toLocaleString("en-US", {
     minimumFractionDigits: decimalPlaces,
     maximumFractionDigits: decimalPlaces,
@@ -35,7 +39,10 @@ function formatNumber(value: number, decimalPlaces: number, hasCommas: boolean) 
   });
 }
 
-export default function AnimatedCounter({ value, duration = 1500 }: AnimatedCounterProps) {
+export default function AnimatedCounter({
+  value,
+  duration = 1500,
+}: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(value);
   const animatedRef = useRef(false);
@@ -59,7 +66,11 @@ export default function AnimatedCounter({ value, duration = 1500 }: AnimatedCoun
         const current = parsed.numericValue * eased;
 
         setDisplay(
-          `${parsed.prefix}${formatNumber(current, parsed.decimalPlaces, parsed.hasCommas)}${parsed.suffix}`
+          `${parsed.prefix}${formatNumber(
+            current,
+            parsed.decimalPlaces,
+            parsed.hasCommas
+          )}${parsed.suffix}`
         );
 
         if (progress < 1) {
@@ -72,7 +83,10 @@ export default function AnimatedCounter({ value, duration = 1500 }: AnimatedCoun
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting) && !animatedRef.current) {
+        if (
+          entries.some((entry) => entry.isIntersecting) &&
+          !animatedRef.current
+        ) {
           animate();
           observer.disconnect();
         }
@@ -89,10 +103,7 @@ export default function AnimatedCounter({ value, duration = 1500 }: AnimatedCoun
   }, [value, duration]);
 
   return (
-    <span
-      ref={ref}
-      className="inline-block"
-    >
+    <span ref={ref} className="inline-block text-4xl lg:text-5xl">
       {display}
     </span>
   );

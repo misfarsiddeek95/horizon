@@ -80,7 +80,7 @@ export default function ChairmanSectionV2({
       >
         <div className="relative w-full h-full min-h-96 md:min-h-full rounded-2xl overflow-hidden">
           <Image
-            src="/images/user-profile/chariman.png"
+            src="/images/user-profile/chairman.png"
             alt="Chairman"
             fill
             className="object-contain w-full h-full"

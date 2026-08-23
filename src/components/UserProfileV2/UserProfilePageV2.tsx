@@ -306,14 +306,16 @@ export default function UserProfilePageV2() {
                 >
                   {tab.heroTitle}
                 </h1>
-                <p
-                  data-animate
-                  className="text-lg md:text-xl lg:text-2xl text-slate-200 max-w-3xl drop-shadow-md"
-                >
-                  Explore Haycarb through the lens that matters to you —
-                  performance, strategy, and sustainable value creation.
-                </p>
                 {tab.intro && (
+                  <p
+                    data-animate
+                    data-parallax
+                    className="text-lg md:text-xl lg:text-2xl text-slate-200 max-w-3xl drop-shadow-md"
+                  >
+                    {tab.intro}
+                  </p>
+                )}
+                {/* {tab.intro && (
                   <div
                     data-animate
                     data-parallax
@@ -323,7 +325,7 @@ export default function UserProfilePageV2() {
                       {tab.intro}
                     </p>
                   </div>
-                )}
+                )} */}
                 <button
                   onClick={() => {
                     const target = document.getElementById("scene-metrics");
