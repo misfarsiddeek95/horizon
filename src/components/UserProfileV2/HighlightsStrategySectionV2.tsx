@@ -77,20 +77,25 @@ export default function HighlightsStrategySectionV2({
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:gap-7 lg:grid-cols-2 lg:gap-10">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16">
         {highlights && (
           <div data-animate className="flex flex-col">
-            <h2 className={HEADING_GRADIENT + " mb-6"}>Key Highlights</h2>
-            <ul className="space-y-3 md:space-y-4">
+            <h2 className={HEADING_GRADIENT + " mb-8 text-center"}>Key Highlights</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
               {highlights.map((highlight) => (
-                <li key={highlight} className="flex items-start gap-2 md:gap-3">
-                  <CheckCircleIcon className="mt-1 h-4 w-4 md:h-5 md:w-5 shrink-0 text-brand-main" />
-                  <span className="text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-sm">
-                    {highlight}
+                <div
+                  key={highlight}
+                  className="flex flex-col items-center"
+                >
+                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-700/30 ring-1 ring-white/10">
+                    <CheckCircleIcon className="h-8 w-8 text-brand-main" />
                   </span>
-                </li>
+                  <p className="mt-4 text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
+                    {highlight}
+                  </p>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
 

@@ -400,12 +400,10 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 6: Highlights & Strategy */}
             <section id="scene-highlights" className={SCENE_SECTION} data-scene>
-              <div className={GLASS_PANEL}>
-                <HighlightsStrategySectionV2
-                  highlights={tab.highlights}
-                  strategy={tab.strategy}
-                />
-              </div>
+              <HighlightsStrategySectionV2
+                highlights={tab.highlights}
+                strategy={tab.strategy}
+              />
             </section>
 
             {/* SCENE 6: Leadership and Governance */}
