@@ -22,7 +22,7 @@ const HEADING_GRADIENT =
 
 export default function KeyFeaturesBannerV2() {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
-  const [heroFeature, ...restFeatures] = KEY_FEATURES;
+  const features = KEY_FEATURES.filter((f) => f.icon !== "ai");
 
   return (
     <section
@@ -52,21 +52,14 @@ export default function KeyFeaturesBannerV2() {
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:gap-5 sm:grid-cols-2">
-            <div
-              data-animate
-              className="animate-user-profile-fade-up rounded-3xl bg-glass p-4 md:p-6 glass-card-hover sm:col-span-2"
-            >
-              <HeroFeature feature={heroFeature} />
-            </div>
-
-            {restFeatures.map((feature, index) => {
+            {features.map((feature, index) => {
               const Icon = FEATURE_ICONS[feature.icon];
               return (
                 <div
                   key={feature.title}
                   data-animate
                   className="animate-user-profile-fade-up rounded-3xl bg-glass p-4 md:p-6 glass-card-hover"
-                  style={{ animationDelay: `${150 + index * 120}ms` }}
+                  style={{ animationDelay: `${index * 120}ms` }}
                 >
                   <span className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-xl bg-brand-main/20 text-white ring-1 ring-white/20">
                     <Icon className="h-5 w-5" />
@@ -84,36 +77,5 @@ export default function KeyFeaturesBannerV2() {
         </div>
       </div>
     </section>
-  );
-}
-
-function HeroFeature({ feature }: { feature: (typeof KEY_FEATURES)[number] }) {
-  const Icon = FEATURE_ICONS[feature.icon];
-  return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6 md:gap-8">
-      <span className="flex h-12 w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-main/20 text-white ring-1 ring-white/20">
-        <Icon className="h-6 w-6 md:h-7 md:w-7" />
-      </span>
-      <div>
-        <h3 className="font-heading font-medium text-lg tracking-tight heading-gradient sm:text-xl md:text-2xl">
-          {feature.title}
-        </h3>
-        <p className="mt-2 max-w-2xl text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-md">
-          {feature.detail}
-        </p>
-        {feature.subItems && feature.subItems.length > 0 && (
-          <ul className="mt-4 md:mt-5 flex flex-wrap gap-2">
-            {feature.subItems.map((subItem) => (
-              <li
-                key={subItem}
-                className="rounded-full bg-white/10 px-2.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-medium text-slate-200 ring-1 ring-white/20 transition-all duration-300 hover:bg-white/20 hover:ring-white/30"
-              >
-                {subItem}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
   );
 }

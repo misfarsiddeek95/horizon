@@ -14,6 +14,7 @@ import HighlightsStrategySectionV2 from "./HighlightsStrategySectionV2";
 import LeadershipSectionV2 from "./LeadershipSectionV2";
 import StrategyImageSectionV2 from "./StrategyImageSectionV2";
 import KeyFeaturesBannerV2 from "./KeyFeaturesBannerV2";
+import AiEnabledDigitalReport from "./AiEnabledDigitalReport";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -37,6 +38,7 @@ const ALL_SCENES = [
   { id: "scene-metrics", label: "Metrics" },
   { id: "scene-leadership", label: "Leadership" },
   { id: "scene-features", label: "Features" },
+  { id: "ai-enabled-report", label: "AI Report" },
   { id: "scene-highlights", label: "Highlights & Strategy" },
   { id: "scene-leadership-governance", label: "Governance" },
   { id: "scene-strategy", label: "Strategy" },
@@ -393,7 +395,12 @@ export default function UserProfilePageV2() {
               </div>
             </section>
 
-            {/* SCENE 5: Highlights & Strategy */}
+            {/* SCENE 5: AI-Enabled Digital Report */}
+            <section id="ai-enabled-report" className={SCENE_SECTION} data-scene>
+              <AiEnabledDigitalReport />
+            </section>
+
+            {/* SCENE 6: Highlights & Strategy */}
             <section id="scene-highlights" className={SCENE_SECTION} data-scene>
               <div className={GLASS_PANEL}>
                 <HighlightsStrategySectionV2
