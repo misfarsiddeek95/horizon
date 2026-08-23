@@ -219,7 +219,7 @@ export default function UserProfilePageV2() {
   return (
     <main
       ref={mainRef}
-      className="relative w-full min-h-screen overflow-x-hidden text-white font-sans selection:bg-brand-main selection:text-white flex"
+      className="relative w-full min-h-screen overflow-x-clip text-white font-sans selection:bg-brand-main selection:text-white flex"
     >
       <UserProfileBackgroundScrubber />
 
@@ -413,9 +413,7 @@ export default function UserProfilePageV2() {
                 className={SCENE_SECTION}
                 data-scene
               >
-                <div className={GLASS_PANEL}>
-                  <LeadershipSectionV2 governance={tab.governance} />
-                </div>
+                <LeadershipSectionV2 governance={tab.governance} />
               </section>
             )}
 

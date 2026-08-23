@@ -40,6 +40,7 @@ export interface ProfileTab {
   governance?: {
     title: string;
     text: string;
+    paragraphs: string[];
     download: DownloadLink;
   };
   strategyImage?: {
@@ -103,8 +104,22 @@ const corporateGovernanceDownload: DownloadLink = {
 
 const chairmanMessageTitle = "Chairman's and Managing Director's Message";
 
-const governanceText =
-  "At Haycarb PLC, corporate governance is not merely a compliance obligation, it is a cornerstone of our leadership philosophy and strategic execution. Under the stewardship of a committed Board and guided by the principles of transparency, accountability, and integrity, our governance framework ensures that every decision aligns with the long-term interests of our stakeholders and the sustainability of our operations. This section outlines the roles and responsibilities of our leadership, including the Chairman and Managing Director, and details the mechanisms through which Haycarb maintains oversight across its geographically diverse subsidiaries. It also highlights the formation and function of key Board Committees such as the Nominations and Governance Committee, Audit Committee, and Remuneration Committee, which collectively uphold the standards of ethical leadership and sound governance. Through continuous evaluation, structured succession planning, and alignment with the Hayleys Group's ESG roadmap, Haycarb reinforces its commitment to responsible leadership and resilient governance practices.";
+const governanceParaOne =
+  "At Haycarb PLC, corporate governance is not merely a compliance obligation, it is a cornerstone of our leadership philosophy and strategic execution. Under the stewardship of a committed Board and guided by the principles of transparency, accountability, and integrity, our governance framework ensures that every decision aligns with the long-term interests of our stakeholders and the sustainability of our operations.";
+
+const governanceParaTwo =
+  "This section outlines the roles and responsibilities of our leadership, including the Chairman and Managing Director, and details the mechanisms through which Haycarb maintains oversight across its geographically diverse subsidiaries. It also highlights the formation and function of key Board Committees such as the Nominations and Governance Committee, Audit Committee, and Remuneration Committee, which collectively uphold the standards of ethical leadership and sound governance.";
+
+const governanceParaThree =
+  "Through continuous evaluation, structured succession planning, and alignment with the Hayleys Group's ESG roadmap, Haycarb reinforces its commitment to responsible leadership and resilient governance practices.";
+
+const governanceParagraphs = [
+  governanceParaOne,
+  governanceParaTwo,
+  governanceParaThree,
+];
+
+const governanceText = governanceParagraphs.join(" ");
 
 export const PROFILE_TABS: ProfileTab[] = [
   {
@@ -149,6 +164,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     governance: {
       title: "Leadership and Governance",
       text: governanceText,
+      paragraphs: governanceParagraphs,
       download: corporateGovernanceDownload,
     },
     strategyImage: {
@@ -351,6 +367,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     governance: {
       title: "Leadership and Governance",
       text: governanceText,
+      paragraphs: governanceParagraphs,
       download: corporateGovernanceDownload,
     },
     strategyImage: {

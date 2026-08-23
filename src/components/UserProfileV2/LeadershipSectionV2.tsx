@@ -1,12 +1,14 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import type { DownloadLink } from "@/data/userProfiles";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import DownloadButtonV2 from "./DownloadButtonV2";
+import Button from "@/components/ui/Button";
 
 interface LeadershipSectionV2Props {
   governance: {
     title: string;
-    text: string;
+    paragraphs: string[];
     download: DownloadLink;
   };
 }
@@ -17,38 +19,68 @@ const HEADING_GRADIENT =
 export default function LeadershipSectionV2({
   governance,
 }: LeadershipSectionV2Props) {
-  const { ref, revealed } = useScrollReveal<HTMLElement>();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activePara, setActivePara] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 1));
+      const progress = total > 0 ? scrolled / total : 0;
+
+      if (progress < 1 / 3) setActivePara(0);
+      else if (progress < 2 / 3) setActivePara(1);
+      else setActivePara(2);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section
-      ref={ref}
-      aria-label="Leadership and governance"
-      className={`group relative w-full transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
-        revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-      }`}
+      ref={sectionRef}
+      aria-label={governance.title}
+      className="relative h-[200vh] mb-24"
     >
-      <div
-        data-animate
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full items-stretch"
-      >
-        <div className="flex flex-col justify-center w-full h-full">
-          <h2 className={HEADING_GRADIENT + " mb-6"}>{governance.title}</h2>
-          <p className="text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md">
-            {governance.text}
-          </p>
-          <div className="mt-6 md:mt-8">
-            <DownloadButtonV2 download={governance.download} />
-          </div>
-        </div>
+      <div className="sticky top-32 mx-auto max-w-4xl text-center px-4">
+        <h2 className={`${HEADING_GRADIENT} mb-8 text-center`}>
+          {governance.title}
+        </h2>
 
-        <div className="relative w-full h-full min-h-96 md:min-h-full rounded-2xl overflow-hidden">
-          <Image
-            src="/images/placeholder_one_on_one.png"
-            alt={governance.title}
-            fill
-            className="object-fill w-full h-full rounded-3xl!"
-            priority
-          />
+        <div className="grid mt-8">
+          {governance.paragraphs.map((paragraph, index) => (
+            <div
+              key={index}
+              className={`col-start-1 row-start-1 flex flex-col items-center transition-opacity duration-500 ${
+                activePara === index ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+            >
+              <p className="max-w-3xl mx-auto text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md pb-5">
+                {paragraph}
+              </p>
+              {index === 2 && (
+                <Button
+                  behavior="link"
+                  href={governance.download.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="primary"
+                  radius="full"
+                  icon={<ArrowDownTrayIcon />}
+                  iconPosition="right"
+                  aria-label={`Download ${governance.download.label}`}
+                >
+                  {governance.download.label}
+                </Button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
