@@ -31,7 +31,7 @@ export interface ProfileTab {
     text: string;
   };
   highlights?: string[];
-  strategy: {
+  strategy?: {
     title: string;
     items?: string[];
     text?: string;
@@ -356,14 +356,6 @@ export const PROFILE_TABS: ProfileTab[] = [
         ],
       },
     ],
-    strategy: {
-      title: "Strategy",
-      text: "HAYCARB'S STRATEGIES FOR SUSTAINABLE GLOBAL VALUE CREATION",
-      download: {
-        label: "Download Strategy and Resource Allocation",
-        pdf: "/pdf/tbc/Strategy%20and%20Resource%20Allocation.pdf",
-      },
-    },
     governance: {
       title: "Leadership and Governance",
       text: governanceText,

@@ -47,6 +47,7 @@ const ALL_SCENES = [
 function getScenesForTab(tab: ProfileTab) {
   return ALL_SCENES.filter(({ id }) => {
     if (id === "scene-leadership") return !!tab.message;
+    if (id === "scene-highlights") return !!tab.strategy;
     if (id === "scene-leadership-governance") return !!tab.governance;
     if (id === "scene-strategy") return !!tab.strategyImage;
     return true;
@@ -293,7 +294,7 @@ export default function UserProfilePageV2() {
 
       {/* MAIN CONTENT */}
       <div className="relative z-10 w-full min-w-0 lg:ml-32 xl:ml-40">
-        <InfiniteScrollWrapper>
+        <InfiniteScrollWrapper loop={false}>
           <div className="flex flex-col w-full original-content-block relative">
             {/* SCENE 1: Hero / Intro */}
             <section
@@ -399,12 +400,14 @@ export default function UserProfilePageV2() {
             </section>
 
             {/* SCENE 6: Highlights & Strategy */}
-            <section id="scene-highlights" className={SCENE_SECTION} data-scene>
-              <HighlightsStrategySectionV2
-                highlights={tab.highlights}
-                strategy={tab.strategy}
-              />
-            </section>
+            {tab.strategy && (
+              <section id="scene-highlights" className={SCENE_SECTION} data-scene>
+                <HighlightsStrategySectionV2
+                  highlights={tab.highlights}
+                  strategy={tab.strategy}
+                />
+              </section>
+            )}
 
             {/* SCENE 6: Leadership and Governance */}
             {tab.governance && (

@@ -10,7 +10,7 @@ interface GovernanceStrategySectionProps {
     download: DownloadLink;
   };
   highlights?: string[];
-  strategy: {
+  strategy?: {
     title: string;
     items?: string[];
     text?: string;
@@ -67,45 +67,47 @@ export default function GovernanceStrategySection({
           )}
         </div>
 
-        <div
-          className="animate-user-profile-fade-up"
-          style={{ animationDelay: "150ms" }}
-        >
+        {strategy && (
+          <div
+            className="animate-user-profile-fade-up"
+            style={{ animationDelay: "150ms" }}
+          >
 
-          <h2 className={headingClass}>{strategy.title}</h2>
+            <h2 className={headingClass}>{strategy.title}</h2>
 
-          {strategy.text ? (
-            <p className="mt-6 text-lg leading-relaxed text-slate-600">
-              {strategy.text}
-            </p>
-          ) : (
-            <ul className="mt-8 space-y-4">
-              {strategy.items?.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <ArrowRightIcon className="mt-1.5 h-4 w-4 shrink-0 text-brand-main" />
-                  <span className="text-lg leading-relaxed text-slate-700">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
+            {strategy.text ? (
+              <p className="mt-6 text-lg leading-relaxed text-slate-600">
+                {strategy.text}
+              </p>
+            ) : (
+              <ul className="mt-8 space-y-4">
+                {strategy.items?.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <ArrowRightIcon className="mt-1.5 h-4 w-4 shrink-0 text-brand-main" />
+                    <span className="text-lg leading-relaxed text-slate-700">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
-          {strategy.download && (
-            <div className="mt-8">
-              <DownloadButton download={strategy.download} />
+            {strategy.download && (
+              <div className="mt-8">
+                <DownloadButton download={strategy.download} />
+              </div>
+            )}
+
+            <div className="mt-10 flex items-center gap-3 rounded-2xl border border-white/40 bg-white/70 px-5 py-4 shadow-sm backdrop-blur-md">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-main/10 text-brand-main">
+                <ShieldCheckIcon className="h-5 w-5" />
+              </span>
+              <p className="text-sm font-medium text-slate-500">
+                Governance and strategy working in harmony.
+              </p>
             </div>
-          )}
-
-          <div className="mt-10 flex items-center gap-3 rounded-2xl border border-white/40 bg-white/70 px-5 py-4 shadow-sm backdrop-blur-md">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-main/10 text-brand-main">
-              <ShieldCheckIcon className="h-5 w-5" />
-            </span>
-            <p className="text-sm font-medium text-slate-500">
-              Governance and strategy working in harmony.
-            </p>
           </div>
-        </div>
+        )}
       </div>
 
       <div
