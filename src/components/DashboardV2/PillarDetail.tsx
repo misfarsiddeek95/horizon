@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { IMPACT_REPORT_URL } from "@/data/dashboardV2/pillars";
 import { STATUS_TONE_COLOR, type V2Pillar } from "@/data/dashboardV2/types";
 
@@ -11,26 +12,14 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
   return (
     <div className="flex flex-col gap-y-[34px]">
       <div className="mt-8 grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <div
-          role="img"
-          aria-label={`Placeholder for ${pillar.name} sustainability image`}
-          className="relative min-h-[300px] w-full overflow-hidden rounded-[24px_24px_24px_8px] lg:min-h-[340px]"
-          style={{
-            background:
-              "linear-gradient(145deg,#dfece7 0%,#c8ddd6 48%,#a8c9be 100%)",
-          }}
-        >
-          <div
-            className="absolute inset-0"
-            aria-hidden="true"
-            style={{
-              background:
-                "radial-gradient(circle at 30% 28%,rgba(255,255,255,.52),transparent 26%),linear-gradient(165deg,transparent 45%,rgba(14,107,102,.18) 100%)",
-            }}
+        <div className="relative min-h-[300px] w-full overflow-hidden rounded-[24px_24px_24px_8px] lg:min-h-[340px]">
+          <Image
+            src="/images/innerpage/dashboard_progress_section.svg"
+            alt="Intro Banner"
+            fill
+            unoptimized
+            className="object-cover rounded-3xl"
           />
-          <span className="absolute bottom-5 left-[22px] text-[9px] font-[850] uppercase tracking-[0.12em] text-[#416c68] opacity-[.72]">
-            IMAGE PLACEHOLDER
-          </span>
         </div>
         <div className="flex flex-col gap-6">
           <h3 className="m-0 max-w-[720px] font-heading text-[32px] font-medium leading-[1.16] tracking-[-0.025em] text-balance">
@@ -242,26 +231,14 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
             "linear-gradient(135deg,var(--color-v2-navy-story) 0%,#0c655f 100%)",
         }}
       >
-        <div
-          role="img"
-          aria-label={`Placeholder banner image for ${pillar.story}`}
-          className="relative min-h-[220px] overflow-hidden lg:min-h-[300px]"
-          style={{
-            background:
-              "linear-gradient(135deg,#b7d6cc 0%,#78aa9d 52%,#3d7f73 100%)",
-          }}
-        >
-          <div
-            className="absolute inset-0"
-            aria-hidden="true"
-            style={{
-              background:
-                "radial-gradient(circle at 22% 30%,rgba(255,255,255,.42),transparent 24%),linear-gradient(160deg,transparent 46%,rgba(5,62,57,.28) 100%)",
-            }}
+        <div className="relative min-h-[220px] overflow-hidden lg:min-h-[300px]">
+          <Image
+            src="/images/innerpage/dashboard_story_banner.svg"
+            alt="Featured Story"
+            fill
+            unoptimized
+            className="object-cover"
           />
-          <span className="absolute bottom-[22px] left-[28px] text-[10px] font-[850] uppercase tracking-[0.12em] text-white opacity-90">
-            Project image placeholder
-          </span>
         </div>
         <div className="self-center p-[28px_30px] lg:p-[34px_38px]">
           <h4 className="mb-[7px] mt-0 text-[18px] font-medium">

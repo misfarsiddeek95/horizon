@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
 import type { V2Crro } from "@/data/dashboardV2/types";
@@ -16,22 +17,13 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
   return (
     <div className="flex flex-col">
       <div className="overflow-hidden rounded-[24px_24px_24px_8px] border border-[#dce6e7] bg-white shadow-[0_18px_42px_rgba(18,63,69,.06)]">
-        <div
-          role="img"
-          aria-label={`Banner for ${crro.title}`}
-          className="relative flex min-h-[250px] items-center justify-center overflow-hidden p-[34px_38px] text-center"
-          style={{
-            background:
-              "linear-gradient(135deg,#143d4f 0%,#0d5d61 58%,#147c74 100%)",
-          }}
-        >
-          <div
-            className="absolute inset-0"
-            aria-hidden="true"
-            style={{
-              background:
-                "radial-gradient(circle at 82% 18%,rgba(255,255,255,.12),transparent 28%),linear-gradient(150deg,rgba(3,31,44,.12),rgba(3,31,44,.34))",
-            }}
+        <div className="relative isolate flex min-h-[250px] items-center justify-center overflow-hidden p-[34px_38px] text-center">
+          <Image
+            src="/images/innerpage/dashboard_progress_section.svg"
+            alt="Progress and Outlook"
+            fill
+            unoptimized
+            className="object-cover -z-10"
           />
           <div className="relative z-[1] mx-auto max-w-[900px] text-white">
             <h3 className="m-0 mb-[10px] max-w-[860px] font-heading text-[34px] font-medium leading-[1.12] tracking-[-0.025em]">
