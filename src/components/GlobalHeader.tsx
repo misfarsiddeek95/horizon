@@ -8,6 +8,7 @@ const menuLinks = [
   { name: "Home", path: "/" },
   { name: "Charts & Reports Generator", path: "/tailor-made-for-you" },
   { name: "FinQuest Game", path: "/puzzle" },
+  { name: "AI Chat Assistant", path: "/chat" },
   { name: "User Profiles", path: "/user-profile-v2" },
 ];
 
