@@ -77,6 +77,45 @@
   /* --- OVERLAY COLORS --- */
   --color-overlay: #1c5e70;
 
+  /* --- DASHBOARD V2 --- */
+  --color-v2-page: #f4f7f6;
+  --color-v2-ink: #102f42;
+  --color-v2-nav-glass: rgba(251, 252, 253, 0.78);
+  --color-v2-nav-border: rgba(208, 221, 223, 0.72);
+  --color-v2-navlink-bg: rgba(236, 243, 242, 0.76);
+  --color-v2-navlink-border: rgba(203, 220, 217, 0.72);
+  --color-v2-navlink-text: #56707b;
+  --color-v2-navlink-active: #0b6b66;
+  --color-v2-navy-deep: #0c3557;
+  --color-v2-navy-mid: #0c4561;
+  --color-v2-navy-teal: #0b5965;
+  --color-v2-navy-btn: #0e3b57;
+  --color-v2-navy-story: #0d3a50;
+  --color-v2-hero-kicker: #9ee2df;
+  --color-v2-hero-copy: #dce9ef;
+  --color-v2-accent: #159a91;
+  --color-v2-accent-dark: #0f7d79;
+  --color-v2-accent-deep: #0f6f69;
+  --color-v2-accent-text: #13827c;
+  --color-v2-status-progressing: #5879ab;
+  --color-v2-status-ontrack: #11958e;
+  --color-v2-status-acceleration: #dc7c31;
+  --color-v2-status-achieved: #3d8062;
+  --color-v2-border: #dce6e8;
+  --color-v2-border-light: #e4ecea;
+  --color-v2-border-metric: #d9e5e6;
+  --color-v2-text-strong: #103650;
+  --color-v2-text-body: #415d6b;
+  --color-v2-text-muted: #5c747f;
+  --color-v2-text-soft: #667b85;
+  --color-v2-text-faint: #6d8189;
+  --color-v2-label: #73858c;
+  --color-v2-wash: #edf4f3;
+  --color-v2-wash-chart: #dceceb;
+  --color-v2-series-upper: #0e3b57;
+  --color-v2-series-lower: #4b8f8c;
+  --color-v2-current-value: #0799a5;
+
   /* --- SHADOW TOKENS (V2) --- */
   --shadow-glass-card: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
   --shadow-glass-panel: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
