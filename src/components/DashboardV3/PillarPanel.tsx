@@ -5,7 +5,7 @@ import { IMPACT_REPORT_URL } from "@/data/dashboardV2/pillars";
 import { type V2Pillar } from "@/data/dashboardV2/types";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { STATUS_TONE_TEXT_V3 } from "./statusTones";
-import AnimatedRail from "./AnimatedRail";
+import AnimatedRail from "@/components/ui/AnimatedRail";
 
 interface PillarPanelProps {
   pillar: V2Pillar;
@@ -146,8 +146,8 @@ export default function PillarPanel({ pillar }: PillarPanelProps) {
                       {typeof commitment.pct === "number" ? (
                         <AnimatedRail
                           pct={commitment.pct}
-                          className={STATUS_TONE_TEXT_V3[commitment.tone]}
                           index={commitmentIndex}
+                          className={`mt-2 h-1 max-w-[170px] overflow-hidden rounded-full bg-white/20 ${STATUS_TONE_TEXT_V3[commitment.tone]}`}
                         />
                       ) : null}
                     </td>
@@ -190,8 +190,8 @@ export default function PillarPanel({ pillar }: PillarPanelProps) {
                       </span>
                       <AnimatedRail
                         pct={item.pct}
-                        className={STATUS_TONE_TEXT_V3.ontrack}
                         index={itemIndex}
+                        className={`mt-2 h-1 max-w-[170px] overflow-hidden rounded-full bg-white/20 ${STATUS_TONE_TEXT_V3.ontrack}`}
                       />
                     </td>
                   </tr>

@@ -1,3 +1,5 @@
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
+
 interface Metric {
   label: string;
   value: string;
@@ -42,10 +44,10 @@ export default function MetricsBand() {
             {metric.label}
           </div>
           <div
-            className="my-[14px] mb-[7px] text-[48px] font-semibold leading-none tracking-[-0.045em]"
+            className="my-[14px] mb-[7px] text-[48px] font-semibold leading-none tracking-[-0.045em] [&>span]:text-[48px]"
             style={metric.accent ? { color: metric.accent } : undefined}
           >
-            {metric.value}
+            <AnimatedCounter value={metric.value} />
           </div>
           <div className="text-[13px] text-[var(--color-v2-text-faint)]">
             {metric.sub}

@@ -1,17 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 
 interface AnimatedRailProps {
   pct: number;
-  className: string;
+  className?: string;
+  color?: string;
   index?: number;
+  style?: CSSProperties;
 }
 
 export default function AnimatedRail({
   pct,
-  className,
+  className = "",
+  color,
   index = 0,
+  style,
 }: AnimatedRailProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -37,11 +42,12 @@ export default function AnimatedRail({
   return (
     <div
       ref={ref}
-      className={`mt-2 h-1 max-w-[170px] overflow-hidden rounded-full bg-white/20 ${className}`}
       role="progressbar"
       aria-valuenow={pct}
       aria-valuemin={0}
       aria-valuemax={100}
+      className={className}
+      style={{ ...(color ? { color } : {}), ...style }}
     >
       <span
         className="block h-full rounded-full bg-current transition-[width] duration-1000 ease-out motion-reduce:transition-none"

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { IMPACT_REPORT_URL } from "@/data/dashboardV2/pillars";
 import { STATUS_TONE_COLOR, type V2Pillar } from "@/data/dashboardV2/types";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import AnimatedRail from "@/components/ui/AnimatedRail";
 
 interface PillarDetailProps {
   pillar: V2Pillar;
@@ -42,8 +44,8 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
             <div className="text-[10px] font-[850] uppercase tracking-[0.13em] text-[var(--color-v2-accent-dark)]">
               FY2025/26 Standout
             </div>
-            <div className="my-[9px] text-[44px] font-semibold leading-none tracking-[-0.04em] text-[var(--color-v2-accent-dark)] lg:text-[52px]">
-              {pillar.standout}
+            <div className="my-[9px] text-[44px] font-semibold leading-none tracking-[-0.04em] text-[var(--color-v2-accent-dark)] lg:text-[52px] [&>span]:text-[44px] lg:[&>span]:text-[52px]">
+              <AnimatedCounter value={pillar.standout} />
             </div>
             <div className="leading-[1.6] text-[var(--color-v2-text-soft)]">
               {pillar.standoutText}
@@ -121,7 +123,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                 </tr>
               </thead>
               <tbody>
-                {pillar.commitments.map((commitment) => (
+                {pillar.commitments.map((commitment, commitmentIndex) => (
                   <tr key={commitment.name}>
                     <td className="border-b border-[var(--color-v2-border-light)] py-[22px] pr-[18px] align-middle text-[13px] leading-[1.35] text-[var(--color-v2-text-body)]">
                       <span className="text-[14px] font-[850] text-[var(--color-v2-text-strong)]">
@@ -151,15 +153,12 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                         {commitment.status}
                       </span>
                       {typeof commitment.pct === "number" ? (
-                        <div
+                        <AnimatedRail
+                          pct={commitment.pct}
+                          index={commitmentIndex}
                           className="mt-2 h-1 max-w-[190px] overflow-hidden rounded-full bg-[#dfe7e9]"
-                          style={{ color: STATUS_TONE_COLOR[commitment.tone] }}
-                        >
-                          <span
-                            className="block h-full rounded-full bg-current"
-                            style={{ width: `${commitment.pct}%` }}
-                          />
-                        </div>
+                          color={STATUS_TONE_COLOR[commitment.tone]}
+                        />
                       ) : null}
                     </td>
                   </tr>
@@ -187,7 +186,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                 </tr>
               </thead>
               <tbody>
-                {pillar.progress.map((item) => (
+                {pillar.progress.map((item, itemIndex) => (
                   <tr key={item.label}>
                     <td className="border-b border-[var(--color-v2-border-light)] py-[22px] pr-[18px] align-middle text-[13px] leading-[1.35] text-[var(--color-v2-text-body)]">
                       <span className="text-[14px] font-[850] text-[var(--color-v2-text-strong)]">
@@ -206,15 +205,12 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                       >
                         Progressing
                       </span>
-                      <div
+                      <AnimatedRail
+                        pct={item.pct}
+                        index={itemIndex}
                         className="mt-2 h-1 max-w-[190px] overflow-hidden rounded-full bg-[#dfe7e9]"
-                        style={{ color: STATUS_TONE_COLOR.ontrack }}
-                      >
-                        <span
-                          className="block h-full rounded-full bg-current"
-                          style={{ width: `${item.pct}%` }}
-                        />
-                      </div>
+                        color={STATUS_TONE_COLOR.ontrack}
+                      />
                     </td>
                   </tr>
                 ))}
