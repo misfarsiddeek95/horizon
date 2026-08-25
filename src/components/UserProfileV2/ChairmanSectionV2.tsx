@@ -72,9 +72,9 @@ export default function ChairmanSectionV2({
     >
       <div
         data-animate
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full items-stretch"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full items-center"
       >
-        <div className="relative w-full h-full min-h-96 md:min-h-full rounded-2xl overflow-hidden">
+        <div className="relative w-full h-96 md:h-[28rem] rounded-2xl overflow-hidden">
           <Image
             src="/images/user-profile/chairman.png"
             alt="Chairman"

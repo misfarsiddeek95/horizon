@@ -46,9 +46,9 @@ export default function LeadershipSectionV2({
     <section
       ref={sectionRef}
       aria-label={governance.title}
-      className="relative h-[200vh] mb-24"
+      className="relative h-[50vh] mb-0"
     >
-      <div className="sticky top-0 flex min-h-screen flex-col items-center justify-center mx-auto max-w-4xl text-center px-4">
+      <div className="sticky top-32 flex h-auto flex-col items-center mx-auto max-w-4xl text-center px-4">
         <h2 className={`${HEADING_GRADIENT} mb-4 text-center`}>
           {governance.title}
         </h2>

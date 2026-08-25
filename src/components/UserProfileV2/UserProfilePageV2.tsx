@@ -413,7 +413,7 @@ export default function UserProfilePageV2() {
             {tab.governance && (
               <section
                 id="scene-leadership-governance"
-                className={SCENE_SECTION}
+                className="relative w-full flex flex-col items-center justify-center pt-0 pb-0 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28"
                 data-scene
               >
                 <LeadershipSectionV2 governance={tab.governance} />
