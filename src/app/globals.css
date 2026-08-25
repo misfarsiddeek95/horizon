@@ -344,3 +344,75 @@
     animation: none;
   }
 }
+
+/* ── Haycarb chat component palette ───────────────────────────────────
+   ChartBlock.jsx and constants.js read these at runtime via
+   getComputedStyle. Keep in sync with the annual-report artwork.     */
+:root {
+  --hc-blue-deep:   #0B5D73;
+  --hc-blue-rich:   #177E98;
+  --hc-blue-soft:   #6DBED2;
+  --hc-blue-pale:   #DDEFF3;
+  --hc-blue-sky:    #3FA6C4;
+  --hc-orange:      #F29A58;
+  --hc-gold:        #F7C66A;
+  --hc-peach:       #E58C72;
+  --hc-mountain:    #6A6575;
+  --hc-white:       #F7F5F2;
+  --hc-bg:          #081F2B;
+  --hc-surface:     #0D2E3F;
+  --hc-surface-2:   #113548;
+
+  --hc-chart-label: #177E98;
+  --hc-chart-axis:  #5A93A8;
+  --hc-chart-grid:  rgba(109,190,210,0.1);
+
+  --hc-border:        rgba(109,190,210,0.15);
+  --hc-border-soft:   rgba(109,190,210,0.10);
+  --hc-border-strong: rgba(109,190,210,0.30);
+  --hc-hover:         rgba(109,190,210,0.08);
+  --hc-aura-1:        rgba(23,126,152,0.35);
+  --hc-aura-2:        rgba(242,154,88,0.22);
+}
+
+/* typing dots */
+@keyframes hc-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+  30%           { transform: translateY(-5px); opacity: 1; }
+}
+.hc-dot { animation: hc-bounce 1.2s infinite; }
+
+/* loading message swap */
+@keyframes hc-fade-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hc-fade { animation: hc-fade-in 0.4s ease; }
+
+/* ambient glow behind the chat while it's thinking */
+@keyframes hc-aura {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(1.08); }
+}
+.hc-aura {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 40%, var(--hc-aura-1), transparent 55%),
+    radial-gradient(circle at 70% 60%, var(--hc-aura-2), transparent 55%);
+  filter: blur(60px);
+  animation: hc-aura 3.5s ease-in-out infinite;
+}
+
+/* markdown inside answers. Tailwind preflight strips list styling. */
+.hc-markdown strong { color: var(--color-brand-main); }
+.hc-markdown ul { padding-left: 18px; margin: 8px 0; list-style: disc; }
+.hc-markdown li { margin-bottom: 4px; }
+.hc-markdown p + p { margin-top: 8px; }
+.hc-markdown h1, .hc-markdown h2, .hc-markdown h3 {
+  color: var(--color-heading);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 12px 0 6px;
+}
