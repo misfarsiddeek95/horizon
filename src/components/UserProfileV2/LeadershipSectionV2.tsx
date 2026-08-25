@@ -14,7 +14,7 @@ interface LeadershipSectionV2Props {
 }
 
 const HEADING_GRADIENT =
-  "font-heading font-medium heading-gradient drop-shadow-2xl text-2xl tracking-tight md:text-3xl lg:text-4xl";
+  "font-heading font-medium heading-gradient drop-shadow-2xl text-3xl leading-tight md:text-4xl lg:text-5xl";
 
 export default function LeadershipSectionV2({
   governance,
@@ -48,12 +48,12 @@ export default function LeadershipSectionV2({
       aria-label={governance.title}
       className="relative h-[200vh] mb-24"
     >
-      <div className="sticky top-32 mx-auto max-w-4xl text-center px-4">
-        <h2 className={`${HEADING_GRADIENT} mb-8 text-center`}>
+      <div className="sticky top-0 flex min-h-screen flex-col items-center justify-center mx-auto max-w-4xl text-center px-4">
+        <h2 className={`${HEADING_GRADIENT} mb-4 text-center`}>
           {governance.title}
         </h2>
 
-        <div className="grid mt-8">
+        <div className="grid mt-2">
           {governance.paragraphs.map((paragraph, index) => (
             <div
               key={index}
@@ -61,7 +61,7 @@ export default function LeadershipSectionV2({
                 activePara === index ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             >
-              <p className="max-w-3xl mx-auto text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md pb-5">
+              <p className="max-w-3xl mx-auto text-base md:text-lg lg:text-xl leading-relaxed text-slate-200 drop-shadow-md pb-5">
                 {paragraph}
               </p>
               {index === 2 && (

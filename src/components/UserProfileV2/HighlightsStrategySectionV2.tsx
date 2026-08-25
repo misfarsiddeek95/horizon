@@ -103,10 +103,10 @@ export default function HighlightsStrategySectionV2({
                     key={highlight}
                     className="flex flex-col items-center"
                   >
-                    <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-700/30 ring-1 ring-white/10">
-                      <Icon className="h-8 w-8 text-white" />
+                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full backdrop-blur-md bg-white/15 border border-white/25 shadow-lg transition-all duration-300 text-white hover:bg-white/30 hover:border-white/60 hover:scale-105">
+                      <Icon className="h-8 w-8" />
                     </span>
-                    <p className="mt-4 text-center text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
+                    <p className="mt-0.5 text-center text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
                       {highlight}
                     </p>
                   </div>

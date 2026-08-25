@@ -43,7 +43,7 @@ export default function StrategyImageSectionV2({
               width={1448}
               height={1086}
               sizes="(min-width: 1024px) 100vw, 100vw"
-              className="w-full h-auto object-contain"
+              className="w-full h-[320px] md:h-[420px] lg:h-[500px] object-cover"
             />
           </div>
         </div>

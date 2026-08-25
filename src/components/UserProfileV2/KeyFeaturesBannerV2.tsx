@@ -28,7 +28,7 @@ export default function KeyFeaturesBannerV2() {
     <section
       ref={ref}
       aria-label="This year in focus: Key Features"
-      className={`group relative w-full transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
+      className={`group relative w-full py-16 lg:py-24 transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
@@ -56,7 +56,7 @@ export default function KeyFeaturesBannerV2() {
                   className="flex flex-row items-start gap-5"
                   style={{ animationDelay: `${index * 120}ms` }}
                 >
-                  <span className="shrink-0 flex h-16 w-16 items-center justify-center rounded-full bg-brand-main/20 text-white ring-1 ring-white/20">
+                  <span className="relative shrink-0 flex h-16 w-16 items-center justify-center rounded-full backdrop-blur-md bg-white/15 border border-white/25 shadow-lg transition-all duration-300 text-white hover:bg-white/30 hover:border-white/60 hover:scale-105">
                     <Icon className="h-7 w-7" />
                   </span>
                   <div className="flex flex-col">

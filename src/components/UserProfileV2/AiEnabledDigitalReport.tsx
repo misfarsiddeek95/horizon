@@ -17,7 +17,7 @@ export default function AiEnabledDigitalReport() {
       ref={ref}
       id="ai-enabled-report"
       aria-label="AI-Enabled Digital Report"
-      className={`group relative w-full transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
+      className={`group relative w-full pb-16 lg:pb-24 transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
@@ -38,7 +38,7 @@ export default function AiEnabledDigitalReport() {
             {aiFeature.subItems.map((subItem) => (
               <span
                 key={subItem}
-                className="rounded-full px-5 py-2 md:px-6 md:py-2.5 text-xs md:text-sm font-medium text-slate-200 ring-1 ring-white/20 transition-all duration-300 hover:ring-white/30"
+                className="rounded-full px-5 py-2 md:px-6 md:py-2.5 text-lg md:text-xl font-medium text-slate-200 ring-1 ring-white/20 transition-all duration-300 hover:ring-white/30"
                 style={{
                   background:
                     "linear-gradient(to right, rgba(252, 232, 178, 0.3), rgba(131, 222, 237, 0.3))",
