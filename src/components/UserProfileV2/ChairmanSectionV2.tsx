@@ -94,7 +94,7 @@ export default function ChairmanSectionV2({
             ref={textRef}
             onTransitionEnd={handleTransitionEnd}
             className={`expanding-text max-w-xl text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md ${
-              expanded ? "" : "line-clamp-6"
+              expanded ? "" : "line-clamp-5"
             }`}
           >
             {text}
@@ -103,7 +103,7 @@ export default function ChairmanSectionV2({
             <button
               onClick={handleToggle}
               aria-expanded={expanded}
-              className="mt-2 text-white-main text-sm font-semibold hover:opacity-70 transition-opacity cursor-pointer self-start"
+              className="mt-2 text-white-main text-base font-semibold underline hover:opacity-70 transition-opacity cursor-pointer self-start"
             >
               {expanded ? "Read less" : "Read more"}
             </button>

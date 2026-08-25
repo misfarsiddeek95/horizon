@@ -102,7 +102,7 @@ const corporateGovernanceDownload: DownloadLink = {
   pdf: "/pdf/tbc/Corporate%20Governance.pdf",
 };
 
-const chairmanMessageTitle = "Chairman's and Managing Director's Message";
+const chairmanMessageTitle = "Leadership Message";
 
 const governanceParaOne =
   "At Haycarb PLC, corporate governance is not merely a compliance obligation, it is a cornerstone of our leadership philosophy and strategic execution. Under the stewardship of a committed Board and guided by the principles of transparency, accountability, and integrity, our governance framework ensures that every decision aligns with the long-term interests of our stakeholders and the sustainability of our operations.";
