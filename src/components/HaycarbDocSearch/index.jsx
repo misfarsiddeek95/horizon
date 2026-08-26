@@ -44,7 +44,7 @@ export default function HaycarbDocSearch({
 
       {title && (
         <div className="mb-4">
-          <h2 className="text-sm font-semibold">{title}</h2>
+          <h2 className="font-heading text-lg text-brand-main">{title}</h2>
           <p className="mt-0.5 text-[11px] text-content-primary/70">
             Describe what you&apos;re looking for and download the relevant chapters
           </p>
