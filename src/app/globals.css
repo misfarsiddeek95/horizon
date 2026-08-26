@@ -65,6 +65,53 @@
   animation: orb-float 18s ease-in-out infinite;
 }
 
+@keyframes fluid-1 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(60vw, 40vh) scale(1.6); }
+}
+.animate-fluid-1 { animation: fluid-1 9s ease-in-out infinite alternate; }
+
+@keyframes fluid-2 {
+  from { transform: translate(0, 0) scale(1.2); }
+  to { transform: translate(-55vw, -30vh) scale(0.8); }
+}
+.animate-fluid-2 { animation: fluid-2 8s ease-in-out infinite alternate; }
+
+@keyframes fluid-3 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(45vw, -45vh) scale(1.7); }
+}
+.animate-fluid-3 { animation: fluid-3 11s ease-in-out infinite alternate; }
+
+@keyframes fluid-4 {
+  from { transform: translate(0, 0) scale(1.5); }
+  to { transform: translate(-40vw, 50vh) scale(0.9); }
+}
+.animate-fluid-4 { animation: fluid-4 10s ease-in-out infinite alternate; }
+
+@keyframes orb-spin {
+  to { transform: rotate(360deg); }
+}
+.animate-orb-spin { animation: orb-spin 3s linear infinite; }
+
+@keyframes orb-rotate-x {
+  0% { transform: rotateX(0deg) rotateZ(0deg); }
+  100% { transform: rotateX(360deg) rotateZ(0deg); }
+}
+.animate-orb-rotate-x { animation: orb-rotate-x 4s linear infinite; }
+
+@keyframes orb-rotate-y {
+  0% { transform: rotateY(0deg) rotateZ(0deg); }
+  100% { transform: rotateY(360deg) rotateZ(0deg); }
+}
+.animate-orb-rotate-y { animation: orb-rotate-y 5s linear infinite; }
+
+@keyframes orb-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
+.animate-orb-pulse { animation: orb-pulse 3s ease-in-out infinite; }
+
 @keyframes sun-glow {
   0%, 100% { box-shadow: 0 0 60px 20px rgba(255, 165, 0, 0.4), 0 0 120px 60px rgba(255, 140, 0, 0.2); }
   50% { box-shadow: 0 0 80px 30px rgba(255, 165, 0, 0.5), 0 0 160px 80px rgba(255, 140, 0, 0.3); }
@@ -415,12 +462,12 @@
 }
 
 /* markdown inside answers. Tailwind preflight strips list styling. */
-.hc-markdown strong { color: var(--color-brand-main); }
+.hc-markdown strong { color: #83deed; }
 .hc-markdown ul { padding-left: 18px; margin: 8px 0; list-style: disc; }
 .hc-markdown li { margin-bottom: 4px; }
 .hc-markdown p + p { margin-top: 8px; }
 .hc-markdown h1, .hc-markdown h2, .hc-markdown h3 {
-  color: var(--color-heading);
+  color: #83deed;
   font-size: 13px;
   font-weight: 600;
   margin: 12px 0 6px;

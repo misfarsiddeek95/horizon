@@ -24,13 +24,13 @@ export default function Thinking({ stage }) {
 
   return (
     <div className="flex w-full max-w-[820px] gap-2.5 self-start">
-      <div className="mt-0.5 flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-ui-element bg-gradient-to-br from-brand-main to-brand-hover text-[11px] font-bold text-white">
+      <div className="mt-0.5 flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-ui-element border border-white/20 bg-gradient-to-br from-brand-main to-brand-hover text-[11px] font-bold text-white">
         AI
       </div>
 
-      <div className="flex items-center gap-2.5 rounded-2xl rounded-bl-md border border-white/30 bg-white/50 px-4 py-3.5 shadow-sm backdrop-blur-md">
+      <div className="flex items-center gap-2.5 rounded-2xl rounded-bl-md border border-white/20 bg-white/10 px-4 py-3.5 shadow-sm backdrop-blur-md">
         <Dots />
-        <span className="hc-fade text-[12.5px] text-content-primary/70" key={index}>
+        <span className="hc-fade text-[12.5px] text-white/70" key={index}>
           {stage === 'sending' ? 'Sending…' : THINKING_MESSAGES[index]}
         </span>
       </div>
@@ -44,7 +44,7 @@ function Dots() {
       {[0, 1, 2].map(i => (
         <span
           key={i}
-          className="hc-dot h-1.5 w-1.5 rounded-full bg-brand-main"
+          className="hc-dot h-1.5 w-1.5 rounded-full bg-teal-2"
           style={{ animationDelay: `${i * 0.2}s` }}
         />
       ))}

@@ -178,7 +178,7 @@ export default function ChartBlock({ chart, onCanvasReady }) {
 
 function Wrapper({ title, children }) {
   return (
-    <div className="mt-4 rounded-xl border border-white/40 bg-white/40 p-4 backdrop-blur-md">
+    <div className="mt-4 rounded-xl bg-white/95 p-4 shadow-sm">
       <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-brand-main">
         {title}
       </div>

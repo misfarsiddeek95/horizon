@@ -72,7 +72,7 @@ export default function HaycarbChat({
   };
 
   return (
-    <div className="flex h-full min-h-0 flex-col text-content-primary">
+    <div className="flex h-full min-h-0 flex-col text-white">
 
       <Header
         role={role} setRole={setRole}
@@ -81,14 +81,14 @@ export default function HaycarbChat({
       />
 
       {/* chat area */}
-      <div className="relative flex-1 overflow-hidden">
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
         {busy && <div className="hc-aura" />}
 
         <div
           ref={scrollRef}
-          className="relative h-full overflow-y-auto px-5 py-6"
+          className="min-h-0 flex-1 overflow-y-auto px-5 py-6"
         >
-          <div className="mx-auto flex w-full max-w-[860px] flex-col gap-5">
+          <div className="mx-auto flex min-h-full w-full max-w-[860px] flex-col gap-5">
             {messages.length === 0 && !busy && (
               <Welcome
                 role={role} setRole={setRole}
@@ -110,7 +110,7 @@ export default function HaycarbChat({
             <Thinking stage={stage} />
 
             {error && (
-              <div className="self-start rounded-ui-element border border-red-300 bg-red-50 px-4 py-3 text-[13px] text-red-600">
+              <div className="self-start rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 font-sans text-[13px] text-red-200">
                 {error}
               </div>
             )}
@@ -120,7 +120,7 @@ export default function HaycarbChat({
 
       {/* input */}
       <footer className="relative z-10 shrink-0 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-2 sm:px-6 sm:pb-6">
-        <div className="mx-auto flex w-full max-w-[860px] items-end gap-2.5 rounded-2xl border border-white/40 bg-white/40 p-2 shadow-2xl backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-[860px] items-end gap-2.5 rounded-2xl border border-white/20 bg-white/10 p-2 shadow-2xl backdrop-blur-xl">
           <textarea
             ref={textareaRef}
             rows={1}
@@ -138,7 +138,7 @@ export default function HaycarbChat({
                 submit();
               }
             }}
-            className="max-h-[120px] flex-1 resize-none rounded-xl border-0 bg-transparent px-2.5 py-2.5 font-sans text-[14px] leading-normal text-content-primary outline-none placeholder:text-content-primary/40 disabled:opacity-60"
+            className="max-h-[120px] flex-1 resize-none rounded-xl border-0 bg-transparent px-2.5 py-2.5 font-sans text-[14px] leading-normal text-white outline-none placeholder:text-white/50 disabled:opacity-60"
           />
 
           <button
@@ -158,9 +158,9 @@ export default function HaycarbChat({
 
 function Header({ role, setRole, style, setStyle, showControls }) {
   return (
-    <header className="relative z-10 mx-auto mt-4 flex w-[calc(100%-2rem)] max-w-[860px] shrink-0 flex-wrap items-center gap-x-4 gap-y-2.5 rounded-2xl border border-white/40 bg-white/40 px-5 py-3.5 shadow-xl backdrop-blur-xl sm:mt-6 sm:w-[calc(100%-3rem)]">
+    <header className="relative z-10 mx-auto mt-4 flex w-[calc(100%-2rem)] max-w-[860px] shrink-0 flex-wrap items-center gap-x-4 gap-y-2.5 rounded-2xl border border-white/20 bg-white/10 px-5 py-3.5 shadow-xl backdrop-blur-xl sm:mt-6 sm:w-[calc(100%-3rem)]">
       <div className="flex items-center gap-3">
-        <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-xl border border-white/40 bg-gradient-to-br from-brand-main to-brand-hover shadow-md">
+        <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-xl border border-white/20 bg-gradient-to-br from-brand-main to-brand-hover shadow-md">
           <svg viewBox="0 0 24 24" className="h-5 w-5">
             <circle cx="12" cy="10" r="4" fill="var(--hc-gold)" />
             <path d="M2 18 Q6 12 12 14 Q18 16 22 18" stroke="var(--hc-blue-soft)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
@@ -169,8 +169,8 @@ function Header({ role, setRole, style, setStyle, showControls }) {
         </div>
 
         <div>
-          <h1 className="font-heading text-lg text-brand-main">Haycarb AI Assistant</h1>
-          <p className="mt-px font-sans text-[11px] text-content-primary/60">
+          <h1 className="font-heading text-lg text-teal-2">Haycarb AI Assistant</h1>
+          <p className="mt-px font-sans text-[11px] text-white/70">
             Annual Report 2025/26 · Beyond the Beyond
           </p>
         </div>
@@ -191,10 +191,10 @@ function Select({ value, onChange, options }) {
     <select
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="cursor-pointer rounded-xl border border-white/40 bg-white/60 px-3 py-1.5 font-sans text-[12px] text-content-primary shadow-sm backdrop-blur-md outline-none focus:border-brand-main"
+      className="cursor-pointer rounded-xl border border-white/20 bg-white/10 px-3 py-1.5 font-sans text-[12px] text-white shadow-sm backdrop-blur-xl outline-none focus:border-teal-2"
     >
       {options.map(o => (
-        <option key={o.value} value={o.value} className="bg-surface-default text-content-primary">{o.label}</option>
+        <option key={o.value} value={o.value} className="bg-[#0d3443] text-white">{o.label}</option>
       ))}
     </select>
   );
@@ -207,19 +207,17 @@ function Select({ value, onChange, options }) {
  */
 function Welcome({ role, setRole, style, setStyle, onPick }) {
   return (
-    <div className="m-auto max-w-[520px] px-4 py-10 text-center">
-      <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-main to-brand-hover text-sm font-bold text-white shadow-lg">
-        AI
-      </div>
+    <div className="m-auto w-full max-w-2xl px-4 pt-32 pb-10 text-center">
+      <AiOrb />
 
-      <h2 className="mb-3 font-heading text-2xl text-brand-main sm:text-3xl">Ask about the Annual Report</h2>
-      <p className="mb-6 font-sans text-[13px] leading-relaxed text-content-primary/70">
+      <h2 className="mb-3 font-heading text-2xl text-teal-2 sm:text-3xl">Ask about the Annual Report</h2>
+      <p className="mb-6 font-sans text-[13px] leading-relaxed text-white/80">
         I can answer questions about Haycarb&apos;s financial performance,
         sustainability, strategy and more — in any language including Sinhala and Tamil.
       </p>
 
-      <div className="mb-6 rounded-2xl border border-white/40 bg-white/50 p-4 shadow-sm backdrop-blur-md">
-        <p className="mb-3 font-sans text-[11px] text-content-primary/50">
+      <div className="mb-6 rounded-2xl border border-white/20 bg-white/10 p-4 shadow-sm backdrop-blur-xl">
+        <p className="mb-3 font-sans text-[11px] text-white/70">
           Answers are tailored to who&apos;s asking — pick one, or just start typing
         </p>
 
@@ -240,14 +238,13 @@ function Welcome({ role, setRole, style, setStyle, onPick }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 text-left">
+      <div className="mx-auto grid w-full max-w-2xl grid-cols-1 gap-3 md:grid-cols-2">
         {getSuggestions(role).map((s, i) => (
           <button
             key={i}
             onClick={() => onPick(s)}
-            className="flex items-center gap-2.5 rounded-xl border border-white/40 bg-white/50 px-3.5 py-2.5 font-sans text-[13px] backdrop-blur-md transition-colors hover:border-brand-main hover:bg-white/70"
+            className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 font-sans text-[13px] leading-snug text-white/90 backdrop-blur-xl transition-colors hover:border-teal-2 hover:bg-white/20"
           >
-            <span className="text-brand-main">→</span>
             {s}
           </button>
         ))}
@@ -262,11 +259,27 @@ function Chip({ active, onClick, children }) {
       onClick={onClick}
       className={`rounded-full border px-3 py-1.5 font-sans text-[11.5px] transition-colors ${
         active
-          ? 'border-brand-main bg-brand-main/10 text-brand-main'
-          : 'border-white/40 bg-white/40 text-content-primary/70 hover:border-brand-main'
+          ? 'border-teal-2 bg-teal-2/25 text-white'
+          : 'border-white/20 bg-white/10 text-white/70 hover:border-teal-2'
       }`}
     >
       {children}
     </button>
+  );
+}
+
+function AiOrb() {
+  return (
+    <div className="relative mx-auto mb-7 h-28 w-28" style={{ perspective: '800px' }}>
+      <div className="animate-orb-pulse absolute -inset-4 rounded-full bg-brand-main/40 blur-xl" />
+
+      <div className="animate-orb-spin absolute inset-0 rounded-full border-2 border-teal-2/90 border-t-transparent" />
+
+      <div className="animate-orb-rotate-x absolute inset-1 rounded-full border-2 border-white/60 border-b-transparent" />
+
+      <div className="animate-orb-rotate-y absolute inset-2 rounded-full border-2 border-brand-main/80 border-t-transparent" />
+
+      <div className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_20px_7px_rgba(140,224,240,0.8)]" />
+    </div>
   );
 }
