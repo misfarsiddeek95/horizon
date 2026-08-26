@@ -210,7 +210,7 @@ function Welcome({ role, setRole, style, setStyle, onPick }) {
     <div className="m-auto w-full max-w-2xl px-4 pt-32 pb-10 text-center">
       <AiOrb />
 
-      <h2 className="mb-3 font-heading text-2xl text-teal-2 sm:text-3xl">Ask about the Annual Report</h2>
+      <h2 className="mb-3 font-heading text-2xl text-mint sm:text-3xl">Ask about the Annual Report</h2>
       <p className="mb-6 font-sans text-[13px] leading-relaxed text-white/80">
         I can answer questions about Haycarb&apos;s financial performance,
         sustainability, strategy and more — in any language including Sinhala and Tamil.
@@ -273,11 +273,17 @@ function AiOrb() {
     <div className="relative mx-auto mb-7 h-28 w-28" style={{ perspective: '800px' }}>
       <div className="animate-orb-pulse absolute -inset-4 rounded-full bg-brand-main/40 blur-xl" />
 
-      <div className="animate-orb-spin absolute inset-0 rounded-full border-2 border-teal-2/90 border-t-transparent" />
+      <div className="animate-orb-spin absolute inset-0 rounded-full border-2 border-teal-2/90 border-t-transparent">
+        <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-2 shadow-[0_0_10px_3px_rgba(91,178,200,0.85)]" />
+      </div>
 
-      <div className="animate-orb-rotate-x absolute inset-1 rounded-full border-2 border-white/60 border-b-transparent" />
+      <div className="animate-orb-rotate-x absolute inset-1 rounded-full border-2 border-white/60 border-b-transparent">
+        <span className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_3px_rgba(255,255,255,0.7)]" />
+      </div>
 
-      <div className="animate-orb-rotate-y absolute inset-2 rounded-full border-2 border-brand-main/80 border-t-transparent" />
+      <div className="animate-orb-rotate-y absolute inset-2 rounded-full border-2 border-brand-main/80 border-t-transparent">
+        <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-main shadow-[0_0_10px_3px_rgba(20,115,133,0.85)]" />
+      </div>
 
       <div className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_20px_7px_rgba(140,224,240,0.8)]" />
     </div>
