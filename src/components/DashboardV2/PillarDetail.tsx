@@ -42,7 +42,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
             }}
           >
             <div className="text-[10px] font-[850] uppercase tracking-[0.13em] text-[var(--color-v2-accent-dark)]">
-              FY2025/26 Standout
+              FY2025/26 standout
             </div>
             <div className="my-[9px] text-[44px] font-semibold leading-none tracking-[-0.04em] text-[var(--color-v2-accent-dark)] lg:text-[52px] [&>span]:text-[44px] lg:[&>span]:text-[52px]">
               <AnimatedCounter value={pillar.standout} />
@@ -240,15 +240,8 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
           <h4 className="mb-[7px] mt-0 text-[18px] font-medium">
             {pillar.story}
           </h4>
-          <p className="m-0 text-[13px] leading-[1.5] text-[#d4e4e7]">
-            {pillar.story}
-          </p>
           <p className="mt-[7px] text-[12px] leading-[1.5] text-[#bfd6d7]">
             {pillar.storyText}
-          </p>
-          <p className="mb-0 mt-[7px] text-[12px] text-[#bfd6d7]">
-            Project overview placeholder: a short summary of the initiative,
-            the action taken and the outcome achieved during the year.
           </p>
           <a
             href={`${IMPACT_REPORT_URL}#page=${pillar.page}`}
@@ -257,7 +250,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
             aria-label={`Explore ${pillar.name} featured story in the Sustainability Impact Report`}
             className="mb-0 mt-[9px] inline-block text-[12px] font-extrabold text-white underline-offset-4 hover:underline"
           >
-            Explore story · Impact Report p.{pillar.page} ↗
+            Explore story · Impact Report
           </a>
         </div>
       </div>

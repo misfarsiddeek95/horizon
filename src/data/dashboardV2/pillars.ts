@@ -20,16 +20,16 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     id: "restore",
     name: "RESTORE",
     descriptor: "Our Natural World",
-    desc: "Protecting and restoring the natural systems connected to our operations and value chain.",
+    desc: "Protecting and restoring the natural systems connected to our operations and value chain",
     overview:
       "RESTORE focuses on the natural resources and environmental systems that shape how we operate: the energy we use, the water we manage, the materials we transform and the ecosystems connected to our sites. In FY2025/26, our focus was on practical action: expanding renewable energy, improving waste heat recovery, strengthening water reuse, supporting circularity and embedding climate-conscious practices across our operations.",
     standout: "100%",
     standoutText:
-      "of Shizuka’s water requirement was met through harvested rainwater in FY2025/26.",
+      "of Shizuka’s water requirement was met through harvested rainwater in FY2025/26",
     impacts: [
-      { value: "11,348 GJ", label: "solar energy generated" },
-      { value: "30,500 m³", label: "water recycled & reused" },
-      { value: "3,816 MT", label: "non-hazardous waste recycled" },
+      { value: "11,348 GJ", label: "of solar energy generated during FY2025/26" },
+      { value: "30,500 m³", label: "of water recycled and reused across the Group" },
+      { value: "3,816 MT", label: "of non-hazardous waste recycled" },
     ],
     progress: [
       { label: "Renewable-energy use", pct: 68 },
@@ -108,16 +108,16 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
         tone: "acceleration",
       },
     ],
-    story: "Restoring value through responsible resource use",
+    story: "Restoring value through waste heat utilisation",
     storyText:
-      "A closer look at how resource efficiency, water stewardship and circular practices are being translated into action.",
+      "A closer look at how Haycarb is improving dryer efficiency by replacing LPG use with recovered waste heat, reducing fuel dependency and supporting lower-emission operations.",
     page: "10",
   },
   inspire: {
     id: "inspire",
     name: "INSPIRE",
     descriptor: "Our Teams",
-    desc: "Creating an inclusive, safe and future-ready workplace where our teams can grow and contribute.",
+    desc: "Creating an inclusive, safe and future-ready workplace where our teams can grow and contribute",
     overview: "",
     standout: "96%",
     standoutText:
@@ -134,7 +134,7 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     ],
     story: "Building capability for a changing future",
     storyText:
-      "See how Haycarb is strengthening skills, inclusion and employee wellbeing across its teams.",
+      "INSPIRE focuses on the people who bring ACTIVATE to life, through learning, ownership, collaboration and shared responsibility. In FY2025/26, we focused on building capability, strengthening engagement and creating a more inclusive workplace.",
     page: "14",
   },
   excite: {

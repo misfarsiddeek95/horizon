@@ -52,7 +52,7 @@ export default function ActivateSection({
               title="Final AR Disclosure URL required from client"
               className="min-h-[48px] disabled:opacity-100"
             >
-              AR Disclosure · link pending
+              Annual Report Disclosure · link pending
             </Button>
           </div>
         </div>
