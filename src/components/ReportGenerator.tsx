@@ -7,6 +7,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { mergeAndDownloadPdfs } from "@/utils/mergePdfs";
+import HaycarbDocSearch from "@/components/HaycarbDocSearch";
 
 const categories: Record<string, string[]> = {
   "Corporate Overview": [
@@ -137,6 +138,10 @@ export default function ReportGenerator() {
             Select the sections you need from Haycarb PLC&apos;s Annual Report
             and generate a personalized PDF.
           </p>
+        </div>
+
+        <div className="mb-8 lg:mb-10">
+          <HaycarbDocSearch onDownload={mergeAndDownloadPdfs} />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
