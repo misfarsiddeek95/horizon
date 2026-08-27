@@ -70,12 +70,12 @@ function PuzzleGame() {
       <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-gradient-to-br from-[#147385]/5 via-[#147385]/10 to-white">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
-        <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap px-3 py-3 lg:px-0 lg:py-0">
-          <div className="flex flex-col items-start justify-center overflow-hidden mr-2 lg:flex-row lg:items-center lg:gap-2">
-            <span className="font-bold text-sm truncate w-full max-w-[120px] lg:max-w-none">
+        <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2">
+          <div className="flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink lg:flex-row lg:items-center lg:gap-2">
+            <span className="font-bold text-sm truncate min-w-0 shrink">
               {state.session?.name ?? 'Player'}
             </span>
-            <span className="text-xs text-slate-500 whitespace-nowrap">
+            <span className="text-xs text-slate-500 whitespace-nowrap shrink-0">
               Score: {state.score}/{state.questions.length}
             </span>
           </div>

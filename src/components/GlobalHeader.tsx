@@ -12,9 +12,13 @@ const menuLinks = [
   { name: "User Profiles", path: "/user-profile-v2" },
 ];
 
+const darkPages = ['/chat', '/user-profile-v2'];
+
 export default function GlobalHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isLightBg = !darkPages.some((p) => pathname.startsWith(p));
+  const barColor = isLightBg ? 'bg-[#147385]' : 'bg-white';
 
   useEffect(() => {
     if (isOpen) {
@@ -51,17 +55,17 @@ export default function GlobalHeader() {
       >
         <span className="flex flex-col justify-center items-center w-7 h-7 gap-1.5">
           <span
-            className={`block w-7 h-0.5 bg-white rounded-full transition-all duration-500 ease-in-out ${
+            className={`block w-7 h-0.5 ${barColor} rounded-full transition-all duration-500 ease-in-out ${
               isOpen ? "rotate-45 translate-y-[4px]" : ""
             }`}
           />
           <span
-            className={`block w-7 h-0.5 bg-white rounded-full transition-all duration-500 ease-in-out ${
+            className={`block w-7 h-0.5 ${barColor} rounded-full transition-all duration-500 ease-in-out ${
               isOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block w-7 h-0.5 bg-white rounded-full transition-all duration-500 ease-in-out ${
+            className={`block w-7 h-0.5 ${barColor} rounded-full transition-all duration-500 ease-in-out ${
               isOpen ? "-rotate-45 -translate-y-[4px]" : ""
             }`}
           />
