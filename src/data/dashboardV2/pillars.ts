@@ -22,7 +22,7 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     descriptor: "Our Natural World",
     desc: "Protecting and restoring the natural systems connected to our operations and value chain",
     overview:
-      "RESTORE focuses on the natural resources and environmental systems that shape how we operate: the energy we use, the water we manage, the materials we transform and the ecosystems connected to our sites. In FY2025/26, our focus was on practical action: expanding renewable energy, improving waste heat recovery, strengthening water reuse, supporting circularity and embedding climate-conscious practices across our operations.",
+      "RESTORE focuses on the natural resources and environmental systems that shape how we operate: the energy we use, the water we manage, the materials we transform and the ecosystems connected to our sites. In FY2025/26, our focus was on practical action: expanding renewable energy, improving waste heat recovery, strengthening water reuse, supporting circularity and embedding climate-conscious practices across our operations. ",
     standout: "100%",
     standoutText:
       "of Shizuka’s water requirement was met through harvested rainwater in FY2025/26",

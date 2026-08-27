@@ -10,7 +10,7 @@ interface DashboardNavProps {
 const NAV_ITEMS: { id: SectionId; label: string }[] = [
   { id: "intro", label: "Overview" },
   { id: "activate", label: "ACTIVATE 2030" },
-  { id: "climate", label: "S1 & S2 Climate Outlook" },
+  { id: "climate", label: "S1 & S2 Outlook" },
 ];
 
 export default function DashboardNav({
