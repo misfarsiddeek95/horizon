@@ -136,42 +136,42 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     tabTitle: "Renewable energy",
     tabType: "Lower-carbon energy transition",
     title: "Renewable energy opportunity",
-    desc: "Expanding renewable energy can reduce emissions exposure, improve energy resilience and support the transition toward lower-carbon production.",
+    desc: "A higher renewable share can reduce fossil-fuel exposure and improve cost predictability",
     color: "#4A9B52",
     factors: [
       {
-        title: "Energy demand",
-        text: "Manufacturing remains energy intensive.",
+        title: "Fossil-fuel volatility",
+        text: "Fossil-fuel price volatility and supply disruption create exposure.",
       },
       {
-        title: "Renewable potential",
-        text: "Solar and other renewable sources can offset grid demand and strengthen energy resilience.",
+        title: "Renewable share",
+        text: "Higher renewable energy use reduces dependence on fossil fuels.",
       },
       {
-        title: "Transition pathway",
-        text: "Decarbonisation pathways influence the pace and value of renewable deployment.",
+        title: "Solar, dendro & waste heat",
+        text: "Solar, dendro and waste-heat conversions support additional renewable energy.",
       },
       {
-        title: "Cost & carbon exposure",
-        text: "Renewable adoption can improve cost stability while reducing future carbon exposure.",
+        title: "Investment timing",
+        text: "The pace and value of renewable deployment depend on transition timing.",
       },
     ],
     meaning: [
       {
         title: "Energy exposure",
-        text: "The opportunity responds to fossil-fuel price volatility and supply disruption.",
+        text: "The opportunity responds to fossil-fuel price volatility and supply disruption",
       },
       {
         title: "Transition pathway",
-        text: "Solar, dendro and newer waste-heat conversions support additional renewable energy use.",
+        text: "Solar, dendro and newer waste-heat conversions support additional renewable energy use",
       },
       {
         title: "Business effect",
-        text: "Lower fossil dependence can reduce cost pressure over time.",
+        text: "Lower fossil dependence can reduce cost pressure over time",
       },
       {
         title: "Key management lever",
-        text: "Renewables, waste heat and energy diversification.",
+        text: "Renewables, waste heat and energy diversification",
       },
     ],
     driver: "Renewable Energy Share under the ACTIVATE 2030 Boundary",
@@ -192,8 +192,8 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     finU: [0, 15, 15],
     finL: [0, 5, 10],
     lens: "How the opportunity scales across climate futures",
-    net: "Earlier renewable adoption strengthens resilience while lowering future transition exposure.",
-    div: "Faster decarbonisation increases the strategic value of accelerating clean-energy deployment.",
+    net: "Faster decarbonisation strengthens renewable-energy value and reduces fossil-fuel cost exposure.",
+    div: "A slower, uneven transition prolongs fossil-fuel and energy-security exposure, increasing the value of diversification.",
   },
   4: {
     id: 4,
@@ -201,42 +201,42 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     tabTitle: "Value-added carbon",
     tabType: "Growth through higher-value solutions",
     title: "Value-added carbon opportunity",
-    desc: "Demand for higher-value activated carbon solutions can create growth opportunities as customers seek more specialised, efficient and sustainability-oriented products.",
+    desc: "Growing climate-solution demand can create a market opportunity for Energy Storage Carbons",
     color: "#7253A6",
     factors: [
       {
-        title: "Market demand",
-        text: "Customers increasingly seek specialised carbon solutions.",
+        title: "Energy-storage market demand",
+        text: "Customers increasingly seek specialised carbon solutions for energy-storage applications.",
       },
       {
-        title: "Innovation capability",
-        text: "R&D and product development enable differentiation.",
+        title: "Production expansion",
+        text: "R&D and product development enable production scaling.",
       },
       {
-        title: "Customer transition needs",
-        text: "Changing customer requirements can accelerate demand for higher-performance, lower-impact solutions.",
+        title: "Climate-solution applications",
+        text: "Changing customer requirements accelerate demand for climate-solution-focused products.",
       },
       {
-        title: "Commercial value",
-        text: "Differentiated products can support portfolio growth and potential margin enhancement.",
+        title: "Portfolio diversification",
+        text: "Differentiated products support portfolio growth and margin enhancement.",
       },
     ],
     meaning: [
       {
         title: "Market signal",
-        text: "Energy-storage demand creates a climate-solution growth opportunity.",
+        text: "Energy-storage demand creates a climate-solution growth opportunity",
       },
       {
         title: "Business linkage",
-        text: "Energy Storage Carbon is the principal growth pathway linked to this climate-solution demand.",
+        text: "Energy Storage Carbon is the principal growth pathway linked to this climate-solution demand",
       },
       {
         title: "Business effect",
-        text: "Higher demand and production can translate into revenue uplift.",
+        text: "Higher demand and production can translate into revenue uplift",
       },
       {
         title: "Key management lever",
-        text: "Disciplined capacity expansion and portfolio diversification.",
+        text: "Disciplined capacity expansion and portfolio diversification",
       },
     ],
     driver: "Indicative Energy Storage Carbon Production Expansion",
@@ -256,7 +256,7 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     finU: [5, 10, 12.5],
     finL: [4, 5, 10],
     lens: "How innovation performs across climate futures",
-    net: "Steady transition supports demand growth for efficient, differentiated applications.",
-    div: "Faster transition can accelerate demand for advanced solutions across emerging applications.",
+    net: "Faster decarbonisation creates the strongest growth pathway for Energy Storage Carbon demand.",
+    div: "Energy-storage growth is more uneven, while water and emissions pressures continue to support purification demand.",
   },
 };

@@ -111,7 +111,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
               Driver and anticipated financial effect
             </h4>
             <p className="mt-[6px] mb-0 text-[10.8px] leading-[1.4] text-[#7a8998]">
-              Quantified operational drivers and financial effects across the short, medium and long term.
+              Quantified operational drivers and financial effects across the short, medium and long term
             </p>
             <a
               href={`${ANNUAL_REPORT_URL}#page=${CRRO_PAGE[crro.id]}`}
