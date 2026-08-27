@@ -67,7 +67,7 @@ function PuzzleGame() {
 
   return (
     <>
-      <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-[#f8f9fa]">
+      <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-gradient-to-br from-[#147385]/5 via-[#147385]/10 to-white">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
         <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap px-3 py-3 lg:px-0 lg:py-0">
