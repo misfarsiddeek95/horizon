@@ -213,7 +213,7 @@ export default function CrosswordGrid() {
   const hasPaused = state.isPaused && state.phase === 'playing';
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-start justify-center min-h-[500px] w-full max-w-full relative">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full relative">
       {hasPaused && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-white/70 backdrop-blur-sm rounded-xl">
           <div className="rounded-ui-card bg-surface-glass backdrop-blur-lg border border-white/20 px-8 py-6 text-center shadow-2xl">
@@ -233,7 +233,7 @@ export default function CrosswordGrid() {
       <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
         <div className="flex items-start bg-gray-50/50 rounded-lg p-2 md:p-6">
           <div
-            className="grid w-max min-w-full [--cell-size:24px] lg:[--cell-size:40px]"
+            className="grid w-max min-w-full [--cell-size:24px] lg:[--cell-size:45px]"
           style={{
             gridTemplateColumns: `repeat(${gridWidth}, var(--cell-size))`,
             gridTemplateRows: `repeat(${gridHeight}, var(--cell-size))`,
@@ -247,7 +247,7 @@ export default function CrosswordGrid() {
                 return (
                   <div
                     key={`${x}-${y}`}
-                    className="relative w-[24px] h-[24px] lg:w-[40px] lg:h-[40px] flex-none shrink-0 bg-transparent pointer-events-none"
+                    className="relative w-[24px] h-[24px] lg:w-[45px] lg:h-[45px] flex-none shrink-0 bg-transparent pointer-events-none"
                     style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                   />
                 );
@@ -271,7 +271,7 @@ export default function CrosswordGrid() {
               return (
                 <div
                   key={`${x}-${y}`}
-                  className="relative w-[24px] h-[24px] lg:w-[40px] lg:h-[40px] flex-none shrink-0"
+                  className="relative w-[24px] h-[24px] lg:w-[45px] lg:h-[45px] flex-none shrink-0"
                   style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                 >
                   <div className={overlayClasses} />
