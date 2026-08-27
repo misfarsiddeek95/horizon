@@ -18,6 +18,7 @@ import ExitButton from '@/components/ExitButton';
 import MobileClueBar from '@/components/MobileClueBar';
 import MobileActionStrip from '@/components/MobileActionStrip';
 import MobileTimer from '@/components/MobileTimer';
+import AIChatModal from '@/components/AIChatModal';
 import { getBadgeDefinition } from '@/data/badges';
 
 function PuzzleGame() {
@@ -25,17 +26,20 @@ function PuzzleGame() {
   const [showRestartDialog, setShowRestartDialog] = useState(false);
   const [lastPhase, setLastPhase] = useState(state.phase);
   const [showResults, setShowResults] = useState(state.phase === 'finished');
+  const [chatOpen, setChatOpen] = useState(false);
+
+  const activeQuestion = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
 
   function handleSubmit() {
     dispatch({ type: 'SUBMIT_ANSWER' });
   }
 
   function openHelp() {
-    const activeQ = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
-    if (activeQ) {
-      dispatch({ type: 'USE_AI_ASSIST', payload: { questionId: activeQ.question.id } });
+    const q = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
+    if (q) {
+      dispatch({ type: 'USE_AI_ASSIST', payload: { questionId: q.question.id } });
     }
-    window.location.href = '/chat-help';
+    setChatOpen(true);
   }
 
   const activeBadgeId = state.badgeQueue[0] ?? null;
@@ -202,6 +206,12 @@ function PuzzleGame() {
         key={activeBadge.id}
         badge={activeBadge}
         onClose={() => dispatch({ type: 'DISMISS_BADGE' })}
+      />
+    )}
+    {chatOpen && activeQuestion && (
+      <AIChatModal
+        question={activeQuestion.question}
+        onClose={() => setChatOpen(false)}
       />
     )}
     </>
