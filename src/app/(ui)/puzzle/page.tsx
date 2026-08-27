@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowPathIcon, TrophyIcon } from '@heroicons/react/24/outline';
 import { PuzzleProvider, usePuzzle } from '@/context/PuzzleContext';
@@ -29,6 +29,10 @@ function PuzzleGame() {
   const [chatOpen, setChatOpen] = useState(false);
 
   const activeQuestion = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
+
+  useEffect(() => {
+    setChatOpen(false);
+  }, [activeQuestion?.question.id, activeQuestion?.status]);
 
   function handleSubmit() {
     dispatch({ type: 'SUBMIT_ANSWER' });

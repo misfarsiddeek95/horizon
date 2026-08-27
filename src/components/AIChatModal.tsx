@@ -22,9 +22,15 @@ export default function AIChatModal({ isOpen, onClose, activeQuestion }: AIChatM
   const descriptionToRender = fullQuestionData?.description || 'No additional information available.';
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsTyping(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+    if (isOpen) {
+      setIsTyping(true);
+      const timer = setTimeout(() => setIsTyping(false), 1500);
+      return () => clearTimeout(timer);
+    } else {
+      setIsTyping(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, activeQuestion?.id]);
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
