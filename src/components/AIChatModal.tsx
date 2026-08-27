@@ -23,7 +23,20 @@ export default function AIChatModal({ question, onClose }: AIChatModalProps) {
     }
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!question) onClose();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [question]);
 
   return (
     <div
