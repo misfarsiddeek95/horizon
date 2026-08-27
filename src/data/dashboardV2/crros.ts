@@ -72,42 +72,42 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     tabTitle: "Physical water risk",
     tabType: "Operational exposure to water stress",
     title: "Physical water risk",
-    desc: "Water stress can affect production continuity and operating efficiency in locations where water availability and quality are increasingly constrained.",
+    desc: "Water stress can constrain washing-dependent production and create revenue exposure.",
     color: "#168E95",
     factors: [
-      {
-        title: "Operational dependency",
-        text: "Water supports critical production and washing processes.",
-      },
-      {
-        title: "Location exposure",
-        text: "Facilities face differing basin-level stress profiles.",
-      },
       {
         title: "Water availability & quality",
         text: "Changing availability and water quality can affect usable-water supply for operations.",
       },
       {
-        title: "Business continuity",
-        text: "Constraints can increase operating cost and disruption risk.",
+        title: "Hydrological variability",
+        text: "Changing climate conditions affect rainfall patterns and basin-level water stress.",
+      },
+      {
+        title: "Washing dependency",
+        text: "Selected activated carbon grades require product washing, creating direct water exposure.",
+      },
+      {
+        title: "RO, reuse & storage",
+        text: "Recycling, rainwater harvesting and storage support operational water resilience.",
       },
     ],
     meaning: [
       {
         title: "Washing dependency",
-        text: "Selected activated carbon grades, including Energy Storage Carbons, require product washing.",
+        text: "Selected activated carbon grades, including Energy Storage Carbons, require product washing",
       },
       {
         title: "Usable water",
-        text: "Availability and water quality matter, not rainfall alone.",
+        text: "Availability and water quality matter, not rainfall alone",
       },
       {
         title: "Business effect",
-        text: "Severe constraints can reduce washing-dependent production and revenue.",
+        text: "Severe constraints can reduce washing-dependent production and revenue",
       },
       {
         title: "Key management lever",
-        text: "RO, recycling, rainwater harvesting and storage.",
+        text: "RO, recycling, rainwater harvesting and storage",
       },
     ],
     driver: "Estimated Loss of Usable Water for Product Washing",
@@ -127,8 +127,8 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     finU: [1.7, 8, 8],
     finL: [0.5, 2, 3],
     lens: "How water exposure changes by scenario",
-    net: "Efficiency measures and watershed adaptation help moderate operational exposure.",
-    div: "Higher temperatures and rainfall variability amplify basin-level stress and continuity risk.",
+    net: "Lower physical stress and stronger adaptation reduce water constraints on washing-dependent production.",
+    div: "Greater hydrological stress and water-quality variability increase usable-water constraints and revenue exposure.",
   },
   3: {
     id: 3,
