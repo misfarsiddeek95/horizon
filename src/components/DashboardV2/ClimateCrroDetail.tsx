@@ -286,7 +286,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
             icon={<ArrowUpRightIcon className="h-4 w-4" />}
             className="!mt-3.5 !min-h-[42px] w-full max-w-full whitespace-nowrap !bg-white !px-4 !py-[11px] !text-[12px] !text-[color:var(--color-v2-navy-btn)] sm:w-max"
           >
-            Annual Report Climate Resilience Assessment ↗
+            Annual Report Climate Resilience Assessment
           </Button>
         </div>
       </div>
