@@ -22,10 +22,10 @@ export default function Message({ message, onCanvasReady, onExport, exportingId 
       <Avatar isUser={isUser} />
 
       <div
-        className={`max-w-[calc(100%-40px)] rounded-2xl border px-4 py-3 font-sans text-[13.5px] leading-relaxed text-white ${
+        className={`max-w-[calc(100%-40px)] rounded-2xl border px-4 py-3 font-sans text-[13.5px] font-medium leading-relaxed text-white drop-shadow-md ${
           isUser
-            ? 'rounded-br-md border-brand-main/30 bg-brand-main/20 backdrop-blur-md'
-            : 'rounded-bl-md border-white/20 bg-white/10 shadow-sm backdrop-blur-md'
+            ? 'rounded-br-md border-brand-main/30 bg-brand-main/30 backdrop-blur-md'
+            : 'rounded-bl-md border-white/20 bg-[#020b10]/75 shadow-sm backdrop-blur-md'
         }`}
       >
         {isUser ? (

@@ -12,6 +12,7 @@
     "@amcharts/amcharts5": "^5.20.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/oxide-darwin-arm64": "^4.3.2",
+    "@types/three": "^0.185.4",
     "chart.js": "^4.5.1",
     "chartjs-plugin-datalabels": "^2.2.0",
     "file-saver": "^2.0.5",
@@ -24,7 +25,9 @@
     "react": "19.2.4",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "19.2.4",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "three": "^0.185.1",
+    "vanta": "^0.5.24"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -462,12 +462,12 @@
 }
 
 /* markdown inside answers. Tailwind preflight strips list styling. */
-.hc-markdown strong { color: #83deed; }
+.hc-markdown strong { color: #ffffff; }
 .hc-markdown ul { padding-left: 18px; margin: 8px 0; list-style: disc; }
 .hc-markdown li { margin-bottom: 4px; }
 .hc-markdown p + p { margin-top: 8px; }
 .hc-markdown h1, .hc-markdown h2, .hc-markdown h3 {
-  color: #83deed;
+  color: #ffffff;
   font-size: 13px;
   font-weight: 600;
   margin: 12px 0 6px;

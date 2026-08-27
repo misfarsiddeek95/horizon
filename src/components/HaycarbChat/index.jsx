@@ -120,13 +120,13 @@ export default function HaycarbChat({
 
       {/* input */}
       <footer className="relative z-10 shrink-0 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-2 sm:px-6 sm:pb-6">
-        <div className="mx-auto flex w-full max-w-[860px] items-end gap-2.5 rounded-2xl border border-white/20 bg-white/10 p-2 shadow-2xl backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-[860px] items-end gap-2.5 rounded-2xl border border-white/20 bg-[#020b10]/75 p-2 shadow-2xl backdrop-blur-xl">
           <textarea
             ref={textareaRef}
             rows={1}
             value={input}
             disabled={busy}
-            placeholder="Ask anything about the Haycarb Annual Report…"
+            placeholder="Ask your questions about Haycarb's Annual Report here…"
             onChange={e => {
               setInput(e.target.value);
               e.target.style.height = 'auto';
@@ -138,7 +138,7 @@ export default function HaycarbChat({
                 submit();
               }
             }}
-            className="max-h-[120px] flex-1 resize-none rounded-xl border-0 bg-transparent px-2.5 py-2.5 font-sans text-[14px] leading-normal text-white outline-none placeholder:text-white/50 disabled:opacity-60"
+            className="max-h-[120px] flex-1 resize-none rounded-xl border-0 bg-transparent px-2.5 py-2.5 font-sans text-[14px] font-medium leading-normal text-white outline-none placeholder:text-white/70 disabled:opacity-60"
           />
 
           <button
@@ -158,7 +158,7 @@ export default function HaycarbChat({
 
 function Header({ role, setRole, style, setStyle, showControls }) {
   return (
-    <header className="relative z-10 mx-auto mt-4 flex w-[calc(100%-2rem)] max-w-[860px] shrink-0 flex-wrap items-center gap-x-4 gap-y-2.5 rounded-2xl border border-white/20 bg-white/10 px-5 py-3.5 shadow-xl backdrop-blur-xl sm:mt-6 sm:w-[calc(100%-3rem)]">
+    <header className="relative z-10 mx-auto mt-4 flex w-[calc(100%-2rem)] max-w-[860px] shrink-0 flex-wrap items-center gap-x-4 gap-y-2.5 rounded-2xl border border-white/20 bg-[#020b10]/75 px-5 py-3.5 shadow-xl backdrop-blur-xl sm:mt-6 sm:w-[calc(100%-3rem)]">
       <div className="flex items-center gap-3">
         <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-xl border border-white/20 bg-gradient-to-br from-brand-main to-brand-hover shadow-md">
           <svg viewBox="0 0 24 24" className="h-5 w-5">
@@ -170,7 +170,7 @@ function Header({ role, setRole, style, setStyle, showControls }) {
 
         <div>
           <h1 className="font-heading text-lg text-teal-2">Haycarb AI Assistant</h1>
-          <p className="mt-px font-sans text-[11px] text-white/70">
+          <p className="mt-px font-sans text-[11px] font-medium text-white">
             Annual Report 2025/26 · Beyond the Beyond
           </p>
         </div>
@@ -191,7 +191,7 @@ function Select({ value, onChange, options }) {
     <select
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="cursor-pointer rounded-xl border border-white/20 bg-white/10 px-3 py-1.5 font-sans text-[12px] text-white shadow-sm backdrop-blur-xl outline-none focus:border-teal-2"
+      className="cursor-pointer rounded-xl border border-white/20 bg-[#020b10]/75 px-3 py-1.5 font-sans text-[12px] font-medium text-white shadow-sm backdrop-blur-xl outline-none focus:border-teal-2"
     >
       {options.map(o => (
         <option key={o.value} value={o.value} className="bg-[#0d3443] text-white">{o.label}</option>
@@ -210,15 +210,14 @@ function Welcome({ role, setRole, style, setStyle, onPick }) {
     <div className="m-auto w-full max-w-2xl px-4 pt-32 pb-10 text-center">
       <AiOrb />
 
-      <h2 className="mb-3 font-heading text-2xl text-mint sm:text-3xl">Ask about the Annual Report</h2>
-      <p className="mb-6 font-sans text-[13px] leading-relaxed text-white/80">
-        I can answer questions about Haycarb&apos;s financial performance,
-        sustainability, strategy and more — in any language including Sinhala and Tamil.
+      <h2 className="mb-3 font-heading text-2xl font-medium text-white drop-shadow-lg sm:text-3xl">Explore the Annual Report with AI</h2>
+      <p className="mb-6 font-sans text-[13px] font-medium leading-relaxed text-white drop-shadow-md">
+        Discover insights across the Annual Report, tailored to your profile and interests. Ask questions, explore topics and engage with the report in your preferred language.
       </p>
 
-      <div className="mb-6 rounded-2xl border border-white/20 bg-white/10 p-4 shadow-sm backdrop-blur-xl">
-        <p className="mb-3 font-sans text-[11px] text-white/70">
-          Answers are tailored to who&apos;s asking — pick one, or just start typing
+      <div className="mb-6 rounded-2xl border border-white/20 bg-[#020b10]/75 p-4 shadow-sm backdrop-blur-xl">
+        <p className="mb-3 font-sans text-[11px] font-medium text-white">
+          Choose a profile and response style to personalise your experience or proceed without a selection.
         </p>
 
         <div className="mb-4 flex flex-wrap justify-center gap-1.5">
@@ -243,7 +242,7 @@ function Welcome({ role, setRole, style, setStyle, onPick }) {
           <button
             key={i}
             onClick={() => onPick(s)}
-            className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 font-sans text-[13px] leading-snug text-white/90 backdrop-blur-xl transition-colors hover:border-teal-2 hover:bg-white/20"
+            className="rounded-xl border border-white/20 bg-[#020b10]/75 px-4 py-2.5 font-sans text-[13px] font-medium leading-snug text-white backdrop-blur-xl transition-colors hover:border-teal-2 hover:bg-[#020b10]/90"
           >
             {s}
           </button>
@@ -260,7 +259,7 @@ function Chip({ active, onClick, children }) {
       className={`rounded-full border px-3 py-1.5 font-sans text-[11.5px] transition-colors ${
         active
           ? 'border-teal-2 bg-teal-2/25 text-white'
-          : 'border-white/20 bg-white/10 text-white/70 hover:border-teal-2'
+          : 'border-white/20 bg-[#020b10]/75 text-white hover:border-teal-2'
       }`}
     >
       {children}

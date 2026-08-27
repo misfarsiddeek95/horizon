@@ -38,7 +38,7 @@ export default function MessageActions({ message, onExport, exporting }) {
         </ActionButton>
       </div>
 
-      <p className="ml-auto max-w-[380px] text-right text-[10px] leading-snug text-white/60">
+      <p className="ml-auto max-w-[380px] text-right text-[10px] font-medium leading-snug text-white">
         {DISCLAIMER[detectLang(message.content)]}
       </p>
     </div>
@@ -52,7 +52,7 @@ function ActionButton({ onClick, disabled, label, children }) {
         onClick={onClick}
         disabled={disabled}
         aria-label={label}
-        className="flex h-8 w-8 items-center justify-center rounded-ui-element text-white/50 transition-colors hover:bg-white/10 hover:text-teal-2 disabled:opacity-60"
+        className="flex h-8 w-8 items-center justify-center rounded-ui-element text-white/70 transition-colors hover:bg-white/10 hover:text-teal-2 disabled:opacity-60"
       >
         {children}
       </button>

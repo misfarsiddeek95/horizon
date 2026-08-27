@@ -28,9 +28,9 @@ export default function Thinking({ stage }) {
         AI
       </div>
 
-      <div className="flex items-center gap-2.5 rounded-2xl rounded-bl-md border border-white/20 bg-white/10 px-4 py-3.5 shadow-sm backdrop-blur-md">
+      <div className="flex items-center gap-2.5 rounded-2xl rounded-bl-md border border-white/20 bg-[#020b10]/75 px-4 py-3.5 shadow-sm backdrop-blur-md">
         <Dots />
-        <span className="hc-fade text-[12.5px] text-white/70" key={index}>
+        <span className="hc-fade text-[12.5px] font-medium text-white" key={index}>
           {stage === 'sending' ? 'Sending…' : THINKING_MESSAGES[index]}
         </span>
       </div>

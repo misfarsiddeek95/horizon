@@ -46,8 +46,8 @@ export const ROLES = [
 ];
 
 export const ANSWER_STYLES = [
-  { value: 'descriptive', label: 'Descriptive' },
-  { value: 'short',       label: 'Short' }
+  { value: 'descriptive', label: 'Detailed' },
+  { value: 'short',       label: 'Summarised' }
 ];
 
 // Rotating messages for the thinking state
@@ -57,25 +57,49 @@ export const THINKING_MESSAGES = [
   'Putting it together…'
 ];
 
-// Suggested questions per role. Currently identical across roles —
-// client may want role-specific prompts later.
+// Suggested questions per role.
 const DEFAULT_SUGGESTIONS = [
-  "What were the chairman's key highlights?",
-  'Show me the revenue trend as a chart',
-  "What is Haycarb's sustainability strategy?",
-  'Who are the board of directors?'
+  'How is the financial performance of Haycarb during the last 3 years',
+  "Can you give a summary of Haycarb's sustainability strategy and its carbon emissions and emissions intensity performance during the last 3 years",
+  "Can you summarise the key points in the Chairman's and Managing Director's joint statement",
+  'What are the new features of the annual report 2025/26?'
 ];
 
-export const SUGGESTIONS = {
-  general:     DEFAULT_SUGGESTIONS,
-  shareholder: DEFAULT_SUGGESTIONS,
-  employee:    DEFAULT_SUGGESTIONS,
-  customer:    DEFAULT_SUGGESTIONS,
-  supplier:    DEFAULT_SUGGESTIONS
+const ROLE_SUGGESTIONS = {
+  general: [
+    'How did Haycarb perform in 2025/26 compared with the previous two years?',
+    'Where does Haycarb operate globally, and what does its global footprint look like?',
+    "What were Haycarb's biggest achievements and developments during the year?",
+    'How is Haycarb creating value across financial, environmental and social areas?'
+  ],
+  shareholder: [
+    "How have Haycarb's revenue, profitability and shareholder returns changed over the past three years?",
+    "What drove Haycarb's financial performance in 2025/26 and which business segments contributed most?",
+    'Where is Haycarb investing for future growth and what opportunities could shape its next phase of growth?',
+    "What are the key risks and opportunities that could influence Haycarb's future performance?"
+  ],
+  employee: [
+    'How is Haycarb investing in its people?',
+    "What does Haycarb's workforce look like across its global operations?",
+    'How is Haycarb progressing on diversity, employee development and workplace safety?',
+    'How will digitalisation and AI change the way employees work at Haycarb?'
+  ],
+  customer: [
+    'How is Haycarb innovating to meet emerging customer and industry needs?',
+    'What solutions does Haycarb offer across its key applications and industries?',
+    'How does Haycarb ensure product quality, technical excellence and reliable supply for customers globally?',
+    'How is Haycarb responding to future opportunities in areas such as energy storage and environmental purification?'
+  ],
+  supplier: [
+    'How is Haycarb strengthening its global supply chain and expanding its supplier network?',
+    'How does Haycarb assess suppliers on quality, environmental and social performance?',
+    'How is Haycarb helping suppliers transition towards more sustainable charcoaling practices?',
+    "What opportunities does Haycarb's future growth create for its suppliers and supply partners?"
+  ]
 };
 
 export const getSuggestions = (role) =>
-  SUGGESTIONS[role] ?? DEFAULT_SUGGESTIONS;
+  ROLE_SUGGESTIONS[role] ?? DEFAULT_SUGGESTIONS;
 
 // Shown under each AI answer. Wording is likely to be reviewed by the
 // client's IR/legal team — keep it easy to edit.
