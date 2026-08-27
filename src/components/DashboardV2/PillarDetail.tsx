@@ -94,7 +94,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
           <div className="whitespace-nowrap text-[12px] font-extrabold text-[var(--color-v2-label)]">
             {pillar.commitments
               ? `${pillar.commitments.length} commitments`
-              : `${pillar.progress.length} progress areas`}
+              : `${pillar.progress?.length ?? 0} progress areas`}
           </div>
         </div>
 
@@ -186,7 +186,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                 </tr>
               </thead>
               <tbody>
-                {pillar.progress.map((item, itemIndex) => (
+                {pillar.progress?.map((item, itemIndex) => (
                   <tr key={item.label}>
                     <td className="border-b border-[var(--color-v2-border-light)] py-[22px] pr-[18px] align-middle text-[13px] leading-[1.35] text-[var(--color-v2-text-body)]">
                       <span className="text-[14px] font-[850] text-[var(--color-v2-text-strong)]">

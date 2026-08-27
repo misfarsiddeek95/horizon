@@ -93,7 +93,7 @@ export default function PillarPanel({ pillar }: PillarPanelProps) {
           <div className="whitespace-nowrap rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[12px] font-extrabold text-white/80">
             {pillar.commitments
               ? `${pillar.commitments.length} commitments`
-              : `${pillar.progress.length} progress areas`}
+              : `${pillar.progress?.length ?? 0} progress areas`}
           </div>
         </div>
 
@@ -171,7 +171,7 @@ export default function PillarPanel({ pillar }: PillarPanelProps) {
                 </tr>
               </thead>
               <tbody>
-                {pillar.progress.map((item, itemIndex) => (
+                {pillar.progress?.map((item, itemIndex) => (
                   <tr
                     key={item.label}
                     className="transition-colors duration-300 hover:bg-white/10"
