@@ -1,4 +1,9 @@
-export type Category = 'Annual Report Experience' | 'Company, Governance & Performance' | 'Products, Solutions & Innovation' | 'Sustainability, People & Impact' | 'Markets, Operations & Future Readiness';
+export type Category =
+  | "Annual Report Experience"
+  | "Company, Governance & Performance"
+  | "Products, Solutions & Innovation"
+  | "Sustainability, People & Impact"
+  | "Markets, Operations & Future Readiness";
 
 export interface Question {
   id: string;
@@ -6,6 +11,7 @@ export interface Question {
   word: string;
   clue: string;
   timeLimit: number;
+  description?: string;
 }
 
 export interface GridCell {
@@ -23,7 +29,7 @@ export interface WordPlacement {
   word: string;
   startX: number;
   startY: number;
-  direction: 'across' | 'down';
+  direction: "across" | "down";
   questionId: string;
   questionIndex: number;
   number: number;
@@ -36,7 +42,7 @@ export interface SessionData {
   consented: boolean;
 }
 
-export type BadgeType = 'category' | 'achievement';
+export type BadgeType = "category" | "achievement";
 
 export interface BadgeDefinition {
   id: string;
@@ -45,7 +51,13 @@ export interface BadgeDefinition {
   description: string;
 }
 
-export type QuestionStatus = 'pending' | 'active' | 'completed' | 'failed' | 'timeout' | 'bypassed';
+export type QuestionStatus =
+  | "pending"
+  | "active"
+  | "completed"
+  | "failed"
+  | "timeout"
+  | "bypassed";
 
 export interface QuestionState {
   question: Question;
@@ -76,7 +88,7 @@ export interface LeaderboardEntry {
 }
 
 export interface GameState {
-  phase: 'onboarding' | 'idle' | 'playing' | 'finished';
+  phase: "onboarding" | "idle" | "playing" | "finished";
   session: SessionData | null;
   questions: QuestionState[];
   activeIndex: number | null;
@@ -99,7 +111,7 @@ export interface GameState {
 
 export interface BadgeEvaluation {
   earnedBadges: Record<Category, boolean>;
-  phase: GameState['phase'];
+  phase: GameState["phase"];
   allCorrect: boolean;
   aiUsedCount: number;
   elapsedSeconds: number;
@@ -133,22 +145,22 @@ export interface StartGamePayload {
 }
 
 export type GameAction =
-  | { type: 'START_GAME'; payload: StartGamePayload }
-  | { type: 'ENTER_LOBBY'; payload: SessionData }
-  | { type: 'SELECT_QUESTION'; payload: number }
-  | { type: 'UPDATE_CELL'; payload: { x: number; y: number; letter: string } }
-  | { type: 'SUBMIT_ANSWER' }
-  | { type: 'USE_AI_ASSIST'; payload: { questionId: string } }
-  | { type: 'TICK_TIMER' }
-  | { type: 'PAUSE_GAME' }
-  | { type: 'RESUME_GAME' }
-  | { type: 'RESTORE_GAME'; payload: SavedGameState }
-  | { type: 'RESTART_GAME'; payload: StartGamePayload }
-  | { type: 'LOGOUT' }
-  | { type: 'RESET' }
-  | { type: 'ENQUEUE_BADGES'; payload: { badgeIds: string[] } }
-  | { type: 'DISMISS_BADGE' }
-  | { type: 'TOGGLE_MUTE' }
-  | { type: 'SET_MUTED'; payload: boolean }
-  | { type: 'TICK_GAME_CLOCK' }
-  | { type: 'BYPASS_QUESTION' };
+  | { type: "START_GAME"; payload: StartGamePayload }
+  | { type: "ENTER_LOBBY"; payload: SessionData }
+  | { type: "SELECT_QUESTION"; payload: number }
+  | { type: "UPDATE_CELL"; payload: { x: number; y: number; letter: string } }
+  | { type: "SUBMIT_ANSWER" }
+  | { type: "USE_AI_ASSIST"; payload: { questionId: string } }
+  | { type: "TICK_TIMER" }
+  | { type: "PAUSE_GAME" }
+  | { type: "RESUME_GAME" }
+  | { type: "RESTORE_GAME"; payload: SavedGameState }
+  | { type: "RESTART_GAME"; payload: StartGamePayload }
+  | { type: "LOGOUT" }
+  | { type: "RESET" }
+  | { type: "ENQUEUE_BADGES"; payload: { badgeIds: string[] } }
+  | { type: "DISMISS_BADGE" }
+  | { type: "TOGGLE_MUTE" }
+  | { type: "SET_MUTED"; payload: boolean }
+  | { type: "TICK_GAME_CLOCK" }
+  | { type: "BYPASS_QUESTION" };

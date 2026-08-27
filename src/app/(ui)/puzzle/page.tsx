@@ -209,8 +209,9 @@ function PuzzleGame() {
     )}
     {chatOpen && activeQuestion && (
       <AIChatModal
-        question={activeQuestion.question}
+        isOpen={chatOpen}
         onClose={() => setChatOpen(false)}
+        activeQuestion={activeQuestion.question}
       />
     )}
     </>

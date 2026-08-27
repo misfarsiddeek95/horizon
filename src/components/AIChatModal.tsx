@@ -1,16 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import type { Question } from '@/types';
+import { questionPool } from '@/data/questions';
 
 interface AIChatModalProps {
-  question: Question;
+  isOpen: boolean;
   onClose: () => void;
+  activeQuestion: Question | null;
 }
 
-export default function AIChatModal({ question, onClose }: AIChatModalProps) {
+export default function AIChatModal({ isOpen, onClose, activeQuestion }: AIChatModalProps) {
   const [isTyping, setIsTyping] = useState(true);
+
+  const fullQuestionData = useMemo(
+    () => (activeQuestion ? questionPool.find((q) => q.id === activeQuestion.id) ?? null : null),
+    [activeQuestion]
+  );
+
+  const descriptionToRender = fullQuestionData?.description || 'No additional information available.';
 
   useEffect(() => {
     const timer = setTimeout(() => setIsTyping(false), 1500);
@@ -34,9 +43,9 @@ export default function AIChatModal({ question, onClose }: AIChatModalProps) {
   }, []);
 
   useEffect(() => {
-    if (!question) onClose();
+    if (!activeQuestion) onClose();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [question]);
+  }, [activeQuestion]);
 
   return (
     <div
@@ -76,8 +85,7 @@ export default function AIChatModal({ question, onClose }: AIChatModalProps) {
               ) : (
                 <span
                   dangerouslySetInnerHTML={{
-                    __html:
-                      question.description || 'No additional information available.',
+                    __html: descriptionToRender,
                   }}
                 />
               )}
