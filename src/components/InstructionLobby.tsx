@@ -7,6 +7,7 @@ import {
   TrophyIcon,
   ChartBarIcon,
   Cog8ToothIcon,
+  ArrowRightIcon,
 } from "@heroicons/react/24/outline";
 import { usePuzzle } from "@/context/PuzzleContext";
 import { CONFIG, getAllCategories } from "@/data/config";
@@ -66,7 +67,7 @@ export default function InstructionLobby() {
         </div>
         <header className="mb-8 text-center">
           <h1 className="font-heading text-3xl font-bold text-white sm:text-4xl">
-            Ready for the Challenge?
+            {state.session?.name ?? 'Player'}, Ready for the Challenge?
           </h1>
           <p className="mt-2 text-sm text-white/70 sm:text-base">
             Here's everything you need to know before you get started.
@@ -88,8 +89,11 @@ export default function InstructionLobby() {
             highlight
           >
             <p>
-              Stuck in a question? Use <strong className="text-white">&quot;Need Help?&quot;</strong> for
-              AI-powered assistance. Choose wisely. Each time it's used, the{" "}
+              Stuck on a question? After 30 seconds, use <strong className="text-white">&quot;Need Help?&quot;</strong> for
+              Annual Report grounded AI assistance, with the answer and supporting context.
+            </p>
+            <p className="mt-2">
+              Keep in mind: Each time it's used, the{" "}
               <strong className="text-yellow-400">points available for that question are reduced by 50%</strong>.
             </p>
           </LobbyCard>
@@ -99,6 +103,14 @@ export default function InstructionLobby() {
               Answer all available questions in each category correctly to earn a{" "}
               <strong className="text-white">certification badge</strong>. Put your knowledge to the
               test and try to earn them all!
+            </p>
+          </LobbyCard>
+
+          <LobbyCard icon={<ArrowRightIcon className="h-5 w-5" />} title="Skip for Now">
+            <p>
+              Not ready to answer a question? Select <strong className="text-white">&quot;Skip for Now&quot;</strong> to move
+              on. Once used, the remaining unanswered questions will be presented in sequence,
+              allowing you to continue the challenge without interruption.
             </p>
           </LobbyCard>
 
