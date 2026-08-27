@@ -35,9 +35,8 @@ function PuzzleGame() {
   }
 
   function openHelp() {
-    const q = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
-    if (q) {
-      dispatch({ type: 'USE_AI_ASSIST', payload: { questionId: q.question.id } });
+    if (activeQuestion) {
+      dispatch({ type: 'USE_AI_ASSIST', payload: { questionId: activeQuestion.question.id } });
     }
     setChatOpen(true);
   }
