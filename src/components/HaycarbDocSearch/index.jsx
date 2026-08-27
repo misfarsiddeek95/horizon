@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDocSearch } from './useDocSearch';
 import SearchTurn from './SearchTurn';
 
@@ -15,7 +15,7 @@ const SUGGESTIONS = [
  * Haycarb Annual Report chapter finder.
  *
  * Sizes to its content, so it can sit anywhere on a page.
- * Newest result appears directly under the input.
+ * Newest result appears at the bottom of the list.
  *
  * @param endpoint    API route to POST to (proxied, key stays server-side)
  * @param onDownload  async (filePaths: string[]) => void — the host app's
@@ -29,8 +29,13 @@ export default function HaycarbDocSearch({
 }) {
   const [input, setInput] = useState('');
   const { turns, stage, error, search } = useDocSearch({ endpoint });
+  const bottomRef = useRef(null);
 
   const busy = stage !== 'idle';
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [turns]);
 
   const submit = (text) => {
     const value = (text ?? input).trim();
@@ -44,7 +49,7 @@ export default function HaycarbDocSearch({
 
       {title && (
         <div className="mb-4">
-          <h2 className="text-sm font-semibold">{title}</h2>
+          <h2 className="font-heading text-lg text-brand-main">{title}</h2>
           <p className="mt-0.5 text-[11px] text-content-primary/70">
             Describe what you&apos;re looking for and download the relevant chapters
           </p>
@@ -86,13 +91,13 @@ export default function HaycarbDocSearch({
         </div>
       )}
 
-      {/* results — newest first, since the input is at the top */}
+      {/* results — oldest first */}
       {(turns.length > 0 || busy) && (
         <div className="mt-5 flex flex-col gap-5">
 
           {busy && <Searching />}
 
-          {[...turns].reverse().map(t => (
+          {turns.map(t => (
             <SearchTurn key={t.id} turn={t} onDownload={onDownload} />
           ))}
 
@@ -101,6 +106,8 @@ export default function HaycarbDocSearch({
               {error}
             </div>
           )}
+
+          <div ref={bottomRef} />
         </div>
       )}
     </div>

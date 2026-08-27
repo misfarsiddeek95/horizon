@@ -23,7 +23,7 @@ export default function MessageActions({ message, onExport, exporting }) {
   };
 
   return (
-    <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-black/10 pt-2.5">
+    <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-white/10 pt-2.5">
       <div className="flex items-center gap-1">
         <ActionButton onClick={copy} label={copied ? 'Copied' : 'Copy answer'}>
           {copied ? <CheckIcon /> : <CopyIcon />}
@@ -38,7 +38,7 @@ export default function MessageActions({ message, onExport, exporting }) {
         </ActionButton>
       </div>
 
-      <p className="ml-auto max-w-[380px] text-right text-[10px] leading-snug text-content-primary/50">
+      <p className="ml-auto max-w-[380px] text-right text-[10px] leading-snug text-white/60">
         {DISCLAIMER[detectLang(message.content)]}
       </p>
     </div>
@@ -52,12 +52,12 @@ function ActionButton({ onClick, disabled, label, children }) {
         onClick={onClick}
         disabled={disabled}
         aria-label={label}
-        className="flex h-8 w-8 items-center justify-center rounded-ui-element text-content-primary/50 transition-colors hover:bg-brand-main/10 hover:text-brand-main disabled:opacity-60"
+        className="flex h-8 w-8 items-center justify-center rounded-ui-element text-white/50 transition-colors hover:bg-white/10 hover:text-teal-2 disabled:opacity-60"
       >
         {children}
       </button>
 
-      <span className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-ui-element bg-content-primary px-2 py-1 text-[10px] text-content-inverse opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+      <span className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-ui-element bg-white/95 px-2 py-1 text-[10px] text-[#071f2b] opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
         {label}
       </span>
     </div>

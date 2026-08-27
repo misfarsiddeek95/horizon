@@ -103,7 +103,7 @@ export default function ChartBlock({ chart, onCanvasReady }) {
   };
 
   const legend = chart.series.length > 1
-    ? { position: 'bottom', labels: { color: COLORS.blueSoft, font: { size: 11 }, padding: 12, boxWidth: 12 } }
+    ? { position: 'bottom', labels: { color: COLORS.chartAxis, font: { size: 11 }, padding: 12, boxWidth: 12 } }
     : { display: false };
 
   // Pie uses only the first series
@@ -128,7 +128,7 @@ export default function ChartBlock({ chart, onCanvasReady }) {
             devicePixelRatio: 2,
             animation: { duration: 600 },
             plugins: {
-              legend: { position: 'bottom', labels: { color: COLORS.blueSoft, font: { size: 11 }, padding: 12 } },
+              legend: { position: 'bottom', labels: { color: COLORS.chartAxis, font: { size: 11 }, padding: 12 } },
               tooltip,
               // slices are usually too small for labels, and the legend names them
               datalabels: { display: false }
@@ -166,7 +166,7 @@ export default function ChartBlock({ chart, onCanvasReady }) {
               // headroom so labels above the tallest point aren't clipped
               grace: '15%',
               title: chart.unit
-                ? { display: true, text: chart.unit, color: COLORS.blueSoft, font: { size: 10 } }
+                ? { display: true, text: chart.unit, color: COLORS.chartAxis, font: { size: 10 } }
                 : { display: false }
             }
           }
@@ -178,8 +178,8 @@ export default function ChartBlock({ chart, onCanvasReady }) {
 
 function Wrapper({ title, children }) {
   return (
-    <div className="mt-4 rounded-xl border border-[var(--hc-border)] bg-[var(--hc-surface-2)] p-4">
-      <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-[var(--hc-blue-soft)]">
+    <div className="mt-4 rounded-xl bg-white/95 p-4 shadow-sm">
+      <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-brand-main">
         {title}
       </div>
       <div className="h-[220px]">{children}</div>

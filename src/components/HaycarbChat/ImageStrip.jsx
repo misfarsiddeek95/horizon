@@ -41,10 +41,10 @@ function PersonCard({ img, onOpen }) {
         alt={img.label ?? ''}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="h-[90px] w-[80px] rounded-ui-element border-2 border-black/10 object-cover transition-colors hover:border-brand-main"
+        className="h-[90px] w-[80px] rounded-ui-element border-2 border-white/20 object-cover transition-colors hover:border-teal-2"
       />
       {img.label && (
-        <span className="text-center text-[10px] leading-tight text-content-primary/70">
+        <span className="text-center text-[10px] leading-tight text-white/70">
           {img.label}
         </span>
       )}
