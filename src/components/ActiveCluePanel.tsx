@@ -4,7 +4,11 @@ import { useMemo } from "react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { usePuzzle } from "@/context/PuzzleContext";
 
-export default function ActiveCluePanel() {
+interface ActiveCluePanelProps {
+  onHelp: () => void;
+}
+
+export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
   const { state, dispatch } = usePuzzle();
   const { activeIndex, questions, timerRemaining, wordPlacements, gridCells } =
     state;
@@ -35,13 +39,6 @@ export default function ActiveCluePanel() {
 
   function handleBypass() {
     dispatch({ type: "BYPASS_QUESTION" });
-  }
-
-  function openHelp() {
-    if (activeQ) {
-      dispatch({ type: "USE_AI_ASSIST", payload: { questionId: activeQ.question.id } });
-    }
-    window.location.href = "/chat-help";
   }
 
   if (!activeQ) {
@@ -132,7 +129,7 @@ export default function ActiveCluePanel() {
 
       {showHelp && (
         <button
-          onClick={openHelp}
+          onClick={onHelp}
           className="mb-3 w-full cursor-pointer rounded-ui-element bg-amber-100 px-3 py-2 text-xs font-semibold text-amber-700 transition-colors hover:bg-amber-200"
         >
           Need Help?

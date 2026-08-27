@@ -182,7 +182,7 @@ function PuzzleGame() {
 
           {/* RIGHT COLUMN: Cards (Desktop Only) */}
           <div className="hidden lg:flex lg:flex-col lg:w-[40%] lg:shrink-0 lg:gap-6 min-w-0">
-            <ActiveCluePanel />
+            <ActiveCluePanel onHelp={openHelp} />
             <QuestionDeck />
           </div>
 
