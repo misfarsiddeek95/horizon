@@ -6,8 +6,11 @@ import Button from "@/components/ui/Button";
 import type { V2Crro } from "@/data/dashboardV2/types";
 import ClimateChart from "./ClimateChart";
 
-const ANNUAL_REPORT_URL =
-  "https://cdn.cse.lk/cmt/upload_report_file/494_1780912833539.pdf";
+const CLIMATE_PDF_BASE = "/pdf/Sustainability-Dashboard/S1 & S2 Climate Risk & Opportunity Outlook";
+
+const CLIMATE_DISCLOSURE_URL = `${CLIMATE_PDF_BASE}/S1 & S2 Climate Risk & Opportunity Outlook - AR disclosure.pdf`;
+
+const RESILIENCE_ANALYSIS_URL = `${CLIMATE_PDF_BASE}/AR Resilience analysis.pdf`;
 
 const CRRO_PAGE: Record<number, number> = { 1: 73, 2: 77, 3: 80, 4: 84 };
 
@@ -114,7 +117,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
               Quantified operational drivers and financial effects across the short, medium and long term
             </p>
             <a
-              href={`${ANNUAL_REPORT_URL}#page=${CRRO_PAGE[crro.id]}`}
+              href={`${CLIMATE_DISCLOSURE_URL}#page=${CRRO_PAGE[crro.id]}`}
               target="_blank"
               rel="noopener noreferrer"
               className="absolute right-0 top-[-5px] inline-flex whitespace-nowrap rounded-[9px] border border-[#cfdae1] bg-white px-[9px] py-[7px] text-[9.5px] font-[850] text-[var(--navy)] no-underline"
@@ -279,7 +282,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
           </p>
           <Button
             behavior="link"
-            href={`${ANNUAL_REPORT_URL}#page=94`}
+            href={RESILIENCE_ANALYSIS_URL}
             target="_blank"
             rel="noopener noreferrer"
             variant="primary"

@@ -47,12 +47,13 @@ export default function ActivateSection({
               ACTIVATE 2030 ↗
             </Button>
             <Button
-              disabled
+              behavior="link"
+              href="/pdf/Sustainability-Dashboard/ACTIVATE-2030/AR Disclosure on Activate 2030 achievements.pdf"
+              target="_blank"
               variant="secondary"
-              title="Final AR Disclosure URL required from client"
-              className="min-h-[48px] disabled:opacity-100"
+              className="min-h-[48px]"
             >
-              Annual Report Disclosure · link pending
+              Annual Report Disclosure
             </Button>
           </div>
         </div>

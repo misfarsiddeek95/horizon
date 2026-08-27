@@ -64,12 +64,13 @@ export default function DashboardPageV2() {
             </div>
             <div className="flex w-full flex-wrap gap-2.5 sm:w-auto">
               <Button
-                disabled
+                behavior="link"
+                href="/pdf/Sustainability-Dashboard/S1 & S2 Climate Risk & Opportunity Outlook/S1 & S2 Climate Risk & Opportunity Outlook - AR disclosure.pdf"
+                target="_blank"
                 variant="secondary"
-                title="Final AR Disclosure URL required from client"
-                className="min-h-[48px] disabled:opacity-100"
+                className="min-h-[48px]"
               >
-                Annual Report Disclosure · link pending
+                Annual Report Disclosure
               </Button>
             </div>
           </div>

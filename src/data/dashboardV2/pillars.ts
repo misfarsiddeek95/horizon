@@ -1,11 +1,19 @@
 import { PILLARS } from "@/data/activateDashboard";
 import type { PillarId, V2Pillar } from "./types";
 
-export const IMPACT_REPORT_URL =
-  "https://www.haycarb.com/wp-content/uploads/2026/08/Sustainability-Impact-Report-Jul-2026.pdf";
+const PDF_BASE = "/pdf/Sustainability-Dashboard";
 
-export const ACTIVATE_ROADMAP_URL =
-  "https://www.haycarb.com/wp-content/uploads/2025/07/ACTIVATE-Haycarb-PLC-ESG-Roadmap-2030.pdf";
+export const IMPACT_REPORT_URL = `${PDF_BASE}/ACTIVATE-2030/AR Disclosure on Activate 2030 achievements.pdf`;
+
+export const ACTIVATE_ROADMAP_URL = `${PDF_BASE}/ACTIVATE-2030/ACTIVATE 2030 - Haycarb ESG Roadmap.pdf`;
+
+export const STORY_PDFS: Record<PillarId, string> = {
+  restore: `${PDF_BASE}/ACTIVATE-2030/Restore Impact Story - From LPG to Waste Heat - A Climate-Smart Dryer Upgrade.pdf`,
+  inspire: `${PDF_BASE}/ACTIVATE-2030/Inspire Impact Story - Safety Through Systems and Digitalization.pdf`,
+  excite: `${PDF_BASE}/ACTIVATE-2030/Excite Impact Story - Customer Centric Production.pdf`,
+  uplift: `${PDF_BASE}/ACTIVATE-2030/Uplift Impact Story - Growing Beyond the Traditional Coconut Triangle.pdf`,
+  innovate: `${PDF_BASE}/ACTIVATE-2030/Innovate Impact Story - Energy Storage Carbons for a Changing Energy Future.pdf`,
+};
 
 export const PILLAR_IDS: PillarId[] = [
   "restore",

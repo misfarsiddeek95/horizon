@@ -5,8 +5,8 @@ import Button from "@/components/ui/Button";
 import type { V2Crro } from "@/data/dashboardV2/types";
 import GlowChart from "./GlowChart";
 
-const ANNUAL_REPORT_URL =
-  "https://cdn.cse.lk/cmt/upload_report_file/494_1780912833539.pdf";
+const RESILIENCE_ANALYSIS_URL =
+  "/pdf/Sustainability-Dashboard/S1 & S2 Climate Risk & Opportunity Outlook/AR Resilience analysis.pdf";
 
 interface ClimatePanelProps {
   crro: V2Crro;
@@ -131,7 +131,7 @@ export default function ClimatePanel({ crro }: ClimatePanelProps) {
           </p>
           <Button
             behavior="link"
-            href={`${ANNUAL_REPORT_URL}#page=94`}
+            href={RESILIENCE_ANALYSIS_URL}
             target="_blank"
             rel="noopener noreferrer"
             variant="outline"

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { IMPACT_REPORT_URL } from "@/data/dashboardV2/pillars";
+import { STORY_PDFS } from "@/data/dashboardV2/pillars";
 import { type V2Pillar } from "@/data/dashboardV2/types";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { STATUS_TONE_TEXT_V3 } from "./statusTones";
@@ -229,13 +229,13 @@ export default function PillarPanel({ pillar }: PillarPanelProps) {
             the action taken and the outcome achieved during the year.
           </p>
           <a
-            href={`${IMPACT_REPORT_URL}#page=${pillar.page}`}
+            href={STORY_PDFS[pillar.id]}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Explore ${pillar.name} featured story in the Sustainability Impact Report`}
             className="mb-0 mt-4 inline-block rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[12px] font-extrabold text-white backdrop-blur-xl transition-all duration-300 ease-out hover:scale-[1.01] hover:bg-white/20 hover:shadow-2xl"
           >
-            Explore story · Impact Report p.{pillar.page} ↗
+            Explore story ↗
           </a>
         </div>
       </div>

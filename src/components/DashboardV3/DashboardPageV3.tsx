@@ -84,12 +84,13 @@ export default function DashboardPageV3() {
                   ACTIVATE 2030
                 </Button>
                 <Button
-                  disabled
+                  behavior="link"
+                  href="/pdf/Sustainability-Dashboard/ACTIVATE-2030/AR Disclosure on Activate 2030 achievements.pdf"
+                  target="_blank"
                   variant="outline"
-                  title="Final AR Disclosure URL required from client"
-                  className="!border-white/15 !bg-white/5 !text-white/50"
+                  className="!border-white/30 !bg-white/15 !text-white backdrop-blur-xl hover:!bg-white/25"
                 >
-                  AR Disclosure · link pending
+                  AR Disclosure
                 </Button>
               </div>
             </div>
@@ -118,12 +119,13 @@ export default function DashboardPageV3() {
               </div>
               <div className="flex w-full flex-wrap gap-3 lg:w-auto">
                 <Button
-                  disabled
+                  behavior="link"
+                  href="/pdf/Sustainability-Dashboard/S1 & S2 Climate Risk & Opportunity Outlook/S1 & S2 Climate Risk & Opportunity Outlook - AR disclosure.pdf"
+                  target="_blank"
                   variant="outline"
-                  title="Final AR Disclosure URL required from client"
-                  className="!border-white/15 !bg-white/5 !text-white/50"
+                  className="!border-white/30 !bg-white/15 !text-white backdrop-blur-xl hover:!bg-white/25"
                 >
-                  AR Disclosure · link pending
+                  AR Disclosure
                 </Button>
               </div>
             </div>

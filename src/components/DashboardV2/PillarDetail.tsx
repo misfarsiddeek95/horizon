@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { IMPACT_REPORT_URL } from "@/data/dashboardV2/pillars";
+import { STORY_PDFS } from "@/data/dashboardV2/pillars";
 import { STATUS_TONE_COLOR, type V2Pillar } from "@/data/dashboardV2/types";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import AnimatedRail from "@/components/ui/AnimatedRail";
@@ -244,13 +244,13 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
             {pillar.storyText}
           </p>
           <a
-            href={`${IMPACT_REPORT_URL}#page=${pillar.page}`}
+            href={STORY_PDFS[pillar.id]}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Explore ${pillar.name} featured story in the Sustainability Impact Report`}
             className="mb-0 mt-[9px] inline-block text-[12px] font-extrabold text-white underline-offset-4 hover:underline"
           >
-            Explore story · Impact Report
+            Explore story
           </a>
         </div>
       </div>
