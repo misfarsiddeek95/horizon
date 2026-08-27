@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CheckBadgeIcon } from "@heroicons/react/24/solid";
+import { CheckBadgeIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import type { BadgeDefinition } from "@/types";
 import { playBadgeUnlockSound } from "@/utils/sound";
 
@@ -122,6 +122,8 @@ export default function BadgeUnlockModal({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const badgeColor = badge.color ?? "#f59e0b";
+
   return (
     <div
       className="fixed inset-0 z-50 flex overflow-y-auto bg-black/70 backdrop-blur-sm"
@@ -138,15 +140,35 @@ export default function BadgeUnlockModal({
           mounted ? "scale-100" : "scale-0"
         }`}
       >
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 cursor-pointer p-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+          aria-label="Close"
+        >
+          <XMarkIcon className="h-5 w-5" />
+        </button>
+
         <div className="relative flex h-28 w-28 items-center justify-center">
-          <div className="absolute inset-0 rounded-full bg-yellow-400/40 blur-xl animate-pulse" />
-          <div className="absolute inset-0 rounded-full bg-cyan-400/30 blur-2xl animate-ping" />
-          <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 shadow-2xl">
+          <div
+            className="absolute inset-0 rounded-full blur-xl animate-pulse"
+            style={{ backgroundColor: `${badgeColor}40` }}
+          />
+          <div
+            className="absolute inset-0 rounded-full blur-2xl animate-ping"
+            style={{ backgroundColor: `${badgeColor}30` }}
+          />
+          <div
+            className="relative flex h-24 w-24 items-center justify-center rounded-full shadow-2xl"
+            style={{ backgroundColor: badgeColor }}
+          >
             <CheckBadgeIcon className="h-12 w-12 text-white" />
           </div>
         </div>
 
-        <p className="font-sans text-xs font-bold uppercase tracking-widest text-amber-500">
+        <p
+          className="font-sans text-xs font-bold uppercase tracking-widest"
+          style={{ color: badgeColor }}
+        >
           Badge Unlocked
         </p>
         <h2 className="font-heading text-2xl font-bold text-content-primary">
@@ -155,13 +177,6 @@ export default function BadgeUnlockModal({
         <p className="text-sm leading-relaxed text-content-primary/70">
           {badge.description}
         </p>
-
-        <button
-          onClick={onClose}
-          className="mt-2 w-full cursor-pointer rounded-ui-element bg-brand-main px-4 py-2.5 text-sm font-semibold text-content-inverse transition-colors hover:bg-brand-hover"
-        >
-          Awesome!
-        </button>
       </div>
     </div>
   );

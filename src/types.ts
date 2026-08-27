@@ -49,6 +49,7 @@ export interface BadgeDefinition {
   type: BadgeType;
   title: string;
   description: string;
+  color?: string;
 }
 
 export type QuestionStatus =

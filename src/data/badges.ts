@@ -3,6 +3,14 @@ import { getAllCategories, CONFIG } from './config';
 
 const STORAGE_KEY = 'horizon-puzzle-badges';
 
+const CATEGORY_HEX: Record<string, string> = {
+  'Annual Report Experience': '#f59e0b',
+  'Company, Governance & Performance': '#3b82f6',
+  'Products, Solutions & Innovation': '#14b8a6',
+  'Sustainability, People & Impact': '#22c55e',
+  'Markets, Operations & Future Readiness': '#06b6d4',
+};
+
 function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -20,6 +28,7 @@ const categoryDefinitions: BadgeDefinition[] = getAllCategories().map(
     type: 'category' as const,
     title: `${category} Expert`,
     description: `You've successfully answered every question in this challenge.`,
+    color: CATEGORY_HEX[category] ?? '#6b7280',
   })
 );
 
