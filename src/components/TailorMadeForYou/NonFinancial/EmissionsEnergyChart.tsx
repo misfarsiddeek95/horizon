@@ -160,7 +160,7 @@ export default function EmissionsEnergyChart() {
       series.appear(1000);
     }
 
-    function createBarSeries(name: string, field: string) {
+    function createBarSeries(name: string, field: string, color: string) {
       const series = chart.series.push(
         am5xy.ColumnSeries.new(root, {
           name,
@@ -175,7 +175,11 @@ export default function EmissionsEnergyChart() {
           }),
         })
       );
-      series.columns.template.setAll({ tooltipY: am5.percent(10) });
+      series.columns.template.setAll({
+        tooltipY: am5.percent(10),
+        fill: am5.color(color),
+        stroke: am5.color(color),
+      });
       series.data.setAll(combinedData);
       return series;
     }
@@ -186,9 +190,9 @@ export default function EmissionsEnergyChart() {
     createLineSeries("Scope 3 emission (tCO2e)", "scope_3_emission");
     createLineSeries("Biogenic emission (tCO2e)", "biogenic");
 
-    createBarSeries("Renewable energy consumption (GJ)", "renewable_energy");
-    createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable");
-    createBarSeries("Total energy consumption (GJ)", "total_consumption");
+    createBarSeries("Renewable energy consumption (GJ)", "renewable_energy", "#67b7dc");
+    createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable", "#6794dc");
+    createBarSeries("Total energy consumption (GJ)", "total_consumption", "#6771dc");
 
     chart.set("cursor", am5xy.XYCursor.new(root, {}));
 

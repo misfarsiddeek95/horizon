@@ -193,14 +193,14 @@ export default function SocialGovernanceChart() {
       return series;
     }
 
-    createBarSeries("Investment in R&D (Rs. Mn)", "investment_rd", "#a5a5a5");
-    createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", "#ffbf00");
-    createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", "#4472c4");
+    createBarSeries("Investment in R&D (Rs. Mn)", "investment_rd", "#67b7dc");
+    createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", "#6794dc");
+    createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", "#6771dc");
 
-    createLineSeries("Average training hours per employee (No.)", "avg_training_hours", "#5b9cd5");
-    createLineSeries("New products developed (No.)", "new_products", "#ee7d30");
-    createLineSeries("Total audits conducted on management systems (No.)", "total_audits", "#71ad47");
-    createLineSeries("Instances of environmental non-compliance (No.)", "env_non_compliance", "#5b9cd5");
+    createLineSeries("Average training hours per employee (No.)", "avg_training_hours", "#8663dc");
+    createLineSeries("New products developed (No.)", "new_products", "#a554b3");
+    createLineSeries("Total audits conducted on management systems (No.)", "total_audits", "#c94f9c");
+    createLineSeries("Instances of environmental non-compliance (No.)", "env_non_compliance", "#e8437f");
 
     chart.set("cursor", am5xy.XYCursor.new(root, {}));
 
