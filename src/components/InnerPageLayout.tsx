@@ -179,7 +179,7 @@ export default function InnerPageLayout({
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-        <div className="relative z-10 flex flex-col min-h-[360px] sm:min-h-[400px] lg:min-h-[440px]">
+        <div className="relative z-10 flex flex-col min-h-[460px] sm:min-h-[500px] lg:min-h-[540px]">
           <div className="max-w-4xl mx-auto text-center px-4 pt-16 sm:pt-20 lg:pt-24">
             <h1 className="font-heading text-content-inverse text-2xl sm:text-3xl lg:text-4xl font-bold drop-shadow-lg">
               {title}
