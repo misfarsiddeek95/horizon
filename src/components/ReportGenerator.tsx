@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Image from "next/image";
 import {
   ArrowPathIcon,
   DocumentIcon,
@@ -215,11 +216,15 @@ export default function ReportGenerator() {
                   />
                 </>
               ) : (
-                <div className="flex flex-1 flex-col items-center justify-center text-content-primary/30 gap-3 px-4">
-                  <DocumentIcon className="h-12 w-12 sm:h-16 sm:w-16" />
-                  <p className="text-sm sm:text-base text-center">
-                    Click a PDF name to preview
-                  </p>
+                <div className="flex flex-1 items-center justify-center px-4">
+                  <Image
+                    src="/images/innerpage/own-report-default.jpeg"
+                    alt="Select a PDF to preview"
+                    width={600}
+                    height={400}
+                    className="h-auto w-full max-w-md object-contain"
+                    priority
+                  />
                 </div>
               )}
             </div>
