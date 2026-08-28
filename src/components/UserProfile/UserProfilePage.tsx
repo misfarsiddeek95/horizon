@@ -383,6 +383,7 @@ export default function UserProfilePageV2() {
                 <ChairmanSection
                   title={tab.message.title}
                   text={tab.message.text}
+                  link={tab.message.link}
                 />
               </section>
             )}

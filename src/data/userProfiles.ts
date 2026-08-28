@@ -29,6 +29,10 @@ export interface ProfileTab {
   message?: {
     title: string;
     text: string;
+    link?: {
+      label: string;
+      url: string;
+    };
   };
   highlights?: string[];
   strategy?: {
@@ -143,6 +147,10 @@ export const PROFILE_TABS: ProfileTab[] = [
     message: {
       title: chairmanMessageTitle,
       text: "Haycarb recorded a Profit Before Tax (PBT) of Rs. 5.89 Bn for the year ended 31st March 2026, reflecting a 7% increase over the previous year's Rs. 5.52 Bn despite operating in a challenging global environment. Revenue grew significantly to Rs. 67.08 Bn from Rs. 43.20 Bn in the previous year, driven by strong demand, strategic pricing initiatives, and operational excellence. Tax expense increased to Rs. 1.55 Bn, resulting in an effective tax rate of 26.3% compared to 22.6% in the previous year. Consequently, Profit After Tax (PAT) improved marginally to Rs. 4.34 Bn from Rs. 4.27 Bn in 2024/25. In USD terms, Profit After Tax amounted to USD 14.22 Mn.",
+      link: {
+        label: "View Joint Message",
+        url: "https://youtu.be/K_rvL8qpuDc",
+      },
     },
     highlights: [
       "Financial performance, position and resilience",
@@ -197,6 +205,10 @@ export const PROFILE_TABS: ProfileTab[] = [
     message: {
       title: chairmanMessageTitle,
       text: "Haycarb continued to invest in its people during 2025/26, strengthening workforce capability through training, development, and employee engagement initiatives. With an average of 31.1 training hours per employee and continued emphasis on digital learning platforms, the Group focused on equipping its workforce with the skills required to navigate an increasingly dynamic and technology-driven business environment. Supported by an employee retention rate of 85.3% and ongoing investments in health, safety, and wellbeing, Haycarb remains committed to nurturing a capable, engaged, and future-ready workforce that can deliver innovation, operational excellence, and sustainable growth.",
+      link: {
+        label: "View Joint Message",
+        url: "https://youtu.be/K_rvL8qpuDc",
+      },
     },
     highlights: [
       "Fair remuneration and job security",
@@ -246,6 +258,10 @@ export const PROFILE_TABS: ProfileTab[] = [
     message: {
       title: chairmanMessageTitle,
       text: "Haycarb continued to invest in innovation, research, and advanced technologies during 2025/26, reinforcing its position as a leading provider of sustainable activated carbon solutions. The Group remained focused on developing cutting-edge products and enhancing customer value through continuous investment in research and development, which amounted to Rs. 261 Mn during the year. Haycarb successfully launched 14 new products, reflecting its commitment to sustainable innovation and its ability to address emerging customer requirements across diverse applications. Supported by enhanced laboratory capabilities, specialised technical training, and ongoing digitalisation initiatives, the Group continued to strengthen its innovation pipeline and technical differentiation. As global demand for environmental and sustainability-focused solutions continues to grow, Haycarb remains well positioned to capture emerging opportunities through its strong innovation culture, extensive product portfolio, and commitment to creating long-term value for customers and stakeholders.",
+      link: {
+        label: "View Joint Message",
+        url: "https://youtu.be/K_rvL8qpuDc",
+      },
     },
     highlights: [
       "Ability to manage optimum capacity utilization and ensure product availability",
@@ -313,6 +329,10 @@ export const PROFILE_TABS: ProfileTab[] = [
     message: {
       title: chairmanMessageTitle,
       text: "Our value chain commences with coconut shells, a by-product of the coconut industry. Our manufacturing facilities are strategically located in Sri Lanka, Thailand, and Indonesia, providing direct access to our main raw material, coconut shell-based charcoal in these countries. Our raw material procurement network also extends to other major coconut growing countries in Asia, including the Philippines, India, and Vietnam. This extensive network has enabled us to gain valuable insights into the production and availability of raw materials, allowing us to effectively manage the cyclical volatility in demand and supply across all coconut-producing countries in Asia.",
+      link: {
+        label: "View Joint Message",
+        url: "https://youtu.be/K_rvL8qpuDc",
+      },
     },
     highlights: [
       "Sourcing adequate supplies of coconut shells amidst the shortage",

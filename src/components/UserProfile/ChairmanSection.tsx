@@ -9,6 +9,10 @@ import Button from "@/components/ui/Button";
 interface ChairmanSectionV2Props {
   title: string;
   text: string;
+  link?: {
+    label: string;
+    url: string;
+  };
 }
 
 const HEADING_GRADIENT =
@@ -19,6 +23,7 @@ const COLLAPSED_LINES = 5;
 export default function ChairmanSectionV2({
   title,
   text,
+  link,
 }: ChairmanSectionV2Props) {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
   const [expanded, setExpanded] = useState(false);
@@ -109,14 +114,31 @@ export default function ChairmanSectionV2({
             </button>
           )}
           <div className="mt-8 self-start">
-            <Button
-              variant="primary"
-              radius="full"
-              icon={<PlayIcon />}
-              iconPosition="left"
-            >
-              Joint Message Video
-            </Button>
+            {link ? (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant="primary"
+                  radius="full"
+                  icon={<PlayIcon />}
+                  iconPosition="left"
+                >
+                  {link.label}
+                </Button>
+              </a>
+            ) : (
+              <Button
+                variant="primary"
+                radius="full"
+                icon={<PlayIcon />}
+                iconPosition="left"
+              >
+                Joint Message Video
+              </Button>
+            )}
           </div>
         </div>
       </div>
