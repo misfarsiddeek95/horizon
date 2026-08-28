@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
 import { CRROS_V2 } from "@/data/dashboard/crros";
 import type { CrroId, PillarId, SectionId } from "@/data/dashboard/types";
@@ -66,6 +67,7 @@ export default function DashboardPageV2() {
                 href="/pdf/Sustainability-Dashboard/S1 & S2 Climate Risk & Opportunity Outlook/S1 & S2 Climate Risk & Opportunity Outlook - AR disclosure.pdf"
                 target="_blank"
                 variant="secondary"
+                icon={<ArrowUpRightIcon className="h-4 w-4" />}
                 className="min-h-[48px]"
               >
                 Annual Report Disclosure

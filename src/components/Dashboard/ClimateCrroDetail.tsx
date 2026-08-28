@@ -120,9 +120,10 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
               href={`${CLIMATE_DISCLOSURE_URL}#page=${CRRO_PAGE[crro.id]}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute right-0 top-[-5px] inline-flex whitespace-nowrap rounded-[9px] border border-[#cfdae1] bg-white px-[9px] py-[7px] text-[9.5px] font-[850] text-[var(--navy)] no-underline"
+              className="absolute right-0 top-[-5px] inline-flex items-center gap-1.5 whitespace-nowrap rounded-[9px] border border-[#cfdae1] bg-white px-[9px] py-[7px] text-[9.5px] font-[850] text-[var(--navy)] no-underline"
             >
-              View disclosure ↗
+              View disclosure
+              <ArrowUpRightIcon className="h-3 w-3" />
             </a>
           </div>
 

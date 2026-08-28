@@ -44,13 +44,14 @@ export default function ActivateSection({
               icon={<ArrowUpRightIcon className="h-4 w-4" />}
               className="min-h-[48px] !bg-[color:var(--color-v2-navy-btn)] hover:!bg-[color:var(--color-v2-navy-deep)]"
             >
-              ACTIVATE 2030 ↗
+              ACTIVATE 2030
             </Button>
             <Button
               behavior="link"
               href="/pdf/Sustainability-Dashboard/ACTIVATE-2030/AR Disclosure on Activate 2030 achievements.pdf"
               target="_blank"
               variant="secondary"
+              icon={<ArrowUpRightIcon className="h-4 w-4" />}
               className="min-h-[48px]"
             >
               Annual Report Disclosure

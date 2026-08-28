@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
 import { PILLAR_ICONS, PILLARS_V2, PILLAR_IDS } from "@/data/dashboard/pillars";
 import type { SectionId } from "@/data/dashboard/types";
@@ -75,6 +76,7 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
             <Button
               variant="primary"
               onClick={() => onNavigate("activate")}
+              icon={<ArrowUpRightIcon className="h-4 w-4" />}
               className="w-full min-h-[48px] !border !border-white !bg-white !text-[color:var(--color-v2-navy-deep)] shadow-none hover:!bg-white hover:!shadow-none sm:w-auto"
             >
               Explore ACTIVATE 2030
@@ -82,6 +84,7 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
             <Button
               variant="outline"
               onClick={() => onNavigate("climate")}
+              icon={<ArrowUpRightIcon className="h-4 w-4" />}
               className="w-full min-h-[48px] !border !border-white/35 !bg-white/10 !text-white backdrop-blur-[8px] hover:!bg-white/20 sm:w-auto"
             >
               Explore S1 &amp; S2 Outlook

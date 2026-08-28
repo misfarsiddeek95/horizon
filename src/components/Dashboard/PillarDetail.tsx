@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { STORY_PDFS } from "@/data/dashboard/pillars";
 import { STATUS_TONE_COLOR, type V2Pillar } from "@/data/dashboard/types";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
@@ -248,9 +249,10 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Explore ${pillar.name} featured story in the Sustainability Impact Report`}
-            className="mb-0 mt-[9px] inline-block text-[12px] font-extrabold text-white underline-offset-4 hover:underline"
+            className="mb-0 mt-[9px] inline-flex items-center gap-1.5 text-[12px] font-extrabold text-white underline-offset-4 hover:underline"
           >
             Explore story
+            <ArrowUpRightIcon className="h-3.5 w-3.5" />
           </a>
         </div>
       </div>
