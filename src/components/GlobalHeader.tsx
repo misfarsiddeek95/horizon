@@ -7,14 +7,14 @@ import { usePathname } from "next/navigation";
 const menuLinks = [
   { name: "Home", path: "/" },
   { name: "Charts & Reports Generator", path: "/tailor-made-for-you" },
-  { name: "FinQuest Game", path: "/puzzle" },
+  { name: "Crossword Puzzle", path: "/puzzle" },
   { name: "AI Chat Assistant", path: "/chat" },
   { name: "User Profiles", path: "/user-profile" },
   { name: "Dashboard", path: "/dashboard" },
 ];
 
 const darkPages = ['/chat', '/user-profile'];
-const whiteBarPages = ['/dashboard'];
+const whiteBarPages = ['/dashboard', '/tailor-made-for-you', '/puzzle'];
 const fixedPages = ['/user-profile'];
 
 export default function GlobalHeader() {

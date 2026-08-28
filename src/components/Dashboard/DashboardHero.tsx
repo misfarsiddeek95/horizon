@@ -13,15 +13,15 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
     <header
       id="intro"
       className="relative isolate overflow-hidden px-[18px] pt-[66px] pb-[54px] text-white sm:px-8"
-      style={{ background: "linear-gradient(135deg, #0f5c6b 0%, #147385 50%, #1a8fa0 100%)" }}
     >
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center"
         aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(circle at 82% 20%,rgba(61,171,166,.14),transparent 30%),radial-gradient(circle at 96% 78%,rgba(103,183,126,.08),transparent 24%)",
-        }}
+        style={{ backgroundImage: "url(/images/dashboard-banner.png)" }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-black/50"
+        aria-hidden="true"
       />
       <div className="relative mx-auto max-w-[1240px]">
         <div className="max-w-[1080px]">
