@@ -337,7 +337,7 @@ export const PROFILE_TABS: ProfileTab[] = [
   {
     id: "generalUser",
     title: "General User",
-    heroTitle: "A faster way to understand Haycarb",
+    heroTitle: "Discovering Haycarb and the possibilities that lie beyond",
     metricGroups: [
       {
         title: "Financial",
