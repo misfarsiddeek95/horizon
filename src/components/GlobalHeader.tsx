@@ -9,13 +9,13 @@ const menuLinks = [
   { name: "Charts & Reports Generator", path: "/tailor-made-for-you" },
   { name: "FinQuest Game", path: "/puzzle" },
   { name: "AI Chat Assistant", path: "/chat" },
-  { name: "User Profiles", path: "/user-profile-v2" },
+  { name: "User Profiles", path: "/user-profile" },
   { name: "Dashboard", path: "/dashboard" },
 ];
 
-const darkPages = ['/chat', '/user-profile-v2'];
+const darkPages = ['/chat', '/user-profile'];
 const whiteBarPages = ['/dashboard'];
-const fixedPages = ['/user-profile', '/user-profile-v2'];
+const fixedPages = ['/user-profile'];
 
 export default function GlobalHeader() {
   const [isOpen, setIsOpen] = useState(false);

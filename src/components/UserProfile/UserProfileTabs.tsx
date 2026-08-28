@@ -2,40 +2,46 @@ import Image from "next/image";
 import { useCallback, useRef } from "react";
 import type { TabId } from "@/data/userProfiles";
 
-interface UserProfileTabsProps {
+interface UserProfileTabsV2Props {
   tabs: { id: TabId; title: string }[];
   activeTab: TabId;
   onTabChange: (tabId: TabId) => void;
+  vertical?: boolean;
 }
 
-const TAB_GIFS: Record<TabId, string> = {
-  shareholders: "/icons/user-profile/shareholders.gif",
-  employees: "/icons/user-profile/employees.gif",
-  customers: "/icons/user-profile/customers.gif",
-  suppliers: "/icons/user-profile/suppliers.gif",
-  generalUser: "/icons/user-profile/general_user.gif",
-};
+const TAB_GIF = "/icons/user-profile/tab_icons.gif";
 
-export default function UserProfileTabs({
+export default function UserProfileTabsV2({
   tabs,
   activeTab,
   onTabChange,
-}: UserProfileTabsProps) {
+  vertical = false,
+}: UserProfileTabsV2Props) {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
       let newIndex = index;
 
-      if (e.key === "ArrowRight") {
-        newIndex = (index + 1) % tabs.length;
-      } else if (e.key === "ArrowLeft") {
-        newIndex = (index - 1 + tabs.length) % tabs.length;
-      } else if (e.key === "Home") {
+      if (vertical) {
+        if (e.key === "ArrowDown") {
+          newIndex = (index + 1) % tabs.length;
+        } else if (e.key === "ArrowUp") {
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+        }
+      } else {
+        if (e.key === "ArrowRight") {
+          newIndex = (index + 1) % tabs.length;
+        } else if (e.key === "ArrowLeft") {
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+        }
+      }
+
+      if (e.key === "Home") {
         newIndex = 0;
       } else if (e.key === "End") {
         newIndex = tabs.length - 1;
-      } else {
+      } else if (newIndex === index) {
         return;
       }
 
@@ -43,19 +49,35 @@ export default function UserProfileTabs({
       onTabChange(tabs[newIndex].id);
       tabRefs.current[newIndex]?.focus();
     },
-    [tabs, onTabChange]
+    [tabs, onTabChange, vertical]
+  );
+
+  const handleSpotlightMove = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      e.currentTarget.style.setProperty("--spot-x", `${x}%`);
+      e.currentTarget.style.setProperty("--spot-y", `${y}%`);
+    },
+    []
   );
 
   return (
     <div
       role="tablist"
       aria-label="Stakeholder profiles"
-      className="flex w-full flex-nowrap justify-start overflow-x-auto px-4 pb-4 pt-4 snap-x hide-scrollbar gap-3 after:content-[''] after:w-4 after:shrink-0 sm:gap-4 xl:justify-center xl:after:w-0 xl:px-0"
+      className={`flex overflow-y-auto no-scrollbar snap-mandatory gap-1 md:gap-2 ${
+        vertical
+          ? "flex-col items-center snap-y py-4"
+          : "flex-nowrap overflow-x-auto px-2 md:px-4 snap-x"
+      }`}
     >
       {tabs.map((tab, index) => {
         const isActive = tab.id === activeTab;
         return (
           <button
+            type="button"
             key={tab.id}
             ref={(el) => {
               tabRefs.current[index] = el;
@@ -67,34 +89,49 @@ export default function UserProfileTabs({
             tabIndex={isActive ? 0 : -1}
             onClick={() => onTabChange(tab.id)}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`group relative flex shrink-0 snap-start cursor-pointer flex-col items-center gap-2 px-6 py-3 text-center transition-all duration-300 focus-visible:ring-2 focus-visible:ring-brand-main focus-visible:ring-offset-2 ${
-              isActive ? "opacity-100" : "opacity-50 hover:opacity-80"
+            onMouseMove={handleSpotlightMove}
+            className={`group relative flex shrink-0 snap-start cursor-pointer flex-col items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 text-center transition-all duration-300 persona-spotlight focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
+              isActive
+                ? "opacity-100 text-white bg-white/10 backdrop-blur-sm rounded-xl"
+                : "opacity-60 text-slate-300 hover:opacity-100 hover:text-white hover:bg-white/5 rounded-xl"
             }`}
           >
             <Image
-              src={TAB_GIFS[tab.id]}
+              src={TAB_GIF}
               alt=""
               aria-hidden="true"
               unoptimized
               width={96}
               height={96}
-              className={`h-20 w-20 object-contain transition-transform duration-500 sm:h-24 sm:w-24 ${
-                isActive ? "scale-110" : "scale-100 group-hover:scale-105"
+              className={`h-10 w-10 object-contain transition-all duration-500 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 ${
+                isActive
+                  ? "scale-110 brightness-125 drop-shadow-icon-glow"
+                  : "scale-100 group-hover:scale-105"
               }`}
             />
             <span
-              className={`text-base font-semibold tracking-wide transition-colors duration-300 sm:text-lg ${
-                isActive ? "text-brand-main" : "text-slate-500 group-hover:text-brand-main"
+              className={`text-[10px] md:text-xs lg:text-sm font-semibold tracking-wide transition-colors duration-300 whitespace-nowrap ${
+                isActive ? "text-white" : "text-slate-300 group-hover:text-white"
               }`}
             >
               {tab.title}
             </span>
-            <span
-              aria-hidden="true"
-              className={`absolute inset-x-6 bottom-0 h-1 rounded-full bg-brand-main transition-all duration-500 ${
-                isActive ? "animate-user-profile-grow" : "scale-x-0"
-              }`}
-            />
+            {!vertical && (
+              <span
+                aria-hidden="true"
+                className={`absolute inset-x-3 md:inset-x-4 bottom-0 h-0.5 rounded-full bg-tab-active-border transition-all duration-500 ${
+                  isActive ? "scale-x-100" : "scale-x-0"
+                }`}
+              />
+            )}
+            {vertical && (
+              <span
+                aria-hidden="true"
+                className={`absolute inset-y-3 md:inset-y-4 right-0 w-0.5 rounded-full bg-tab-active-border transition-all duration-500 ${
+                  isActive ? "scale-y-100" : "scale-y-0"
+                }`}
+              />
+            )}
           </button>
         );
       })}

@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import type { DownloadLink } from "@/data/userProfiles";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import DownloadButtonV2 from "./DownloadButtonV2";
+import DownloadButton from "./DownloadButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,7 +155,7 @@ export default function HighlightsStrategySectionV2({
 
           {strategy.download && (
             <div className="mt-6 md:mt-8">
-              <DownloadButtonV2 download={strategy.download} />
+              <DownloadButton download={strategy.download} />
             </div>
           )}
         </div>
