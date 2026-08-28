@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { PILLAR_ICONS, PILLARS_V2, PILLAR_IDS } from "@/data/dashboard/pillars";
 import type { SectionId } from "@/data/dashboard/types";
@@ -14,15 +13,8 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
     <header
       id="intro"
       className="relative isolate overflow-hidden px-[18px] pt-[66px] pb-[54px] text-white sm:px-8"
+      style={{ background: "linear-gradient(135deg, #0f5c6b 0%, #147385 50%, #1a8fa0 100%)" }}
     >
-      <Image
-        src="/images/innerpage/dashboard_banner.svg"
-        alt=""
-        fill
-        unoptimized
-        aria-hidden="true"
-        className="object-cover -z-10"
-      />
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden="true"

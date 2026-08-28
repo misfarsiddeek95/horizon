@@ -14,12 +14,16 @@ const menuLinks = [
 ];
 
 const darkPages = ['/chat', '/user-profile-v2'];
+const whiteBarPages = ['/dashboard'];
+const fixedPages = ['/user-profile', '/user-profile-v2'];
 
 export default function GlobalHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isLightBg = !darkPages.some((p) => pathname.startsWith(p));
-  const barColor = isLightBg ? 'bg-[#147385]' : 'bg-white';
+  const useWhiteBars = whiteBarPages.some((p) => pathname === p);
+  const useFixed = fixedPages.some((p) => pathname.startsWith(p));
+  const barColor = useWhiteBars ? 'bg-white' : isLightBg ? 'bg-[#147385]' : 'bg-white';
 
   useEffect(() => {
     if (isOpen) {
@@ -51,7 +55,7 @@ export default function GlobalHeader() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-6 left-6 z-[9999] bg-transparent hover:bg-white/10 rounded-full p-3 transition-colors duration-300"
+        className={`${useFixed ? 'fixed' : 'absolute'} top-0 left-0 z-[9999] bg-transparent p-4 transition-colors duration-300`}
         aria-label={isOpen ? "Close menu" : "Open menu"}
       >
         <span className="flex flex-col justify-center items-center w-7 h-7 gap-1.5">
