@@ -57,6 +57,7 @@ export default function HaycarbChat({
   }, []);
 
   useEffect(() => {
+    if (messages.length === 0) return;
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
       behavior: 'smooth'
@@ -74,11 +75,13 @@ export default function HaycarbChat({
   return (
     <div className="flex h-full min-h-0 flex-col text-white">
 
-      <Header
-        role={role} setRole={setRole}
-        style={style} setStyle={setStyle}
-        showControls={showControls}
-      />
+      {messages.length > 0 && (
+        <Header
+          role={role} setRole={setRole}
+          style={style} setStyle={setStyle}
+          showControls={showControls}
+        />
+      )}
 
       {/* chat area */}
       <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
@@ -207,15 +210,15 @@ function Select({ value, onChange, options }) {
  */
 function Welcome({ role, setRole, style, setStyle, onPick }) {
   return (
-    <div className="m-auto w-full max-w-2xl px-4 pt-32 pb-10 text-center">
+    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-4 text-center">
       <AiOrb />
 
       <h2 className="mb-3 font-heading text-2xl font-medium text-white drop-shadow-lg sm:text-3xl">Explore the Annual Report with AI</h2>
-      <p className="mb-6 font-sans text-[13px] font-medium leading-relaxed text-white drop-shadow-md">
+      <p className="mx-auto mb-6 w-full max-w-2xl font-sans text-[13px] font-medium leading-relaxed text-white drop-shadow-md">
         Discover insights across the Annual Report, tailored to your profile and interests. Ask questions, explore topics and engage with the report in your preferred language.
       </p>
 
-      <div className="mb-6 rounded-2xl border border-white/20 bg-[#020b10]/75 p-4 shadow-sm backdrop-blur-xl">
+      <div className="mx-auto mb-6 w-full max-w-2xl rounded-2xl border border-white/20 bg-[#020b10]/75 p-4 shadow-sm backdrop-blur-xl">
         <p className="mb-3 font-sans text-[11px] font-medium text-white">
           Choose a profile and response style to personalise your experience or proceed without a selection.
         </p>
