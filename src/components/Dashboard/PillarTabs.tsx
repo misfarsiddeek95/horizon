@@ -1,57 +1,67 @@
-import { PILLARS } from "@/data/activateDashboard";
+"use client";
+
+import { PILLAR_ICONS, PILLARS_V2, PILLAR_IDS } from "@/data/dashboard/pillars";
+import type { PillarId } from "@/data/dashboard/types";
+import { moveTabFocus } from "./tabKeyboard";
 
 interface PillarTabsProps {
-  activePillar: string;
-  onPillarChange: (name: string) => void;
+  active: PillarId;
+  onSelect: (id: PillarId) => void;
 }
 
-const PILLAR_ENTRIES = Object.entries(PILLARS);
-
-export default function PillarTabs({
-  activePillar,
-  onPillarChange,
-}: PillarTabsProps) {
+export default function PillarTabs({ active, onSelect }: PillarTabsProps) {
   return (
     <div
       role="tablist"
-      aria-label="ACTIVATE 2030 pillars"
-      className="grid grid-cols-5 bg-white border border-[#DDE5EB] rounded-[15px] overflow-hidden shadow-[0_8px_24px_rgba(15,39,76,.075)] mb-3.5 max-md:flex max-md:overflow-x-auto"
+      aria-label="ACTIVATE pillars"
+      className="mb-[82px] grid grid-cols-1 border-y border-[var(--color-v2-border)] sm:grid-cols-2 lg:grid-cols-5"
     >
-      {PILLAR_ENTRIES.map(([name, p]) => {
-        const isActive = name === activePillar;
+      {PILLAR_IDS.map((id) => {
+        const pillar = PILLARS_V2[id];
+        const isActive = id === active;
         return (
           <button
-            key={name}
+            key={id}
+            type="button"
             role="tab"
             aria-selected={isActive}
-            onClick={() => onPillarChange(name)}
-            className="min-w-0 border-0 border-r border-r-[#DDE5EB] bg-white px-3 py-2.5 flex items-center justify-center gap-2.5 relative transition-colors max-md:min-w-[200px] max-md:justify-start last:border-r-0 hover:bg-[var(--light)] focus-visible:outline-3 focus-visible:outline-[color-mix(in_srgb,var(--accent)_35%,transparent)] focus-visible:outline-offset-[-3px]"
+            tabIndex={isActive ? 0 : -1}
+            onClick={() => onSelect(id)}
+            onKeyDown={(event) =>
+              moveTabFocus(
+                event,
+                (index) => onSelect(PILLAR_IDS[index])
+              )
+            }
+            className={`cursor-pointer border-b border-[var(--color-v2-border-light)] p-[28px_20px] text-left transition-colors duration-200 last:border-b-0 hover:bg-[rgba(226,241,239,.42)] sm:max-lg:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0 ${
+              isActive ? "" : "bg-transparent"
+            }`}
             style={
-              {
-                "--accent": p.color,
-                "--light": p.light,
-                color: p.color,
-                background: isActive ? p.light : undefined,
-              } as React.CSSProperties
+              isActive
+                ? {
+                    background:
+                      "linear-gradient(180deg,var(--color-v2-wash-active-from),var(--color-v2-wash-active-to))",
+                    boxShadow:
+                      "inset 0 -3px 0 var(--color-v2-accent)",
+                  }
+                : undefined
             }
           >
-            <div
-              className="absolute inset-0 bottom-auto h-[3px]"
-              style={{
-                background: isActive ? p.color : "transparent",
-              }}
-            />
-            <img
-              src={p.iconData}
-              alt=""
-              aria-hidden="true"
-              className="w-12 h-12 object-contain"
-            />
-            <div className="text-left">
-              <div className="text-sm font-black leading-none">{name}</div>
-              <div className="text-[9.5px] leading-[1.2] mt-1 text-[#34534B]">
-                {p.descriptor}
-              </div>
+            <span
+              className="grid h-9 w-9 place-items-center overflow-hidden rounded-[13px_13px_13px_4px] font-black text-white"
+              style={{ background: pillar.accent }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={PILLAR_ICONS[id]}
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-contain"
+              />
+            </span>
+            <div className="mt-[9px] text-[13px] font-black">{pillar.name}</div>
+            <div className="mt-[3px] text-[11px] text-[var(--color-v2-text-soft)]">
+              {pillar.descriptor}
             </div>
           </button>
         );

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import ActivateDashboardPage from "@/components/Dashboard/ActivateDashboardPage";
+import DashboardPageV2 from "@/components/Dashboard/DashboardPageV2";
 
 export const metadata: Metadata = {
-  title: "Activate Dashboard | HeyCarb",
+  title: "Dashboard | HeyCarb",
   description:
-    "ACTIVATE 2030 Progress — track sustainability targets and FY2025/26 highlights.",
+    "ACTIVATE 2030 progress and the S1 & S2 Climate Risk & Opportunity Outlook in one connected view.",
 };
 
 export default function DashboardPage() {
-  return <ActivateDashboardPage />;
+  return <DashboardPageV2 />;
 }

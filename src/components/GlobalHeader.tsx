@@ -10,6 +10,7 @@ const menuLinks = [
   { name: "FinQuest Game", path: "/puzzle" },
   { name: "AI Chat Assistant", path: "/chat" },
   { name: "User Profiles", path: "/user-profile-v2" },
+  { name: "Dashboard", path: "/dashboard" },
 ];
 
 const darkPages = ['/chat', '/user-profile-v2'];
@@ -55,17 +56,17 @@ export default function GlobalHeader() {
       >
         <span className="flex flex-col justify-center items-center w-7 h-7 gap-1.5">
           <span
-            className={`block w-7 h-0.5 ${barColor} rounded-full transition-all duration-500 ease-in-out ${
+            className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
               isOpen ? "rotate-45 translate-y-[4px]" : ""
             }`}
           />
           <span
-            className={`block w-7 h-0.5 ${barColor} rounded-full transition-all duration-500 ease-in-out ${
+            className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
               isOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block w-7 h-0.5 ${barColor} rounded-full transition-all duration-500 ease-in-out ${
+            className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
               isOpen ? "-rotate-45 -translate-y-[4px]" : ""
             }`}
           />
@@ -85,7 +86,7 @@ export default function GlobalHeader() {
               key={link.path}
               href={link.path}
               onClick={handleLinkClick}
-              className="group py-3 font-sans text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight hover:text-[var(--color-heading-start)] transition-colors duration-300"
+              className="group py-3 font-sans text-white text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight hover:text-[var(--color-heading-start)] transition-colors duration-300"
             >
               {link.name}
               {pathname === link.path && (
