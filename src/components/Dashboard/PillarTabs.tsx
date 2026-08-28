@@ -48,7 +48,7 @@ export default function PillarTabs({ active, onSelect }: PillarTabsProps) {
             }
           >
             <span
-              className="grid h-9 w-9 place-items-center overflow-hidden rounded-[13px_13px_13px_4px] font-black text-white"
+              className="grid h-9 w-9 place-items-center overflow-hidden rounded-full font-black text-white"
               style={{ background: pillar.accent }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
