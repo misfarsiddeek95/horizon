@@ -338,6 +338,8 @@ export const PROFILE_TABS: ProfileTab[] = [
     id: "generalUser",
     title: "General User",
     heroTitle: "Discovering Haycarb and the possibilities that lie beyond",
+    intro:
+      "Explore our business, global presence, solutions and impact and discover how Haycarb continues to create value while shaping what comes next.",
     metricGroups: [
       {
         title: "Financial",
