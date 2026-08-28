@@ -162,7 +162,7 @@ export default function MaterialsWaterChart() {
     cursor.lineY.set("visible", false);
     cursor.lineX.set("focusable", true);
 
-    function createSeries(name: string, field: string, axis: am5xy.ValueAxis<am5xy.AxisRenderer>) {
+    function createSeries(name: string, field: string, axis: am5xy.ValueAxis<am5xy.AxisRenderer>, color: string) {
       const series = chart.series.push(
         am5xy.LineSeries.new(root, {
           name,
@@ -170,6 +170,7 @@ export default function MaterialsWaterChart() {
           yAxis: axis,
           valueYField: field,
           categoryXField: "year",
+          stroke: am5.color(color),
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
             labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
@@ -179,7 +180,7 @@ export default function MaterialsWaterChart() {
 
       series.bullets.push(() =>
         am5.Bullet.new(root, {
-          sprite: am5.Circle.new(root, { radius: 5, fill: series.get("fill") }),
+          sprite: am5.Circle.new(root, { radius: 5, fill: am5.color(color) }),
         })
       );
       series.set("setStateOnChildren", true);
@@ -192,10 +193,10 @@ export default function MaterialsWaterChart() {
       series.appear(1000);
     }
 
-    createSeries("Waste water treated through treatment plants (m3)", "waste_water", yAxisM3);
-    createSeries("Water consumption (m3)", "water_consumption", yAxisM3);
-    createSeries("Solid waste generated (MT)", "solid_waste_gen", yAxisMT);
-    createSeries("Renewable raw material consumption (MT)", "renewable_raw_material", yAxisMT);
+    createSeries("Waste water treated through treatment plants (m3)", "waste_water", yAxisM3, "#225C73");
+    createSeries("Water consumption (m3)", "water_consumption", yAxisM3, "#2198A6");
+    createSeries("Solid waste generated (MT)", "solid_waste_gen", yAxisMT, "#D98C4A");
+    createSeries("Renewable raw material consumption (MT)", "renewable_raw_material", yAxisMT, "#D9653B");
 
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
 

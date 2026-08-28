@@ -134,7 +134,7 @@ export default function FinancialRatiosChart() {
     cursor.lineY.set("visible", false);
     cursor.lineX.set("focusable", true);
 
-    function createPercentSeries(name: string, field: string) {
+    function createPercentSeries(name: string, field: string, color: string) {
       const series = chart.series.push(
         am5xy.LineSeries.new(root, {
           name,
@@ -142,6 +142,7 @@ export default function FinancialRatiosChart() {
           yAxis: yAxisPercent,
           valueYField: field,
           categoryXField: "year",
+          stroke: am5.color(color),
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
             labelText: "[bold]{name}[/]\n{categoryX}: {valueY}%",
@@ -151,7 +152,7 @@ export default function FinancialRatiosChart() {
 
       series.bullets.push(() =>
         am5.Bullet.new(root, {
-          sprite: am5.Circle.new(root, { radius: 5, fill: series.get("fill") }),
+          sprite: am5.Circle.new(root, { radius: 5, fill: am5.color(color) }),
         })
       );
       series.set("setStateOnChildren", true);
@@ -164,7 +165,7 @@ export default function FinancialRatiosChart() {
       series.appear(1000);
     }
 
-    function createRatioSeries(name: string, field: string) {
+    function createRatioSeries(name: string, field: string, color: string) {
       const series = chart.series.push(
         am5xy.LineSeries.new(root, {
           name,
@@ -172,6 +173,7 @@ export default function FinancialRatiosChart() {
           yAxis: yAxisRatio,
           valueYField: field,
           categoryXField: "year",
+          stroke: am5.color(color),
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
             labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
@@ -181,7 +183,7 @@ export default function FinancialRatiosChart() {
 
       series.bullets.push(() =>
         am5.Bullet.new(root, {
-          sprite: am5.Circle.new(root, { radius: 5, fill: series.get("fill") }),
+          sprite: am5.Circle.new(root, { radius: 5, fill: am5.color(color) }),
         })
       );
       series.set("setStateOnChildren", true);
@@ -194,13 +196,13 @@ export default function FinancialRatiosChart() {
       series.appear(1000);
     }
 
-    createPercentSeries("Profit before tax margin", "profit_before_tax_margin");
-    createPercentSeries("Return on equity", "return_on_equity");
-    createPercentSeries("Return on assets", "return_on_assets");
-    createPercentSeries("Gearing", "gearing");
-    createPercentSeries("Interest cover", "interest_cover");
-    createRatioSeries("Asset turnover", "asset_turnover");
-    createRatioSeries("Current ratio", "current_ratio");
+    createPercentSeries("Profit before tax margin", "profit_before_tax_margin", "#225C73");
+    createPercentSeries("Return on equity", "return_on_equity", "#2198A6");
+    createPercentSeries("Return on assets", "return_on_assets", "#D98C4A");
+    createPercentSeries("Gearing", "gearing", "#D9653B");
+    createPercentSeries("Interest cover", "interest_cover", "#6CB8A3");
+    createRatioSeries("Asset turnover", "asset_turnover", "#FCDAA4");
+    createRatioSeries("Current ratio", "current_ratio", "#A4D3FC");
 
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
 

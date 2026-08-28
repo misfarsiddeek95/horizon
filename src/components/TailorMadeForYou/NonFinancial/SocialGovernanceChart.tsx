@@ -193,9 +193,9 @@ export default function SocialGovernanceChart() {
       return series;
     }
 
-    createBarSeries("Investment in R&D (Rs. Mn)", "investment_rd", "#67b7dc");
-    createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", "#6794dc");
-    createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", "#6771dc");
+    createBarSeries("Investment in R&D (Rs. Mn)", "investment_rd", "#225C73");
+    createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", "#2198A6");
+    createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", "#D98C4A");
 
     createLineSeries("Average training hours per employee (No.)", "avg_training_hours", "#8663dc");
     createLineSeries("New products developed (No.)", "new_products", "#a554b3");

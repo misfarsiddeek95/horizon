@@ -114,7 +114,7 @@ export default function FinancialPositionChart() {
     cursor.lineY.set("visible", false);
     cursor.lineX.set("focusable", true);
 
-    function createSeries(name: string, field: string) {
+    function createSeries(name: string, field: string, color: string) {
       const series = chart.series.push(
         am5xy.LineSeries.new(root, {
           name,
@@ -122,6 +122,7 @@ export default function FinancialPositionChart() {
           yAxis,
           valueYField: field,
           categoryXField: "year",
+          stroke: am5.color(color),
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "horizontal",
             labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
@@ -131,7 +132,7 @@ export default function FinancialPositionChart() {
 
       series.bullets.push(() =>
         am5.Bullet.new(root, {
-          sprite: am5.Circle.new(root, { radius: 5, fill: series.get("fill") }),
+          sprite: am5.Circle.new(root, { radius: 5, fill: am5.color(color) }),
         })
       );
       series.set("setStateOnChildren", true);
@@ -144,12 +145,12 @@ export default function FinancialPositionChart() {
       series.appear(1000);
     }
 
-    createSeries("Total Assets", "total_assets");
-    createSeries("Total liabilities", "total_liab");
-    createSeries("Revenue Reserves", "revenue_reserves");
-    createSeries("Equity", "equity");
-    createSeries("Current Assets", "current_assets");
-    createSeries("Current Liabilities", "current_liabilities");
+    createSeries("Total Assets", "total_assets", "#225C73");
+    createSeries("Total liabilities", "total_liab", "#2198A6");
+    createSeries("Revenue Reserves", "revenue_reserves", "#D98C4A");
+    createSeries("Equity", "equity", "#D9653B");
+    createSeries("Current Assets", "current_assets", "#6CB8A3");
+    createSeries("Current Liabilities", "current_liabilities", "#FCDAA4");
 
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
 

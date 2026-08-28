@@ -106,7 +106,7 @@ export default function ProfitabilityChart() {
       })
     );
 
-    function makeSeries(name: string, fieldName: string) {
+    function makeSeries(name: string, fieldName: string, color: string) {
       const series = chart.series.push(
         am5xy.ColumnSeries.new(root, {
           name,
@@ -122,6 +122,8 @@ export default function ProfitabilityChart() {
         width: am5.percent(90),
         tooltipY: 0,
         strokeOpacity: 0,
+        fill: am5.color(color),
+        stroke: am5.color(color),
       });
 
       series.data.setAll(profitabilityData);
@@ -143,12 +145,12 @@ export default function ProfitabilityChart() {
       legend.data.push(series);
     }
 
-    makeSeries("Group Turnover", "group_turnover");
-    makeSeries("Profit before taxation", "profit_before_tax");
-    makeSeries("Group taxation", "group_tax");
-    makeSeries("Profit after tax", "profit_after_tax");
-    makeSeries("Profit attributable to equity holders of the parent", "profit_attr");
-    makeSeries("Dividends", "dividends");
+    makeSeries("Group Turnover", "group_turnover", "#225C73");
+    makeSeries("Profit before taxation", "profit_before_tax", "#2198A6");
+    makeSeries("Group taxation", "group_tax", "#D98C4A");
+    makeSeries("Profit after tax", "profit_after_tax", "#D9653B");
+    makeSeries("Profit attributable to equity holders of the parent", "profit_attr", "#6CB8A3");
+    makeSeries("Dividends", "dividends", "#FCDAA4");
 
     setExportingInstance(setupChartExporting(root, "Profitability_Rs_Bn"));
 

@@ -190,9 +190,9 @@ export default function EmissionsEnergyChart() {
     createLineSeries("Scope 3 emission (tCO2e)", "scope_3_emission");
     createLineSeries("Biogenic emission (tCO2e)", "biogenic");
 
-    createBarSeries("Renewable energy consumption (GJ)", "renewable_energy", "#67b7dc");
-    createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable", "#6794dc");
-    createBarSeries("Total energy consumption (GJ)", "total_consumption", "#6771dc");
+    createBarSeries("Renewable energy consumption (GJ)", "renewable_energy", "#225C73");
+    createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable", "#2198A6");
+    createBarSeries("Total energy consumption (GJ)", "total_consumption", "#D98C4A");
 
     chart.set("cursor", am5xy.XYCursor.new(root, {}));
 
