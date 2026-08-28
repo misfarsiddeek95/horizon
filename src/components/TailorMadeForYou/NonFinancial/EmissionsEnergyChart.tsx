@@ -138,12 +138,22 @@ export default function EmissionsEnergyChart() {
           yAxis,
           valueYField: field,
           categoryXField: "year",
-          tooltip: am5.Tooltip.new(root, {
-            pointerOrientation: "horizontal",
-            labelText: "{name} in {categoryX}: {valueY}",
-          }),
         })
       );
+
+      const tooltip = am5.Tooltip.new(root, {
+        getFillFromSprite: false,
+        pointerOrientation: "horizontal",
+        labelText: "{name} in {categoryX}: {valueY}",
+      });
+
+      tooltip.get("background")?.setAll({
+        fill: series.get("stroke"),
+        fillOpacity: 0.9,
+        stroke: series.get("stroke"),
+      });
+
+      series.set("tooltip", tooltip);
 
       series.bullets.push(() =>
         am5.Bullet.new(root, {
@@ -169,12 +179,23 @@ export default function EmissionsEnergyChart() {
           valueYField: field,
           categoryXField: "year",
           clustered: true,
-          tooltip: am5.Tooltip.new(root, {
-            pointerOrientation: "horizontal",
-            labelText: "{name} in {categoryX}: {valueY}",
-          }),
         })
       );
+
+      const tooltip = am5.Tooltip.new(root, {
+        getFillFromSprite: false,
+        pointerOrientation: "horizontal",
+        labelText: "{name} in {categoryX}: {valueY}",
+      });
+
+      tooltip.get("background")?.setAll({
+        fill: series.get("fill"),
+        fillOpacity: 0.9,
+        stroke: series.get("fill"),
+      });
+
+      series.set("tooltip", tooltip);
+
       series.columns.template.setAll({
         tooltipY: am5.percent(10),
         fill: am5.color(color),

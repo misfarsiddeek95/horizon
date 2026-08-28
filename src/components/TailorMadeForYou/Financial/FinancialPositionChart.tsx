@@ -123,12 +123,22 @@ export default function FinancialPositionChart() {
           valueYField: field,
           categoryXField: "year",
           stroke: am5.color(color),
-          tooltip: am5.Tooltip.new(root, {
-            pointerOrientation: "horizontal",
-            labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
-          }),
         })
       );
+
+      const tooltip = am5.Tooltip.new(root, {
+        getFillFromSprite: false,
+        pointerOrientation: "horizontal",
+        labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+      });
+
+      tooltip.get("background")?.setAll({
+        fill: series.get("stroke"),
+        fillOpacity: 0.9,
+        stroke: series.get("stroke"),
+      });
+
+      series.set("tooltip", tooltip);
 
       series.bullets.push(() =>
         am5.Bullet.new(root, {

@@ -147,12 +147,23 @@ export default function SocialGovernanceChart() {
           valueYField: field,
           categoryXField: "year",
           clustered: true,
-          tooltip: am5.Tooltip.new(root, {
-            pointerOrientation: "horizontal",
-            labelText: "{name} in {categoryX}: {valueY}",
-          }),
         })
       );
+
+      const tooltip = am5.Tooltip.new(root, {
+        getFillFromSprite: false,
+        pointerOrientation: "horizontal",
+        labelText: "{name} in {categoryX}: {valueY}",
+      });
+
+      tooltip.get("background")?.setAll({
+        fill: series.get("fill"),
+        fillOpacity: 0.9,
+        stroke: series.get("fill"),
+      });
+
+      series.set("tooltip", tooltip);
+
       series.columns.template.setAll({
         tooltipY: am5.percent(10),
         fill: am5.color(color),
@@ -170,12 +181,23 @@ export default function SocialGovernanceChart() {
           yAxis: yAxisLine,
           valueYField: field,
           categoryXField: "year",
-          tooltip: am5.Tooltip.new(root, {
-            pointerOrientation: "horizontal",
-            labelText: "{name} in {categoryX}: {valueY}",
-          }),
         })
       );
+
+      const tooltip = am5.Tooltip.new(root, {
+        getFillFromSprite: false,
+        pointerOrientation: "horizontal",
+        labelText: "{name} in {categoryX}: {valueY}",
+      });
+
+      tooltip.get("background")?.setAll({
+        fill: series.get("stroke"),
+        fillOpacity: 0.9,
+        stroke: series.get("stroke"),
+      });
+
+      series.set("tooltip", tooltip);
+
       series.strokes.template.setAll({ strokeWidth: 3, stroke: am5.color(color) });
       series.data.setAll(socialGovernanceData);
 
