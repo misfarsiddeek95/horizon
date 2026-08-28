@@ -48,6 +48,7 @@ export interface ProfileTab {
     image: string;
     caption: string;
   };
+  aiReportText?: string;
 }
 
 export interface KeyFeature {
@@ -62,7 +63,7 @@ export const KEY_FEATURES: KeyFeature[] = [
     icon: "ai",
     title: "AI-Enabled Digital Report",
     detail:
-      "Intelligence woven through every page of the digital annual report.",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps stakeholders discover relevant information, explore deeper insights and engage with Haycarb's performance in a more personalised way.",
     subItems: [
       "Conversational Report Intelligence",
       "Adaptive Stakeholder Experiences",
@@ -173,6 +174,8 @@ export const PROFILE_TABS: ProfileTab[] = [
       caption:
         "A clear view of the financial ratios that define shareholder value.",
     },
+    aiReportText:
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps shareholders discover relevant information, explore deeper insights and engage with Haycarb's performance in a more personalised way",
   },
   {
     id: "employees",
@@ -220,6 +223,8 @@ export const PROFILE_TABS: ProfileTab[] = [
       image: "/images/innerpage/user-profile/employee.jpeg",
       caption: "Investing in our people to fuel innovation and shared growth.",
     },
+    aiReportText:
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps our employees explore Haycarb's performance, progress and impact through a more personalised, accessible and engaging experience.",
   },
   {
     id: "customers",
@@ -268,6 +273,8 @@ export const PROFILE_TABS: ProfileTab[] = [
       image: "/images/innerpage/user-profile/customers.jpeg",
       caption: "What we deliver, and why our customers stay with us.",
     },
+    aiReportText:
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps customers discover relevant information, explore deeper insights and better understand Haycarb's capabilities, performance and sustainability journey.",
   },
   {
     id: "suppliers",
@@ -333,6 +340,8 @@ export const PROFILE_TABS: ProfileTab[] = [
       caption:
         "Building resilient, responsible supply chains that move as one.",
     },
+    aiReportText:
+      "Taking reporting beyond disclosure, our AI enabled digital experience helps suppliers discover relevant information and explore Haycarb's performance, sustainability priorities and value chain in a more personalised way.",
   },
   {
     id: "generalUser",
@@ -370,5 +379,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       caption:
         "The levers powering Haycarb's sustainable global value creation.",
     },
+    aiReportText:
+      "Taking reporting beyond disclosure, our AI-enabled digital experience makes it easier to discover relevant information, explore deeper insights and engage with Haycarb's story in a more personalised way.",
   },
 ];
