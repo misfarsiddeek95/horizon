@@ -367,6 +367,13 @@ export const PROFILE_TABS: ProfileTab[] = [
         ],
       },
     ],
+    strategy: {
+      title: "Strategy and Resource Allocation",
+      download: {
+        label: "Download Strategy and Resource Allocation",
+        pdf: "/pdf/tbc/Strategy%20and%20Resource%20Allocation.pdf",
+      },
+    },
     governance: {
       title: "Leadership and Governance",
       text: governanceText,
