@@ -1,4 +1,4 @@
-import { CommandLineIcon } from "@heroicons/react/24/outline";
+
 import { KEY_FEATURES } from "@/data/userProfiles";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 

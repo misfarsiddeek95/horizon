@@ -1,6 +1,12 @@
-import Image from "next/image";
 import { useCallback, useRef } from "react";
+import { Lottie } from "lottie-react";
 import type { TabId } from "@/data/userProfiles";
+
+import shareholdersAnim from "@/../public/icons/user-profile/Shareholders.json";
+import employeesAnim from "@/../public/icons/user-profile/Employees.json";
+import customersAnim from "@/../public/icons/user-profile/Customers.json";
+import suppliersAnim from "@/../public/icons/user-profile/Suppliers.json";
+import generalUsersAnim from "@/../public/icons/user-profile/General Users.json";
 
 interface UserProfileTabsV2Props {
   tabs: { id: TabId; title: string }[];
@@ -9,7 +15,13 @@ interface UserProfileTabsV2Props {
   vertical?: boolean;
 }
 
-const TAB_GIF = "/icons/user-profile/tab_icons.gif";
+const TAB_ANIMATIONS: Record<TabId, object> = {
+  shareholders: shareholdersAnim,
+  employees: employeesAnim,
+  customers: customersAnim,
+  suppliers: suppliersAnim,
+  generalUser: generalUsersAnim,
+};
 
 export default function UserProfileTabsV2({
   tabs,
@@ -96,19 +108,20 @@ export default function UserProfileTabsV2({
                 : "opacity-60 text-slate-300 hover:opacity-100 hover:text-white hover:bg-white/5 rounded-xl"
             }`}
           >
-            <Image
-              src={TAB_GIF}
-              alt=""
-              aria-hidden="true"
-              unoptimized
-              width={96}
-              height={96}
-              className={`h-10 w-10 object-contain transition-all duration-500 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 ${
+            <div
+              className={`h-10 w-10 transition-all duration-500 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 ${
                 isActive
                   ? "scale-110 brightness-125 drop-shadow-icon-glow"
                   : "scale-100 group-hover:scale-105"
               }`}
-            />
+            >
+              <Lottie
+                src={TAB_ANIMATIONS[tab.id]}
+                loop={isActive}
+                autoplay={isActive}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
             <span
               className={`text-[10px] md:text-xs lg:text-sm font-semibold tracking-wide transition-colors duration-300 whitespace-nowrap ${
                 isActive ? "text-white" : "text-slate-300 group-hover:text-white"

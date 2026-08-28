@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckBadgeIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { CONFIG, getAllCategories } from '@/data/config';
 import ShareResults from '@/components/ShareResults';

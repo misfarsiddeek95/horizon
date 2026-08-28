@@ -5,7 +5,6 @@ interface StrategyImageSectionV2Props {
   title: string;
   image: string;
   caption: string;
-  isGeneralUser?: boolean;
 }
 
 const HEADING_GRADIENT =
@@ -15,7 +14,6 @@ export default function StrategyImageSectionV2({
   title,
   image,
   caption,
-  isGeneralUser = false,
 }: StrategyImageSectionV2Props) {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
 

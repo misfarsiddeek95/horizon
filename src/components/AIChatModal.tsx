@@ -23,13 +23,13 @@ export default function AIChatModal({ isOpen, onClose, activeQuestion }: AIChatM
 
   useEffect(() => {
     if (isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsTyping(true);
       const timer = setTimeout(() => setIsTyping(false), 1500);
       return () => clearTimeout(timer);
     } else {
       setIsTyping(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, activeQuestion?.id]);
 
   useEffect(() => {

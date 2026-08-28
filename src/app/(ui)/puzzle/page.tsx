@@ -31,6 +31,7 @@ function PuzzleGame() {
   const activeQuestion = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setChatOpen(false);
   }, [activeQuestion?.question.id, activeQuestion?.status]);
 

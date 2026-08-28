@@ -62,7 +62,6 @@ export async function generateMetadata({
 
 export default async function SharePage({ searchParams }: Props) {
   const sp = await searchParams;
-  const name = sp.name || "A Player";
   const score = sp.score || "0";
   const time = sp.time || "0:00";
   const badges = sp.badges || "0";

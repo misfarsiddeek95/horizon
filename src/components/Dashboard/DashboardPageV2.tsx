@@ -12,7 +12,7 @@ import DashboardHero from "./DashboardHero";
 export default function DashboardPageV2() {
   const [activePillar, setActivePillar] = useState<PillarId>("restore");
   const [activeCrro, setActiveCrro] = useState<CrroId>(1);
-  const [activeSection, setActiveSection] = useState<SectionId>("intro");
+  const [, setActiveSection] = useState<SectionId>("intro");
 
   const handleNavigate = (id: SectionId) => {
     setActiveSection(id);

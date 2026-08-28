@@ -61,8 +61,6 @@ export default function UserProfilePageV2() {
 
   const tab = PROFILE_TABS.find((t) => t.id === activeTab) ?? PROFILE_TABS[0];
 
-  const isGeneralUser = activeTab === "generalUser";
-
   const handleTabChange = useCallback((tabId: TabId) => {
     setActiveTab(tabId);
     const nextTab = PROFILE_TABS.find((t) => t.id === tabId) ?? PROFILE_TABS[0];
@@ -428,7 +426,6 @@ export default function UserProfilePageV2() {
                     title={tab.strategyImage.title}
                     image={tab.strategyImage.image}
                     caption={tab.strategyImage.caption}
-                    isGeneralUser={isGeneralUser}
                   />
                 </div>
               </section>

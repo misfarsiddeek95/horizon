@@ -1,6 +1,4 @@
 declare module 'vanta/dist/vanta.halo.min' {
-  import type { WebGLRendererParameters } from 'three';
-
   interface HaloOptions {
     THREE: typeof import('three');
     el: HTMLElement;

@@ -53,7 +53,7 @@ export default function InstructionLobby() {
       <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-8 sm:py-12">
         <div className="mb-4 flex items-center justify-between">
           <p className="text-sm text-white/60 hidden sm:block">
-            How well do you know Haycarb's Annual Report 2025/26?
+            How well do you know Haycarb&apos;s Annual Report 2025/26?
           </p>
           <div className="flex items-center gap-3">
             <ExitButton variant="dark" />
@@ -70,7 +70,7 @@ export default function InstructionLobby() {
             {state.session?.name ?? 'Player'}, Ready for the Challenge?
           </h1>
           <p className="mt-2 text-sm text-white/70 sm:text-base">
-            Here's everything you need to know before you get started.
+            Here&apos;s everything you need to know before you get started.
           </p>
         </header>
 
@@ -93,7 +93,7 @@ export default function InstructionLobby() {
               Annual Report grounded AI assistance, with the answer and supporting context.
             </p>
             <p className="mt-2">
-              Keep in mind: Each time it's used, the{" "}
+              Keep in mind: Each time it&apos;s used, the{" "}
               <strong className="text-yellow-400">points available for that question are reduced by 50%</strong>.
             </p>
           </LobbyCard>
