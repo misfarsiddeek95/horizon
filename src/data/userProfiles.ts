@@ -272,7 +272,7 @@ export const PROFILE_TABS: ProfileTab[] = [
   {
     id: "suppliers",
     title: "Suppliers",
-    heroTitle: "Strong partnerships. More resilient supply chains",
+    heroTitle: "Stronger partnerships shaping resilient supply chains",
     intro:
       "Strong partnerships are the foundation of our progress. Together, we go Beyond the Beyond, strengthening resilient and responsible supply chains that drive shared growth and long-term sustainability.",
     metricGroups: [
