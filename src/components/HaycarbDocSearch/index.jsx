@@ -81,7 +81,7 @@ export default function HaycarbDocSearch({
         {title && (
           <div className="mb-4">
             <h2 className="font-heading text-lg text-brand-main">{title}</h2>
-            <p className="mt-0.5 text-[11px] text-content-primary/70">
+            <p className="mt-0.5 text-[11px] text-[#042b31]/80 font-medium">
               Describe what you&apos;re looking for and download the relevant chapters
             </p>
           </div>
@@ -96,7 +96,7 @@ export default function HaycarbDocSearch({
             placeholder="e.g. dividend history, board of directors…"
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') submit(); }}
-            className="flex-1 rounded-ui-element border border-white/60 bg-white/50 px-3.5 py-2.5 text-[13.5px] text-content-primary outline-none backdrop-blur-sm transition-colors placeholder:text-content-primary/50 focus:border-brand-main focus:ring-2 focus:ring-brand-main disabled:opacity-60"
+            className="flex-1 rounded-ui-element border border-[#042b31]/20 bg-white/90 px-3.5 py-2.5 text-[13.5px] text-[#042b31] outline-none shadow-sm transition-all placeholder:text-[#042b31]/50 focus:border-brand-main focus:ring-2 focus:ring-brand-main disabled:opacity-60"
           />
           <button
             onClick={() => submit()}
@@ -114,7 +114,7 @@ export default function HaycarbDocSearch({
               <button
                 key={s}
                 onClick={() => submit(s)}
-                className="cursor-pointer rounded-full border border-white/50 bg-white/30 px-3 py-1.5 text-[11px] text-brand-main transition-colors hover:bg-white/60"
+                className="cursor-pointer rounded-full border border-[#042b31]/20 bg-white/80 px-3 py-1.5 text-[11px] text-[#042b31] font-medium transition-all duration-200 hover:bg-white hover:shadow-sm"
               >
                 {s}
               </button>
