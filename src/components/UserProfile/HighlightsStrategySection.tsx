@@ -54,7 +54,7 @@ export default function HighlightsStrategySectionV2({
 
   useEffect(() => {
     const container = timelineContainerRef.current;
-    if (!container || !strategy.items || strategy.text) return;
+    if (!container || !strategy.items) return;
 
     const ctx = gsap.context(() => {
       const nodes = gsap.utils.toArray<HTMLElement>(".strategy-node-wrapper");
@@ -141,7 +141,7 @@ export default function HighlightsStrategySectionV2({
             {strategy.title}
           </h2>
 
-          {strategy.text ? (
+          {strategy.text && (
             <p
               className={`text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md ${
                 isGeneralUser ? "text-center" : "text-left"
@@ -149,7 +149,9 @@ export default function HighlightsStrategySectionV2({
             >
               {strategy.text}
             </p>
-          ) : (
+          )}
+
+          {strategy.items && strategy.items.length > 0 && (
             <div
               ref={timelineContainerRef}
               className="relative strategy-timeline-container flex flex-col"
