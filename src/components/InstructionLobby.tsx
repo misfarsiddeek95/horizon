@@ -128,7 +128,6 @@ export default function InstructionLobby() {
           <LobbyCard
             icon={<Cog8ToothIcon className="h-5 w-5" />}
             title="Good to Know"
-            wide
           >
             <ul className="list-inside list-disc space-y-2">
               <li>
