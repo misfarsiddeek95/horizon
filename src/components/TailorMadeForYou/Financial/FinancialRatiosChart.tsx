@@ -8,7 +8,7 @@ import am5themes_Responsive from "@amcharts/amcharts5/themes/Responsive";
 import type * as am5exporting from "@amcharts/amcharts5/plugins/exporting";
 import { financialRatiosData } from "@/data/chartData";
 import ChartContainer from "../ChartContainer";
-import ChartExportButtons from "../ChartExportButtons";
+import ChartSection from "../ChartSection";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
 
@@ -56,19 +56,6 @@ export default function FinancialRatiosChart() {
         wheelY: "zoomX",
         layout: root.verticalLayout,
         pinchZoomX: true,
-      })
-    );
-
-    chart.children.unshift(
-      am5.Label.new(root, {
-        text: "Financial Ratios",
-        fontSize: 26,
-        fontFamily: "Minion Pro, serif",
-        fill: am5.color(0x147385),
-        x: am5.p50,
-        centerX: am5.p50,
-        paddingTop: 10,
-        paddingBottom: 10,
       })
     );
 
@@ -257,11 +244,8 @@ export default function FinancialRatiosChart() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex justify-end">
-        <ChartExportButtons exporting={exportingInstance} />
-      </div>
+    <ChartSection title="Financial Ratios" exporting={exportingInstance}>
       <ChartContainer ref={chartRef} />
-    </div>
+    </ChartSection>
   );
 }

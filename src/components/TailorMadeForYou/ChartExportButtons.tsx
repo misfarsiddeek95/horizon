@@ -17,13 +17,13 @@ export default function ChartExportButtons({ exporting }: ChartExportButtonsProp
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs text-content-primary/50 font-medium">Export:</span>
+      <span className="mr-2 text-sm text-v2-navy-deep">Export:</span>
       {formats.map(({ type, label }) => (
         <button
           key={type}
           type="button"
           onClick={() => exporting.download(type)}
-          className="rounded-ui-element bg-surface-muted px-3 py-1.5 text-xs font-semibold text-content-primary ring-1 ring-content-primary/15 transition-colors hover:bg-brand-main/10 hover:text-brand-main cursor-pointer"
+          className="px-3 py-1.5 text-xs font-medium rounded-md border border-brand-main/30 bg-white/20 text-v2-navy-deep backdrop-blur-sm transition-all duration-200 hover:bg-brand-main hover:text-content-inverse hover:shadow-md cursor-pointer"
         >
           {label}
         </button>

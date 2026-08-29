@@ -56,6 +56,51 @@
   animation: cloud-drift 40s ease-in-out infinite;
 }
 
+@keyframes ai-glow-one {
+  0%, 100% { transform: translate3d(-4vw, -2vh, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(10vw, 8vh, 0) scale(1.15) rotate(8deg); }
+}
+
+@keyframes ai-glow-two {
+  0%, 100% { transform: translate3d(4vw, 2vh, 0) scale(1.05) rotate(0deg); }
+  50% { transform: translate3d(-12vw, 10vh, 0) scale(0.9) rotate(-10deg); }
+}
+
+@keyframes ai-glow-three {
+  0%, 100% { transform: translate3d(-3vw, 5vh, 0) scale(0.95) rotate(-4deg); }
+  50% { transform: translate3d(14vw, -8vh, 0) scale(1.12) rotate(12deg); }
+}
+
+@keyframes ai-glow-four {
+  0%, 100% { transform: translate3d(5vw, -4vh, 0) scale(1) rotate(4deg); }
+  50% { transform: translate3d(-10vw, -12vh, 0) scale(1.18) rotate(-8deg); }
+}
+
+.animate-ai-glow-one {
+  animation: ai-glow-one 24s ease-in-out infinite;
+}
+
+.animate-ai-glow-two {
+  animation: ai-glow-two 28s ease-in-out 2s infinite;
+}
+
+.animate-ai-glow-three {
+  animation: ai-glow-three 21s ease-in-out 1s infinite;
+}
+
+.animate-ai-glow-four {
+  animation: ai-glow-four 18s ease-in-out 3s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ai-glow-one,
+  .animate-ai-glow-two,
+  .animate-ai-glow-three,
+  .animate-ai-glow-four {
+    animation: none;
+  }
+}
+
 @keyframes orb-float {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
   50% { transform: translate3d(0, -40px, 0) scale(1.08); }

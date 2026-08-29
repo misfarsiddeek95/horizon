@@ -43,8 +43,14 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
       <div
         role="tablist"
         aria-label="Chart type"
-        className="inline-flex gap-1 bg-surface-muted/80 p-1.5 rounded-ui-card shadow-sm ring-1 ring-content-primary/10"
+        className="relative flex items-center p-1 rounded-full border-2 border-brand-main/30 bg-white/10 backdrop-blur-sm w-fit mx-auto"
       >
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute left-1 top-1 bottom-1 w-[calc(50%-4px)] bg-brand-main rounded-full transition-transform duration-300 ease-out shadow-sm ${
+            activeType === "non-financial" ? "translate-x-full" : "translate-x-0"
+          }`}
+        />
         {tabs.map((tab, index) => {
           const isActive = tab.id === activeType;
           return (
@@ -58,10 +64,8 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
               tabIndex={isActive ? 0 : -1}
               onKeyDown={(e) => handleKeyDown(e, index)}
               onClick={() => onTypeChange(tab.id)}
-              className={`px-8 py-3 rounded-ui-element text-base font-bold transition-all min-h-[48px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-main focus-visible:ring-offset-2 focus-visible:ring-offset-surface-muted ${
-                isActive
-                  ? "bg-brand-main text-content-inverse shadow-md"
-                  : "bg-surface-default text-content-primary hover:bg-brand-main/10 hover:text-brand-main ring-1 ring-content-primary/15"
+              className={`relative z-10 w-36 px-4 py-2 text-center text-sm font-semibold transition-colors duration-300 whitespace-nowrap focus:outline-none rounded-full cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-main focus-visible:ring-offset-2 ${
+                isActive ? "text-content-inverse" : "text-v2-navy-deep hover:text-content-primary"
               }`}
             >
               {tab.label}
