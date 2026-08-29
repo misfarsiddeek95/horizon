@@ -132,7 +132,7 @@ export default function ReportGenerator() {
     <main className="min-h-screen bg-transparent p-4 sm:p-6 lg:p-12">
       <div className="mx-auto max-w-7xl">
         <div className="mb-6 sm:mb-8 lg:mb-10">
-          <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-content-primary mb-3">
+          <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-brand-main mb-3">
             Generate Your Report
           </h1>
           <p className="text-sm sm:text-base text-content-primary/60 max-w-2xl">
@@ -147,10 +147,10 @@ export default function ReportGenerator() {
 
         <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
           <div className="w-full lg:w-2/5 min-w-0">
-            <div className="bg-surface-default rounded-ui-card shadow-sm p-4 sm:p-6 max-h-[40vh] lg:max-h-[calc(100vh-12rem)] overflow-y-auto">
+            <div className="bg-surface-default/80 backdrop-blur-md border border-white/50 shadow-sm rounded-ui-card p-4 sm:p-6 max-h-[40vh] lg:max-h-[calc(100vh-12rem)] overflow-y-auto">
               {Object.entries(categories).map(([category, files]) => (
                 <div key={category} className="mb-6 last:mb-0">
-                  <h2 className="font-heading text-base sm:text-lg text-content-primary mb-3">
+                  <h2 className="font-heading text-base sm:text-lg text-brand-main mb-3">
                     {category}
                   </h2>
                   <div className="space-y-1.5">
@@ -193,7 +193,7 @@ export default function ReportGenerator() {
           </div>
 
           <div className="w-full lg:w-3/5 min-w-0">
-            <div className="bg-surface-default rounded-ui-card shadow-sm overflow-hidden h-[40vh] lg:h-[calc(100vh-12rem)] flex flex-col">
+            <div className="bg-surface-default/80 backdrop-blur-md border border-white/50 shadow-sm rounded-ui-card overflow-hidden h-[40vh] lg:h-[calc(100vh-12rem)] flex flex-col">
               {previewUrl ? (
                 <>
                   <div className="flex items-center justify-between border-b border-content-primary/10 px-4 py-2.5">
