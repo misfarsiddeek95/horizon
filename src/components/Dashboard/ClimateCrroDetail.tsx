@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
-import type { V2Crro } from "@/data/dashboard/types";
+import type { CrroId, V2Crro } from "@/data/dashboard/types";
 import ClimateChart from "./ClimateChart";
 
 const CLIMATE_PDF_BASE = "/pdf/Sustainability-Dashboard/S1 & S2 Climate Risk & Opportunity Outlook";
@@ -13,6 +13,13 @@ const CLIMATE_DISCLOSURE_URL = `${CLIMATE_PDF_BASE}/S1 & S2 Climate Risk & Oppor
 const RESILIENCE_ANALYSIS_URL = `${CLIMATE_PDF_BASE}/AR Resilience analysis.pdf`;
 
 const CRRO_PAGE: Record<number, number> = { 1: 73, 2: 77, 3: 80, 4: 84 };
+
+const CRRO_IMAGES: Record<CrroId, string> = {
+  1: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_1.png",
+  2: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_2.png",
+  3: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_3.png",
+  4: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_4.png",
+};
 
 const TIME_HORIZONS = [
   { key: "ST", period: "FY 2026/27" },
@@ -42,7 +49,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
       <div className="overflow-hidden rounded-[24px_24px_24px_8px] border border-[#dce6e7] bg-white shadow-[0_18px_42px_rgba(18,63,69,.06)]">
         <div className="relative isolate flex min-h-[250px] items-center justify-center overflow-hidden p-[34px_38px] text-center">
           <Image
-            src="/images/innerpage/dashboard/dashboard_progress_section.svg"
+            src={CRRO_IMAGES[crro.id]}
             alt="Progress and Outlook"
             fill
             unoptimized

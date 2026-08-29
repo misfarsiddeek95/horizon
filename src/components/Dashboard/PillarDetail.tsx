@@ -1,9 +1,36 @@
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { STORY_PDFS } from "@/data/dashboard/pillars";
-import { STATUS_TONE_COLOR, type V2Pillar } from "@/data/dashboard/types";
+import {
+  STATUS_TONE_COLOR,
+  type PillarId,
+  type V2Pillar,
+} from "@/data/dashboard/types";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import AnimatedRail from "@/components/ui/AnimatedRail";
+
+const PILLAR_IMAGES: Record<PillarId, { first: string; second: string }> = {
+  excite: {
+    first: "/images/innerpage/dashboard/Excite/excite_01.png",
+    second: "/images/innerpage/dashboard/Excite/excite_02.png",
+  },
+  innovate: {
+    first: "/images/innerpage/dashboard/Innovate/innovate_01.png",
+    second: "/images/innerpage/dashboard/Innovate/innovate_02.png",
+  },
+  inspire: {
+    first: "/images/innerpage/dashboard/Inspire/inspire_01.png",
+    second: "/images/innerpage/dashboard/Inspire/inspire_02.png",
+  },
+  restore: {
+    first: "/images/innerpage/dashboard/Restore/restore_01.png",
+    second: "/images/innerpage/dashboard/Restore/restore_02.png",
+  },
+  uplift: {
+    first: "/images/innerpage/dashboard/Uplift/uplift_01.png",
+    second: "/images/innerpage/dashboard/Uplift/uplift_02.png",
+  },
+};
 
 interface PillarDetailProps {
   pillar: V2Pillar;
@@ -11,13 +38,14 @@ interface PillarDetailProps {
 
 export default function PillarDetail({ pillar }: PillarDetailProps) {
   const introCopy = pillar.overview || pillar.storyText;
+  const pillarImages = PILLAR_IMAGES[pillar.id];
 
   return (
     <div className="flex flex-col gap-y-[34px]">
       <div className="mt-8 grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div className="relative min-h-[300px] w-full overflow-hidden rounded-[24px_24px_24px_8px] lg:min-h-[340px]">
           <Image
-            src="/images/innerpage/dashboard/dashboard_progress_section.svg"
+            src={pillarImages.first}
             alt="Intro Banner"
             fill
             unoptimized
@@ -230,7 +258,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
       >
         <div className="relative min-h-[220px] overflow-hidden lg:min-h-[300px]">
           <Image
-            src="/images/innerpage/dashboard/dashboard_story_banner.svg"
+            src={pillarImages.second}
             alt="Featured Story"
             fill
             unoptimized
