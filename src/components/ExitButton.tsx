@@ -6,7 +6,7 @@ import { usePuzzle } from "@/context/PuzzleContext";
 import ConfirmDialog from "@/components/ConfirmDialog";
 
 interface ExitButtonProps {
-  variant?: "light" | "dark";
+  variant?: "light" | "dark" | "playing";
 }
 
 export default function ExitButton({ variant = "light" }: ExitButtonProps) {
@@ -14,9 +14,11 @@ export default function ExitButton({ variant = "light" }: ExitButtonProps) {
   const [showDialog, setShowDialog] = useState(false);
 
   const styleClass =
-    variant === "dark"
-      ? "border-white/20 text-white/80 hover:bg-white/10"
-      : "border-zinc-300 text-gray-500 hover:bg-zinc-100";
+    variant === "playing"
+      ? "border border-red-500/80 text-red-500 bg-red-500/10 hover:bg-red-500/20 backdrop-blur-md transition-colors"
+      : variant === "dark"
+        ? "border-white/20 text-white/80 hover:bg-white/10"
+        : "border-zinc-300 text-gray-500 hover:bg-zinc-100";
 
   return (
     <>

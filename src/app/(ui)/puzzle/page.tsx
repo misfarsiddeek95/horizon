@@ -71,11 +71,14 @@ function PuzzleGame() {
   return (
     <>
       {isPlaying && <VantaBackground />}
+      {isPlaying && (
+        <div className="fixed inset-0 -z-40 bg-[#040b14]/60 pointer-events-none" />
+      )}
       <main className={`relative z-10 grid min-h-screen h-[100dvh] w-full grid-rows-[auto_auto_auto_1fr_auto_auto] overflow-hidden lg:flex lg:h-auto lg:flex-col lg:gap-8 lg:overflow-visible lg:p-10 ${isPlaying ? 'bg-transparent' : 'bg-gradient-to-br from-[#147385]/5 via-[#147385]/10 to-white'}`}>
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
         <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2">
-          <div className="flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink lg:flex-row lg:items-center lg:gap-2">
+          <div className={isPlaying ? 'flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-white drop-shadow-md' : 'flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink lg:flex-row lg:items-center lg:gap-2'}>
             <span className={isPlaying ? 'min-w-0 shrink truncate font-bold text-sm text-white drop-shadow-md' : 'font-bold text-sm truncate min-w-0 shrink'}>
               {state.session?.name ?? 'Player'}
             </span>
@@ -85,10 +88,10 @@ function PuzzleGame() {
           </div>
           <div className="flex items-center gap-1 lg:gap-3 justify-end shrink-0">
             <MuteToggle variant={isPlaying ? 'dark' : 'light'} />
-            <ExitButton variant={isPlaying ? 'dark' : 'light'} />
+            <ExitButton variant={isPlaying ? 'playing' : 'light'} />
             <button
               onClick={() => setShowRestartDialog(true)}
-              className={isPlaying ? 'inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-white/20 text-white/80 transition-colors hover:bg-white/10' : 'inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-red-200 text-red-600 transition-colors hover:bg-red-50'}
+              className={isPlaying ? 'inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-orange-500/80 text-orange-500 bg-orange-500/10 hover:bg-orange-500/20 backdrop-blur-md transition-colors' : 'inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-red-200 text-red-600 transition-colors hover:bg-red-50'}
               aria-label="Restart game"
             >
               <ArrowPathIcon className="h-3.5 w-3.5" />
