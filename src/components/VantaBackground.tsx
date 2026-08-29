@@ -26,7 +26,7 @@ export default function VantaBackground() {
             scale: 1.00,
             scaleMobile: 1.00,
             color: 0x147385,
-            backgroundColor: 0x061923,
+            backgroundColor: 0x0b3f47,
             points: 14.00,
             maxDistance: 24.00,
             spacing: 16.00,
@@ -48,7 +48,7 @@ export default function VantaBackground() {
   return (
     <div
       ref={vantaRef}
-      className="fixed inset-0 -z-50 h-screen w-screen bg-[#061923] pointer-events-none"
+      className="fixed inset-0 -z-50 h-screen w-screen bg-[#0b3f47] pointer-events-none"
     />
   );
 }
