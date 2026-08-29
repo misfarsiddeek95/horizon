@@ -33,7 +33,7 @@ export default function AiEnabledDigitalReport({
       ref={ref}
       id="ai-enabled-report"
       aria-label="AI-Enabled Digital Report"
-      className={`group relative w-full pb-16 lg:pb-24 transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
+      className={`group relative w-full pb-6 lg:pb-24 transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >

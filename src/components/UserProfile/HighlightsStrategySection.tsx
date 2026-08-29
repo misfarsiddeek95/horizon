@@ -105,7 +105,7 @@ export default function HighlightsStrategySectionV2({
         {highlights && (
           <div data-animate className="flex flex-col">
             <h2 className={HEADING_GRADIENT + " mb-8 text-center"}>Key Highlights</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 md:gap-y-12">
               {highlights.map((highlight, index) => {
                 const Icon = HIGHLIGHT_ICONS[index] ?? ChartBarIcon;
                 return (
@@ -143,7 +143,7 @@ export default function HighlightsStrategySectionV2({
 
           {strategy.text && (
             <p
-              className={`text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md ${
+              className={`text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md mb-3 ${
                 isGeneralUser ? "text-center" : "text-left"
               }`}
             >

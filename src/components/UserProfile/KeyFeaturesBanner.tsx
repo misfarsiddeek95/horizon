@@ -28,7 +28,7 @@ export default function KeyFeaturesBannerV2() {
     <section
       ref={ref}
       aria-label="This year in focus: Key Features"
-      className={`group relative w-full py-16 lg:py-24 transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
+      className={`group relative w-full py-6 lg:py-24 transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >

@@ -77,9 +77,9 @@ export default function ChairmanSectionV2({
     >
       <div
         data-animate
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full items-center"
+        className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 lg:gap-12 w-full items-center"
       >
-        <div className="relative w-full h-96 md:h-[28rem] rounded-2xl overflow-hidden">
+        <div className="relative w-full h-64 sm:h-80 md:h-[28rem] rounded-2xl overflow-hidden">
           <Image
             src="/images/user-profile/chairman.png"
             alt="Chairman"
@@ -91,7 +91,7 @@ export default function ChairmanSectionV2({
 
         <div className="flex flex-col justify-center w-full h-full mt-0 lg:mt-10">
           <h2
-            className={`${HEADING_GRADIENT} text-3xl leading-tight md:text-4xl lg:text-5xl mb-6`}
+            className={`${HEADING_GRADIENT} text-3xl leading-tight md:text-4xl lg:text-5xl mt-1 md:mt-0 mb-3 md:mb-6`}
           >
             {title}
           </h2>
