@@ -403,6 +403,7 @@ export default function UserProfilePageV2() {
               <section id="scene-highlights" className={SCENE_SECTION} data-scene>
                 <HighlightsStrategySection
                   highlights={tab.highlights}
+                  highlightIcons={tab.highlightIcons}
                   strategy={tab.strategy}
                 />
               </section>
