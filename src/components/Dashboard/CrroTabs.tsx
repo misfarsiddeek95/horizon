@@ -30,15 +30,15 @@ export default function CrroTabs({ active, onSelect }: CrroTabsProps) {
             onKeyDown={(event) =>
               moveTabFocus(event, (index) => onSelect(CRRO_IDS[index]))
             }
-            className={`relative min-h-[128px] cursor-pointer overflow-hidden rounded-[18px_18px_18px_6px] border bg-white/[.78] p-[18px_18px_17px] text-left transition-all duration-200 hover:bg-[rgba(226,241,239,.42)] ${
+            className={`relative min-h-[128px] cursor-pointer overflow-hidden rounded-[18px_18px_18px_6px] border bg-white/[.78] p-[18px_18px_17px] text-left transition-all duration-300 ease-out hover:bg-[rgba(226,241,239,.42)] ${
               isActive
-                ? "border-[#8fc9c3] bg-white shadow-[0_16px_34px_rgba(25,69,73,.07)]"
+                ? "border-[#8fc9c3] bg-white shadow-[0_16px_34px_rgba(25,69,73,.07)] scale-[1.02]"
                 : "border-[#d9e4e5] shadow-[0_10px_26px_rgba(25,69,73,.03)]"
             }`}
           >
             <span
               aria-hidden="true"
-              className={`absolute inset-x-0 top-0 h-[3px] bg-[var(--color-v2-accent)] ${
+              className={`absolute inset-x-0 top-0 h-[3px] bg-[var(--color-v2-accent)] transition-all duration-300 ease-out ${
                 isActive ? "opacity-100" : "opacity-20"
               }`}
             />

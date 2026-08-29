@@ -33,7 +33,7 @@ export default function PillarTabs({ active, onSelect }: PillarTabsProps) {
                 (index) => onSelect(PILLAR_IDS[index])
               )
             }
-            className={`cursor-pointer border-b border-[var(--color-v2-border-light)] p-[28px_20px] text-left transition-colors duration-200 last:border-b-0 hover:bg-[rgba(226,241,239,.42)] sm:max-lg:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0 ${
+            className={`relative cursor-pointer border-b border-[var(--color-v2-border-light)] p-[28px_20px] text-left transition-all duration-300 ease-out last:border-b-0 hover:bg-[rgba(226,241,239,.42)] sm:max-lg:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0 ${
               isActive ? "" : "bg-transparent"
             }`}
             style={
@@ -41,14 +41,18 @@ export default function PillarTabs({ active, onSelect }: PillarTabsProps) {
                 ? {
                     background:
                       "linear-gradient(180deg,var(--color-v2-wash-active-from),var(--color-v2-wash-active-to))",
-                    boxShadow:
-                      "inset 0 -3px 0 var(--color-v2-accent)",
                   }
                 : undefined
             }
           >
             <span
-              className="grid h-9 w-9 place-items-center overflow-hidden rounded-full font-black text-white"
+              aria-hidden="true"
+              className={`absolute inset-x-0 bottom-0 h-[3px] origin-left bg-[var(--color-v2-accent)] transition-all duration-300 ease-out ${
+                isActive ? "scale-x-100" : "scale-x-0"
+              }`}
+            />
+            <span
+              className="grid h-9 w-9 place-items-center overflow-hidden rounded-full font-black text-white transition-all duration-300 ease-out"
               style={{ background: pillar.accent }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -59,8 +63,10 @@ export default function PillarTabs({ active, onSelect }: PillarTabsProps) {
                 className="h-full w-full object-contain"
               />
             </span>
-            <div className="mt-[9px] text-[13px] font-black">{pillar.name}</div>
-            <div className="mt-[3px] text-[11px] text-[var(--color-v2-text-soft)]">
+            <div className="mt-[9px] text-[13px] font-black transition-colors duration-200">
+              {pillar.name}
+            </div>
+            <div className="mt-[3px] text-[11px] text-[#042b31]/75 transition-colors duration-200">
               {pillar.descriptor}
             </div>
           </button>

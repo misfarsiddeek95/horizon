@@ -40,7 +40,7 @@ export default function MetricsBand() {
           key={metric.label}
           className="relative border-b border-[var(--color-v2-border-metric)] py-[34px] pr-[30px] last:border-b-0 sm:[&:not(:first-child)]:pl-7 sm:odd:border-r lg:border-b-0 lg:last:border-r-0"
         >
-          <div className="font-[850] text-[10px] uppercase tracking-[0.13em] text-[var(--color-v2-label)]">
+          <div className="font-[850] text-[10px] uppercase tracking-[0.13em] text-[#042b31]/70 font-semibold">
             {metric.label}
           </div>
           <div
@@ -49,7 +49,7 @@ export default function MetricsBand() {
           >
             <AnimatedCounter value={metric.value} />
           </div>
-          <div className="text-[13px] text-[var(--color-v2-text-faint)]">
+          <div className="text-[13px] text-[#042b31]/75">
             {metric.sub}
           </div>
         </div>

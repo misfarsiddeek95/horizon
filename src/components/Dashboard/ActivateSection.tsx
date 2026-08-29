@@ -28,7 +28,7 @@ export default function ActivateSection({
             <h2 className="mb-0 mt-[10px] font-heading text-[clamp(38px,4.2vw,58px)] font-medium leading-[1.02] tracking-[-0.025em] text-balance">
               Progress towards 2030
             </h2>
-            <p className="mb-0 mt-4 max-w-[590px] leading-[1.85] text-[var(--color-v2-text-muted)]">
+            <p className="mb-0 mt-4 max-w-[590px] leading-[1.85] text-[#042b31]/80">
               ACTIVATE 2030 translates our sustainability ambitions into
               measurable action across five pillars. Explore this year’s
               progress, impact metrics, target status and featured stories.

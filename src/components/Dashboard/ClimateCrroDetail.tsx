@@ -117,18 +117,20 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
         </div>
 
         <div className="p-[18px_20px_16px]">
-          <div className="relative mb-[14px] block text-center" style={{ paddingLeft: "155px", paddingRight: "155px" }}>
-            <h4 className="m-0 text-[13px] font-black uppercase leading-[1.2] tracking-[0.08em]" style={{ color: crro.color }}>
-              Driver and anticipated financial effect
-            </h4>
-            <p className="mt-[6px] mb-0 text-[10.8px] leading-[1.4] text-[#7a8998]">
-              Quantified operational drivers and financial effects across the short, medium and long term
-            </p>
+          <div className="mb-[14px] flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+            <div className="min-w-0">
+              <h4 className="m-0 break-words text-xl font-bold tracking-tight text-[#042b31] sm:text-2xl" style={{ color: crro.color }}>
+                Driver and anticipated financial effect
+              </h4>
+              <p className="mt-[6px] mb-0 text-[10.8px] leading-[1.4] text-[#7a8998]">
+                Quantified operational drivers and financial effects across the short, medium and long term
+              </p>
+            </div>
             <a
               href={`${CLIMATE_DISCLOSURE_URL}#page=${CRRO_PAGE[crro.id]}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute right-0 top-[-5px] inline-flex items-center gap-1.5 whitespace-nowrap rounded-[9px] border border-[#cfdae1] bg-white px-[9px] py-[7px] text-[9.5px] font-[850] text-[var(--navy)] no-underline"
+              className="inline-flex w-full flex-shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-[9px] border border-[#cfdae1] bg-white px-[9px] py-[7px] text-[9.5px] font-[850] text-[var(--navy)] no-underline sm:w-auto"
             >
               View disclosure
               <ArrowUpRightIcon className="h-3 w-3" />
