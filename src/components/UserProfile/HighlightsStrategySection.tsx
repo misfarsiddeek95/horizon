@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface HighlightsStrategySectionV2Props {
   highlights?: string[];
+  highlightIcons?: string[];
   strategy: {
     title: string;
     items?: string[];
@@ -37,6 +39,7 @@ const HIGHLIGHT_ICONS = [
 
 export default function HighlightsStrategySectionV2({
   highlights,
+  highlightIcons,
   strategy,
 }: HighlightsStrategySectionV2Props) {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
@@ -104,7 +107,17 @@ export default function HighlightsStrategySectionV2({
                     className="flex flex-col items-center"
                   >
                     <span className="relative flex h-20 w-20 items-center justify-center rounded-full backdrop-blur-md bg-white/15 border border-white/25 shadow-lg transition-all duration-300 text-white hover:bg-white/30 hover:border-white/60 hover:scale-105">
-                      <Icon className="h-8 w-8" />
+                      {highlightIcons?.[index] ? (
+                        <Image
+                          src={highlightIcons[index]}
+                          alt=""
+                          width={64}
+                          height={64}
+                          className="h-8 w-8"
+                        />
+                      ) : (
+                        <Icon className="h-8 w-8" />
+                      )}
                     </span>
                     <p className="mt-0.5 text-center text-sm md:text-base leading-relaxed text-slate-200 drop-shadow-sm">
                       {highlight}
