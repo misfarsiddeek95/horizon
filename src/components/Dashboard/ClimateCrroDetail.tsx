@@ -42,7 +42,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
       <div className="overflow-hidden rounded-[24px_24px_24px_8px] border border-[#dce6e7] bg-white shadow-[0_18px_42px_rgba(18,63,69,.06)]">
         <div className="relative isolate flex min-h-[250px] items-center justify-center overflow-hidden p-[34px_38px] text-center">
           <Image
-            src="/images/innerpage/dashboard_progress_section.svg"
+            src="/images/innerpage/dashboard/dashboard_progress_section.svg"
             alt="Progress and Outlook"
             fill
             unoptimized

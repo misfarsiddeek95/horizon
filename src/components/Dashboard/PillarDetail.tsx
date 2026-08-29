@@ -17,7 +17,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
       <div className="mt-8 grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div className="relative min-h-[300px] w-full overflow-hidden rounded-[24px_24px_24px_8px] lg:min-h-[340px]">
           <Image
-            src="/images/innerpage/dashboard_progress_section.svg"
+            src="/images/innerpage/dashboard/dashboard_progress_section.svg"
             alt="Intro Banner"
             fill
             unoptimized
@@ -230,7 +230,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
       >
         <div className="relative min-h-[220px] overflow-hidden lg:min-h-[300px]">
           <Image
-            src="/images/innerpage/dashboard_story_banner.svg"
+            src="/images/innerpage/dashboard/dashboard_story_banner.svg"
             alt="Featured Story"
             fill
             unoptimized

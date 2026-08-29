@@ -18,7 +18,9 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
       <div
         className="pointer-events-none absolute inset-0 bg-cover bg-center"
         aria-hidden="true"
-        style={{ backgroundImage: "url(/images/dashboard-banner.png)" }}
+        style={{
+          backgroundImage: "url(/images/innerpage/dashboard/dashboard-banner.png)",
+        }}
       />
       <div
         className="pointer-events-none absolute inset-0 bg-black/50"
