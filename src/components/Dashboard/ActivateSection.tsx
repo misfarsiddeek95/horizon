@@ -63,7 +63,7 @@ export default function ActivateSection({
 
         <PillarTabs active={activePillar} onSelect={onPillarChange} />
 
-        <div key={activePillar} className="animate-fade-in">
+        <div key={activePillar} className="animate-tab-pass">
           <PillarDetail pillar={PILLARS_V2[activePillar]} />
         </div>
       </div>

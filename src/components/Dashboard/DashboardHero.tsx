@@ -16,17 +16,17 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
       className="relative isolate overflow-hidden px-[18px] pt-[66px] pb-[54px] text-white sm:px-8"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center"
+        className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center"
         aria-hidden="true"
         style={{
           backgroundImage: "url(/images/innerpage/dashboard/dashboard-banner.png)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-black/50"
+        className="pointer-events-none absolute inset-0 z-10 bg-black/50"
         aria-hidden="true"
       />
-      <div className="relative mx-auto max-w-[1240px]">
+      <div className="relative z-20 mx-auto max-w-[1240px]">
         <div className="max-w-[1080px]">
           <div className="font-[850] text-[14px] uppercase tracking-[0.16em] text-[var(--color-v2-hero-kicker)]">
             FY 2025/26

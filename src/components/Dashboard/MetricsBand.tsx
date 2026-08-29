@@ -32,13 +32,13 @@ const METRICS: Metric[] = [
 export default function MetricsBand() {
   return (
     <div
-      className="mb-[78px] mt-[54px] grid grid-cols-1 border-y border-[var(--color-v2-border-metric)] sm:grid-cols-2 lg:grid-cols-4"
+      className="mb-[78px] mt-[54px] grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
       aria-label="Commitment status"
     >
       {METRICS.map((metric) => (
         <div
           key={metric.label}
-          className="relative border-b border-[var(--color-v2-border-metric)] py-[34px] pr-[30px] last:border-b-0 sm:[&:not(:first-child)]:pl-7 sm:odd:border-r lg:border-b-0 lg:last:border-r-0"
+          className="rounded-2xl border border-white/50 bg-white/30 p-6 shadow-sm backdrop-blur-md transition-all duration-300 hover:bg-white/40 hover:shadow-md"
         >
           <div className="font-[850] text-[10px] uppercase tracking-[0.13em] text-[#042b31]/70 font-semibold">
             {metric.label}
