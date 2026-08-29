@@ -9,13 +9,14 @@ import {
   ShieldCheckIcon,
   StarIcon,
 } from "@heroicons/react/24/outline";
-import type { DownloadLink } from "@/data/userProfiles";
+import type { DownloadLink, TabId } from "@/data/userProfiles";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import DownloadButton from "./DownloadButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface HighlightsStrategySectionV2Props {
+  profileId: TabId;
   highlights?: string[];
   highlightIcons?: string[];
   strategy: {
@@ -38,10 +39,16 @@ const HIGHLIGHT_ICONS = [
 ];
 
 export default function HighlightsStrategySectionV2({
+  profileId,
   highlights,
   highlightIcons,
   strategy,
 }: HighlightsStrategySectionV2Props) {
+  const isGeneralUser = profileId === "generalUser";
+  const alignmentClasses = isGeneralUser
+    ? "w-full flex flex-col items-center justify-center text-center mx-auto max-w-4xl lg:col-span-2"
+    : "flex flex-col items-start justify-start text-left";
+
   const { ref, revealed } = useScrollReveal<HTMLElement>();
   const timelineContainerRef = useRef<HTMLDivElement>(null);
 
@@ -106,14 +113,14 @@ export default function HighlightsStrategySectionV2({
                     key={highlight}
                     className="flex flex-col items-center"
                   >
-                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full backdrop-blur-md bg-white/15 border border-white/25 shadow-lg transition-all duration-300 text-white hover:bg-white/30 hover:border-white/60 hover:scale-105">
+                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/25 shadow-lg transition-all duration-300 text-white hover:bg-white/30 hover:border-white/60 hover:scale-105">
                       {highlightIcons?.[index] ? (
                         <Image
                           src={highlightIcons[index]}
                           alt=""
                           width={64}
                           height={64}
-                          className="h-8 w-8"
+                          className="h-12 w-12 object-contain brightness-0 invert"
                         />
                       ) : (
                         <Icon className="h-8 w-8" />
@@ -129,11 +136,17 @@ export default function HighlightsStrategySectionV2({
           </div>
         )}
 
-        <div data-animate className="flex flex-col">
-          <h2 className={HEADING_GRADIENT + " mb-6"}>{strategy.title}</h2>
+        <div data-animate className={alignmentClasses}>
+          <h2 className={HEADING_GRADIENT + ` mb-6 ${isGeneralUser ? "text-center" : "text-left"}`}>
+            {strategy.title}
+          </h2>
 
           {strategy.text ? (
-            <p className="text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md">
+            <p
+              className={`text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md ${
+                isGeneralUser ? "text-center" : "text-left"
+              }`}
+            >
               {strategy.text}
             </p>
           ) : (

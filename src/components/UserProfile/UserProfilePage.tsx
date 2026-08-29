@@ -395,13 +395,14 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 5: AI-Enabled Digital Report */}
             <section id="ai-enabled-report" className={SCENE_SECTION} data-scene>
-              <AiEnabledDigitalReport />
+              <AiEnabledDigitalReport aiReportText={tab.aiReportText} />
             </section>
 
             {/* SCENE 6: Highlights & Strategy */}
             {tab.strategy && (
               <section id="scene-highlights" className={SCENE_SECTION} data-scene>
                 <HighlightsStrategySection
+                  profileId={tab.id}
                   highlights={tab.highlights}
                   highlightIcons={tab.highlightIcons}
                   strategy={tab.strategy}

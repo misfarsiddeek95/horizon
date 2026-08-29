@@ -66,7 +66,7 @@ export interface KeyFeature {
 export const KEY_FEATURES: KeyFeature[] = [
   {
     icon: "ai",
-    title: "AI-Enabled Digital Report",
+    title: "The Next Horizon of Intelligent Reporting",
     detail:
       "Taking reporting beyond disclosure, our AI-enabled digital experience helps stakeholders discover relevant information, explore deeper insights and engage with Haycarb's performance in a more personalised way.",
     subItems: [
@@ -110,22 +110,21 @@ const corporateGovernanceDownload: DownloadLink = {
 
 const chairmanMessageTitle = "Leadership Message";
 
-const governanceParaOne =
-  "At Haycarb PLC, corporate governance is not merely a compliance obligation, it is a cornerstone of our leadership philosophy and strategic execution. Under the stewardship of a committed Board and guided by the principles of transparency, accountability, and integrity, our governance framework ensures that every decision aligns with the long-term interests of our stakeholders and the sustainability of our operations.";
-
-const governanceParaTwo =
-  "This section outlines the roles and responsibilities of our leadership, including the Chairman and Managing Director, and details the mechanisms through which Haycarb maintains oversight across its geographically diverse subsidiaries. It also highlights the formation and function of key Board Committees such as the Nominations and Governance Committee, Audit Committee, and Remuneration Committee, which collectively uphold the standards of ethical leadership and sound governance.";
-
-const governanceParaThree =
-  "Through continuous evaluation, structured succession planning, and alignment with the Hayleys Group's ESG roadmap, Haycarb reinforces its commitment to responsible leadership and resilient governance practices.";
-
-const governanceParagraphs = [
-  governanceParaOne,
-  governanceParaTwo,
-  governanceParaThree,
+const shareholderGovernanceParagraphs = [
+  "At Haycarb PLC, corporate governance is not merely a compliance obligation, it is a cornerstone of our leadership philosophy and strategic execution.",
+  "Under the stewardship of a committed Board and guided by the principles of transparency, accountability, and integrity, our governance framework ensures that every decision aligns with the long term interests of our stakeholders and the sustainability of our operations.",
+  "Haycarb’s governance framework brings together clearly defined leadership responsibilities, effective Board oversight and dedicated Committees across its global operations, supported by continuous evaluation, structured succession planning and alignment with the Hayleys Group’s ESG roadmap to uphold responsible leadership and resilient governance.",
 ];
 
-const governanceText = governanceParagraphs.join(" ");
+const generalGovernanceParagraphs = [
+  "At Haycarb PLC, corporate governance is not merely a compliance obligation, it is a cornerstone of our leadership philosophy and strategic execution.",
+  "Under the stewardship of a committed Board and guided by the principles of transparency, accountability, and integrity, our governance framework ensures that every decision aligns with the long term interests of our stakeholders and the sustainability of our operations.",
+  "This section outlines the roles and responsibilities of our leadership, including the Chairman and Managing Director, and details the mechanisms through which Haycarb maintains oversight across its geographically diverse subsidiaries. It also highlights the formation and function of key Board Committees such as the Nominations and Governance Committee, Audit Committee and Remuneration Committee, which collectively uphold the standards of ethical leadership and sound governance.",
+  "Through continuous evaluation, structured succession planning and alignment with the Hayleys Group’s ESG roadmap, Haycarb reinforces its commitment to responsible leadership and resilient governance practices.",
+];
+
+const shareholderGovernanceText = shareholderGovernanceParagraphs.join(" ");
+const governanceText = generalGovernanceParagraphs.join(" ");
 
 export const PROFILE_TABS: ProfileTab[] = [
   {
@@ -133,7 +132,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     title: "Shareholders",
     heroTitle: "Performance with a clearer line of sight",
     intro:
-      "As the guiding current beneath our journey, you steer Haycarb's course. Dive into a clear view of our performance, strategy, and sustainable growth.",
+      "As the guiding current beneath our journey, you steer Haycarb’s course. Dive into a clear view of our performance, strategy, and sustainable growth.",
     metricGroups: [
       {
         metrics: [
@@ -177,11 +176,12 @@ export const PROFILE_TABS: ProfileTab[] = [
         "Drove progress on expanding our manufacturing footprint to the Philippines",
         "Robust risk management to identify and respond to risks and opportunities including climate related risks",
       ],
+      text: "Built on market leadership and global reach, our business model combines innovation, strong capabilities and responsible practices to deliver sustainable value.",
     },
     governance: {
       title: "Leadership and Governance",
-      text: governanceText,
-      paragraphs: governanceParagraphs,
+      text: shareholderGovernanceText,
+      paragraphs: shareholderGovernanceParagraphs,
       download: corporateGovernanceDownload,
     },
     strategyImage: {
@@ -191,7 +191,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         "A clear view of the financial ratios that define shareholder value.",
     },
     aiReportText:
-      "Taking reporting beyond disclosure, our AI-enabled digital experience helps shareholders discover relevant information, explore deeper insights and engage with Haycarb's performance in a more personalised way",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps shareholders discover relevant information, explore deeper insights and engage with Haycarb’s performance in a more personalised way",
   },
   {
     id: "employees",
@@ -204,7 +204,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         metrics: [
           { value: "2,084", label: "No. of Employees" },
           { value: "85.3%", label: "Employee Retention Rate" },
-          { value: "31.1 hrs", label: "Average Training Hours per Employee" },
+          { value: "31.1 hours", label: "Average Training Hours per employee" },
           { value: "Rs. 5.58 Bn", label: "Payments to Employees" },
           { value: "> Rs. 119 Mn", label: "Investment in Health & Safety" },
         ],
@@ -219,9 +219,9 @@ export const PROFILE_TABS: ProfileTab[] = [
       },
     },
     highlights: [
-      "Fair remuneration and job security",
+      "Fair remuneration and job security.",
       "A safe and inclusive work environment",
-      "Opportunities for training and development",
+      "Opportunities for training and development.",
       "Career progression",
     ],
     highlightIcons: [
@@ -234,11 +234,12 @@ export const PROFILE_TABS: ProfileTab[] = [
       title: "Strategy and Performance",
       items: [
         "Goal setting and Performance Appraisals with fair and equitable remuneration for all employees based on skills, competencies and performance",
-        "Strengthened the safety culture within the Group",
-        "Continuous learning with investment of Rs. 7.4 million and launching digital learning platform",
-        "Introduced a post onboarding review system to support the integration of new recruits",
-        "Fostered a diverse and inclusive work environment",
+        "Strengthened the safety culture within the Group.",
+        "Continuous learning with investment of Rs. 7.4 million and launching digital learning platform.",
+        "Introduced a post onboarding review system to support the integration of new recruits.",
+        "Fostered a diverse and inclusive work environment.",
       ],
+      text: "Empowering our people with the skills, opportunities and environment to thrive, while building an engaged, inclusive and future ready workforce.",
       download: {
         label: "Download HR Strategy",
         pdf: "/pdf/tbc/Human%20Capital.pdf",
@@ -250,14 +251,14 @@ export const PROFILE_TABS: ProfileTab[] = [
       caption: "Investing in our people to fuel innovation and shared growth.",
     },
     aiReportText:
-      "Taking reporting beyond disclosure, our AI-enabled digital experience helps our employees explore Haycarb's performance, progress and impact through a more personalised, accessible and engaging experience.",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps our employees explore Haycarb’s performance, progress and impact through a more personalised, accessible and engaging experience.",
   },
   {
     id: "customers",
     title: "Customers",
     heroTitle: "Innovation designed around customer value",
     intro:
-      "With you, we look Beyond the Beyond. Discover how Haycarb delivers consistency, quality, and sustainability while pursuing new opportunities and advancing towards a future of greater possibilities.",
+      "With you, we look Beyond the Beyond. Discover how Haycarb delivers consistency, quality, and sustainability while pursuing new opportunities and advancing towards a future of greater possibilities",
     metricGroups: [
       {
         metrics: [
@@ -271,7 +272,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     ],
     message: {
       title: chairmanMessageTitle,
-      text: "Haycarb continued to invest in innovation, research, and advanced technologies during 2025/26, reinforcing its position as a leading provider of sustainable activated carbon solutions. The Group remained focused on developing cutting-edge products and enhancing customer value through continuous investment in research and development, which amounted to Rs. 261 Mn during the year. Haycarb successfully launched 14 new products, reflecting its commitment to sustainable innovation and its ability to address emerging customer requirements across diverse applications. Supported by enhanced laboratory capabilities, specialised technical training, and ongoing digitalisation initiatives, the Group continued to strengthen its innovation pipeline and technical differentiation. As global demand for environmental and sustainability-focused solutions continues to grow, Haycarb remains well positioned to capture emerging opportunities through its strong innovation culture, extensive product portfolio, and commitment to creating long-term value for customers and stakeholders.",
+      text: "Haycarb continued to invest in innovation, research and advanced technologies during 2025/26, reinforcing its position as a leading provider of sustainable activated carbon solutions. With Rs. 261 Mn invested in R&D, the Group launched 14 new products, addressing emerging customer requirements across diverse applications and enhancing customer value. Supported by enhanced laboratory capabilities, specialised technical training and ongoing digitalisation, Haycarb continued to strengthen its innovation pipeline and technical differentiation. As global demand for environmental and sustainability focused solutions grows, the Group remains well positioned to capture emerging opportunities through its strong innovation culture and extensive product portfolio, while creating long term value for customers and stakeholders.",
       link: {
         label: "View Joint Message",
         url: "https://youtu.be/K_rvL8qpuDc",
@@ -294,12 +295,13 @@ export const PROFILE_TABS: ProfileTab[] = [
     strategy: {
       title: "Strategy and Performance",
       items: [
-        "New product development through R&D to deliver tailored solutions that fulfill specific customer needs",
+        "New product development through R&D to deliver tailored solutions that fulfill specific customer needs.",
         "Numerous initiatives to source adequate supplies of raw materials are procured from all countries in supply chain",
-        "Capacity enhancement",
-        "Delivered on several ESG goals outlined in \u201CActivate\u201D",
-        "Robust manufacturing and quality assurance systems along with numerous certifications such as ISO and GMP to ensure consistent product quality",
+        "Capacity enhancement.",
+        "Delivered on several ESG goals outlined in ”Activate“.",
+        "Robust manufacturing and quality assurance systems along with numerous certifications such as ISO and GMP to ensure consistent product quality.",
       ],
+      text: "Creating lasting customer value through solutions, expertise and partnerships shaped around evolving needs.",
       download: {
         label: "Download Customer Value Proposition",
         pdf: "/pdf/tbc/Our%20Products.pdf",
@@ -311,7 +313,7 @@ export const PROFILE_TABS: ProfileTab[] = [
       caption: "What we deliver, and why our customers stay with us.",
     },
     aiReportText:
-      "Taking reporting beyond disclosure, our AI-enabled digital experience helps customers discover relevant information, explore deeper insights and better understand Haycarb's capabilities, performance and sustainability journey.",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps customers discover relevant information, explore deeper insights and better understand Haycarb’s capabilities, performance and sustainability journey.",
   },
   {
     id: "suppliers",
@@ -349,7 +351,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     ],
     message: {
       title: chairmanMessageTitle,
-      text: "Our value chain commences with coconut shells, a by-product of the coconut industry. Our manufacturing facilities are strategically located in Sri Lanka, Thailand, and Indonesia, providing direct access to our main raw material, coconut shell-based charcoal in these countries. Our raw material procurement network also extends to other major coconut growing countries in Asia, including the Philippines, India, and Vietnam. This extensive network has enabled us to gain valuable insights into the production and availability of raw materials, allowing us to effectively manage the cyclical volatility in demand and supply across all coconut-producing countries in Asia.",
+      text: "Our value chain commences with coconut shells, a byproduct of the coconut industry. Our manufacturing facilities are strategically located in Sri Lanka, Thailand and Indonesia, providing direct access to our main raw material, coconut shell based charcoal in these countries. Our raw material procurement network also extends to other major coconut growing countries in Asia, including the Philippines, India and Vietnam. This extensive network has enabled us to gain valuable insights into the production and availability of raw materials, allowing us to effectively manage the cyclical volatility in demand and supply across all coconut producing countries in Asia.",
       link: {
         label: "View Joint Message",
         url: "https://youtu.be/K_rvL8qpuDc",
@@ -377,6 +379,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         "Engaged in capacity building through supplier audits and other initiatives",
         "Propagated green charcoaling practices among suppliers",
       ],
+      text: "Growing together through partnerships that strengthen capabilities, support livelihoods and create shared value across our supply chain.",
       download: {
         label: "Download Supplier Value Proposition",
         pdf: "/pdf/tbc/Listening%20to%20Our%20Stakeholders.pdf",
@@ -389,7 +392,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         "Building resilient, responsible supply chains that move as one.",
     },
     aiReportText:
-      "Taking reporting beyond disclosure, our AI enabled digital experience helps suppliers discover relevant information and explore Haycarb's performance, sustainability priorities and value chain in a more personalised way.",
+      "Taking reporting beyond disclosure, our AI enabled digital experience helps suppliers discover relevant information and explore Haycarb’s performance, sustainability priorities and value chain in a more personalised way.",
   },
   {
     id: "generalUser",
@@ -401,22 +404,26 @@ export const PROFILE_TABS: ProfileTab[] = [
       {
         title: "Financial",
         metrics: [
-          { value: "Rs. 67,084 Mn", label: "Revenue" },
-          { value: "Rs. 5,887 Mn", label: "Profit Before Tax" },
-          { value: "Rs. 4,341 Mn", label: "Profit After Tax" },
+          { value: "67,084", label: "Revenue (Rs. Mn)" },
+          { value: "5,887", label: "Profit Before Tax (Rs. Mn)" },
+          { value: "4,341", label: "Profit After Tax (Rs. Mn)" },
         ],
       },
       {
         title: "Non-Financial",
         metrics: [
-          { value: "Rs. 52.7 Mn", label: "Investment in CSR" },
-          { value: "14 Nos", label: "New products developed" },
-          { value: "31.1 Hours", label: "Average training hours per employee" },
+          { value: "52.7", label: "Investment in CSR (Rs. Mn)" },
+          { value: "14", label: "New products developed (Nos)" },
+          {
+            value: "31.1",
+            label: "Average training hours per employee (Hours)",
+          },
         ],
       },
     ],
     strategy: {
       title: "Strategy and Resource Allocation",
+      text: "Guiding our path forward through focused priorities that strengthen resilience, drive innovation and create sustainable long term value.",
       download: {
         label: "Download Strategy and Resource Allocation",
         pdf: "/pdf/tbc/Strategy%20and%20Resource%20Allocation.pdf",
@@ -425,7 +432,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     governance: {
       title: "Leadership and Governance",
       text: governanceText,
-      paragraphs: governanceParagraphs,
+      paragraphs: generalGovernanceParagraphs,
       download: corporateGovernanceDownload,
     },
     strategyImage: {
@@ -435,6 +442,6 @@ export const PROFILE_TABS: ProfileTab[] = [
         "The levers powering Haycarb's sustainable global value creation.",
     },
     aiReportText:
-      "Taking reporting beyond disclosure, our AI-enabled digital experience makes it easier to discover relevant information, explore deeper insights and engage with Haycarb's story in a more personalised way.",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience makes it easier to discover relevant information, explore deeper insights and engage with Haycarb’s story in a more personalised way.",
   },
 ];

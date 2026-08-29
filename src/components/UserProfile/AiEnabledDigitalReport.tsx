@@ -7,7 +7,13 @@ const HEADING_GRADIENT =
 
 const aiFeature = KEY_FEATURES.find((f) => f.icon === "ai");
 
-export default function AiEnabledDigitalReport() {
+interface AiEnabledDigitalReportProps {
+  aiReportText?: string;
+}
+
+export default function AiEnabledDigitalReport({
+  aiReportText,
+}: AiEnabledDigitalReportProps) {
   const { ref, revealed } = useScrollReveal<HTMLElement>();
 
   if (!aiFeature) return null;
@@ -29,9 +35,7 @@ export default function AiEnabledDigitalReport() {
           data-animate
           className="max-w-2xl text-sm md:text-base lg:text-lg leading-relaxed text-slate-200 drop-shadow-md mb-8"
         >
-          Donec hendrerit arcu vitae auctor imperdiet. Phasellus consequat
-          lectus vitae sapien posuere posuere. Donec sollicitudin ipsum vel
-          congue cursus. Praesent molestie tempor nunc at vestibulum.
+          {aiReportText}
         </p>
         {aiFeature.subItems && aiFeature.subItems.length > 0 && (
           <div data-animate className="flex flex-wrap justify-center gap-4">
