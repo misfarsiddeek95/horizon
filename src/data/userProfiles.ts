@@ -35,6 +35,7 @@ export interface ProfileTab {
     };
   };
   highlights?: string[];
+  highlightIcons?: string[];
   strategy?: {
     title: string;
     items?: string[];
@@ -159,6 +160,13 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Adequacy of risk management",
       "Corporate reputation",
     ],
+    highlightIcons: [
+      "/icons/user-profile/Key-highlights/Shareholders/Web%20Icons-27.svg",
+      "/icons/user-profile/Key-highlights/Shareholders/Web%20Icons-28.svg",
+      "/icons/user-profile/Key-highlights/Shareholders/Web%20Icons-29.svg",
+      "/icons/user-profile/Key-highlights/Shareholders/Web%20Icons-30.svg",
+      "/icons/user-profile/Key-highlights/Shareholders/Web%20Icons-31.svg",
+    ],
     strategy: {
       title: "Strategy and Performance",
       items: [
@@ -216,6 +224,12 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Opportunities for training and development",
       "Career progression",
     ],
+    highlightIcons: [
+      "/icons/user-profile/Key-highlights/Employees/Web%20Icons-32.svg",
+      "/icons/user-profile/Key-highlights/Employees/Web%20Icons-33.svg",
+      "/icons/user-profile/Key-highlights/Employees/Web%20Icons-34.svg",
+      "/icons/user-profile/Key-highlights/Employees/Web%20Icons-35.svg",
+    ],
     strategy: {
       title: "Strategy and Performance",
       items: [
@@ -269,6 +283,13 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Capacity to innovate",
       "Consistent product quality and timely delivery",
       "Sustainable and ethical business practices",
+    ],
+    highlightIcons: [
+      "/icons/user-profile/Key-highlights/Customers/Web%20Icons-36.svg",
+      "/icons/user-profile/Key-highlights/Customers/Web%20Icons-37.svg",
+      "/icons/user-profile/Key-highlights/Customers/Web%20Icons-38.svg",
+      "/icons/user-profile/Key-highlights/Customers/Web%20Icons-39.svg",
+      "/icons/user-profile/Key-highlights/Customers/Web%20Icons-40.svg",
     ],
     strategy: {
       title: "Strategy and Performance",
@@ -340,6 +361,13 @@ export const PROFILE_TABS: ProfileTab[] = [
       "Building long-term relationships",
       "Technical support and capacity building",
       "Environmental and social compliance",
+    ],
+    highlightIcons: [
+      "/icons/user-profile/Key-highlights/Suppliers/Web%20Icons-41.svg",
+      "/icons/user-profile/Key-highlights/Suppliers/Web%20Icons-42.svg",
+      "/icons/user-profile/Key-highlights/Suppliers/Web%20Icons-43.svg",
+      "/icons/user-profile/Key-highlights/Suppliers/Web%20Icons-44.svg",
+      "/icons/user-profile/Key-highlights/Suppliers/Web%20Icons-45.svg",
     ],
     strategy: {
       title: "Strategy and Performance",
