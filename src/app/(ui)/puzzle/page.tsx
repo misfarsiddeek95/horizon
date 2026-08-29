@@ -19,6 +19,7 @@ import MobileClueBar from '@/components/MobileClueBar';
 import MobileActionStrip from '@/components/MobileActionStrip';
 import MobileTimer from '@/components/MobileTimer';
 import AIChatModal from '@/components/AIChatModal';
+import VantaBackground from '@/components/VantaBackground';
 import { getBadgeDefinition } from '@/data/badges';
 
 function PuzzleGame() {
@@ -29,6 +30,7 @@ function PuzzleGame() {
   const [chatOpen, setChatOpen] = useState(false);
 
   const activeQuestion = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
+  const isPlaying = state.phase === 'playing';
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -68,24 +70,25 @@ function PuzzleGame() {
 
   return (
     <>
-      <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-gradient-to-br from-[#147385]/5 via-[#147385]/10 to-white">
+      {isPlaying && <VantaBackground />}
+      <main className={`relative z-10 grid min-h-screen h-[100dvh] w-full grid-rows-[auto_auto_auto_1fr_auto_auto] overflow-hidden lg:flex lg:h-auto lg:flex-col lg:gap-8 lg:overflow-visible lg:p-10 ${isPlaying ? 'bg-transparent' : 'bg-gradient-to-br from-[#147385]/5 via-[#147385]/10 to-white'}`}>
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
         <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2">
           <div className="flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink lg:flex-row lg:items-center lg:gap-2">
-            <span className="font-bold text-sm truncate min-w-0 shrink">
+            <span className={isPlaying ? 'min-w-0 shrink truncate font-bold text-sm text-white drop-shadow-md' : 'font-bold text-sm truncate min-w-0 shrink'}>
               {state.session?.name ?? 'Player'}
             </span>
-            <span className="text-xs text-slate-500 whitespace-nowrap shrink-0">
+            <span className={isPlaying ? 'shrink-0 whitespace-nowrap text-xs text-white/80 drop-shadow-md' : 'text-xs text-slate-500 whitespace-nowrap shrink-0'}>
               Score: {state.score}/{state.questions.length}
             </span>
           </div>
           <div className="flex items-center gap-1 lg:gap-3 justify-end shrink-0">
-            <MuteToggle />
-            <ExitButton />
+            <MuteToggle variant={isPlaying ? 'dark' : 'light'} />
+            <ExitButton variant={isPlaying ? 'dark' : 'light'} />
             <button
               onClick={() => setShowRestartDialog(true)}
-              className="inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-red-200 text-red-600 transition-colors hover:bg-red-50"
+              className={isPlaying ? 'inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-white/20 text-white/80 transition-colors hover:bg-white/10' : 'inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-red-200 text-red-600 transition-colors hover:bg-red-50'}
               aria-label="Restart game"
             >
               <ArrowPathIcon className="h-3.5 w-3.5" />
@@ -104,7 +107,7 @@ function PuzzleGame() {
             />
             <Link
               href="/leaderboard"
-              className="inline-flex items-center justify-center w-7 h-7 lg:w-auto lg:h-auto lg:px-4 lg:py-2 bg-brand-main hover:bg-brand-hover text-white rounded-lg font-semibold shadow-md transition-all text-sm"
+              className={isPlaying ? 'inline-flex items-center justify-center w-7 h-7 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-lg border border-teal-300/40 bg-teal-400/20 font-semibold text-teal-100 text-sm shadow-md transition-all hover:bg-teal-400/30' : 'inline-flex items-center justify-center w-7 h-7 lg:w-auto lg:h-auto lg:px-4 lg:py-2 bg-brand-main hover:bg-brand-hover text-white rounded-lg font-semibold shadow-md transition-all text-sm'}
             >
               <TrophyIcon className="h-3.5 w-3.5 lg:hidden" />
               <span className="hidden lg:inline">Leaderboard</span>
@@ -113,7 +116,7 @@ function PuzzleGame() {
         </div>
 
         {/* COMPACT CATEGORIES (Mobile Only) */}
-        <div className="block lg:hidden w-full px-2 py-2 border-b border-slate-200 bg-slate-50 overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
+        <div className={isPlaying ? 'block lg:hidden w-full px-2 py-2 border-b border-white/15 bg-black/30 backdrop-blur-lg overflow-x-auto no-scrollbar shrink-0 min-h-[50px]' : 'block lg:hidden w-full px-2 py-2 border-b border-slate-200 bg-slate-50 overflow-x-auto no-scrollbar shrink-0 min-h-[50px]'}>
           <div className="flex items-center min-w-max scale-90 origin-left">
             <CategoryBadges/>
           </div>
@@ -121,9 +124,9 @@ function PuzzleGame() {
 
         {/* MOBILE SKIPPED NUMBER PAD (Mobile Only) */}
         {state.questions.some((q) => q.status === 'bypassed') && (
-          <div className="block lg:hidden w-full px-4 py-3 bg-slate-50 border-b border-slate-200 shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative">
+          <div className={isPlaying ? 'block lg:hidden w-full px-4 py-3 border-b border-white/15 bg-black/30 backdrop-blur-lg shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative' : 'block lg:hidden w-full px-4 py-3 bg-slate-50 border-b border-slate-200 shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative'}>
             <div className="flex items-center gap-3 min-w-max">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex-none">Skipped:</span>
+              <span className={isPlaying ? 'text-[11px] font-bold text-white/80 uppercase tracking-wider flex-none' : 'text-[11px] font-bold text-slate-500 uppercase tracking-wider flex-none'}>Skipped:</span>
               <div className="flex items-center gap-2">
                 {state.questions
                   .map((q, i) => ({ q, i }))
@@ -137,7 +140,7 @@ function PuzzleGame() {
                         }
                       }}
                       disabled={state.activeIndex !== null || state.isPaused}
-                      className="w-8 h-8 rounded bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold flex items-center justify-center shadow-sm active:scale-95 transition-transform shrink-0 disabled:opacity-50 disabled:cursor-default"
+                      className={isPlaying ? 'w-8 h-8 rounded bg-amber-400/20 border border-amber-300/60 text-amber-100 text-xs font-bold flex items-center justify-center shadow-sm active:scale-95 transition-transform shrink-0 disabled:opacity-50 disabled:cursor-default' : 'w-8 h-8 rounded bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold flex items-center justify-center shadow-sm active:scale-95 transition-transform shrink-0 disabled:opacity-50 disabled:cursor-default'}
                       aria-label={`Resume skipped question ${q.number}`}
                     >
                       {q.number}
@@ -149,7 +152,7 @@ function PuzzleGame() {
         )}
 
         {/* MOBILE TIMER */}
-        <div className="block lg:hidden w-full px-4 py-3 shrink-0 bg-white border-b border-slate-200 z-10 relative">
+        <div className={isPlaying ? 'block lg:hidden w-full px-4 py-3 shrink-0 border-b border-white/15 bg-black/30 backdrop-blur-lg z-10 relative' : 'block lg:hidden w-full px-4 py-3 shrink-0 bg-white border-b border-slate-200 z-10 relative'}>
           <MobileTimer />
         </div>
 
@@ -166,7 +169,7 @@ function PuzzleGame() {
           <div className="w-full h-full flex flex-col p-4 min-w-0 lg:p-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible">
             
             {/* THE WHITE CANVAS (Fixed on mobile, transparent on desktop) */}
-            <div className="w-full h-full bg-white rounded-xl shadow-sm flex flex-col overflow-hidden lg:bg-transparent lg:shadow-none lg:overflow-visible">
+            <div className={isPlaying ? 'w-full h-full bg-transparent rounded-xl shadow-sm flex flex-col overflow-hidden lg:bg-transparent lg:shadow-none lg:overflow-visible' : 'w-full h-full bg-white rounded-xl shadow-sm flex flex-col overflow-hidden lg:bg-transparent lg:shadow-none lg:overflow-visible'}>
               
               {/* THE SCROLLABLE INTERIOR */}
               {/* CRITICAL FIX: overflow-auto is now INSIDE the canvas. 

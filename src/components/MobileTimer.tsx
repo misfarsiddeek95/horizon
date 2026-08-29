@@ -5,6 +5,7 @@ import { usePuzzle } from '@/context/PuzzleContext';
 export default function MobileTimer() {
   const { state } = usePuzzle();
   const { activeIndex, questions, timerRemaining, isPaused } = state;
+  const isPlaying = state.phase === 'playing';
 
   const activeQ = activeIndex !== null ? questions[activeIndex] : null;
   const timerRatio = activeQ ? timerRemaining / activeQ.question.timeLimit : 1;
@@ -23,7 +24,7 @@ export default function MobileTimer() {
             ? "text-red-500 animate-pulse"
             : showHelp
             ? "text-amber-500"
-            : "text-content-primary"
+            : isPlaying ? "text-white" : "text-content-primary"
         }`}
       >
         <svg
@@ -44,7 +45,7 @@ export default function MobileTimer() {
           <span className="ml-1 text-xs font-medium text-amber-500">(Paused)</span>
         )}
       </div>
-      <div className="flex-1 h-1.5 overflow-hidden rounded-full bg-zinc-200">
+      <div className={isPlaying ? "flex-1 h-1.5 overflow-hidden rounded-full bg-white/20" : "flex-1 h-1.5 overflow-hidden rounded-full bg-zinc-200"}>
         <div
           className={`h-full rounded-full transition-all duration-1000 ${
             urgent ? "bg-red-500" : showHelp ? "bg-amber-400" : "bg-brand-main"

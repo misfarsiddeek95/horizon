@@ -12,6 +12,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
   const { state, dispatch } = usePuzzle();
   const { activeIndex, questions, timerRemaining, wordPlacements, gridCells } =
     state;
+  const isPlaying = state.phase === "playing";
 
   const activeQ = activeIndex !== null ? questions[activeIndex] : null;
   const placement = useMemo(() => {
@@ -47,11 +48,11 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
       lastRecord && (lastRecord.status === "failed" || lastRecord.status === "timeout");
 
     return (
-      <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4">
+      <div className={isPlaying ? "mb-4 rounded-2xl border border-white/20 bg-black/40 p-4 text-white shadow-2xl backdrop-blur-xl sm:p-6" : "rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4"}>
         {showReveal ? (
-          <div className="p-3 bg-red-50 border border-red-100 rounded-lg flex items-start gap-2">
-            <ExclamationCircleIcon className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-            <div className="text-sm text-red-800">
+          <div className={isPlaying ? "flex items-start gap-2 rounded-lg border border-red-400/50 bg-red-950/50 p-3" : "p-3 bg-red-50 border border-red-100 rounded-lg flex items-start gap-2"}>
+            <ExclamationCircleIcon className={isPlaying ? "mt-0.5 h-5 w-5 shrink-0 text-red-300" : "w-5 h-5 text-red-500 shrink-0 mt-0.5"} />
+            <div className={isPlaying ? "text-sm text-red-100" : "text-sm text-red-800"}>
               <p className="font-semibold mb-1">
                 {lastRecord.status === "timeout" ? "Time's Up!" : "Incorrect!"}
               </p>
@@ -66,7 +67,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
             </div>
           </div>
         ) : (
-          <p className="text-xl sm:text-2xl font-medium text-gray-500 text-center">
+          <p className={isPlaying ? "text-center text-xl font-medium text-white/70 sm:text-2xl" : "text-xl sm:text-2xl font-medium text-gray-500 text-center"}>
             Select a question to begin
           </p>
         )}
@@ -75,9 +76,9 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
   }
 
   return (
-    <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4">
+    <div className={isPlaying ? "mb-4 rounded-2xl border border-white/20 bg-black/40 p-4 text-white shadow-2xl backdrop-blur-xl sm:p-6" : "rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4"}>
       <div className="mb-3 flex items-center justify-between">
-        <span className="rounded-full bg-zinc-200 px-2.5 py-0.5 text-[11px] font-semibold text-zinc-600">
+        <span className={isPlaying ? "rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-white/80" : "rounded-full bg-zinc-200 px-2.5 py-0.5 text-[11px] font-semibold text-zinc-600"}>
           #{activeQ.number} &middot; {activeQ.question.category}
         </span>
 
@@ -87,7 +88,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
               ? "text-red-500 animate-pulse"
               : showHelp
               ? "text-amber-500"
-              : "text-content-primary"
+              : isPlaying ? "text-white" : "text-content-primary"
           }`}
         >
           <svg
@@ -110,7 +111,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
         </div>
       </div>
 
-      <div className="mb-2 h-1.5 overflow-hidden rounded-full bg-zinc-200">
+      <div className={isPlaying ? "mb-2 h-1.5 overflow-hidden rounded-full bg-white/20" : "mb-2 h-1.5 overflow-hidden rounded-full bg-zinc-200"}>
         <div
           className={`h-full rounded-full transition-all duration-1000 ${
             urgent ? "bg-red-500" : showHelp ? "bg-amber-400" : "bg-brand-main"
@@ -119,18 +120,18 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
         />
       </div>
 
-      <p className="mb-1 text-[11px] font-medium uppercase tracking-wider text-content-primary/40">
+      <p className={isPlaying ? "mb-1 text-[11px] font-medium uppercase tracking-wider text-white/60" : "mb-1 text-[11px] font-medium uppercase tracking-wider text-content-primary/40"}>
         {placement?.direction === "across" ? "Across" : "Down"}
       </p>
 
-      <p className="mb-4 text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
+      <p className={isPlaying ? "mb-4 text-xl font-bold leading-snug text-white sm:text-2xl md:text-3xl" : "mb-4 text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 leading-snug"}>
         {activeQ.question.clue}
       </p>
 
       {showHelp && (
         <button
           onClick={onHelp}
-          className="mb-3 w-full cursor-pointer rounded-ui-element bg-amber-100 px-3 py-2 text-xs font-semibold text-amber-700 transition-colors hover:bg-amber-200"
+          className={isPlaying ? "mb-3 w-full cursor-pointer rounded-ui-element border border-amber-300/60 bg-amber-950/70 px-3 py-2 text-xs font-semibold text-amber-100 transition-colors hover:bg-amber-900/70" : "mb-3 w-full cursor-pointer rounded-ui-element bg-amber-100 px-3 py-2 text-xs font-semibold text-amber-700 transition-colors hover:bg-amber-200"}
         >
           Need Help?
         </button>
@@ -140,7 +141,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
         <button
           onClick={handleBypass}
           disabled={state.isPaused}
-          className="flex-1 cursor-pointer rounded-ui-element border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className={isPlaying ? "flex-1 cursor-pointer rounded-ui-element border border-white/30 px-4 py-2.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40" : "flex-1 cursor-pointer rounded-ui-element border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"}
         >
           Skip for Now
         </button>

@@ -5,6 +5,7 @@ import { usePuzzle } from '@/context/PuzzleContext';
 export default function MobileClueBar() {
   const { state, dispatch } = usePuzzle();
   const { activeIndex, questions, wordPlacements, isPaused, phase, answerHistory } = state;
+  const isPlaying = state.phase === 'playing';
 
   const activeQ = activeIndex !== null ? questions[activeIndex] : null;
   const placement = activeQ
@@ -74,7 +75,7 @@ export default function MobileClueBar() {
   }
 
   return (
-    <div className="block lg:hidden w-full bg-brand-main text-white px-2 py-3 z-50 shadow-lg shrink-0">
+    <div className={isPlaying ? 'block lg:hidden z-50 w-full shrink-0 border-t border-white/15 bg-black/55 px-2 py-3 text-white shadow-lg backdrop-blur-xl' : 'block lg:hidden w-full bg-brand-main text-white px-2 py-3 z-50 shadow-lg shrink-0'}>
       <div className="flex items-center justify-between w-full max-w-md mx-auto">
         
         {/* Left SVG Arrow */}
@@ -93,7 +94,7 @@ export default function MobileClueBar() {
               <span className="text-[10px] bg-white/20 rounded-full px-2 py-0.5 mb-1 truncate max-w-full">
                 {activeClue.category || 'Category'}
               </span>
-              <span className="text-yellow-400 text-xs font-bold mb-1">
+              <span className={isPlaying ? 'mb-1 text-xs font-bold text-white/70' : 'text-yellow-400 text-xs font-bold mb-1'}>
                 {activeClue.number} · {activeClue.direction}
               </span>
               {/* CRITICAL: whitespace-normal allows full text wrapping */}

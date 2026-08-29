@@ -14,6 +14,7 @@ const CATEGORY_HEX: Record<string, string> = {
 
 export default function CategoryBadges() {
   const { state } = usePuzzle();
+  const isPlaying = state.phase === 'playing';
   const categories = getAllCategories();
 
   return (
@@ -29,7 +30,7 @@ export default function CategoryBadges() {
           return (
             <div
               key={cat}
-              className="inline-flex items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-md transition-all"
+              className={isPlaying ? "inline-flex items-center gap-2 rounded-full border-2 border-white/20 bg-black/35 px-4 py-1.5 text-xs font-semibold text-white shadow-2xl backdrop-blur-xl transition-all" : "inline-flex items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-md transition-all"}
               style={{
                 backgroundColor: `${hex}15`,
                 borderColor: hex,
@@ -71,7 +72,7 @@ export default function CategoryBadges() {
         return (
           <div
             key={cat}
-            className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-4 py-1.5 text-xs font-semibold shadow-sm"
+            className={isPlaying ? "inline-flex items-center gap-2 rounded-full border-2 border-white/20 bg-black/35 px-4 py-1.5 text-xs font-semibold text-white shadow-2xl backdrop-blur-xl" : "inline-flex items-center gap-2 rounded-full border-2 bg-white px-4 py-1.5 text-xs font-semibold shadow-sm"}
             style={{ borderColor: hex }}
           >
             <div
@@ -83,8 +84,8 @@ export default function CategoryBadges() {
               )}
               <TrophyIcon className={`h-4 w-4 ${iconClasses}`} style={{ color: hex }} />
             </div>
-            <span className="text-gray-700">{cat}</span>
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500">
+            <span className={isPlaying ? "text-white" : "text-gray-700"}>{cat}</span>
+            <span className={isPlaying ? "inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-[10px] font-bold text-white/70" : "inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500"}>
               {completedCount}
             </span>
           </div>
