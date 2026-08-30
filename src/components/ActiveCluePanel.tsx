@@ -113,7 +113,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
       <div className="mb-2 h-1.5 overflow-hidden rounded-full bg-white/20">
         <div
           className={`h-full rounded-full transition-all duration-1000 ${
-            urgent ? "bg-red-500" : showHelp ? "bg-amber-400" : "bg-brand-main"
+            urgent ? "bg-red-500" : showHelp ? "bg-amber-400" : "bg-cyan-400"
           }`}
           style={{ width: `${Math.max(0, timerRatio * 100)}%` }}
         />
