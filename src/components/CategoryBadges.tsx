@@ -111,16 +111,32 @@ export default function CategoryBadges() {
 
             {/* ── Mobile Pill UI ── */}
             <div
-              className="relative flex md:hidden items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-lg overflow-hidden"
-              style={{ borderColor: hex }}
+              className="relative flex md:hidden items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-lg overflow-hidden transition-all duration-500"
+              style={{
+                borderColor: hex,
+                boxShadow: earned ? `0 0 12px ${hex}, inset 0 0 8px ${hex}` : 'none',
+              }}
             >
+              <div className="absolute inset-0 -z-10 overflow-hidden rounded-full">
+                <div
+                  className="absolute bottom-0 left-0 w-full transition-all duration-700 ease-out"
+                  style={{ height: `${progress}%`, backgroundColor: hex, opacity: earned ? 0.6 : 0.25 }}
+                />
+                {progress === 50 && (
+                  <div
+                    className="absolute left-1/2 w-[200%] h-2.5 animate-wave rounded-[40%]"
+                    style={{
+                      bottom: `calc(${progress}% - 5px)`,
+                      backgroundColor: hex,
+                      opacity: 0.25,
+                      transform: 'translateX(-50%)',
+                    }}
+                  />
+                )}
+              </div>
               <div
-                className="absolute inset-0 -z-10 rounded-full transition-all duration-500"
-                style={{ width: `${progress}%`, backgroundColor: hex, opacity: 0.2 }}
-              />
-              <div
-                className="h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 shrink-0"
-                style={{ borderColor: hex }}
+                className="h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 bg-white"
+                style={{ borderColor: hex, borderWidth: 2, borderStyle: 'solid' }}
               >
                 <div className="[&_path]:!stroke-current" style={{ color: hex }}>
                   {animData ? (
@@ -130,7 +146,9 @@ export default function CategoryBadges() {
                   )}
                 </div>
               </div>
-              <span className="!text-white !font-bold !drop-shadow-md whitespace-nowrap">{cat}</span>
+              <span className="!text-white font-bold !drop-shadow-md whitespace-nowrap transition-all duration-300">
+                {cat}{earned && ' Expert'}
+              </span>
               <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-bold !text-white !drop-shadow-md shrink-0">
                 {completedCount}
               </span>
