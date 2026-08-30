@@ -43,7 +43,7 @@ export default function Onboarding({ onStart }: OnboardingProps) {
     <div className="flex min-h-screen flex-col items-center justify-center bg-brand-main px-4 py-8">
       <form
         onSubmit={handleSubmit}
-        className="mx-auto w-11/12 max-w-md space-y-6 rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-md md:p-10"
+        className="mx-auto w-11/12 max-w-md space-y-6 glass-puzzle rounded-2xl p-6 md:p-10"
       >
         <div className="space-y-3 text-center">
           <h1 className="font-heading text-3xl font-bold leading-tight text-white sm:text-4xl">

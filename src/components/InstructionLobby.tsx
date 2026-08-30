@@ -30,8 +30,8 @@ function LobbyCard({
 }: LobbyCardProps) {
   return (
     <section
-      className={`rounded-ui-card border bg-surface-glass p-5 shadow-2xl backdrop-blur-lg sm:p-6 ${
-        highlight ? "border-accent-main/40" : "border-white/20"
+      className={`glass-puzzle rounded-2xl p-5 sm:p-6 ${
+        highlight ? "border-accent-main/40" : "border-white/50"
       } ${wide ? "md:col-span-2" : ""}`}
     >
       <div className="mb-3 flex items-center gap-3">
