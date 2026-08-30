@@ -9,12 +9,12 @@ const STATUS_CONFIG: Record<
   QuestionStatus,
   { bg: string; icon: string; label: string }
 > = {
-  pending: { bg: 'bg-white border-zinc-200', icon: '○', label: 'Pending' },
-  active: { bg: 'bg-blue-50 border-blue-400 ring-2 ring-blue-400', icon: '◉', label: 'Active' },
-  completed: { bg: 'bg-green-50 border-green-300', icon: '✓', label: 'Completed' },
-  failed: { bg: 'bg-red-50 border-red-300', icon: '✕', label: 'Failed' },
-  timeout: { bg: 'bg-zinc-100 border-zinc-300', icon: '⌛', label: 'Timeout' },
-  bypassed: { bg: 'bg-amber-50 border-amber-300', icon: '⏭', label: 'Skipped' },
+  pending: { bg: 'glass-puzzle', icon: '○', label: 'Pending' },
+  active: { bg: 'glass-puzzle ring-2 ring-blue-500/50', icon: '◉', label: 'Active' },
+  completed: { bg: 'glass-puzzle ring-2 ring-green-500/50', icon: '✓', label: 'Completed' },
+  failed: { bg: 'glass-puzzle ring-2 ring-red-500/50', icon: '✕', label: 'Failed' },
+  timeout: { bg: 'glass-puzzle opacity-70', icon: '⌛', label: 'Timeout' },
+  bypassed: { bg: 'glass-puzzle ring-2 ring-amber-500/50', icon: '⏭', label: 'Skipped' },
 };
 
 export default function QuestionDeck() {
@@ -51,11 +51,11 @@ export default function QuestionDeck() {
             key={qs.question.id}
             onClick={() => handleSelect(i)}
             disabled={!canSelect}
-            className={`min-w-0 flex flex-col gap-1.5 rounded-ui-element border p-4 sm:p-6 text-left text-xs shadow-sm transition-all ${
+            className={`min-w-0 flex flex-col gap-1.5 rounded-2xl border border-white/50 p-4 sm:p-6 text-left text-xs shadow-sm transition-all duration-300 ${
               cfg.bg
             } ${
               canSelect
-                ? 'cursor-pointer hover:shadow-md hover:-translate-y-0.5'
+                ? 'cursor-pointer hover:bg-white/50 hover:shadow-2xl hover:scale-[1.01]'
                 : 'cursor-default'
             }`}
           >
@@ -81,13 +81,13 @@ export default function QuestionDeck() {
             </div>
 
             {(qs.status === 'failed' || qs.status === 'timeout') && (
-              <div className="mt-3 inline-block px-2.5 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded border border-slate-200">
+              <div className="mt-3 inline-block px-2.5 py-1 bg-white/20 text-slate-700 text-xs font-medium rounded border border-white/30">
                 Correct Answer: <span className="font-bold text-slate-800 uppercase">{qs.question.word}</span>
               </div>
             )}
 
             {qs.status === 'bypassed' && qs.savedTimeRemaining != null && (
-              <div className="mt-3 inline-block px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-medium rounded border border-amber-200">
+              <div className="mt-3 inline-block px-2.5 py-1 bg-white/20 text-amber-700 text-xs font-medium rounded border border-white/30">
                 Skipped ({qs.savedTimeRemaining}s left)
               </div>
             )}
