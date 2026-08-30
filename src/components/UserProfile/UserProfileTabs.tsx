@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import { Lottie } from "lottie-react";
 import type { TabId } from "@/data/userProfiles";
 
@@ -30,6 +30,22 @@ export default function UserProfileTabsV2({
   vertical = false,
 }: UserProfileTabsV2Props) {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = useState({ left: false, right: true });
+
+  const handleScroll = useCallback(() => {
+    if (tabsRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
+      setCanScroll({
+        left: scrollLeft > 0,
+        right: Math.ceil(scrollLeft + clientWidth) < scrollWidth,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    handleScroll();
+  }, [handleScroll]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -75,10 +91,12 @@ export default function UserProfileTabsV2({
     []
   );
 
-  return (
+  const tabList = (
     <div
+      ref={vertical ? undefined : tabsRef}
       role="tablist"
       aria-label="Stakeholder profiles"
+      onScroll={vertical ? undefined : handleScroll}
       className={`flex overflow-y-auto no-scrollbar snap-mandatory gap-1 md:gap-2 ${
         vertical
           ? "flex-col items-center snap-y py-4"
@@ -148,6 +166,42 @@ export default function UserProfileTabsV2({
           </button>
         );
       })}
+    </div>
+  );
+
+  if (vertical) {
+    return tabList;
+  }
+
+  return (
+    <div className="relative md:hidden">
+      {tabList}
+
+      {canScroll.left && (
+        <button
+          type="button"
+          onClick={() => tabsRef.current?.scrollBy({ left: -150, behavior: "smooth" })}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-slate-900/40 backdrop-blur-md border border-white/20 rounded-full shadow-lg text-white cursor-pointer"
+          aria-label="Scroll left"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+      )}
+
+      {canScroll.right && (
+        <button
+          type="button"
+          onClick={() => tabsRef.current?.scrollBy({ left: 150, behavior: "smooth" })}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-slate-900/40 backdrop-blur-md border border-white/20 rounded-full shadow-lg text-white cursor-pointer"
+          aria-label="Scroll right"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
