@@ -68,15 +68,29 @@ function PuzzleGame() {
 
   return (
     <>
-      <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-gradient-to-br from-[#147385]/5 via-[#147385]/10 to-white">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="fixed inset-0 w-full h-full object-cover pointer-events-none"
+        src="/videos/puzzle_background.mp4"
+      />
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 w-full h-full pointer-events-none bg-[#10243e]/70"
+      />
+      <main className="relative z-10 grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-transparent">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
-        <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2">
+        <div className="relative z-[100] shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2">
           <div className="flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink lg:flex-row lg:items-center lg:gap-2">
-            <span className="font-bold text-sm truncate min-w-0 shrink">
+            <span className="font-bold text-sm truncate min-w-0 shrink text-white">
               {state.session?.name ?? 'Player'}
             </span>
-            <span className="text-xs text-slate-500 whitespace-nowrap shrink-0">
+            <span className="text-xs text-slate-100 whitespace-nowrap shrink-0">
               Score: {state.score}/{state.questions.length}
             </span>
           </div>
@@ -85,7 +99,7 @@ function PuzzleGame() {
             <ExitButton />
             <button
               onClick={() => setShowRestartDialog(true)}
-              className="inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element border border-red-200 text-red-600 transition-colors hover:bg-red-50"
+              className="inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element !bg-amber-500 !text-white hover:!bg-amber-600 !border-none !shadow-lg transition-colors"
               aria-label="Restart game"
             >
               <ArrowPathIcon className="h-3.5 w-3.5" />
@@ -104,7 +118,7 @@ function PuzzleGame() {
             />
             <Link
               href="/leaderboard"
-              className="inline-flex items-center justify-center w-7 h-7 lg:w-auto lg:h-auto lg:px-4 lg:py-2 bg-brand-main hover:bg-brand-hover text-white rounded-lg font-semibold shadow-md transition-all text-sm"
+              className="inline-flex items-center justify-center w-7 h-7 lg:w-auto lg:h-auto lg:px-4 lg:py-2 !bg-brand-main hover:!bg-brand-hover !text-white !border-none !shadow-lg rounded-lg font-semibold transition-all text-sm"
             >
               <TrophyIcon className="h-3.5 w-3.5 lg:hidden" />
               <span className="hidden lg:inline">Leaderboard</span>
@@ -113,7 +127,7 @@ function PuzzleGame() {
         </div>
 
         {/* COMPACT CATEGORIES (Mobile Only) */}
-        <div className="block lg:hidden w-full px-2 py-2 border-b border-slate-200 bg-slate-50 overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
+        <div className="block lg:hidden w-full px-2 py-2 border-b border-white/20 bg-white/10 backdrop-blur-md overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
           <div className="flex items-center min-w-max scale-90 origin-left">
             <CategoryBadges/>
           </div>
@@ -121,9 +135,9 @@ function PuzzleGame() {
 
         {/* MOBILE SKIPPED NUMBER PAD (Mobile Only) */}
         {state.questions.some((q) => q.status === 'bypassed') && (
-          <div className="block lg:hidden w-full px-4 py-3 bg-slate-50 border-b border-slate-200 shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative">
+          <div className="block lg:hidden w-full px-4 py-3 bg-white/10 backdrop-blur-md border-b border-white/20 shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative">
             <div className="flex items-center gap-3 min-w-max">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex-none">Skipped:</span>
+              <span className="text-[11px] font-bold text-white/70 uppercase tracking-wider flex-none">Skipped:</span>
               <div className="flex items-center gap-2">
                 {state.questions
                   .map((q, i) => ({ q, i }))
@@ -149,7 +163,7 @@ function PuzzleGame() {
         )}
 
         {/* MOBILE TIMER */}
-        <div className="block lg:hidden w-full px-4 py-3 shrink-0 bg-white border-b border-slate-200 z-10 relative">
+        <div className="block lg:hidden w-full px-4 py-3 shrink-0 bg-white/10 backdrop-blur-md border-b border-white/20 z-10 relative">
           <MobileTimer />
         </div>
 
@@ -166,7 +180,7 @@ function PuzzleGame() {
           <div className="w-full h-full flex flex-col p-4 min-w-0 lg:p-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible">
             
             {/* THE WHITE CANVAS (Fixed on mobile, transparent on desktop) */}
-            <div className="w-full h-full bg-white rounded-xl shadow-sm flex flex-col overflow-hidden lg:bg-transparent lg:shadow-none lg:overflow-visible">
+            <div className="w-full h-full flex flex-col overflow-hidden lg:overflow-visible">
               
               {/* THE SCROLLABLE INTERIOR */}
               {/* CRITICAL FIX: overflow-auto is now INSIDE the canvas. 

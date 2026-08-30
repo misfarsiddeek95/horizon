@@ -47,7 +47,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
       lastRecord && (lastRecord.status === "failed" || lastRecord.status === "timeout");
 
     return (
-      <div className="glass-puzzle rounded-2xl p-4 sm:p-6 mb-4">
+      <div className="rounded-2xl p-4 sm:p-6 mb-4 bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
         {showReveal ? (
           <div className="p-3 bg-red-50 border border-red-100 rounded-lg flex items-start gap-2">
             <ExclamationCircleIcon className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
@@ -66,7 +66,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
             </div>
           </div>
         ) : (
-          <p className="text-xl sm:text-2xl font-medium text-gray-500 text-center">
+          <p className="text-xl sm:text-2xl font-medium !text-white !font-bold !drop-shadow-md text-center">
             Select a question to begin
           </p>
         )}
@@ -75,9 +75,9 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
   }
 
   return (
-    <div className="glass-puzzle rounded-2xl p-4 sm:p-6 mb-4">
+    <div className="rounded-2xl p-4 sm:p-6 mb-4 bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
       <div className="mb-3 flex items-center justify-between">
-        <span className="rounded-full bg-zinc-200 px-2.5 py-0.5 text-[11px] font-semibold text-zinc-600">
+        <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-[11px] font-semibold text-white">
           #{activeQ.number} &middot; {activeQ.question.category}
         </span>
 
@@ -87,7 +87,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
               ? "text-red-500 animate-pulse"
               : showHelp
               ? "text-amber-500"
-              : "text-content-primary"
+              : "text-white"
           }`}
         >
           <svg
@@ -119,11 +119,11 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
         />
       </div>
 
-      <p className="mb-1 text-[11px] font-medium uppercase tracking-wider text-content-primary/40">
+      <p className="mb-1 text-[11px] font-medium uppercase tracking-wider text-white/60">
         {placement?.direction === "across" ? "Across" : "Down"}
       </p>
 
-      <p className="mb-4 text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
+      <p className="mb-4 text-xl sm:text-2xl md:text-3xl font-bold !text-white !font-bold leading-snug">
         {activeQ.question.clue}
       </p>
 
@@ -140,7 +140,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
         <button
           onClick={handleBypass}
           disabled={state.isPaused}
-          className="flex-1 cursor-pointer rounded-ui-element border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex-1 cursor-pointer rounded-ui-element border border-white/30 px-4 py-2.5 text-sm font-medium text-slate-100 transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Skip for Now
         </button>

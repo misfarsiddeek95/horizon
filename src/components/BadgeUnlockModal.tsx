@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { CheckBadgeIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import type { BadgeDefinition } from "@/types";
@@ -93,7 +94,7 @@ function ConfettiBurst() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-[60]"
+      className="pointer-events-none fixed inset-0 z-[99999]"
       aria-hidden="true"
     />
   );
@@ -124,9 +125,9 @@ export default function BadgeUnlockModal({
 
   const badgeColor = badge.color ?? "#f59e0b";
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex overflow-y-auto bg-black/70 backdrop-blur-sm"
+      className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -136,7 +137,7 @@ export default function BadgeUnlockModal({
     >
       <ConfettiBurst />
       <div
-        className={`relative m-auto flex w-full max-w-sm flex-col items-center gap-4 rounded-ui-card bg-surface-default p-8 text-center shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+        className={`relative z-[100000] m-auto flex w-full max-w-sm flex-col items-center gap-4 rounded-ui-card bg-surface-default p-8 text-center shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
           mounted ? "scale-100" : "scale-0"
         }`}
       >
@@ -178,6 +179,7 @@ export default function BadgeUnlockModal({
           {badge.description}
         </p>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

@@ -16,7 +16,7 @@ export default function ExitButton({ variant = "light" }: ExitButtonProps) {
   const styleClass =
     variant === "dark"
       ? "border-white/20 text-white/80 hover:bg-white/10"
-      : "border-zinc-300 text-gray-500 hover:bg-zinc-100";
+      : "!bg-red-600 !text-white hover:!bg-red-700 !border-none !shadow-lg";
 
   return (
     <>

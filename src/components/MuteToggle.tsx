@@ -14,7 +14,7 @@ export default function MuteToggle({ variant = "light" }: MuteToggleProps) {
   const styleClass =
     variant === "dark"
       ? "border-white/20 text-white hover:bg-white/10"
-      : "border-zinc-300 text-content-primary hover:bg-zinc-100";
+      : "!bg-blue-600 !text-white hover:!bg-blue-700 !border-none !shadow-lg";
 
   return (
     <button

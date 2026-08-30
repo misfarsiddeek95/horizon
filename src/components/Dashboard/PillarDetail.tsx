@@ -11,24 +11,24 @@ import AnimatedRail from "@/components/ui/AnimatedRail";
 
 const PILLAR_IMAGES: Record<PillarId, { first: string; second: string }> = {
   excite: {
-    first: "/images/innerpage/dashboard/Excite/excite_01.png",
-    second: "/images/innerpage/dashboard/Excite/excite_02.png",
+    first: "/images/innerpage/dashboard/Excite/excite_01.jpg",
+    second: "/images/innerpage/dashboard/Excite/excite_02.jpg",
   },
   innovate: {
-    first: "/images/innerpage/dashboard/Innovate/innovate_01.png",
-    second: "/images/innerpage/dashboard/Innovate/innovate_02.png",
+    first: "/images/innerpage/dashboard/Innovate/innovate_01.jpg",
+    second: "/images/innerpage/dashboard/Innovate/innovate_02.jpg",
   },
   inspire: {
-    first: "/images/innerpage/dashboard/Inspire/inspire_01.png",
-    second: "/images/innerpage/dashboard/Inspire/inspire_02.png",
+    first: "/images/innerpage/dashboard/Inspire/inspire_01.jpg",
+    second: "/images/innerpage/dashboard/Inspire/inspire_02.jpg",
   },
   restore: {
-    first: "/images/innerpage/dashboard/Restore/restore_01.png",
-    second: "/images/innerpage/dashboard/Restore/restore_02.png",
+    first: "/images/innerpage/dashboard/Restore/restore_01.jpg",
+    second: "/images/innerpage/dashboard/Restore/restore_02.jpg",
   },
   uplift: {
-    first: "/images/innerpage/dashboard/Uplift/uplift_01.png",
-    second: "/images/innerpage/dashboard/Uplift/uplift_02.png",
+    first: "/images/innerpage/dashboard/Uplift/uplift_01.jpg",
+    second: "/images/innerpage/dashboard/Uplift/uplift_02.jpg",
   },
 };
 

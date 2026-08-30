@@ -1,5 +1,6 @@
 'use client';
 
+import { createPortal } from 'react-dom';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 
 interface ConfirmDialogProps {
@@ -23,9 +24,9 @@ export default function ConfirmDialog({
 }: ConfirmDialogProps) {
   if (!open) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex overflow-y-auto bg-black/50 p-4">
-      <div className="m-auto w-full max-w-sm space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
+  return createPortal(
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className="relative z-[100000] m-auto w-full max-w-sm space-y-5 rounded-ui-card bg-surface-default p-6 shadow-xl">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
             <ExclamationTriangleIcon className="h-5 w-5 text-red-600" />
@@ -54,6 +55,7 @@ export default function ConfirmDialog({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

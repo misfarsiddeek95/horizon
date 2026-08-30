@@ -35,7 +35,7 @@ export default function MobileActionStrip({ onSubmit, onHelp }: MobileActionStri
   }
 
   return (
-    <div className="block lg:hidden w-full bg-white/40 backdrop-blur-md border-t border-white/50 px-4 pt-4 pb-8 z-50">
+    <div className="block lg:hidden w-full bg-white/10 backdrop-blur-md border-t border-white/20 px-4 pt-4 pb-8 z-50">
       <div className="flex gap-2 w-full">
         {showHelp && (
           <button
@@ -48,7 +48,7 @@ export default function MobileActionStrip({ onSubmit, onHelp }: MobileActionStri
         <button
           onClick={handleBypass}
           disabled={!canBypass}
-          className="cursor-pointer rounded-ui-element border border-slate-300 px-4 py-3 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40 whitespace-nowrap"
+          className="cursor-pointer rounded-ui-element border border-white/30 px-4 py-3 text-sm font-medium text-slate-100 transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40 whitespace-nowrap"
         >
           Skip
         </button>

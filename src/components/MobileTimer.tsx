@@ -23,7 +23,7 @@ export default function MobileTimer() {
             ? "text-red-500 animate-pulse"
             : showHelp
             ? "text-amber-500"
-            : "text-content-primary"
+            : "text-white"
         }`}
       >
         <svg
@@ -44,7 +44,7 @@ export default function MobileTimer() {
           <span className="ml-1 text-xs font-medium text-amber-500">(Paused)</span>
         )}
       </div>
-      <div className="flex-1 h-1.5 overflow-hidden rounded-full bg-zinc-200">
+      <div className="flex-1 h-1.5 overflow-hidden rounded-full bg-white/20">
         <div
           className={`h-full rounded-full transition-all duration-1000 ${
             urgent ? "bg-red-500" : showHelp ? "bg-amber-400" : "bg-brand-main"

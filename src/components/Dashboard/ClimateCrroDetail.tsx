@@ -15,10 +15,10 @@ const RESILIENCE_ANALYSIS_URL = `${CLIMATE_PDF_BASE}/AR Resilience analysis.pdf`
 const CRRO_PAGE: Record<number, number> = { 1: 73, 2: 77, 3: 80, 4: 84 };
 
 const CRRO_IMAGES: Record<CrroId, string> = {
-  1: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_1.png",
-  2: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_2.png",
-  3: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_3.png",
-  4: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_4.png",
+  1: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_1.jpg",
+  2: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_2.jpg",
+  3: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_3.jpg",
+  4: "/images/innerpage/dashboard/S1 & S2 Climate Risk & Opportunity Outlook/crro_4.jpg",
 };
 
 const TIME_HORIZONS = [

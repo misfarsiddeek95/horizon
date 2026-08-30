@@ -29,11 +29,10 @@ export default function CategoryBadges() {
           return (
             <div
               key={cat}
-              className="inline-flex items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-md transition-all"
+              className="inline-flex items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-md transition-all !text-white !font-bold !drop-shadow-md"
               style={{
                 backgroundColor: `${hex}15`,
                 borderColor: hex,
-                color: hex,
                 boxShadow: `0 4px 12px ${hex}30`,
               }}
             >
@@ -55,8 +54,8 @@ export default function CategoryBadges() {
         let showHalfFill: boolean;
 
         if (completedCount === 0) {
-          wrapperClasses = `bg-transparent border-2 text-gray-400`;
-          iconClasses = `border-2 border-current rounded-full text-gray-300`;
+          wrapperClasses = `bg-transparent border-2 text-white/70`;
+          iconClasses = `border-2 border-current rounded-full text-white/60`;
           showHalfFill = false;
         } else if (completedCount < required) {
           wrapperClasses = `relative overflow-hidden bg-transparent border-2 ${s.base}`;
@@ -71,7 +70,7 @@ export default function CategoryBadges() {
         return (
           <div
             key={cat}
-            className="inline-flex items-center gap-2 rounded-full border-2 bg-white/30 backdrop-blur-md px-4 py-1.5 text-xs font-semibold shadow-sm"
+            className="inline-flex items-center gap-2 rounded-full border-2 bg-white/10 backdrop-blur-md px-4 py-1.5 text-xs font-semibold shadow-lg"
             style={{ borderColor: hex }}
           >
             <div
@@ -83,8 +82,8 @@ export default function CategoryBadges() {
               )}
               <TrophyIcon className={`h-4 w-4 ${iconClasses}`} style={{ color: hex }} />
             </div>
-            <span className="text-gray-700">{cat}</span>
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500">
+            <span className="!text-white !font-bold !drop-shadow-md">{cat}</span>
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-bold !text-white !drop-shadow-md">
               {completedCount}
             </span>
           </div>

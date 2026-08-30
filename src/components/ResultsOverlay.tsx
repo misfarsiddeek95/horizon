@@ -1,5 +1,6 @@
 'use client';
 
+import { createPortal } from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { CONFIG, getAllCategories } from '@/data/config';
@@ -19,9 +20,9 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
   const earnedCount = CATEGORY_ORDER.filter((c) => state.earnedBadges?.[c]).length;
   const correctCount = questions.filter((q) => q.status === 'completed').length;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-lg max-h-[90vh] rounded-2xl glass-puzzle flex flex-col overflow-hidden">
+  return createPortal(
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className="relative z-[100000] w-full max-w-lg max-h-[90vh] rounded-2xl glass-puzzle flex flex-col overflow-hidden">
 
         {/* PINNED HEADER */}
         <div className="shrink-0 p-6 pb-2 text-center relative">
@@ -91,6 +92,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

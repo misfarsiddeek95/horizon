@@ -1,5 +1,6 @@
 'use client';
 
+import { createPortal } from 'react-dom';
 import { useState, useEffect, useMemo } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import type { Question } from '@/types';
@@ -53,13 +54,13 @@ export default function AIChatModal({ isOpen, onClose, activeQuestion }: AIChatM
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeQuestion]);
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 backdrop-blur-sm sm:items-center"
+      className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md bg-white rounded-t-2xl shadow-2xl sm:rounded-2xl flex flex-col max-h-[80vh] sm:mt-0"
+        className="relative z-[100000] w-full max-w-md bg-white rounded-t-2xl shadow-2xl sm:rounded-2xl flex flex-col max-h-[80vh] sm:mt-0"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-4 py-3 bg-teal-600 rounded-t-2xl sm:rounded-t-2xl shrink-0">
@@ -99,6 +100,7 @@ export default function AIChatModal({ isOpen, onClose, activeQuestion }: AIChatM
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
