@@ -145,7 +145,7 @@ export default function InteractiveLeaderboard({
     const isCurrentUser = player.email === currentUserEmail;
 
     let rowClasses =
-      "w-full min-w-0 flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-[inset_0_0_15px_rgba(255,255,255,0.15)]" +
+      "w-full min-w-0 flex items-center justify-between p-4 !bg-white/5 hover:!bg-white/15 !border !border-white/10 !rounded-xl !transition-all !duration-300" +
       (isCurrentUser ? " cursor-pointer" : " cursor-default");
     if (isSelected) {
       rowClasses += " ring-2 ring-white/40";
@@ -165,13 +165,13 @@ export default function InteractiveLeaderboard({
         }
       >
         <div className="flex items-center gap-4 min-w-0">
-          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 font-bold text-white/90 border border-white/20">
+          <span className="flex items-center justify-center w-8 h-8 rounded-full !bg-white/10 !border !border-white/20 font-bold !text-slate-100">
             {rank}
           </span>
-          <span className="min-w-0 flex-1 truncate text-white/85">{player.name}</span>
+          <span className="min-w-0 flex-1 truncate !text-slate-100 !font-medium !drop-shadow-sm">{player.name}</span>
         </div>
         <div className="flex items-center gap-3 flex-shrink-0">
-          <span className="text-white">{player.score} pts</span>
+          <span className="!text-slate-100 !font-medium !drop-shadow-sm">{player.score} pts</span>
         </div>
       </div>
     );
@@ -226,7 +226,7 @@ export default function InteractiveLeaderboard({
                     />
                   )}
                   <div
-                    className={`absolute inset-[4px] rounded-full z-10 flex items-center justify-center font-bold text-white select-none bg-brand-main ${podium.avatarText}`}
+                    className={`absolute inset-[4px] rounded-full z-10 flex items-center justify-center font-bold !text-white select-none bg-brand-main ${podium.avatarText}`}
                   >
                     {initials(player.name)}
                   </div>
@@ -240,11 +240,11 @@ export default function InteractiveLeaderboard({
                   </span>
                 )}
               </div>
-              <span className="mt-4 block w-28 min-h-10 md:min-h-12 whitespace-normal break-words text-center font-bold tracking-wide text-xs sm:text-sm md:text-base text-white/85">
+              <span className="mt-4 block w-28 min-h-10 md:min-h-12 whitespace-normal break-words text-center font-bold tracking-wide text-xs sm:text-sm md:text-base !text-white !drop-shadow-md">
                 {player.name}
               </span>
               <span
-                className={`mt-1 text-base md:text-lg font-extrabold ${podium.scoreClass}`}
+                className={`mt-1 text-base md:text-lg font-extrabold !drop-shadow-md ${podium.scoreClass}`}
               >
                 {player.score} pts
               </span>
@@ -259,7 +259,7 @@ export default function InteractiveLeaderboard({
     <>
       <div className="flex flex-col gap-3 w-full max-w-full overflow-x-hidden">
         {sortedPlayers.length === 0 && (
-          <p className="text-center text-white/60 py-8">
+          <p className="text-center !text-slate-100 !drop-shadow-sm py-8">
             No scores yet. Play a game to appear here!
           </p>
         )}
@@ -279,32 +279,32 @@ export default function InteractiveLeaderboard({
           onClick={handleClose}
         >
           <div
-            className="relative w-full max-w-lg max-h-[90vh] rounded-2xl bg-white shadow-xl flex flex-col overflow-hidden"
+            className="relative w-full max-w-lg max-h-[90vh] rounded-2xl !bg-white/10 !backdrop-blur-xl !border !border-white/20 !shadow-2xl flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
 
             {/* PINNED HEADER */}
-            <div className="shrink-0 p-6 pb-4 text-center relative border-b border-slate-100">
+            <div className="shrink-0 p-6 pb-4 text-center relative !border-b !border-white/10">
               <button
                 onClick={handleClose}
-                className="absolute top-4 right-4 cursor-pointer rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+                className="absolute top-4 right-4 cursor-pointer rounded-full p-1 !text-white/60 hover:!bg-white/10 hover:!text-white !transition-colors"
                 aria-label="Close"
               >
                 <XMarkIcon className="h-5 w-5" />
               </button>
-              <h2 className="font-heading text-xl font-bold text-content-primary">
+              <h2 className="font-heading text-xl font-bold !text-white !drop-shadow-md">
                 {selectedPlayer.name}
               </h2>
-              <p className="mt-1 text-3xl font-bold text-brand-main">
+              <p className="mt-1 text-3xl font-bold text-brand-main !drop-shadow-md">
                 {selectedPlayer.score} pts
               </p>
               <div className="mt-4">
-                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-content-primary/40">
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider !text-white/40">
                   Certifications Earned
                 </h3>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {ALL_CATEGORIES.filter((c) => selectedPlayer.earnedBadges[c]).length === 0 ? (
-                    <p className="text-sm text-content-primary/50">No certifications earned</p>
+                    <p className="text-sm !text-white/50">No certifications earned</p>
                   ) : (
                     ALL_CATEGORIES.filter((c) => selectedPlayer.earnedBadges[c]).map((cat) => (
                       <span
@@ -322,24 +322,24 @@ export default function InteractiveLeaderboard({
 
             {/* SCROLLABLE BODY */}
             <div className="flex-1 overflow-y-auto p-6">
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-content-primary/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider !text-white/40">
                 Score Breakdown
               </h3>
               {selectedPlayer.answerHistory.length === 0 ? (
-                <p className="text-sm text-content-primary/50">No breakdown data available</p>
+                <p className="text-sm !text-white/50">No breakdown data available</p>
               ) : (
                 <div className="space-y-2">
                   {selectedPlayer.answerHistory.map((record, idx) => (
                     <div
                       key={record.questionId}
-                      className={`rounded-md bg-zinc-50 p-3 text-xs ${
+                      className={`rounded-md !bg-white/5 !border !border-white/10 p-3 text-xs ${
                         record.status === "failed" || record.status === "timeout"
                           ? "opacity-50"
                           : ""
                       }`}
                     >
                       <div className="mb-1 flex items-center justify-between">
-                        <span className="font-semibold text-content-primary/60">
+                        <span className="font-semibold !text-white/60">
                           #{idx + 1}
                         </span>
                         <span
@@ -354,10 +354,10 @@ export default function InteractiveLeaderboard({
                           {record.status}
                         </span>
                       </div>
-                      <p className="mb-1 font-medium text-content-primary truncate">
+                      <p className="mb-1 font-medium !text-slate-100 truncate">
                         {record.clue}
                       </p>
-                      <p className="text-content-primary/60">
+                      <p className="!text-white/60">
                         <span className="font-mono">{record.basePoints}</span>{" "}
                         (Base)
                         {record.status === "completed" && (
@@ -376,7 +376,7 @@ export default function InteractiveLeaderboard({
                           </>
                         )}
                         {" = "}
-                        <span className="font-mono font-bold text-content-primary">
+                        <span className="font-mono font-bold !text-white">
                           {record.totalPointsEarned}
                         </span>{" "}
                         pts
@@ -388,8 +388,8 @@ export default function InteractiveLeaderboard({
             </div>
 
             {/* PINNED FOOTER */}
-            <div className="shrink-0 p-6 pt-4 bg-slate-50 border-t border-slate-100">
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-content-primary/40">
+            <div className="shrink-0 p-6 pt-4 !bg-white/5 !border-t !border-white/10">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider !text-white/40">
                 Share your achievement
               </h3>
               <ShareResults
