@@ -77,19 +77,19 @@
 }
 
 .animate-ai-glow-one {
-  animation: ai-glow-one 24s ease-in-out infinite;
+  animation: ai-glow-one 12s ease-in-out infinite;
 }
 
 .animate-ai-glow-two {
-  animation: ai-glow-two 28s ease-in-out 2s infinite;
+  animation: ai-glow-two 14s ease-in-out 2s infinite;
 }
 
 .animate-ai-glow-three {
-  animation: ai-glow-three 21s ease-in-out 1s infinite;
+  animation: ai-glow-three 10s ease-in-out 1s infinite;
 }
 
 .animate-ai-glow-four {
-  animation: ai-glow-four 18s ease-in-out 3s infinite;
+  animation: ai-glow-four 9s ease-in-out 3s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
