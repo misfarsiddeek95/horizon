@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useCallback, useRef } from "react";
-import AIGlowBackground from "@/components/AIGlowBackground";
+import SmokyBackground from "@/components/SmokyBackground";
 
 interface Tab {
   id: string;
@@ -65,7 +65,7 @@ export default function InnerPageLayout({
 
   return (
     <section className="relative isolate min-h-screen overflow-hidden bg-transparent">
-      <AIGlowBackground />
+      <SmokyBackground />
 
       <div className="relative z-10">
         <div className="relative overflow-hidden">

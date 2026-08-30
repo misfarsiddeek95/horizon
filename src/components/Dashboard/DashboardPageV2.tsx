@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
-import AIGlowBackground from "@/components/AIGlowBackground";
+import SmokyBackground from "@/components/SmokyBackground";
 import { CRROS_V2 } from "@/data/dashboard/crros";
 import type { CrroId, PillarId, SectionId } from "@/data/dashboard/types";
 import ActivateSection from "./ActivateSection";
@@ -26,12 +26,8 @@ export default function DashboardPageV2() {
   return (
     <div
       className="relative isolate min-h-screen overflow-hidden font-sans text-[var(--color-v2-ink)]"
-      style={{
-        background:
-          "linear-gradient(180deg,#fbfcfd 0%,#f5f8f8 48%,#f8faf9 100%)",
-      }}
     >
-      <AIGlowBackground />
+      <SmokyBackground />
 
       <DashboardHero onNavigate={handleNavigate} />
 
@@ -43,10 +39,6 @@ export default function DashboardPageV2() {
       <section
         id="climate"
         className="border-t border-[#e2eaed] px-[18px] py-[112px] sm:px-8"
-        style={{
-          background:
-            "linear-gradient(180deg,#f1f6f7 0%,#f7faf9 62%,#ffffff 100%)",
-        }}
       >
         <div className="mx-auto max-w-[1240px]">
           <div className="mb-[34px] grid grid-cols-1 items-start gap-[72px] lg:grid-cols-[minmax(0,1.25fr)_auto] lg:items-end">
