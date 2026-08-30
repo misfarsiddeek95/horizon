@@ -47,7 +47,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
       lastRecord && (lastRecord.status === "failed" || lastRecord.status === "timeout");
 
     return (
-      <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4">
+      <div className="glass-puzzle rounded-2xl p-4 sm:p-6 mb-4">
         {showReveal ? (
           <div className="p-3 bg-red-50 border border-red-100 rounded-lg flex items-start gap-2">
             <ExclamationCircleIcon className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
@@ -75,7 +75,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
   }
 
   return (
-    <div className="rounded-ui-card bg-surface-default p-4 sm:p-6 shadow-sm mb-4">
+    <div className="glass-puzzle rounded-2xl p-4 sm:p-6 mb-4">
       <div className="mb-3 flex items-center justify-between">
         <span className="rounded-full bg-zinc-200 px-2.5 py-0.5 text-[11px] font-semibold text-zinc-600">
           #{activeQ.number} &middot; {activeQ.question.category}
@@ -110,7 +110,7 @@ export default function ActiveCluePanel({ onHelp }: ActiveCluePanelProps) {
         </div>
       </div>
 
-      <div className="mb-2 h-1.5 overflow-hidden rounded-full bg-zinc-200">
+      <div className="mb-2 h-1.5 overflow-hidden rounded-full bg-white/20">
         <div
           className={`h-full rounded-full transition-all duration-1000 ${
             urgent ? "bg-red-500" : showHelp ? "bg-amber-400" : "bg-brand-main"
