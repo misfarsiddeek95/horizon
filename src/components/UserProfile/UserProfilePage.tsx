@@ -239,13 +239,44 @@ export default function UserProfilePageV2() {
       </aside>
 
       {/* FIXED HEADER - Mobile */}
-      <div className="fixed top-20 md:top-8 z-40 left-0 right-0 flex justify-center pointer-events-none px-4 md:px-0 lg:hidden">
-        <div className="pointer-events-auto relative bg-glass-header border border-border-faint backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl max-w-full">
+      <div className="fixed top-20 md:top-8 z-40 left-0 right-0 flex flex-col items-center pointer-events-none px-4 md:px-0 lg:hidden">
+        <div className="pointer-events-auto max-md:!bg-transparent max-md:!border-none max-md:!shadow-none max-md:!rounded-none bg-glass-header border border-border-faint backdrop-blur-md rounded-full px-4 md:px-6 py-2 shadow-2xl max-w-full">
           <UserProfileTabs
             tabs={TAB_LABELS}
             activeTab={activeTab}
             onTabChange={handleTabChange}
           />
+        </div>
+
+        {/* HORIZONTAL SCENE DOTS - Mobile Only */}
+        <div className="flex md:hidden justify-center items-center gap-2 mt-4 pointer-events-auto">
+          {getScenesForTab(tab).map(({ id, label }) => {
+            const isActive = activeScene === id;
+            return (
+              <button
+                key={id}
+                onClick={() => {
+                  const el = document.getElementById(id);
+                  if (!el) return;
+                  const targetY =
+                    el.getBoundingClientRect().top +
+                    window.scrollY -
+                    window.innerHeight / 2;
+                  gsap.to(window, {
+                    scrollTo: { y: targetY, autoKill: false },
+                    duration: 1.2,
+                    ease: "power2.inOut",
+                  });
+                }}
+                className={`rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "w-3 h-3 bg-white scale-125"
+                    : "w-2 h-2 bg-white/40"
+                }`}
+                aria-label={`Go to ${label}`}
+              />
+            );
+          })}
         </div>
       </div>
 

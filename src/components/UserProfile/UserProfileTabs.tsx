@@ -82,7 +82,7 @@ export default function UserProfileTabsV2({
       className={`flex overflow-y-auto no-scrollbar snap-mandatory gap-1 md:gap-2 ${
         vertical
           ? "flex-col items-center snap-y py-4"
-          : "flex-nowrap overflow-x-auto px-2 md:px-4 snap-x"
+          : "flex-nowrap overflow-x-auto max-md:pr-12 px-2 md:px-4 snap-x"
       }`}
     >
       {tabs.map((tab, index) => {
@@ -104,7 +104,7 @@ export default function UserProfileTabsV2({
             onMouseMove={handleSpotlightMove}
             className={`group relative flex shrink-0 snap-start cursor-pointer flex-col items-center gap-1 px-3 py-1.5 md:px-4 md:py-2 text-center transition-all duration-300 persona-spotlight focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
               isActive
-                ? "opacity-100 text-white bg-white/10 backdrop-blur-sm rounded-xl"
+                ? "opacity-100 text-white max-md:!bg-white/20 max-md:!backdrop-blur-md max-md:!border max-md:!border-white/30 max-md:!rounded-xl max-md:!shadow-lg md:bg-white/10 md:backdrop-blur-sm md:rounded-xl"
                 : "opacity-60 text-slate-300 hover:opacity-100 hover:text-white hover:bg-white/5 rounded-xl"
             }`}
           >
