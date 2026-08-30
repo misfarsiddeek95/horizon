@@ -88,9 +88,9 @@ export default function GlobalHeader() {
         <div className="absolute top-0 left-0 w-full flex items-start justify-end px-4 py-4 md:px-8 md:py-8 z-50">
           {/* Logo (Center) */}
           <img
-            src="/images/logo.webp"
+            src="/images/logo.png"
             alt="HeyCarb"
-            className="absolute left-1/2 -translate-x-1/2 top-4 md:top-8 h-10 md:h-14 lg:h-16 w-auto object-contain"
+            className="absolute left-1/2 -translate-x-1/2 top-4 md:top-8 h-12 md:h-16 lg:h-20 w-auto object-contain"
           />
 
           {/* Video Thumbnail (Right) */}
