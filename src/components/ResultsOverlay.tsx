@@ -20,8 +20,8 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
   const correctCount = questions.filter((q) => q.status === 'completed').length;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-      <div className="relative w-full max-w-lg max-h-[90vh] rounded-2xl bg-white shadow-xl flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div className="relative w-full max-w-lg max-h-[90vh] rounded-2xl glass-puzzle flex flex-col overflow-hidden">
 
         {/* PINNED HEADER */}
         <div className="shrink-0 p-6 pb-2 text-center relative">
@@ -59,7 +59,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
         </div>
 
         {/* PINNED FOOTER */}
-        <div className="shrink-0 p-6 pt-4 bg-slate-50 border-t border-slate-100 flex flex-col gap-4">
+        <div className="shrink-0 p-6 pt-4 bg-white/20 border-t border-white/30 flex flex-col gap-4">
           <div className="flex gap-3">
             <button
               onClick={() => { window.location.href = '/leaderboard'; }}
