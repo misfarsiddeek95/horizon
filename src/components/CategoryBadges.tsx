@@ -71,7 +71,7 @@ export default function CategoryBadges() {
         return (
           <div
             key={cat}
-            className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-4 py-1.5 text-xs font-semibold shadow-sm"
+            className="inline-flex items-center gap-2 rounded-full border-2 bg-white/30 backdrop-blur-md px-4 py-1.5 text-xs font-semibold shadow-sm"
             style={{ borderColor: hex }}
           >
             <div
