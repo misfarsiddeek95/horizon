@@ -84,6 +84,29 @@ export default function GlobalHeader() {
             : "-translate-y-full md:-translate-y-full -translate-x-full"
         } ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
       >
+        {/* HEADER: Logo + Video Thumbnail */}
+        <div className="absolute top-0 left-0 w-full flex items-start justify-end px-4 py-4 md:px-8 md:py-8 z-50">
+          {/* Logo (Center) */}
+          <img
+            src="/images/logo.webp"
+            alt="HeyCarb"
+            className="absolute left-1/2 -translate-x-1/2 top-4 md:top-8 h-10 md:h-14 lg:h-16 w-auto object-contain"
+          />
+
+          {/* Video Thumbnail (Right) */}
+          <button
+            type="button"
+            className="relative overflow-hidden w-28 h-16 sm:w-36 sm:h-20 md:w-48 md:h-28 rounded-lg bg-black/20 backdrop-blur-md border border-white/20 hover:border-white/50 transition-all cursor-pointer group shadow-lg"
+            aria-label="Play video"
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-8 h-8 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </button>
+        </div>
+
         <div className="flex flex-col justify-center h-full pl-12 sm:pl-20">
           {menuLinks.map((link) => (
             <Link
