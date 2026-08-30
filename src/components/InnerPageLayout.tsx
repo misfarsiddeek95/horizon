@@ -185,11 +185,11 @@ export default function InnerPageLayout({
 
           <div className="relative z-10 flex flex-col min-h-[460px] sm:min-h-[500px] lg:min-h-[540px]">
             <div className="max-w-4xl mx-auto text-center px-4 pt-16 sm:pt-20 lg:pt-24">
-              <h1 className="font-heading text-content-inverse text-2xl sm:text-3xl lg:text-4xl font-bold drop-shadow-lg">
+              <h1 className="font-heading text-content-inverse text-[clamp(36px,6vw,82px)] font-bold drop-shadow-lg">
                 {title}
               </h1>
               {description && (
-                <p className="font-sans text-content-inverse/80 text-base sm:text-lg mt-3 drop-shadow-md">
+                <p className="font-sans text-content-inverse/80 text-[18px] leading-[1.72] mt-3 drop-shadow-md">
                   {description}
                 </p>
               )}
