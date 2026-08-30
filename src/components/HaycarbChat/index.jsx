@@ -163,12 +163,10 @@ function Header({ role, setRole, style, setStyle, showControls }) {
   return (
     <header className="relative z-10 mx-auto mt-4 flex w-[calc(100%-2rem)] max-w-[860px] shrink-0 flex-wrap items-center gap-x-4 gap-y-2.5 rounded-2xl border border-white/20 bg-[#020b10]/75 px-5 py-3.5 shadow-xl backdrop-blur-xl sm:mt-6 sm:w-[calc(100%-3rem)]">
       <div className="flex items-center gap-3">
-        <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-xl border border-white/20 bg-gradient-to-br from-brand-main to-brand-hover shadow-md">
-          <svg viewBox="0 0 24 24" className="h-5 w-5">
-            <circle cx="12" cy="10" r="4" fill="var(--hc-gold)" />
-            <path d="M2 18 Q6 12 12 14 Q18 16 22 18" stroke="var(--hc-blue-soft)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M2 21 Q6 16 12 17 Q18 18 22 21" stroke="var(--hc-blue-rich)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-          </svg>
+        <div className="relative h-[36px] w-[36px] shrink-0">
+          <div className="absolute left-1/2 top-1/2 origin-center" style={{ transform: 'translate(-50%, -50%) scale(0.25)' }}>
+            <AiOrb />
+          </div>
         </div>
 
         <div>
