@@ -25,6 +25,7 @@ export interface ProfileTab {
   title: string;
   heroTitle: string;
   intro?: string;
+  metricsIntro?: string;
   metricGroups: MetricGroup[];
   message?: {
     title: string;
@@ -47,6 +48,10 @@ export interface ProfileTab {
     text: string;
     paragraphs: string[];
     download: DownloadLink;
+  };
+  keyFeatures?: {
+    description: string;
+    items: KeyFeature[];
   };
   strategyImage?: {
     title: string;
@@ -132,7 +137,9 @@ export const PROFILE_TABS: ProfileTab[] = [
     title: "Shareholders",
     heroTitle: "Performance with a clearer line of sight",
     intro:
-      "As the guiding current beneath our journey, you steer Haycarb’s course. Dive into a clear view of our performance, strategy, and sustainable growth.",
+      "As the guiding current beneath our journey, you steer Haycarb\u2019s course. Dive into a clear view of our performance, strategy, and sustainable growth.",
+    metricsIntro:
+      "Looking Beyond the Beyond, explore the returns and value created through Haycarb\u2019s performance and our continued focus on sustainable long term growth.",
     metricGroups: [
       {
         metrics: [
@@ -184,11 +191,41 @@ export const PROFILE_TABS: ProfileTab[] = [
       paragraphs: shareholderGovernanceParagraphs,
       download: corporateGovernanceDownload,
     },
+    keyFeatures: {
+      description:
+        "Enhanced reporting, clearer disclosures and greater accessibility provide shareholders with deeper insight into Haycarb\u2019s performance, governance and long term value creation.",
+      items: [
+        {
+          icon: "sustainability",
+          title: "Sustainability Reporting Enhancements",
+          detail:
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+        },
+        {
+          icon: "financial",
+          title: "Financial Reporting Improvements",
+          detail:
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+        },
+        {
+          icon: "governance",
+          title: "Corporate Governance Presentation",
+          detail:
+            "More visual, streamlined corporate governance reporting.",
+        },
+        {
+          icon: "accessibility",
+          title: "Accessibility Advancements",
+          detail:
+            "Braille reporting and sign language, integrated video content.",
+        },
+      ],
+    },
     strategyImage: {
-      title: "Investor Ratios",
+      title: "Our Business Case",
       image: "/images/innerpage/user-profile/shareholders.webp",
       caption:
-        "A clear view of the financial ratios that define shareholder value.",
+        "Built on market leadership and global reach, our business model combines innovation, strong capabilities and responsible practices to deliver sustainable value.",
     },
     aiReportText:
       "Taking reporting beyond disclosure, our AI-enabled digital experience helps shareholders discover relevant information, explore deeper insights and engage with Haycarb’s performance in a more personalised way",
@@ -199,6 +236,8 @@ export const PROFILE_TABS: ProfileTab[] = [
     heroTitle: "People powering what comes next",
     intro:
       "You are the strength behind our journey and your contribution helps us move confidently towards new horizons, transforming possibilities into lasting impact for all our stakeholders.",
+    metricsIntro:
+      "Built on the strength of our people, our performance reflects continued progress and a strong foundation for what lies ahead.",
     metricGroups: [
       {
         metrics: [
@@ -245,10 +284,41 @@ export const PROFILE_TABS: ProfileTab[] = [
         pdf: "/pdf/tbc/Human%20Capital.pdf",
       },
     },
+    keyFeatures: {
+      description:
+        "Enhanced reporting, clearer disclosures and greater accessibility give our employees a more transparent and inclusive view of Haycarb\u2019s performance, governance and sustainability journey.",
+      items: [
+        {
+          icon: "sustainability",
+          title: "Sustainability Reporting Enhancements",
+          detail:
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+        },
+        {
+          icon: "financial",
+          title: "Financial Reporting Improvements",
+          detail:
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+        },
+        {
+          icon: "governance",
+          title: "Corporate Governance Presentation",
+          detail:
+            "More visual, streamlined corporate governance reporting.",
+        },
+        {
+          icon: "accessibility",
+          title: "Accessibility Advancements",
+          detail:
+            "Braille reporting and sign language, integrated video content.",
+        },
+      ],
+    },
     strategyImage: {
       title: "Our HR Strategy",
       image: "/images/innerpage/user-profile/employee.webp",
-      caption: "Investing in our people to fuel innovation and shared growth.",
+      caption:
+        "Empowering our people with the skills, opportunities and environment to thrive, while building an engaged, inclusive and future ready workforce.",
     },
     aiReportText:
       "Taking reporting beyond disclosure, our AI-enabled digital experience helps our employees explore Haycarb’s performance, progress and impact through a more personalised, accessible and engaging experience.",
@@ -259,6 +329,8 @@ export const PROFILE_TABS: ProfileTab[] = [
     heroTitle: "Innovation designed around customer value",
     intro:
       "With you, we look Beyond the Beyond. Discover how Haycarb delivers consistency, quality, and sustainability while pursuing new opportunities and advancing towards a future of greater possibilities",
+    metricsIntro:
+      "Looking beyond today\u2019s needs, we continue to innovate and evolve alongside our customers, creating solutions for the opportunities and challenges that lie ahead.",
     metricGroups: [
       {
         metrics: [
@@ -307,13 +379,43 @@ export const PROFILE_TABS: ProfileTab[] = [
         pdf: "/pdf/tbc/Our%20Products.pdf",
       },
     },
+    keyFeatures: {
+      description:
+        "Enhanced transparency and accessibility provide customers with greater insight into the performance, governance and sustainability practices that underpin Haycarb as a trusted long term partner.",
+      items: [
+        {
+          icon: "sustainability",
+          title: "Sustainability Reporting Enhancements",
+          detail:
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+        },
+        {
+          icon: "financial",
+          title: "Financial Reporting Improvements",
+          detail:
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+        },
+        {
+          icon: "governance",
+          title: "Corporate Governance Presentation",
+          detail:
+            "More visual, streamlined corporate governance reporting.",
+        },
+        {
+          icon: "accessibility",
+          title: "Accessibility Advancements",
+          detail:
+            "Braille reporting and sign language, integrated video content.",
+        },
+      ],
+    },
     strategyImage: {
       title: "Our Customer Value Proposition",
       image: "/images/innerpage/user-profile/customers.webp",
-      caption: "What we deliver, and why our customers stay with us.",
+      caption: "Creating lasting customer value through solutions, expertise and partnerships shaped around evolving needs.",
     },
     aiReportText:
-      "Taking reporting beyond disclosure, our AI-enabled digital experience helps customers discover relevant information, explore deeper insights and better understand Haycarb’s capabilities, performance and sustainability journey.",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps customers discover relevant information, explore deeper insights and better understand Haycarb's capabilities, performance and sustainability journey.",
   },
   {
     id: "suppliers",
@@ -321,6 +423,8 @@ export const PROFILE_TABS: ProfileTab[] = [
     heroTitle: "Stronger partnerships shaping resilient supply chains",
     intro:
       "Strong partnerships are the foundation of our progress. Together, we go Beyond the Beyond, strengthening resilient and responsible supply chains that drive shared growth and long-term sustainability.",
+    metricsIntro:
+      "Our supplier partnerships extend beyond procurement, creating shared value, strengthening capabilities and building a more resilient supply chain for the future.",
     metricGroups: [
       {
         metrics: [
@@ -385,11 +489,41 @@ export const PROFILE_TABS: ProfileTab[] = [
         pdf: "/pdf/tbc/Listening%20to%20Our%20Stakeholders.pdf",
       },
     },
+    keyFeatures: {
+      description:
+        "Enhanced reporting, clearer disclosures and greater accessibility provide suppliers with greater visibility into Haycarb\u2019s sustainability commitments, governance and approach to responsible long term value creation.",
+      items: [
+        {
+          icon: "sustainability",
+          title: "Sustainability Reporting Enhancements",
+          detail:
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+        },
+        {
+          icon: "financial",
+          title: "Financial Reporting Improvements",
+          detail:
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+        },
+        {
+          icon: "governance",
+          title: "Corporate Governance Presentation",
+          detail:
+            "More visual, streamlined corporate governance reporting.",
+        },
+        {
+          icon: "accessibility",
+          title: "Accessibility Advancements",
+          detail:
+            "Braille reporting and sign language, integrated video content.",
+        },
+      ],
+    },
     strategyImage: {
       title: "Our Supplier Value Proposition",
       image: "/images/innerpage/user-profile/suppliers.webp",
       caption:
-        "Building resilient, responsible supply chains that move as one.",
+        "Growing together through partnerships that strengthen capabilities, support livelihoods and create shared value across our supply chain.",
     },
     aiReportText:
       "Taking reporting beyond disclosure, our AI enabled digital experience helps suppliers discover relevant information and explore Haycarb’s performance, sustainability priorities and value chain in a more personalised way.",
@@ -400,6 +534,8 @@ export const PROFILE_TABS: ProfileTab[] = [
     heroTitle: "Discovering Haycarb and the possibilities that lie beyond",
     intro:
       "Explore our business, global presence, solutions and impact and discover how Haycarb continues to create value while shaping what comes next.",
+    metricsIntro:
+      "The year at a glance, bringing together key measures of performance, progress and impact.",
     metricGroups: [
       {
         title: "Financial",
@@ -435,13 +571,43 @@ export const PROFILE_TABS: ProfileTab[] = [
       paragraphs: generalGovernanceParagraphs,
       download: corporateGovernanceDownload,
     },
+    keyFeatures: {
+      description:
+        "Enhanced reporting, clearer disclosures and greater accessibility make it easier to explore Haycarb\u2019s performance, governance, sustainability and progress during the year.",
+      items: [
+        {
+          icon: "sustainability",
+          title: "Sustainability Reporting Enhancements",
+          detail:
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+        },
+        {
+          icon: "financial",
+          title: "Financial Reporting Improvements",
+          detail:
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+        },
+        {
+          icon: "governance",
+          title: "Corporate Governance Presentation",
+          detail:
+            "More visual, streamlined corporate governance reporting.",
+        },
+        {
+          icon: "accessibility",
+          title: "Accessibility Advancements",
+          detail:
+            "Braille reporting and sign language, integrated video content.",
+        },
+      ],
+    },
     strategyImage: {
       title: "Our Strategic Levers for Sustainable Growth",
       image: "/images/innerpage/user-profile/general_users.webp",
       caption:
-        "The levers powering Haycarb's sustainable global value creation.",
+        "Guiding our path forward through focused priorities that strengthen resilience, drive innovation and create sustainable long term value.",
     },
     aiReportText:
-      "Taking reporting beyond disclosure, our AI-enabled digital experience makes it easier to discover relevant information, explore deeper insights and engage with Haycarb’s story in a more personalised way.",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience makes it easier to discover relevant information, explore deeper insights and engage with Haycarb\u2019s story in a more personalised way.",
   },
 ];

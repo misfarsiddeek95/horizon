@@ -369,7 +369,7 @@ export default function UserProfilePageV2() {
                 key={activeTab}
                 groups={tab.metricGroups}
                 tabTitle={tab.title}
-                tabIntro={tab.intro}
+                tabIntro={tab.metricsIntro}
               />
             </section>
 
@@ -390,7 +390,10 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 4: Key Features */}
             <section id="scene-features" className={SCENE_SECTION} data-scene>
-              <KeyFeaturesBanner />
+              <KeyFeaturesBanner
+                description={tab.keyFeatures?.description}
+                features={tab.keyFeatures?.items}
+              />
             </section>
 
             {/* SCENE 5: AI-Enabled Digital Report */}
