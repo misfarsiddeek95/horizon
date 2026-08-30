@@ -145,9 +145,9 @@ export default function SocialGovernanceChart() {
       });
 
       tooltip.get("background")?.setAll({
-        fill: series.get("fill"),
+        fill: am5.color(color),
         fillOpacity: 0.9,
-        stroke: series.get("fill"),
+        stroke: am5.color(color),
       });
 
       series.set("tooltip", tooltip);
@@ -169,6 +169,7 @@ export default function SocialGovernanceChart() {
           yAxis: yAxisLine,
           valueYField: field,
           categoryXField: "year",
+          stroke: am5.color(color),
         })
       );
 
@@ -179,14 +180,14 @@ export default function SocialGovernanceChart() {
       });
 
       tooltip.get("background")?.setAll({
-        fill: series.get("stroke"),
+        fill: am5.color(color),
         fillOpacity: 0.9,
-        stroke: series.get("stroke"),
+        stroke: am5.color(color),
       });
 
       series.set("tooltip", tooltip);
 
-      series.strokes.template.setAll({ strokeWidth: 3, stroke: am5.color(color) });
+      series.strokes.template.setAll({ strokeWidth: 3 });
       series.data.setAll(socialGovernanceData);
 
       series.bullets.push(() =>
@@ -207,10 +208,10 @@ export default function SocialGovernanceChart() {
     createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", getChartColor(chartTokens.cyanTeal));
     createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", getChartColor(chartTokens.amber));
 
-    createLineSeries("Average training hours per employee (No.)", "avg_training_hours", "#8663dc");
-    createLineSeries("New products developed (No.)", "new_products", "#a554b3");
-    createLineSeries("Total audits conducted on management systems (No.)", "total_audits", "#c94f9c");
-    createLineSeries("Instances of environmental non-compliance (No.)", "env_non_compliance", "#e8437f");
+    createLineSeries("Average training hours per employee (No.)", "avg_training_hours", getChartColor(chartTokens.burntOrange));
+    createLineSeries("New products developed (No.)", "new_products", getChartColor(chartTokens.mint));
+    createLineSeries("Total audits conducted on management systems (No.)", "total_audits", getChartColor(chartTokens.bronze));
+    createLineSeries("Instances of environmental non-compliance (No.)", "env_non_compliance", getChartColor(chartTokens.lightBlue));
 
     chart.set("cursor", am5xy.XYCursor.new(root, {}));
 

@@ -118,7 +118,7 @@ export default function EmissionsEnergyChart() {
       })
     );
 
-    function createLineSeries(name: string, field: string) {
+    function createLineSeries(name: string, field: string, color: string) {
       const series = chart.series.push(
         am5xy.LineSeries.new(root, {
           name,
@@ -126,6 +126,7 @@ export default function EmissionsEnergyChart() {
           yAxis,
           valueYField: field,
           categoryXField: "year",
+          stroke: am5.color(color),
         })
       );
 
@@ -136,16 +137,16 @@ export default function EmissionsEnergyChart() {
       });
 
       tooltip.get("background")?.setAll({
-        fill: series.get("stroke"),
+        fill: am5.color(color),
         fillOpacity: 0.9,
-        stroke: series.get("stroke"),
+        stroke: am5.color(color),
       });
 
       series.set("tooltip", tooltip);
 
       series.bullets.push(() =>
         am5.Bullet.new(root, {
-          sprite: am5.Circle.new(root, { radius: 5, fill: series.get("fill") }),
+          sprite: am5.Circle.new(root, { radius: 5, fill: am5.color(color) }),
         })
       );
       series.set("setStateOnChildren", true);
@@ -177,9 +178,9 @@ export default function EmissionsEnergyChart() {
       });
 
       tooltip.get("background")?.setAll({
-        fill: series.get("fill"),
+        fill: am5.color(color),
         fillOpacity: 0.9,
-        stroke: series.get("fill"),
+        stroke: am5.color(color),
       });
 
       series.set("tooltip", tooltip);
@@ -193,11 +194,11 @@ export default function EmissionsEnergyChart() {
       return series;
     }
 
-    createLineSeries("Total Carbon emissions (tCO2e)", "total_carbon_emission");
-    createLineSeries("Scope 1 emission (tCO2e)", "scope_1_emission");
-    createLineSeries("Scope 2 emission (tCO2e)", "scope_2_emission");
-    createLineSeries("Scope 3 emission (tCO2e)", "scope_3_emission");
-    createLineSeries("Biogenic emission (tCO2e)", "biogenic");
+    createLineSeries("Total Carbon emissions (tCO2e)", "total_carbon_emission", getChartColor(chartTokens.burntOrange));
+    createLineSeries("Scope 1 emission (tCO2e)", "scope_1_emission", getChartColor(chartTokens.mint));
+    createLineSeries("Scope 2 emission (tCO2e)", "scope_2_emission", getChartColor(chartTokens.paleYellow));
+    createLineSeries("Scope 3 emission (tCO2e)", "scope_3_emission", getChartColor(chartTokens.lightBlue));
+    createLineSeries("Biogenic emission (tCO2e)", "biogenic", getChartColor(chartTokens.bronze));
 
     createBarSeries("Renewable energy consumption (GJ)", "renewable_energy", getChartColor(chartTokens.tealBlue));
     createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable", getChartColor(chartTokens.cyanTeal));
