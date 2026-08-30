@@ -204,7 +204,7 @@ export default function CrosswordGrid() {
 
   if (gridHeight === 0 || gridWidth === 0) {
     return (
-      <div className="flex aspect-square w-full max-w-md items-center justify-center rounded-xl bg-white shadow-sm border border-gray-200">
+      <div className="flex aspect-square w-full max-w-md items-center justify-center rounded-2xl glass-puzzle">
         <p className="text-sm text-gray-400">Loading puzzle...</p>
       </div>
     );
@@ -213,7 +213,7 @@ export default function CrosswordGrid() {
   const hasPaused = state.isPaused && state.phase === 'playing';
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full relative">
+    <div className="glass-puzzle rounded-2xl p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full relative">
       {hasPaused && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-white/70 backdrop-blur-sm rounded-xl">
           <div className="rounded-ui-card bg-surface-glass backdrop-blur-lg border border-white/20 px-8 py-6 text-center shadow-2xl">
@@ -231,7 +231,7 @@ export default function CrosswordGrid() {
         </div>
       )}
       <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
-        <div className="flex items-start bg-gray-50/50 rounded-lg p-2 md:p-6">
+        <div className="flex items-start bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-6">
           <div
             className="grid w-max min-w-full [--cell-size:24px] lg:[--cell-size:45px]"
           style={{
@@ -260,7 +260,7 @@ export default function CrosswordGrid() {
               const isInputEnabled = isCellActive && activeQ?.status === 'active' && !state.isPaused;
               const showLetter = cellLetter && (status !== 'pending');
 
-              let overlayBg = 'bg-white';
+              let overlayBg = 'bg-white/60 backdrop-blur-md';
               if (status === 'completed') overlayBg = 'bg-green-50';
               else if (status === 'failed') overlayBg = 'bg-red-50';
               else if (status === 'timeout') overlayBg = 'bg-gray-100';
@@ -293,12 +293,12 @@ export default function CrosswordGrid() {
                       value={cellLetter ?? ''}
                       onChange={(e) => handleInput(x, y, e.target.value)}
                       onKeyDown={(e) => handleKeyDown(e, x, y)}
-                      className="absolute inset-0 w-full h-full text-center text-base lg:text-2xl font-bold font-sans uppercase outline-none bg-transparent z-30"
+                      className="absolute inset-0 w-full h-full text-center text-base lg:text-2xl font-bold font-sans uppercase outline-none bg-transparent text-slate-900 z-30"
                       aria-label={`Cell ${x},${y}${number ? ' Clue ' + number : ''}`}
                     />
                   ) : (
                     showLetter && (
-                      <span className={`absolute inset-0 flex items-center justify-center text-base lg:text-2xl font-bold z-30${status === 'completed' ? ' text-green-700' : status === 'failed' ? ' text-red-600' : status === 'timeout' ? ' text-gray-400' : ''}`}>
+                      <span className={`absolute inset-0 flex items-center justify-center text-base lg:text-2xl font-bold text-slate-900 z-30${status === 'completed' ? ' text-green-700' : status === 'failed' ? ' text-red-600' : status === 'timeout' ? ' text-gray-400' : ''}`}>
                         {cellLetter}
                       </span>
                     )
