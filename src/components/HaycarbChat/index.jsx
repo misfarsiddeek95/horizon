@@ -272,7 +272,7 @@ function Chip({ active, onClick, children }) {
 
 function AiOrb() {
   return (
-    <div className="relative mx-auto mb-7 h-28 w-28" style={{ perspective: '800px' }}>
+    <div className="relative mx-auto mb-7 h-36 w-36" style={{ perspective: '800px' }}>
       <div className="animate-orb-pulse absolute -inset-4 rounded-full bg-brand-main/40 blur-xl" />
 
       <div className="animate-orb-spin absolute inset-0 rounded-full border-2 border-teal-2/90 border-t-transparent">
