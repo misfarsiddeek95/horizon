@@ -74,7 +74,7 @@ export default function MobileClueBar() {
   }
 
   return (
-    <div className="block lg:hidden w-full bg-brand-main text-white px-2 py-3 z-50 shadow-lg shrink-0">
+    <div className="block lg:hidden w-full bg-brand-main/80 backdrop-blur-md text-white px-2 py-3 z-50 shadow-lg shrink-0">
       <div className="flex items-center justify-between w-full max-w-md mx-auto">
         
         {/* Left SVG Arrow */}
