@@ -68,7 +68,7 @@ function PuzzleGame() {
 
   return (
     <>
-      <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-gradient-to-br from-[#147385]/5 via-[#147385]/10 to-white">
+      <main className="grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-transparent">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
         <div className="shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2">
@@ -113,7 +113,7 @@ function PuzzleGame() {
         </div>
 
         {/* COMPACT CATEGORIES (Mobile Only) */}
-        <div className="block lg:hidden w-full px-2 py-2 border-b border-slate-200 bg-slate-50 overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
+        <div className="block lg:hidden w-full px-2 py-2 border-b border-white/50 bg-white/20 backdrop-blur-md overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
           <div className="flex items-center min-w-max scale-90 origin-left">
             <CategoryBadges/>
           </div>
@@ -121,7 +121,7 @@ function PuzzleGame() {
 
         {/* MOBILE SKIPPED NUMBER PAD (Mobile Only) */}
         {state.questions.some((q) => q.status === 'bypassed') && (
-          <div className="block lg:hidden w-full px-4 py-3 bg-slate-50 border-b border-slate-200 shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative">
+          <div className="block lg:hidden w-full px-4 py-3 bg-white/20 backdrop-blur-md border-b border-white/50 shrink-0 flex-none overflow-x-auto no-scrollbar z-10 relative">
             <div className="flex items-center gap-3 min-w-max">
               <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex-none">Skipped:</span>
               <div className="flex items-center gap-2">
@@ -149,7 +149,7 @@ function PuzzleGame() {
         )}
 
         {/* MOBILE TIMER */}
-        <div className="block lg:hidden w-full px-4 py-3 shrink-0 bg-white border-b border-slate-200 z-10 relative">
+        <div className="block lg:hidden w-full px-4 py-3 shrink-0 bg-white/40 backdrop-blur-md border-b border-white/50 z-10 relative">
           <MobileTimer />
         </div>
 
@@ -166,7 +166,7 @@ function PuzzleGame() {
           <div className="w-full h-full flex flex-col p-4 min-w-0 lg:p-0 lg:w-[60%] lg:shrink-0 lg:h-auto lg:overflow-visible">
             
             {/* THE WHITE CANVAS (Fixed on mobile, transparent on desktop) */}
-            <div className="w-full h-full bg-white rounded-xl shadow-sm flex flex-col overflow-hidden lg:bg-transparent lg:shadow-none lg:overflow-visible">
+            <div className="w-full h-full glass-puzzle rounded-2xl flex flex-col overflow-hidden lg:bg-transparent lg:shadow-none lg:overflow-visible">
               
               {/* THE SCROLLABLE INTERIOR */}
               {/* CRITICAL FIX: overflow-auto is now INSIDE the canvas. 
@@ -225,8 +225,18 @@ function PuzzleGame() {
 
 export default function PuzzlePage() {
   return (
-    <PuzzleProvider>
-      <PuzzleGame />
-    </PuzzleProvider>
+    <>
+      <video
+        src="/videos/puzzle_background.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="fixed inset-0 w-full h-full object-cover -z-10 pointer-events-none"
+      />
+      <PuzzleProvider>
+        <PuzzleGame />
+      </PuzzleProvider>
+    </>
   );
 }
