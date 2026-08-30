@@ -11,6 +11,7 @@ import ChartContainer from "../ChartContainer";
 import ChartSection from "../ChartSection";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
+import { getChartColor, chartTokens } from "@/utils/chartColors";
 
 export default function ProfitabilityChart() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -132,12 +133,12 @@ export default function ProfitabilityChart() {
       legend.data.push(series);
     }
 
-    makeSeries("Group Turnover", "group_turnover", "#225C73");
-    makeSeries("Profit before taxation", "profit_before_tax", "#2198A6");
-    makeSeries("Group taxation", "group_tax", "#D98C4A");
-    makeSeries("Profit after tax", "profit_after_tax", "#D9653B");
-    makeSeries("Profit attributable to equity holders of the parent", "profit_attr", "#6CB8A3");
-    makeSeries("Dividends", "dividends", "#FCDAA4");
+    makeSeries("Group Turnover", "group_turnover", getChartColor(chartTokens.tealBlue));
+    makeSeries("Profit before taxation", "profit_before_tax", getChartColor(chartTokens.cyanTeal));
+    makeSeries("Group taxation", "group_tax", getChartColor(chartTokens.amber));
+    makeSeries("Profit after tax", "profit_after_tax", getChartColor(chartTokens.burntOrange));
+    makeSeries("Profit attributable to equity holders of the parent", "profit_attr", getChartColor(chartTokens.mint));
+    makeSeries("Dividends", "dividends", getChartColor(chartTokens.paleYellow));
 
     setExportingInstance(setupChartExporting(root, "Profitability_Rs_Bn"));
 

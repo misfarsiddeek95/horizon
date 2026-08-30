@@ -11,6 +11,7 @@ import ChartContainer from "../ChartContainer";
 import ChartSection from "../ChartSection";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
+import { getChartColor, chartTokens } from "@/utils/chartColors";
 
 interface HoverableDataContext {
   hover: () => void;
@@ -142,12 +143,12 @@ export default function FinancialPositionChart() {
       series.appear(1000);
     }
 
-    createSeries("Total Assets", "total_assets", "#225C73");
-    createSeries("Total liabilities", "total_liab", "#2198A6");
-    createSeries("Revenue Reserves", "revenue_reserves", "#D98C4A");
-    createSeries("Equity", "equity", "#D9653B");
-    createSeries("Current Assets", "current_assets", "#6CB8A3");
-    createSeries("Current Liabilities", "current_liabilities", "#FCDAA4");
+    createSeries("Total Assets", "total_assets", getChartColor(chartTokens.tealBlue));
+    createSeries("Total liabilities", "total_liab", getChartColor(chartTokens.cyanTeal));
+    createSeries("Revenue Reserves", "revenue_reserves", getChartColor(chartTokens.amber));
+    createSeries("Equity", "equity", getChartColor(chartTokens.burntOrange));
+    createSeries("Current Assets", "current_assets", getChartColor(chartTokens.mint));
+    createSeries("Current Liabilities", "current_liabilities", getChartColor(chartTokens.paleYellow));
 
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
 

@@ -11,6 +11,7 @@ import ChartContainer from "../ChartContainer";
 import ChartSection from "../ChartSection";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
+import { getChartColor, chartTokens } from "@/utils/chartColors";
 
 interface HoverableDataContext {
   hover: () => void;
@@ -203,13 +204,13 @@ export default function FinancialRatiosChart() {
       series.appear(1000);
     }
 
-    createPercentSeries("Profit before tax margin", "profit_before_tax_margin", "#225C73");
-    createPercentSeries("Return on equity", "return_on_equity", "#2198A6");
-    createPercentSeries("Return on assets", "return_on_assets", "#D98C4A");
-    createPercentSeries("Gearing", "gearing", "#D9653B");
-    createPercentSeries("Interest cover", "interest_cover", "#6CB8A3");
-    createRatioSeries("Asset turnover", "asset_turnover", "#FCDAA4");
-    createRatioSeries("Current ratio", "current_ratio", "#A4D3FC");
+    createPercentSeries("Profit before tax margin", "profit_before_tax_margin", getChartColor(chartTokens.tealBlue));
+    createPercentSeries("Return on equity", "return_on_equity", getChartColor(chartTokens.cyanTeal));
+    createPercentSeries("Return on assets", "return_on_assets", getChartColor(chartTokens.amber));
+    createPercentSeries("Gearing", "gearing", getChartColor(chartTokens.burntOrange));
+    createPercentSeries("Interest cover", "interest_cover", getChartColor(chartTokens.mint));
+    createRatioSeries("Asset turnover", "asset_turnover", getChartColor(chartTokens.paleYellow));
+    createRatioSeries("Current ratio", "current_ratio", getChartColor(chartTokens.lightBlue));
 
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
 

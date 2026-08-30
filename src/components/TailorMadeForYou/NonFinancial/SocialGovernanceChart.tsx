@@ -11,6 +11,7 @@ import ChartContainer from "../ChartContainer";
 import ChartSection from "../ChartSection";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
+import { getChartColor, chartTokens } from "@/utils/chartColors";
 
 export default function SocialGovernanceChart() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -202,9 +203,9 @@ export default function SocialGovernanceChart() {
       return series;
     }
 
-    createBarSeries("Investment in R&D (Rs. Mn)", "investment_rd", "#225C73");
-    createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", "#2198A6");
-    createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", "#D98C4A");
+    createBarSeries("Investment in R&D (Rs. Mn)", "investment_rd", getChartColor(chartTokens.tealBlue));
+    createBarSeries("Investment in CSR (Rs. Mn)", "investment_csr", getChartColor(chartTokens.cyanTeal));
+    createBarSeries("Investment in suppliers (Rs. Mn)", "investment_suppliers", getChartColor(chartTokens.amber));
 
     createLineSeries("Average training hours per employee (No.)", "avg_training_hours", "#8663dc");
     createLineSeries("New products developed (No.)", "new_products", "#a554b3");

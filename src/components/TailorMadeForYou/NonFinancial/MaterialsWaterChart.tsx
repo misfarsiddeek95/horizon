@@ -11,6 +11,7 @@ import ChartContainer from "../ChartContainer";
 import ChartSection from "../ChartSection";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
+import { getChartColor, chartTokens } from "@/utils/chartColors";
 
 interface HoverableDataContext {
   hover: () => void;
@@ -190,10 +191,10 @@ export default function MaterialsWaterChart() {
       series.appear(1000);
     }
 
-    createSeries("Waste water treated through treatment plants (m3)", "waste_water", yAxisM3, "#225C73");
-    createSeries("Water consumption (m3)", "water_consumption", yAxisM3, "#2198A6");
-    createSeries("Solid waste generated (MT)", "solid_waste_gen", yAxisMT, "#D98C4A");
-    createSeries("Renewable raw material consumption (MT)", "renewable_raw_material", yAxisMT, "#D9653B");
+    createSeries("Waste water treated through treatment plants (m3)", "waste_water", yAxisM3, getChartColor(chartTokens.tealBlue));
+    createSeries("Water consumption (m3)", "water_consumption", yAxisM3, getChartColor(chartTokens.cyanTeal));
+    createSeries("Solid waste generated (MT)", "solid_waste_gen", yAxisMT, getChartColor(chartTokens.amber));
+    createSeries("Renewable raw material consumption (MT)", "renewable_raw_material", yAxisMT, getChartColor(chartTokens.burntOrange));
 
     chart.set("scrollbarX", am5.Scrollbar.new(root, { orientation: "horizontal", marginBottom: 20 }));
 

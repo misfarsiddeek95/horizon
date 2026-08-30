@@ -29,6 +29,16 @@
   --color-chart-orange: oklch(0.68 0.17 50);
   --color-chart-teal: oklch(0.62 0.12 230);
 
+  /* --- TAILOR-MADE CHART COLORS --- */
+  --color-tm-teal-blue: #225C73;
+  --color-tm-cyan-teal: #2198A6;
+  --color-tm-amber: #D98C4A;
+  --color-tm-burnt-orange: #D9653B;
+  --color-tm-mint: #6CB8A3;
+  --color-tm-pale-yellow: #FCDAA4;
+  --color-tm-light-blue: #A4D3FC;
+  --color-tm-bronze: #8C6A50;
+
   /* --- PERSONA TAB THEME COLORS --- */
   --color-forest: #036984;
   --color-teal: #1683a0;

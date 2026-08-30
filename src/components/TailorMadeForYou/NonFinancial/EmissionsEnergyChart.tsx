@@ -11,6 +11,7 @@ import ChartContainer from "../ChartContainer";
 import ChartSection from "../ChartSection";
 import "@/utils/amChartsSetup";
 import { setupChartExporting } from "@/utils/amChartsExporting";
+import { getChartColor, chartTokens } from "@/utils/chartColors";
 
 const combinedData = emissionsData.map((e) => {
   const energy = energyConsumptionData.find((en) => en.year === e.year);
@@ -198,9 +199,9 @@ export default function EmissionsEnergyChart() {
     createLineSeries("Scope 3 emission (tCO2e)", "scope_3_emission");
     createLineSeries("Biogenic emission (tCO2e)", "biogenic");
 
-    createBarSeries("Renewable energy consumption (GJ)", "renewable_energy", "#225C73");
-    createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable", "#2198A6");
-    createBarSeries("Total energy consumption (GJ)", "total_consumption", "#D98C4A");
+    createBarSeries("Renewable energy consumption (GJ)", "renewable_energy", getChartColor(chartTokens.tealBlue));
+    createBarSeries("Non - renewable energy consumptions (GJ)", "non_renewable", getChartColor(chartTokens.cyanTeal));
+    createBarSeries("Total energy consumption (GJ)", "total_consumption", getChartColor(chartTokens.amber));
 
     chart.set("cursor", am5xy.XYCursor.new(root, {}));
 
