@@ -249,7 +249,7 @@ export default function UserProfilePageV2() {
         </div>
 
         {/* HORIZONTAL SCENE DOTS - Mobile Only */}
-        <div className="flex md:hidden justify-center items-center gap-2 mt-4 pointer-events-auto">
+        <div className="flex md:hidden justify-center items-center gap-2 mt-4 !mb-8 pointer-events-auto">
           {getScenesForTab(tab).map(({ id, label }) => {
             const isActive = activeScene === id;
             return (
