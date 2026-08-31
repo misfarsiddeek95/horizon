@@ -101,7 +101,7 @@ export default async function SharePage({ searchParams }: Props) {
             Think you can beat this score?
           </p>
           <Link
-            href="/puzzle"
+            href="/crossword-puzzle"
             className="w-full rounded-ui-button bg-yellow-400 px-6 py-4 text-center text-lg font-bold text-slate-900 shadow-lg transition-colors hover:bg-yellow-300 sm:w-auto sm:px-10"
           >
             Play the Challenge

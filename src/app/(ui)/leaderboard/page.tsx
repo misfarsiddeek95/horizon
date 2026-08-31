@@ -43,7 +43,7 @@ export default async function LeaderboardPage() {
 
       <div className="relative z-10 w-full max-w-3xl mx-auto">
         <Link
-          href="/puzzle"
+          href="/crossword-puzzle"
           className="inline-block mb-6 pt-10 md:pt-0 text-sm !text-white !drop-shadow-md hover:!text-slate-200 !transition-colors"
         >
           &larr; Back to Puzzle

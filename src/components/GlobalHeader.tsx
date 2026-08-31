@@ -7,15 +7,15 @@ import { usePathname } from "next/navigation";
 const menuLinks = [
   { name: "Home", path: "/" },
   { name: "Charts & Reports Generator", path: "/tailor-made-for-you" },
-  { name: "Crossword Puzzle", path: "/puzzle" },
-  { name: "AI Chat Assistant", path: "/chat" },
-  { name: "User Profiles", path: "/user-profile" },
+  { name: "Crossword Puzzle", path: "/crossword-puzzle" },
+  { name: "AI Chat Assistant", path: "/ai-assistant" },
+  { name: "User Profiles", path: "/user-profiles" },
   { name: "Dashboard", path: "/dashboard" },
 ];
 
-const darkPages = ['/chat', '/user-profile'];
-const whiteBarPages = ['/dashboard', '/tailor-made-for-you', '/puzzle'];
-const fixedPages = ['/user-profile'];
+const darkPages = ['/ai-assistant', '/user-profiles'];
+const whiteBarPages = ['/dashboard', '/tailor-made-for-you', '/crossword-puzzle', '/leaderboard'];
+const fixedPages = ['/user-profiles'];
 
 export default function GlobalHeader() {
   const [isOpen, setIsOpen] = useState(false);
