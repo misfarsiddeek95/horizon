@@ -33,15 +33,15 @@ export default function StrategyImageSectionV2({
           </p>
         </div>
 
-        <div className="relative -mx-6 -mb-6 md:-mx-8 md:-mb-8 lg:-mx-10 lg:-mb-10" data-animate>
-          <div className="relative overflow-hidden rounded-b-[24px] ring-1 ring-white/10 transition-all duration-500 ease-out hover:ring-white/20">
+        <div className="relative -mx-6 -mb-6 md:-mx-8 md:-mb-8 lg:-mx-10 lg:-mb-10 !overflow-hidden" data-animate>
+          <div className="max-md:flex max-md:items-center max-md:justify-center max-md:w-full max-md:p-4 max-md:bg-[#eaf1f1] relative overflow-hidden rounded-b-[24px] ring-1 ring-white/10 transition-all duration-500 ease-out hover:ring-white/20">
             <Image
               src={image}
               alt={title}
               width={1448}
               height={1086}
               sizes="(min-width: 1024px) 100vw, 100vw"
-              className="w-full h-[320px] md:h-[420px] lg:h-[500px] object-cover"
+              className="max-md:!object-contain max-md:!w-full max-md:!h-auto md:w-full md:h-[420px] lg:h-[500px] md:object-cover"
             />
           </div>
         </div>

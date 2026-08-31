@@ -31,7 +31,7 @@ const SCENE_SECTION =
   "relative w-full flex flex-col items-center justify-center py-3 md:py-8 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
 
 const GLASS_PANEL =
-  "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
+  "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 !overflow-hidden transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
 
 const ALL_SCENES = [
   { id: "scene-hero", label: "Intro" },
@@ -322,7 +322,7 @@ export default function UserProfilePageV2() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <div className="relative z-10 w-full min-w-0 lg:ml-32 xl:ml-40">
+      <div className="relative z-10 w-full min-w-0 lg:ml-32 xl:ml-40 max-md:pb-20">
         <InfiniteScrollWrapper loop={false}>
           <div className="flex flex-col w-full original-content-block relative">
             {/* SCENE 1: Hero / Intro */}
