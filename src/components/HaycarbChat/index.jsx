@@ -123,7 +123,7 @@ export default function HaycarbChat({
 
       {/* input */}
       <footer className="relative z-10 shrink-0 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-2 sm:px-6 sm:pb-6">
-        <div className="mx-auto flex w-full max-w-[860px] items-end gap-2.5 rounded-2xl border border-white/20 bg-[#020b10]/75 p-2 shadow-2xl backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-[860px] items-center gap-2.5 rounded-2xl border border-white/20 bg-[#020b10]/75 p-2 shadow-2xl backdrop-blur-xl">
           <textarea
             ref={textareaRef}
             rows={1}
@@ -141,7 +141,7 @@ export default function HaycarbChat({
                 submit();
               }
             }}
-            className="max-h-[120px] flex-1 resize-none rounded-xl border-0 bg-transparent px-2.5 py-2.5 font-sans text-[14px] font-medium leading-normal text-white outline-none placeholder:text-white/70 disabled:opacity-60"
+            className="max-h-[120px] max-md:!h-auto max-md:!min-h-[72px] max-md:!py-3 flex-1 resize-none rounded-xl border-0 bg-transparent px-2.5 py-2.5 font-sans text-[14px] font-medium leading-normal text-white outline-none placeholder:text-white/70 placeholder:max-md:!text-sm max-md:!leading-snug disabled:opacity-60"
           />
 
           <button
