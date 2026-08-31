@@ -373,7 +373,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         "Delivered on several ESG goals outlined in \u201cActivate\u201d",
         "Robust manufacturing and quality assurance systems along with numerous certifications such as ISO and GMP to ensure consistent product quality",
       ],
-      text: "Creating lasting customer value through solutions, expertise and partnerships shaped around evolving needs.",
+      text: "Focused on delivering consistent quality and tailored solutions through innovation, reliable supply and strong manufacturing capabilities to meet evolving customer needs.",
       download: {
         label: "Download Customer Value Proposition",
         pdf: "/pdf/tbc/Our%20Products.pdf",
