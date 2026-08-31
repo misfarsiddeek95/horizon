@@ -249,7 +249,7 @@ export default function UserProfilePageV2() {
         </div>
 
         {/* HORIZONTAL SCENE DOTS - Mobile Only */}
-        <div className="flex md:hidden justify-center items-center gap-2 mt-4 !mb-8 pointer-events-auto">
+        <div className="flex md:hidden justify-center items-center gap-2 mt-4 !mb-12 pointer-events-auto">
           {getScenesForTab(tab).map(({ id, label }) => {
             const isActive = activeScene === id;
             return (
@@ -328,7 +328,7 @@ export default function UserProfilePageV2() {
             {/* SCENE 1: Hero / Intro */}
             <section
               id="scene-hero"
-              className="relative w-full min-h-screen flex flex-col items-center justify-center pt-45 pb-32 px-4 md:px-8 z-10 scroll-mt-28"
+              className="relative w-full min-h-screen flex flex-col items-center justify-center pt-56 md:pt-45 pb-32 px-4 md:px-8 z-10 scroll-mt-28"
               data-scene
             >
               <div className="flex flex-col items-center text-center gap-6 max-w-4xl">
