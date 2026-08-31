@@ -27,6 +27,7 @@ export default function TailorMadeForYouPage() {
       tabs={mainTabs}
       activeTab={activeTab}
       onTabChange={setActiveTab}
+      backgroundImage="/images/innerpage/tailer-made-for-you-banner.jpg"
     >
       {activeTab === "chart-generator" && (
         <>
