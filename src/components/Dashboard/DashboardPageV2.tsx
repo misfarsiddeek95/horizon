@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
 import SmokyBackground from "@/components/SmokyBackground";
@@ -15,6 +15,18 @@ export default function DashboardPageV2() {
   const [activePillar, setActivePillar] = useState<PillarId>("restore");
   const [activeCrro, setActiveCrro] = useState<CrroId>(1);
   const [, setActiveSection] = useState<SectionId>("intro");
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    return () => {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "auto";
+      }
+    };
+  }, []);
 
   const handleNavigate = (id: SectionId) => {
     setActiveSection(id);
