@@ -298,9 +298,11 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
             rel="noopener noreferrer"
             variant="primary"
             icon={<ArrowUpRightIcon className="h-4 w-4" />}
-            className="!mt-3.5 !min-h-[42px] w-full max-w-full whitespace-nowrap !bg-white !px-4 !py-[11px] !text-[12px] !text-[color:var(--color-v2-navy-btn)] sm:w-max"
+            className="!mt-3.5 w-full max-w-full !bg-white max-md:!px-2 max-md:!gap-1.5 !py-[11px] !text-[12px] !text-[color:var(--color-v2-navy-btn)] sm:w-max"
           >
-            Annual Report Climate Resilience Assessment
+            <span className="max-md:!text-[11px] max-md:!tracking-tighter max-md:!whitespace-nowrap overflow-hidden text-ellipsis flex-1 text-left">
+              Annual Report Climate Resilience Assessment
+            </span>
           </Button>
         </div>
       </div>

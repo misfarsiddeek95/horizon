@@ -68,7 +68,7 @@ export default function Button({
   const classes = `${baseClasses} ${variantStyles[variant]} ${radiusStyles[radius]} ${className}`;
 
   const iconElement = icon ? (
-    <span className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5">
+    <span className="h-4 w-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-y-0.5">
       {icon}
     </span>
   ) : null;
