@@ -96,12 +96,12 @@ export default function GlobalHeader() {
           {/* Video Thumbnail (Right) */}
           <button
             type="button"
-            className="relative overflow-hidden w-28 h-16 sm:w-36 sm:h-20 md:w-48 md:h-28 rounded-lg bg-black/20 backdrop-blur-md border border-white/20 hover:border-white/50 transition-all cursor-pointer group shadow-lg"
+            className="relative overflow-hidden w-20 h-12 sm:w-28 sm:h-16 md:w-36 md:h-20 mt-3 md:mt-0 rounded-lg bg-black/20 backdrop-blur-md border border-white/20 hover:border-white/50 transition-all cursor-pointer group shadow-lg"
             aria-label="Play video"
           >
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-8 h-8 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
             </div>
           </button>
