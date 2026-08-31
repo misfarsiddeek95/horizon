@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 
 const menuLinks = [
   { name: "Home", path: "/" },
-  { name: "Charts & Reports Generator", path: "/tailor-made-for-you" },
-  { name: "Crossword Puzzle", path: "/crossword-puzzle" },
-  { name: "AI Chat Assistant", path: "/ai-assistant" },
+  { name: "AI Guided Exploration", path: "/ai-assistant" },
   { name: "User Profiles", path: "/user-profiles" },
-  { name: "Dashboard", path: "/dashboard" },
+  { name: "Gamified Exploration", path: "/crossword-puzzle" },
+  { name: "Sustainability Dashboard", path: "/dashboard" },
+  { name: "Interactive Charts & Reports", path: "/tailor-made-for-you" },
 ];
 
 const darkPages = ['/ai-assistant', '/user-profiles'];
