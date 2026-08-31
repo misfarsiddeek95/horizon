@@ -76,7 +76,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
             {crro.factors.map((factor) => (
               <div
                 key={factor.title}
-                className="relative flex min-h-[82px] items-center py-[18px] pl-[58px] pr-4"
+                className="relative flex min-h-[82px] items-center py-[18px] pl-[58px] pr-4 max-md:!py-2 max-md:!min-h-0"
               >
                 <span
                   aria-hidden="true"
