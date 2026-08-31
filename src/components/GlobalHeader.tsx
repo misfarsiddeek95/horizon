@@ -78,63 +78,62 @@ export default function GlobalHeader() {
       </button>
 
       <nav
-        className={`fixed inset-0 z-[9998] bg-glass-strong backdrop-blur-3xl transition-transform duration-700 ease-in-out ${
+        className={`!fixed !inset-0 !w-screen !h-screen !z-[999] overflow-hidden transition-transform duration-700 ease-in-out ${
           isOpen
             ? "translate-y-0 md:translate-y-0 translate-x-0"
             : "-translate-y-full md:-translate-y-full -translate-x-full"
         } ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
       >
-        {/* HEADER: Logo + Video Thumbnail */}
-        <div className="absolute top-0 left-0 w-full flex items-start justify-end px-4 py-4 md:px-8 md:py-8 z-50">
-          {/* Logo (Center) */}
-          <img
-            src="/images/logo.png"
-            alt="HeyCarb"
-            className="absolute left-1/2 -translate-x-1/2 top-4 md:top-8 h-12 md:h-16 lg:h-20 w-auto object-contain"
-          />
+        {/* Background Image */}
+        <div
+          className="!absolute !inset-0 !w-full !h-full !z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          style={{ backgroundImage: "url('/images/mega-menu-bgjpeg.jpeg')" }}
+        />
 
-          {/* Video Thumbnail (Right) */}
-          <button
-            type="button"
-            className="relative overflow-hidden w-20 h-12 sm:w-28 sm:h-16 md:w-36 md:h-20 mt-3 md:mt-0 rounded-lg bg-black/20 backdrop-blur-md border border-white/20 hover:border-white/50 transition-all cursor-pointer group shadow-lg"
-            aria-label="Play video"
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </button>
-        </div>
+        {/* Scrollable Content */}
+        <div className="relative z-10 w-full h-full overflow-y-auto flex flex-col justify-start">
+          {/* HEADER: Close (Left) + Logo (Right) */}
+          <div className="sticky top-0 w-full flex justify-between items-start px-4 py-4 md:px-8 md:py-8 z-20">
+            {/* Close button area - spacer for hamburger */}
+            <div className="w-7 h-7" />
 
-        <div className="flex flex-col justify-center h-full pl-12 sm:pl-20">
-          {menuLinks.map((link) => (
-            <Link
-              key={link.path}
-              href={link.path}
-              onClick={handleLinkClick}
-              className="group py-3 font-sans text-white text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight hover:text-[var(--color-heading-start)] transition-colors duration-300"
-            >
-              {link.name}
-              {pathname === link.path && (
-                <span className="ml-4 inline-block">
-                  <svg
-                    className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-[var(--color-heading-start)]"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2.5"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                    />
-                  </svg>
-                </span>
-              )}
-            </Link>
-          ))}
+            {/* Logo (Right) */}
+            <img
+              src="/images/logo.png"
+              alt="HeyCarb"
+              className="!h-16 sm:!h-20 md:!h-24 lg:!h-32 xl:!h-40 max-md:!h-20 w-auto object-contain mt-4 mr-4 md:mt-6 md:mr-8 lg:mt-8 lg:mr-10"
+            />
+          </div>
+
+          <div className="!absolute !top-[120px] md:!top-[160px] !left-0 !w-full !px-6 md:!pr-12 md:!pl-[96px] !flex !flex-col !gap-6 md:!gap-8 !z-[60] !pointer-events-auto">
+            {menuLinks.map((link) => (
+              <Link
+                key={link.path}
+                href={link.path}
+                onClick={handleLinkClick}
+                className="group !relative !z-[70] !cursor-pointer !font-sans text-white !text-xl max-md:!text-2xl md:!text-2xl lg:!text-3xl !font-medium tracking-tight hover:text-[var(--color-heading-start)] transition-colors duration-300 flex items-center justify-start gap-2 max-md:w-full"
+              >
+                {link.name}
+                {pathname === link.path && (
+                  <span className="flex-shrink-0 ml-2 inline-flex items-center">
+                    <svg
+                      className="!w-4 !h-4 md:!w-5 md:!h-5 text-[var(--color-heading-start)]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="2.5"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                      />
+                    </svg>
+                  </span>
+                )}
+              </Link>
+            ))}
+          </div>
         </div>
       </nav>
     </>
