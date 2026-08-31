@@ -127,8 +127,8 @@ function PuzzleGame() {
         </div>
 
         {/* COMPACT CATEGORIES (Mobile Only) */}
-        <div className="block lg:hidden w-full px-2 py-2 border-b border-white/20 bg-white/10 backdrop-blur-md overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
-          <div className="flex items-center min-w-max scale-90 origin-left">
+        <div className="block lg:hidden w-full pl-2 pr-6 py-2 border-b border-white/20 bg-white/10 backdrop-blur-md overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
+          <div className="flex items-center min-w-max">
             <CategoryBadges/>
           </div>
         </div>
