@@ -22,7 +22,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
 
   return createPortal(
     <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="relative z-[100000] w-full max-w-lg max-h-[90vh] rounded-2xl glass-puzzle flex flex-col overflow-hidden">
+      <div className="relative z-[100000] w-full max-w-lg max-h-[90vh] rounded-2xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl flex flex-col overflow-hidden">
 
         {/* PINNED HEADER */}
         <div className="shrink-0 p-6 pb-2 text-center relative">
@@ -35,16 +35,16 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
               <XMarkIcon className="h-5 w-5" />
             </button>
           )}
-          <h2 className="font-heading text-xl font-bold text-content-primary">
+          <h2 className="font-heading text-xl font-bold text-[var(--color-tm-teal-blue)]">
             Challenge Complete!
           </h2>
-          <p className="mt-1 text-3xl font-bold text-brand-main">
+          <p className="mt-1 text-3xl font-extrabold text-teal-600">
             {score} Points
           </p>
-          <p className="text-sm font-medium text-content-primary/70">
+          <p className="text-sm font-medium text-[var(--color-tm-teal-blue)]">
             {correctCount} of {CONFIG.MAX_TOTAL_QUESTIONS} Correct
           </p>
-          <p className="mt-2 text-sm text-content-primary/50">
+          <p className="mt-2 text-sm font-medium text-[var(--color-tm-teal-blue)]">
             Great work, {session?.name ?? 'Player'}!
           </p>
           {earnedCount > 0 && (
@@ -60,11 +60,11 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
         </div>
 
         {/* PINNED FOOTER */}
-        <div className="shrink-0 p-6 pt-4 bg-white/20 border-t border-white/30 flex flex-col gap-4">
+        <div className="shrink-0 p-6 pt-4 border-t border-slate-200/60 flex flex-col gap-4">
           <div className="flex gap-3">
             <button
               onClick={() => { window.location.href = '/leaderboard'; }}
-              className="flex-1 cursor-pointer rounded-ui-element border border-zinc-300 px-3 py-2.5 text-xs font-semibold text-content-primary transition-colors hover:bg-zinc-100"
+              className="flex-1 cursor-pointer rounded-ui-element border border-[var(--color-tm-teal-blue)] px-3 py-2.5 text-xs font-semibold text-[var(--color-tm-teal-blue)] bg-transparent transition-colors hover:bg-[var(--color-tm-teal-blue)]/10"
             >
               View Leaderboard
             </button>
@@ -76,8 +76,8 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
             </button>
           </div>
 
-          <div className="flex flex-col items-center gap-3 border-t border-zinc-100 pt-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-content-primary/40">
+          <div className="flex flex-col items-center gap-3 border-t border-slate-200/60 pt-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-tm-teal-blue)]">
               Share your achievement
             </p>
             <ShareResults
