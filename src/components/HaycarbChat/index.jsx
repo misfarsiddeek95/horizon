@@ -178,7 +178,7 @@ function Header({ role, setRole, style, setStyle, showControls }) {
       </div>
 
       {showControls && (
-        <div className="ml-auto flex flex-wrap items-center gap-2">
+        <div className="max-md:mx-auto md:ml-auto flex flex-wrap items-center gap-2">
           <Select value={role} onChange={setRole} options={ROLES} />
           <Select value={style} onChange={setStyle} options={ANSWER_STYLES} />
         </div>
