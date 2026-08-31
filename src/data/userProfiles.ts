@@ -273,12 +273,12 @@ export const PROFILE_TABS: ProfileTab[] = [
       title: "Strategy and Performance",
       items: [
         "Goal setting and Performance Appraisals with fair and equitable remuneration for all employees based on skills, competencies and performance",
-        "Strengthened the safety culture within the Group.",
-        "Continuous learning with investment of Rs. 7.4 million and launching digital learning platform.",
-        "Introduced a post onboarding review system to support the integration of new recruits.",
-        "Fostered a diverse and inclusive work environment.",
+        "Strengthened the safety culture within the Group",
+        "Continuous learning with investment of Rs. 7.4 million and launching digital learning platform",
+        "Introduced a post onboarding review system to support the integration of new recruits",
+        "Fostered a diverse and inclusive work environment",
       ],
-      text: "Empowering our people with the skills, opportunities and environment to thrive, while building an engaged, inclusive and future ready workforce.",
+      text: "Focused on empowering our people through continuous development, fair performance practices and an inclusive, safe workplace that enables them to thrive.",
       download: {
         label: "Download HR Strategy",
         pdf: "/pdf/tbc/Human%20Capital.pdf",
@@ -367,11 +367,11 @@ export const PROFILE_TABS: ProfileTab[] = [
     strategy: {
       title: "Strategy and Performance",
       items: [
-        "New product development through R&D to deliver tailored solutions that fulfill specific customer needs.",
+        "New product development through R&D to deliver tailored solutions that fulfill specific customer needs",
         "Numerous initiatives to source adequate supplies of raw materials are procured from all countries in supply chain",
-        "Capacity enhancement.",
-        "Delivered on several ESG goals outlined in ”Activate“.",
-        "Robust manufacturing and quality assurance systems along with numerous certifications such as ISO and GMP to ensure consistent product quality.",
+        "Capacity enhancement",
+        "Delivered on several ESG goals outlined in \u201cActivate\u201d",
+        "Robust manufacturing and quality assurance systems along with numerous certifications such as ISO and GMP to ensure consistent product quality",
       ],
       text: "Creating lasting customer value through solutions, expertise and partnerships shaped around evolving needs.",
       download: {
