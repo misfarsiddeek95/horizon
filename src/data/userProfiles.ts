@@ -429,11 +429,11 @@ export const PROFILE_TABS: ProfileTab[] = [
       {
         metrics: [
           {
-            value: "Rs. 32.0 Bn",
+            value: "Rs. 32 Bn",
             label: "Payments to Coconut Shell and Charcoal Suppliers",
           },
           {
-            value: "Rs. 19.0 Mn",
+            value: "Rs. 19 Mn",
             label: "Investment in Supplier Capacity Building",
           },
           {
@@ -483,7 +483,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         "Engaged in capacity building through supplier audits and other initiatives",
         "Propagated green charcoaling practices among suppliers",
       ],
-      text: "Growing together through partnerships that strengthen capabilities, support livelihoods and create shared value across our supply chain.",
+      text: "Focused on building responsible, resilient partnerships through ethical procurement, capability development and sustainable practices that create shared value across our supply chain.",
       download: {
         label: "Download Supplier Value Proposition",
         pdf: "/pdf/tbc/Listening%20to%20Our%20Stakeholders.pdf",
