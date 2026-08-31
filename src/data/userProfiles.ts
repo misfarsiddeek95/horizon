@@ -183,7 +183,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         "Drove progress on expanding our manufacturing footprint to the Philippines",
         "Robust risk management to identify and respond to risks and opportunities including climate related risks",
       ],
-      text: "Built on market leadership and global reach, our business model combines innovation, strong capabilities and responsible practices to deliver sustainable value.",
+      text: "Focused on strengthening profitability, pursuing strategic growth and managing risks to deliver sustainable long term shareholder value.",
     },
     governance: {
       title: "Leadership and Governance",
@@ -258,9 +258,9 @@ export const PROFILE_TABS: ProfileTab[] = [
       },
     },
     highlights: [
-      "Fair remuneration and job security.",
+      "Fair remuneration and job security",
       "A safe and inclusive work environment",
-      "Opportunities for training and development.",
+      "Opportunities for training and development",
       "Career progression",
     ],
     highlightIcons: [
