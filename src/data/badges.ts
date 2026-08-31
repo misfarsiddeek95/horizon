@@ -90,18 +90,22 @@ export function evaluateBadges(input: BadgeEvaluation): string[] {
   for (const category of getAllCategories()) {
     if (input.earnedBadges[category]) {
       const id = getCategoryBadgeId(category);
-      if (markUnlocked(id)) newly.push(id);
+      markUnlocked(id);
+      if (!input.sessionAwardedBadges.includes(id)) newly.push(id);
     }
   }
 
   if (input.phase === 'finished') {
     if (input.aiUsedCount === 0 && input.allCorrect) {
-      if (markUnlocked('achievement-flawless')) newly.push('achievement-flawless');
+      markUnlocked('achievement-flawless');
+      if (!input.sessionAwardedBadges.includes('achievement-flawless')) newly.push('achievement-flawless');
     }
     if (input.elapsedSeconds <= CONFIG.SPEED_BADGE_TIME_LIMIT_SECONDS) {
-      if (markUnlocked('achievement-speed-demon')) newly.push('achievement-speed-demon');
+      markUnlocked('achievement-speed-demon');
+      if (!input.sessionAwardedBadges.includes('achievement-speed-demon')) newly.push('achievement-speed-demon');
     }
-    if (markUnlocked('achievement-first-win')) newly.push('achievement-first-win');
+    markUnlocked('achievement-first-win');
+    if (!input.sessionAwardedBadges.includes('achievement-first-win')) newly.push('achievement-first-win');
   }
 
   return newly;

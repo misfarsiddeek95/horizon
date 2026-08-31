@@ -108,6 +108,7 @@ const initialState: GameState = {
   aiAssistedQuestions: [],
   answerHistory: [],
   badgeQueue: [],
+  sessionAwardedBadges: [],
   isMuted: false,
   elapsedSeconds: 0,
 };
@@ -133,6 +134,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         aiAssistedQuestions: [],
         answerHistory: [],
         badgeQueue: [],
+        sessionAwardedBadges: [],
         elapsedSeconds: 0,
       };
     }
@@ -157,6 +159,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         aiAssistedQuestions: [],
         answerHistory: [],
         badgeQueue: [],
+        sessionAwardedBadges: [],
         elapsedSeconds: 0,
       };
     }
@@ -412,6 +415,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         aiAssistedQuestions: [],
         answerHistory: [],
         badgeQueue: [],
+        sessionAwardedBadges: [],
         elapsedSeconds: 0,
       };
     }
@@ -422,6 +426,18 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       );
       if (badgeIds.length === 0) return state;
       return { ...state, badgeQueue: [...state.badgeQueue, ...badgeIds] };
+    }
+
+    case "AWARD_BADGES": {
+      return {
+        ...state,
+        sessionAwardedBadges: [
+          ...state.sessionAwardedBadges,
+          ...action.payload.badgeIds.filter(
+            (id) => !state.sessionAwardedBadges.includes(id)
+          ),
+        ],
+      };
     }
 
     case "DISMISS_BADGE": {
@@ -528,9 +544,11 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
       allCorrect,
       aiUsedCount: state.aiAssistedQuestions.length,
       elapsedSeconds: state.elapsedSeconds,
+      sessionAwardedBadges: state.sessionAwardedBadges,
     });
     if (newly.length > 0) {
       dispatch({ type: "ENQUEUE_BADGES", payload: { badgeIds: newly } });
+      dispatch({ type: "AWARD_BADGES", payload: { badgeIds: newly } });
     }
   }, [
     state.earnedBadges,

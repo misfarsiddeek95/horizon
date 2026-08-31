@@ -106,6 +106,7 @@ export interface GameState {
   aiAssistedQuestions: string[];
   answerHistory: AnswerRecord[];
   badgeQueue: string[];
+  sessionAwardedBadges: string[];
   isMuted: boolean;
   elapsedSeconds: number;
 }
@@ -116,6 +117,7 @@ export interface BadgeEvaluation {
   allCorrect: boolean;
   aiUsedCount: number;
   elapsedSeconds: number;
+  sessionAwardedBadges: string[];
 }
 
 export interface SavedGameState {
@@ -160,6 +162,7 @@ export type GameAction =
   | { type: "LOGOUT" }
   | { type: "RESET" }
   | { type: "ENQUEUE_BADGES"; payload: { badgeIds: string[] } }
+  | { type: "AWARD_BADGES"; payload: { badgeIds: string[] } }
   | { type: "DISMISS_BADGE" }
   | { type: "TOGGLE_MUTE" }
   | { type: "SET_MUTED"; payload: boolean }
