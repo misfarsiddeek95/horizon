@@ -48,7 +48,7 @@ export default function MetricsBandV2({
                   <span className="h-px flex-1 bg-white/25" />
                 </div>
               )}
-              <div className="flex flex-wrap justify-center items-stretch gap-4 md:gap-5 lg:gap-6">
+              <div className="flex flex-wrap justify-center items-stretch gap-4 md:gap-5 lg:gap-6 max-md:!px-4 max-md:!flex-col max-md:!items-center">
                 {group.metrics.map((metric, cardIdx) => (
                   <MetricCard
                     key={metric.label}
@@ -61,7 +61,7 @@ export default function MetricsBandV2({
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap justify-center items-stretch gap-4 md:gap-5 lg:gap-6">
+        <div className="flex flex-wrap justify-center items-stretch gap-4 md:gap-5 lg:gap-6 max-md:!px-4 max-md:!flex-col max-md:!items-center">
           {groups[0]?.metrics.map((metric, cardIdx) => (
             <MetricCard
               key={metric.label}
@@ -84,7 +84,7 @@ function MetricCard({
 }) {
   return (
     <div
-      className="super-pop-card metric-card-enter relative flex flex-col items-center justify-center p-5 md:p-6 rounded-2xl bg-glass-faint border border-border-subtle transition-all duration-300 hover:bg-glass-card-hover hover:border-border-card-hover hover:-translate-y-2 hover:scale-[1.08] hover:shadow-metric-hover min-w-[160px] sm:min-w-[200px] lg:min-w-[220px] flex-1 max-w-[280px] text-center"
+      className="super-pop-card metric-card-enter relative flex flex-col items-center justify-center p-5 md:p-6 rounded-2xl bg-glass-faint border border-border-subtle transition-all duration-300 hover:bg-glass-card-hover hover:border-border-card-hover hover:-translate-y-2 hover:scale-[1.08] hover:shadow-metric-hover min-w-[160px] sm:min-w-[200px] lg:min-w-[220px] flex-1 max-w-[280px] max-md:!w-full max-md:!min-w-0 text-center"
       style={{ animationDelay: `${delay}s` }}
     >
       <p className="font-heading text-2xl md:text-3xl lg:text-4xl font-semibold text-white relative z-10">
