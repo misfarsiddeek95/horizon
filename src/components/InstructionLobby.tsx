@@ -65,7 +65,7 @@ export default function InstructionLobby() {
         className="fixed inset-0 w-full h-full pointer-events-none bg-[#10243e]/70"
       />
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col px-4 py-8 sm:py-12">
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 flex items-center justify-end sm:justify-between">
           <p className="text-sm !text-slate-100 !drop-shadow-sm hidden sm:block">
             How well do you know Haycarb&apos;s Annual Report 2025/26?
           </p>
@@ -73,7 +73,7 @@ export default function InstructionLobby() {
             <ExitButton variant="dark" />
             <button
               onClick={startGame}
-              className="cursor-pointer !bg-brand-main !text-white !font-bold !shadow-lg hover:!shadow-xl hover:!brightness-110 !transition-all rounded-lg px-5 py-2 text-sm active:scale-95"
+              className="hidden md:inline-flex cursor-pointer !bg-brand-main !text-white !font-bold !shadow-lg hover:!shadow-xl hover:!brightness-110 !transition-all rounded-lg px-5 py-2 text-sm active:scale-95 items-center"
             >
               Take the Challenge &rarr;
             </button>
@@ -158,6 +158,15 @@ export default function InstructionLobby() {
               </li>
             </ul>
           </LobbyCard>
+        </div>
+
+        <div className="mt-8 flex md:hidden justify-center">
+          <button
+            onClick={startGame}
+            className="cursor-pointer !bg-brand-main !text-white !font-bold !shadow-lg hover:!shadow-xl hover:!brightness-110 !transition-all rounded-lg px-6 py-3 text-sm active:scale-95"
+          >
+            Take the Challenge &rarr;
+          </button>
         </div>
       </div>
     </div>
