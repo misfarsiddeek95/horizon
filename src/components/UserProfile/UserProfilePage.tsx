@@ -68,6 +68,7 @@ export default function UserProfilePageV2() {
     if (scenes.length > 0) {
       setActiveScene(scenes[0].id);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const animateScene = useCallback((container: Element) => {
