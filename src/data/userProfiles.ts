@@ -73,7 +73,7 @@ export const KEY_FEATURES: KeyFeature[] = [
     icon: "ai",
     title: "The Next Horizon of Intelligent Reporting",
     detail:
-      "Taking reporting beyond disclosure, our AI-enabled digital experience helps stakeholders discover relevant information, explore deeper insights and engage with Haycarb's performance in a more personalised way.",
+      "Taking reporting beyond disclosure, our AI-enabled digital experience helps stakeholders discover relevant information, explore deeper insights and engage with Haycarb's performance in a more personalised way",
     subItems: [
       "Conversational Report Intelligence",
       "Adaptive Stakeholder Experiences",
@@ -88,23 +88,23 @@ export const KEY_FEATURES: KeyFeature[] = [
     icon: "sustainability",
     title: "Sustainability Reporting Enhancements",
     detail:
-      "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+      "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance",
   },
   {
     icon: "financial",
     title: "Financial Reporting Improvements",
     detail:
-      "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+      "Early adoption of SLFRS 18 with improved presentation and expanded disclosures",
   },
   {
     icon: "governance",
     title: "Corporate Governance Presentation",
-    detail: "More visual, streamlined corporate governance reporting.",
+    detail: "More visual, streamlined corporate governance reporting",
   },
   {
     icon: "accessibility",
     title: "Accessibility Advancements",
-    detail: "Braille reporting and sign language, integrated video content.",
+    detail: "Braille reporting and sign language, integrated video content",
   },
 ];
 
@@ -199,25 +199,25 @@ export const PROFILE_TABS: ProfileTab[] = [
           icon: "sustainability",
           title: "Sustainability Reporting Enhancements",
           detail:
-            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance",
         },
         {
           icon: "financial",
           title: "Financial Reporting Improvements",
           detail:
-            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures",
         },
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
           detail:
-            "More visual, streamlined corporate governance reporting.",
+            "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
           title: "Accessibility Advancements",
           detail:
-            "Braille reporting and sign language, integrated video content.",
+            "Braille reporting and sign language, integrated video content",
         },
       ],
     },
@@ -292,25 +292,25 @@ export const PROFILE_TABS: ProfileTab[] = [
           icon: "sustainability",
           title: "Sustainability Reporting Enhancements",
           detail:
-            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance",
         },
         {
           icon: "financial",
           title: "Financial Reporting Improvements",
           detail:
-            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures",
         },
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
           detail:
-            "More visual, streamlined corporate governance reporting.",
+            "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
           title: "Accessibility Advancements",
           detail:
-            "Braille reporting and sign language, integrated video content.",
+            "Braille reporting and sign language, integrated video content",
         },
       ],
     },
@@ -387,25 +387,25 @@ export const PROFILE_TABS: ProfileTab[] = [
           icon: "sustainability",
           title: "Sustainability Reporting Enhancements",
           detail:
-            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance",
         },
         {
           icon: "financial",
           title: "Financial Reporting Improvements",
           detail:
-            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures",
         },
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
           detail:
-            "More visual, streamlined corporate governance reporting.",
+            "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
           title: "Accessibility Advancements",
           detail:
-            "Braille reporting and sign language, integrated video content.",
+            "Braille reporting and sign language, integrated video content",
         },
       ],
     },
@@ -497,25 +497,25 @@ export const PROFILE_TABS: ProfileTab[] = [
           icon: "sustainability",
           title: "Sustainability Reporting Enhancements",
           detail:
-            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance",
         },
         {
           icon: "financial",
           title: "Financial Reporting Improvements",
           detail:
-            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures",
         },
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
           detail:
-            "More visual, streamlined corporate governance reporting.",
+            "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
           title: "Accessibility Advancements",
           detail:
-            "Braille reporting and sign language, integrated video content.",
+            "Braille reporting and sign language, integrated video content",
         },
       ],
     },
@@ -579,25 +579,25 @@ export const PROFILE_TABS: ProfileTab[] = [
           icon: "sustainability",
           title: "Sustainability Reporting Enhancements",
           detail:
-            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance.",
+            "Early adoption of GRI 102 & 103 (Energy & Emissions Standards) and expanded disclosures on SLFRS S1 & S2 with independent assurance",
         },
         {
           icon: "financial",
           title: "Financial Reporting Improvements",
           detail:
-            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures.",
+            "Early adoption of SLFRS 18 with improved presentation and expanded disclosures",
         },
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
           detail:
-            "More visual, streamlined corporate governance reporting.",
+            "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
           title: "Accessibility Advancements",
           detail:
-            "Braille reporting and sign language, integrated video content.",
+            "Braille reporting and sign language, integrated video content",
         },
       ],
     },
