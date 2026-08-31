@@ -316,7 +316,7 @@ export const questionPool: Question[] = [
     id: "sus-3",
     category: "Sustainability, People & Impact",
     word: "HARITHA",
-    clue: 'Haycarb supports greener charcoal production through its "_____" programme.',
+    clue: 'Haycarb supports greener charcoal production through its "_____ Angara" programme.',
     timeLimit: 60,
     description: `Haycarb works closely with suppliers to promote more environmentally sustainable charcoaling practices through technical, financial and infrastructure support. The <b>Haritha</b> Angara programme has been advancing greener charcoal production for a decade.`,
   },

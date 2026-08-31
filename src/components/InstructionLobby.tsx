@@ -123,8 +123,7 @@ export default function InstructionLobby() {
           <LobbyCard icon={<ArrowRightIcon className="h-5 w-5" />} title="Skip for Now">
             <p>
               Not ready to answer a question? Select <strong className="!text-white">&quot;Skip for Now&quot;</strong> to move
-              on. Once used, the remaining unanswered questions will be presented in sequence,
-              allowing you to continue the challenge without interruption.
+              on. Once used, all remaining unanswered skipped questions must be answered to complete your run.
             </p>
           </LobbyCard>
 
