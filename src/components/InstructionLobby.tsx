@@ -108,7 +108,7 @@ export default function InstructionLobby() {
             </p>
             <p className="mt-2">
               Keep in mind: Each time it&apos;s used, the{" "}
-              <strong className="!text-yellow-400">points available for that question are reduced by 50%</strong>.
+              <strong className="!text-yellow-400">points available for that question are reduced by 50%.</strong>
             </p>
           </LobbyCard>
 
