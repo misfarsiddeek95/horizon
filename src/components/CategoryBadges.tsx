@@ -92,11 +92,11 @@ export default function CategoryBadges() {
                       />
                     )}
                   </div>
-                  <div className="relative z-10 [&_path]:!stroke-current" style={{ color: hex }}>
+                  <div className="relative z-10 [&_path]:!stroke-current overflow-hidden w-14 h-14 flex items-center justify-center" style={{ color: hex }}>
                     {animData ? (
-                      <Lottie src={animData} loop={true} autoplay={true} className="w-12 h-12" />
+                      <Lottie src={animData} loop={true} autoplay={true} className="w-full h-full" />
                     ) : (
-                      <div className="w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: `${hex}30` }} />
+                      <div className="w-full h-full rounded-full animate-pulse" style={{ backgroundColor: `${hex}30` }} />
                     )}
                   </div>
                 </div>
