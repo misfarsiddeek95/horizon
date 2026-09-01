@@ -78,7 +78,7 @@ export default function GlobalHeader() {
       </button>
 
       <nav
-        className={`!fixed !inset-0 !w-screen !h-screen !z-[999] overflow-hidden transition-transform duration-700 ease-in-out ${
+        className={`!fixed !inset-0 !w-screen !h-dvh !h-[100dvh] !h-screen !z-[999] overflow-hidden transition-transform duration-700 ease-in-out ${
           isOpen
             ? "translate-y-0 md:translate-y-0 translate-x-0"
             : "-translate-y-full md:-translate-y-full -translate-x-full"
@@ -86,7 +86,7 @@ export default function GlobalHeader() {
       >
         {/* Background Image */}
         <div
-          className="!absolute !inset-0 !w-full !h-full !z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          className="!absolute !inset-0 !w-full !h-full !h-dvh !h-[100dvh] !z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
           style={{ backgroundImage: "url('/images/mega-menu-bgjpeg.jpeg')" }}
         />
 
