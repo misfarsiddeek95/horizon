@@ -108,7 +108,7 @@ function PuzzleGame() {
       <main className="relative z-10 grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-transparent">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
-        <div className="relative z-[100] shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 max-md:pl-4 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2 max-md:gap-2">
+        <div className="relative z-[100] shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 max-md:pl-12 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2 max-md:gap-3">
           <div className="flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink max-md:flex-1 max-md:min-w-0 max-md:ml-0 max-md:pl-0 max-md:mr-0 max-md:text-left lg:flex-row lg:items-center lg:gap-2">
             <span className="font-bold text-sm truncate min-w-0 shrink text-white max-md:truncate">
               {state.session?.name ?? 'Player'}
@@ -151,8 +151,8 @@ function PuzzleGame() {
         </div>
 
         {/* COMPACT CATEGORIES (Mobile Only) */}
-        <div className="block lg:hidden w-full pl-2 pr-6 py-2 border-b border-white/20 bg-white/10 backdrop-blur-md overflow-x-auto no-scrollbar shrink-0 min-h-[50px]">
-          <div className="flex items-center min-w-max">
+        <div className="block lg:hidden w-full pl-2 pr-6 py-3 bg-white/10 backdrop-blur-md overflow-x-auto no-scrollbar shrink-0 min-h-[50px] max-md:h-auto max-md:pb-3 max-md:mb-4 flex items-center">
+          <div className="flex items-center min-w-max max-md:items-center max-md:py-3">
             <CategoryBadges/>
           </div>
         </div>
