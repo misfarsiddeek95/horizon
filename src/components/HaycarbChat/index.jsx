@@ -73,7 +73,7 @@ export default function HaycarbChat({
   };
 
   return (
-    <div className="flex h-full min-h-0 flex-col text-white">
+    <div className="flex h-full min-h-0 flex-col text-white pt-16 md:pt-0">
 
       {messages.length > 0 && (
         <Header
@@ -161,7 +161,7 @@ export default function HaycarbChat({
 
 function Header({ role, setRole, style, setStyle, showControls }) {
   return (
-    <header className="relative z-10 mx-auto mt-4 flex w-[calc(100%-2rem)] max-w-[860px] shrink-0 flex-wrap items-center gap-x-4 gap-y-2.5 rounded-2xl border border-white/20 bg-[#020b10]/75 px-5 py-3.5 shadow-xl backdrop-blur-xl sm:mt-6 sm:w-[calc(100%-3rem)]">
+    <header className="relative z-10 mx-auto mt-3 md:mt-4 flex w-[calc(100%-2rem)] max-w-[860px] shrink-0 flex-wrap items-center gap-x-4 gap-y-2.5 rounded-2xl border border-white/20 bg-[#020b10]/75 px-5 py-3.5 shadow-xl backdrop-blur-xl sm:mt-6 sm:w-[calc(100%-3rem)]">
       <div className="flex items-center gap-3">
         <div className="relative h-[36px] w-[36px] shrink-0">
           <div className="absolute left-1/2 top-1/2 origin-center" style={{ transform: 'translate(-50%, -50%) scale(0.25)' }}>

@@ -595,3 +595,16 @@
 .animate-tab-pass {
   animation: tabContentPass 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+@keyframes aiGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+    filter: blur(6px);
+  }
+}
