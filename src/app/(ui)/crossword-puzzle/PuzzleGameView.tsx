@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowPathIcon, TrophyIcon } from '@heroicons/react/24/outline';
 import { PuzzleProvider, usePuzzle } from '@/context/PuzzleContext';
@@ -27,6 +27,29 @@ function PuzzleGame() {
   const [lastPhase, setLastPhase] = useState(state.phase);
   const [showResults, setShowResults] = useState(state.phase === 'finished');
   const [chatOpen, setChatOpen] = useState(false);
+  const bgMusicRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    bgMusicRef.current = new Audio('/sounds/game.mp3');
+    bgMusicRef.current.loop = true;
+    bgMusicRef.current.volume = 0.15;
+    return () => {
+      if (bgMusicRef.current) {
+        bgMusicRef.current.pause();
+        bgMusicRef.current.src = '';
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const audio = bgMusicRef.current;
+    if (!audio) return;
+    if (state.isMuted || state.phase !== 'playing') {
+      audio.pause();
+    } else {
+      audio.play().catch(() => {});
+    }
+  }, [state.isMuted, state.phase]);
 
   const activeQuestion = state.activeIndex !== null ? state.questions[state.activeIndex] : null;
 
