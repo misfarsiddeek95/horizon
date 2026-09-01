@@ -28,7 +28,7 @@ const HEADING_GRADIENT =
   "font-heading font-medium heading-gradient drop-shadow-2xl";
 
 const SCENE_SECTION =
-  "relative w-full flex flex-col items-center justify-center max-md:mt-16 md:py-8 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
+  "relative w-full flex flex-col items-center justify-center max-md:mt-10 md:py-8 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
 
 const GLASS_PANEL =
   "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 !overflow-hidden transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
@@ -250,7 +250,7 @@ export default function UserProfilePageV2() {
         </div>
 
         {/* HORIZONTAL SCENE DOTS - Mobile Only */}
-        <div className="flex md:hidden justify-center items-center gap-2 mt-4 !mb-12 pointer-events-auto">
+        <div className="flex md:hidden justify-center items-center gap-2 mt-3 !mb-8 pointer-events-auto">
           {getScenesForTab(tab).map(({ id, label }) => {
             const isActive = activeScene === id;
             return (
@@ -323,13 +323,13 @@ export default function UserProfilePageV2() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <div className="relative z-10 w-full min-w-0 lg:ml-32 xl:ml-40 max-md:pb-20">
+        <div className="relative z-10 w-full min-w-0 lg:ml-32 xl:ml-40 max-md:pb-12">
         <InfiniteScrollWrapper loop={false}>
           <div className="flex flex-col w-full original-content-block relative">
             {/* SCENE 1: Hero / Intro */}
             <section
               id="scene-hero"
-              className="relative w-full min-h-screen flex flex-col items-center justify-center pt-56 md:pt-45 pb-32 px-4 md:px-8 z-10 scroll-mt-28"
+              className="relative w-full min-h-screen flex flex-col items-center justify-center pt-44 md:pt-45 pb-24 px-4 md:px-8 z-10 scroll-mt-28"
               data-scene
             >
               <div className="flex flex-col items-center text-center gap-6 max-w-4xl">
@@ -449,7 +449,7 @@ export default function UserProfilePageV2() {
             {tab.governance && (
               <section
                 id="scene-leadership-governance"
-                className="relative w-full flex flex-col items-center justify-center max-md:mt-16 md:py-0 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28"
+                className="relative w-full flex flex-col items-center justify-center max-md:mt-10 md:py-0 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28"
                 data-scene
               >
                 <LeadershipSection governance={tab.governance} />

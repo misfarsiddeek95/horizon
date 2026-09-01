@@ -51,6 +51,19 @@ export default function KeyFeaturesBannerV2({
           {description ?? ""}
         </p>
 
+        <div
+          data-animate
+          className="relative w-full sm:hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] mb-12"
+        >
+          <Image
+            src="/images/innerpage/book.jpeg"
+            alt="Key Features report"
+            fill
+            className="object-cover object-center rounded-3xl w-full h-full"
+            priority
+          />
+        </div>
+
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="flex flex-col gap-8">
             {displayFeatures.map((feature, index) => {
@@ -80,7 +93,7 @@ export default function KeyFeaturesBannerV2({
 
           <div
             data-animate
-            className="relative w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]"
+            className="relative w-full hidden sm:block min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]"
           >
             <Image
               src="/images/innerpage/book.jpeg"
