@@ -28,7 +28,7 @@ const HEADING_GRADIENT =
   "font-heading font-medium heading-gradient drop-shadow-2xl";
 
 const SCENE_SECTION =
-  "relative w-full flex flex-col items-center justify-center py-3 md:py-8 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
+  "relative w-full flex flex-col items-center justify-center max-md:mt-16 md:py-8 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28";
 
 const GLASS_PANEL =
   "w-full max-w-7xl bg-glass-faint border border-border-subtle rounded-3xl p-6 md:p-8 lg:p-10 !overflow-hidden transition-all duration-500 ease-out hover:bg-glass-card-hover hover:border-border-card-hover hover:shadow-metric-hover";
@@ -449,7 +449,7 @@ export default function UserProfilePageV2() {
             {tab.governance && (
               <section
                 id="scene-leadership-governance"
-                className="relative w-full flex flex-col items-center justify-center pt-0 pb-0 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28"
+                className="relative w-full flex flex-col items-center justify-center max-md:mt-16 md:py-0 px-4 md:px-8 z-10 blur-reveal-section will-change-[filter,opacity,transform] scroll-mt-28"
                 data-scene
               >
                 <LeadershipSection governance={tab.governance} />

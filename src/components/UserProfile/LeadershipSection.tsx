@@ -21,7 +21,7 @@ export default function LeadershipSectionV2({
   return (
     <section
       aria-label={governance.title}
-      className="relative mt-16 mb-0"
+      className="relative"
     >
       <div className="flex flex-col items-center mx-auto max-w-4xl text-center px-4">
         <h2 className={`${HEADING_GRADIENT} mb-4 text-center`}>
