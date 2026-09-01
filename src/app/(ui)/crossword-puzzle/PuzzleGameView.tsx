@@ -108,9 +108,9 @@ function PuzzleGame() {
       <main className="relative z-10 grid grid-rows-[auto_auto_auto_1fr_auto_auto] h-[100dvh] w-full overflow-hidden lg:flex lg:flex-col lg:h-auto lg:min-h-screen lg:overflow-visible lg:p-10 lg:gap-8 bg-transparent">
         
         {/* ROW 1 (Mobile) / HEADER (Desktop) */}
-        <div className="relative z-[100] shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2">
-          <div className="flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink lg:flex-row lg:items-center lg:gap-2">
-            <span className="font-bold text-sm truncate min-w-0 shrink text-white">
+        <div className="relative z-[100] shrink-0 w-full max-w-full flex items-center justify-between flex-nowrap pl-20 max-md:pl-4 pr-3 py-3 lg:pl-20 lg:pr-0 lg:py-0 gap-2 max-md:gap-2">
+          <div className="flex flex-col items-start justify-center overflow-hidden mr-2 min-w-0 shrink max-md:flex-1 max-md:min-w-0 max-md:ml-0 max-md:pl-0 max-md:mr-0 max-md:text-left lg:flex-row lg:items-center lg:gap-2">
+            <span className="font-bold text-sm truncate min-w-0 shrink text-white max-md:truncate">
               {state.session?.name ?? 'Player'}
             </span>
             <span className="text-xs text-slate-100 whitespace-nowrap shrink-0">
@@ -122,10 +122,11 @@ function PuzzleGame() {
             <ExitButton />
             <button
               onClick={() => setShowRestartDialog(true)}
-              className="inline-flex cursor-pointer items-center justify-center w-7 h-7 rounded-ui-element !bg-amber-500 !text-white hover:!bg-amber-600 !border-none !shadow-lg transition-colors"
+              className="inline-flex cursor-pointer items-center justify-center gap-1.5 px-3 py-2 border max-md:w-10 max-md:h-10 max-md:p-0 max-md:gap-0 max-md:flex max-md:items-center max-md:justify-center max-md:rounded-lg rounded-ui-element text-sm font-semibold transition-colors !bg-amber-500 !text-white hover:!bg-amber-600 !border-none !shadow-lg transition-colors"
               aria-label="Restart game"
             >
-              <ArrowPathIcon className="h-3.5 w-3.5" />
+              <ArrowPathIcon className="h-4 w-4" />
+              <span className="max-md:hidden">Restart</span>
             </button>
             <ConfirmDialog
               open={showRestartDialog}
@@ -141,10 +142,10 @@ function PuzzleGame() {
             />
             <Link
               href="/leaderboard"
-              className="inline-flex items-center justify-center w-7 h-7 lg:w-auto lg:h-auto lg:px-4 lg:py-2 !bg-brand-main hover:!bg-brand-hover !text-white !border-none !shadow-lg rounded-lg font-semibold transition-all text-sm"
+              className="inline-flex items-center justify-center gap-1.5 w-7 h-7 max-md:w-10 max-md:h-10 max-md:p-0 max-md:gap-0 max-md:flex max-md:items-center max-md:justify-center max-md:rounded-lg lg:w-auto lg:h-auto lg:px-4 lg:py-2 !bg-brand-main hover:!bg-brand-hover !text-white !border-none !shadow-lg rounded-lg font-semibold transition-all text-sm"
             >
-              <TrophyIcon className="h-3.5 w-3.5 lg:hidden" />
-              <span className="hidden lg:inline">Leaderboard</span>
+              <TrophyIcon className="h-4 w-4" />
+              <span className="max-md:hidden">Leaderboard</span>
             </Link>
           </div>
         </div>

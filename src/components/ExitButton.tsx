@@ -22,10 +22,10 @@ export default function ExitButton({ variant = "light" }: ExitButtonProps) {
     <>
       <button
         onClick={() => setShowDialog(true)}
-        className={`inline-flex cursor-pointer items-center gap-1.5 rounded-ui-element border px-3 py-2 text-sm font-semibold transition-colors ${styleClass}`}
+        className={`inline-flex cursor-pointer items-center gap-1.5 rounded-ui-element border px-3 py-2 text-sm font-semibold transition-colors max-md:w-10 max-md:h-10 max-md:p-0 max-md:flex max-md:items-center max-md:justify-center max-md:rounded-lg ${styleClass}`}
       >
         <ArrowRightStartOnRectangleIcon className="h-4 w-4" />
-        Logout
+        <span className="max-md:hidden">Logout</span>
       </button>
       <ConfirmDialog
         open={showDialog}

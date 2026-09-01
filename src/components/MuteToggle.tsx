@@ -21,7 +21,7 @@ export default function MuteToggle({ variant = "light" }: MuteToggleProps) {
       onClick={() => dispatch({ type: "TOGGLE_MUTE" })}
       aria-label={muted ? "Unmute sound effects" : "Mute sound effects"}
       title={muted ? "Unmute sound effects" : "Mute sound effects"}
-      className={`inline-flex cursor-pointer items-center justify-center rounded-ui-element border px-3 py-2 text-sm font-semibold transition-colors ${styleClass}`}
+      className={`inline-flex cursor-pointer items-center justify-center rounded-ui-element border px-3 py-2 text-sm font-semibold transition-colors max-md:w-10 max-md:h-10 max-md:p-0 max-md:flex max-md:items-center max-md:justify-center max-md:rounded-lg ${styleClass}`}
     >
       {muted ? (
         <SpeakerXMarkIcon className="h-4 w-4" />
