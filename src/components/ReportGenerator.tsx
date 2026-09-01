@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import {
   ArrowPathIcon,
-  DocumentIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { mergeAndDownloadPdfs } from "@/utils/mergePdfs";
 import HaycarbDocSearch from "@/components/HaycarbDocSearch";
+import PdfCanvasViewer from "@/components/PdfCanvasViewer";
 
 const categories: Record<string, string[]> = {
   "Corporate Overview": [
@@ -98,33 +98,10 @@ function formatPdfName(path: string): string {
   return decodeURIComponent(path.split("/").pop()?.replace(".pdf", "") ?? path);
 }
 
-function isMobileDevice(): boolean {
-  if (typeof window === "undefined") return false;
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
-}
-
-function encodePdfUrl(path: string): string {
-  const parts = path.split("/");
-  return parts.map((part, i) => (i === parts.length - 1 ? encodeURIComponent(part) : encodeURIComponent(part))).join("/");
-}
-
 export default function ReportGenerator() {
   const [selectedPdfs, setSelectedPdfs] = useState<string[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isMerging, setIsMerging] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeFailed, setIframeFailed] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(isMobileDevice());
-  }, []);
-
-  useEffect(() => {
-    setIframeFailed(false);
-  }, [previewUrl]);
 
   const toggleFile = useCallback((file: string) => {
     setSelectedPdfs((prev) =>
@@ -219,7 +196,7 @@ export default function ReportGenerator() {
             <div className="bg-surface-default/80 backdrop-blur-md border border-white/50 shadow-sm rounded-ui-card overflow-hidden h-[350px] sm:h-[450px] lg:h-[calc(100vh-12rem)] flex flex-col">
               {previewUrl ? (
                 <>
-                  <div className="flex items-center justify-between border-b border-content-primary/10 px-4 py-2.5">
+                  <div className="flex items-center justify-between border-b border-content-primary/10 px-4 py-2.5 shrink-0">
                     <span className="text-xs sm:text-sm font-medium text-content-primary truncate">
                       {formatPdfName(previewUrl)}
                     </span>
@@ -231,33 +208,11 @@ export default function ReportGenerator() {
                       <XMarkIcon className="h-4 w-4" />
                     </button>
                   </div>
-                  {isMobile || iframeFailed ? (
-                    <div className="flex flex-1 flex-col items-center justify-center gap-4 bg-slate-900 px-6 text-center">
-                      <DocumentIcon className="h-16 w-16 text-slate-400" />
-                      <p className="text-sm font-medium text-slate-200 max-w-xs">
-                        {formatPdfName(previewUrl)}
-                      </p>
-                      <p className="text-xs text-slate-400">
-                        PDF preview is not supported on this device
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => window.open(encodePdfUrl(previewUrl), "_blank")}
-                        className="cursor-pointer rounded-lg bg-brand-main px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-hover"
-                      >
-                        Tap to View PDF
-                      </button>
-                    </div>
-                  ) : (
-                    <iframe
-                      ref={iframeRef}
-                      key={previewUrl}
-                      src={encodePdfUrl(previewUrl)}
-                      className="flex-1 w-full border-0"
-                      title="PDF Preview"
-                      onError={() => setIframeFailed(true)}
-                    />
-                  )}
+                  <PdfCanvasViewer
+                    key={previewUrl}
+                    url={previewUrl}
+                    className="flex-1 min-h-0"
+                  />
                 </>
               ) : (
                 <div className="flex flex-1 items-center justify-center px-4">
