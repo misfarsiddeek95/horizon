@@ -26,6 +26,30 @@ import { CONFIG, getAllCategories } from "@/data/config";
 import { evaluateBadges } from "@/data/badges";
 import { isMuted, setMuted } from "@/utils/sound";
 
+const VIEWED_BADGES_KEY = "horizon-viewed-badges";
+
+function getViewedBadges(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    return JSON.parse(localStorage.getItem(VIEWED_BADGES_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function markBadgeViewed(badgeId: string): void {
+  if (typeof window === "undefined") return;
+  const viewed = getViewedBadges();
+  if (!viewed.includes(badgeId)) {
+    localStorage.setItem(VIEWED_BADGES_KEY, JSON.stringify([...viewed, badgeId]));
+  }
+}
+
+function clearViewedBadges(): void {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(VIEWED_BADGES_KEY);
+}
+
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -546,9 +570,11 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
       elapsedSeconds: state.elapsedSeconds,
       sessionAwardedBadges: state.sessionAwardedBadges,
     });
-    if (newly.length > 0) {
-      dispatch({ type: "ENQUEUE_BADGES", payload: { badgeIds: newly } });
-      dispatch({ type: "AWARD_BADGES", payload: { badgeIds: newly } });
+    const viewed = getViewedBadges();
+    const unviewed = newly.filter((id) => !viewed.includes(id));
+    if (unviewed.length > 0) {
+      dispatch({ type: "ENQUEUE_BADGES", payload: { badgeIds: unviewed } });
+      dispatch({ type: "AWARD_BADGES", payload: { badgeIds: unviewed } });
     }
   }, [
     state.earnedBadges,
@@ -640,6 +666,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
 
   const restartGame = useCallback(() => {
     localStorage.removeItem("horizon-puzzle-game-state");
+    clearViewedBadges();
     const gameData = initializeGame();
     dispatch({
       type: "RESTART_GAME",
@@ -652,6 +679,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("horizon-puzzle-game-state");
     localStorage.removeItem("horizon-puzzle-score");
     localStorage.removeItem("horizon-puzzle-badges");
+    clearViewedBadges();
     dispatch({ type: "LOGOUT" });
   }, []);
 

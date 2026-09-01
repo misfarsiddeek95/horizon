@@ -238,7 +238,13 @@ function PuzzleGame() {
       <BadgeUnlockModal
         key={activeBadge.id}
         badge={activeBadge}
-        onClose={() => dispatch({ type: 'DISMISS_BADGE' })}
+        onClose={() => {
+          const viewed = JSON.parse(localStorage.getItem('horizon-viewed-badges') || '[]');
+          if (!viewed.includes(activeBadgeId)) {
+            localStorage.setItem('horizon-viewed-badges', JSON.stringify([...viewed, activeBadgeId]));
+          }
+          dispatch({ type: 'DISMISS_BADGE' });
+        }}
       />
     )}
     {chatOpen && activeQuestion && (

@@ -1,1 +1,127 @@
-[]
+[
+  {
+    "name": "Editor",
+    "email": "asm.misfar@gmail.com",
+    "score": 64,
+    "date": "2026-09-01T18:31:22.657Z",
+    "earnedBadges": {
+      "Annual Report Experience": true,
+      "Company, Governance & Performance": true,
+      "Products, Solutions & Innovation": false,
+      "Sustainability, People & Impact": false,
+      "Markets, Operations & Future Readiness": true
+    },
+    "answerHistory": [
+      {
+        "questionId": "prod-7",
+        "clue": "What characteristic best describes Haycarb's portfolio of over 1,500 activated carbon products?",
+        "category": "Products, Solutions & Innovation",
+        "status": "completed",
+        "timeRemaining": 15,
+        "basePoints": 10,
+        "timeBonus": 1,
+        "aiUsed": true,
+        "totalPointsEarned": 5
+      },
+      {
+        "questionId": "prod-2",
+        "clue": "Which fuel, alongside petroleum, is an application area for Haycarb's activated carbon?",
+        "category": "Products, Solutions & Innovation",
+        "status": "failed",
+        "timeRemaining": 47,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "ops-2",
+        "clue": "Which country is identified as a possible future manufacturing footprint expansion beyond current projects?",
+        "category": "Markets, Operations & Future Readiness",
+        "status": "completed",
+        "timeRemaining": 3,
+        "basePoints": 10,
+        "timeBonus": 0,
+        "aiUsed": true,
+        "totalPointsEarned": 5
+      },
+      {
+        "questionId": "ops-7",
+        "clue": "Growing demand for PFAS removal and environmental purification solutions supported expansion opportunities in North America and _____",
+        "category": "Markets, Operations & Future Readiness",
+        "status": "completed",
+        "timeRemaining": 35,
+        "basePoints": 10,
+        "timeBonus": 2,
+        "aiUsed": false,
+        "totalPointsEarned": 12
+      },
+      {
+        "questionId": "ann-13",
+        "clue": "The Annual Report describes its journey as connected by Purpose, Progress and _____",
+        "category": "Annual Report Experience",
+        "status": "completed",
+        "timeRemaining": 16,
+        "basePoints": 10,
+        "timeBonus": 1,
+        "aiUsed": true,
+        "totalPointsEarned": 5
+      },
+      {
+        "questionId": "ann-14",
+        "clue": "Haycarb's approach to reporting reflects a commitment to accountability, value creation and _____",
+        "category": "Annual Report Experience",
+        "status": "completed",
+        "timeRemaining": 27,
+        "basePoints": 10,
+        "timeBonus": 2,
+        "aiUsed": false,
+        "totalPointsEarned": 12
+      },
+      {
+        "questionId": "gov-9",
+        "clue": "Haycarb achieved over Rs. 100 million in lean _____ during FY2025/26.",
+        "category": "Company, Governance & Performance",
+        "status": "completed",
+        "timeRemaining": 18,
+        "basePoints": 10,
+        "timeBonus": 1,
+        "aiUsed": false,
+        "totalPointsEarned": 11
+      },
+      {
+        "questionId": "gov-3",
+        "clue": "Which strategic pillar focuses on accelerating market penetration and new market entry?",
+        "category": "Company, Governance & Performance",
+        "status": "completed",
+        "timeRemaining": 50,
+        "basePoints": 10,
+        "timeBonus": 4,
+        "aiUsed": false,
+        "totalPointsEarned": 14
+      },
+      {
+        "questionId": "sus-13",
+        "clue": "Which patented Haycarb technology uses heat from the charcoaling process to generate electricity?",
+        "category": "Sustainability, People & Impact",
+        "status": "failed",
+        "timeRemaining": 49,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      },
+      {
+        "questionId": "sus-1",
+        "clue": "How many strategic focus areas underpin Haycarb's ACTIVATE ESG framework?",
+        "category": "Sustainability, People & Impact",
+        "status": "failed",
+        "timeRemaining": 54,
+        "basePoints": 0,
+        "timeBonus": 0,
+        "aiUsed": false,
+        "totalPointsEarned": 0
+      }
+    ]
+  }
+]
