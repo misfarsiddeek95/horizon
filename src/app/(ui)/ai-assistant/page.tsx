@@ -1,8 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
-import AuroraBackground from '@/components/AuroraBackground';
+import dynamic from 'next/dynamic';
 import HaycarbChat from '@/components/HaycarbChat';
+
+const AuroraBackground = dynamic(() => import('@/components/AuroraBackground'), {
+  ssr: false,
+});
 
 const PAGE_COLOR = '#081F2B';
 

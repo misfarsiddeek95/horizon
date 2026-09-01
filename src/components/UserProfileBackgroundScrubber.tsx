@@ -1,6 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import AuroraBackground from "@/components/AuroraBackground";
+import dynamic from "next/dynamic";
+
+const AuroraBackground = dynamic(() => import("@/components/AuroraBackground"), {
+  ssr: false,
+});
 
 const FRAME_COUNT = 240;
 
