@@ -189,15 +189,22 @@ function Header({ role, setRole, style, setStyle, showControls }) {
 
 function Select({ value, onChange, options }) {
   return (
-    <select
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      className="cursor-pointer rounded-xl border border-white/20 bg-[#020b10]/75 px-3 py-1.5 font-sans text-[12px] font-medium text-white shadow-sm backdrop-blur-xl outline-none focus:border-teal-2"
-    >
-      {options.map(o => (
-        <option key={o.value} value={o.value} className="bg-[#0d3443] text-white">{o.label}</option>
-      ))}
-    </select>
+    <div className="relative inline-block">
+      <select
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        className="appearance-none cursor-pointer rounded-xl border border-white/20 bg-[#020b10]/75 pl-3 pr-10 py-1.5 font-sans text-[12px] font-medium text-white shadow-sm backdrop-blur-xl outline-none focus:border-teal-2"
+      >
+        {options.map(o => (
+          <option key={o.value} value={o.value} className="bg-[#0d3443] text-white">{o.label}</option>
+        ))}
+      </select>
+      <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-white">
+        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
   );
 }
 

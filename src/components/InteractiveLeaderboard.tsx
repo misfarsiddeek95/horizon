@@ -164,13 +164,26 @@ export default function InteractiveLeaderboard({
             : undefined
         }
       >
-        <div className="flex items-center gap-4 min-w-0">
-          <span className="flex items-center justify-center w-8 h-8 rounded-full !bg-white/10 !border !border-white/20 font-bold !text-slate-100">
+        <div className="flex items-center gap-4 min-w-0 flex-1 mr-2">
+          <span className="flex items-center justify-center w-8 h-8 rounded-full !bg-white/10 !border !border-white/20 font-bold !text-slate-100 flex-shrink-0">
             {rank}
           </span>
-          <span className="min-w-0 flex-1 truncate !text-slate-100 !font-medium !drop-shadow-sm">{player.name}</span>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-0.5 sm:gap-3 flex-1 min-w-0 mr-2">
+            <span className="min-w-0 flex-1 truncate font-medium !text-slate-100 !drop-shadow-sm">{player.name}</span>
+            {isCurrentUser && (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedEmail(isSelected ? null : player.email);
+                }}
+                className="text-[10px] sm:text-xs font-medium text-white/70 underline underline-offset-2 cursor-pointer hover:text-white transition-colors whitespace-nowrap"
+              >
+                View &amp; Share Win
+              </span>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
           <span className="!text-slate-100 !font-medium !drop-shadow-sm">{player.score} pts</span>
         </div>
       </div>

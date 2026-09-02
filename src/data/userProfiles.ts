@@ -210,8 +210,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
-          detail:
-            "More visual, streamlined corporate governance reporting",
+          detail: "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
@@ -303,8 +302,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
-          detail:
-            "More visual, streamlined corporate governance reporting",
+          detail: "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
@@ -328,7 +326,7 @@ export const PROFILE_TABS: ProfileTab[] = [
     title: "Customers",
     heroTitle: "Innovation designed around customer value",
     intro:
-      "With you, we look Beyond the Beyond. Discover how Haycarb delivers consistency, quality, and sustainability while pursuing new opportunities and advancing towards a future of greater possibilities",
+      "With you, we look Beyond the Beyond. Discover how Haycarb delivers consistency, quality, and sustainability while pursuing new opportunities and advancing towards a future of greater possibilities.",
     metricsIntro:
       "Looking beyond today\u2019s needs, we continue to innovate and evolve alongside our customers, creating solutions for the opportunities and challenges that lie ahead.",
     metricGroups: [
@@ -398,8 +396,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
-          detail:
-            "More visual, streamlined corporate governance reporting",
+          detail: "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
@@ -412,7 +409,8 @@ export const PROFILE_TABS: ProfileTab[] = [
     strategyImage: {
       title: "Our Customer Value Proposition",
       image: "/images/innerpage/user-profile/customers.webp",
-      caption: "Creating lasting customer value through solutions, expertise and partnerships shaped around evolving needs.",
+      caption:
+        "Creating lasting customer value through solutions, expertise and partnerships shaped around evolving needs.",
     },
     aiReportText:
       "Taking reporting beyond disclosure, our AI-enabled digital experience helps customers discover relevant information, explore deeper insights and better understand Haycarb's capabilities, performance and sustainability journey.",
@@ -508,8 +506,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
-          detail:
-            "More visual, streamlined corporate governance reporting",
+          detail: "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",
@@ -590,8 +587,7 @@ export const PROFILE_TABS: ProfileTab[] = [
         {
           icon: "governance",
           title: "Corporate Governance Presentation",
-          detail:
-            "More visual, streamlined corporate governance reporting",
+          detail: "More visual, streamlined corporate governance reporting",
         },
         {
           icon: "accessibility",

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { SparklesIcon } from '@heroicons/react/24/solid';
 import { useDocSearch } from './useDocSearch';
 import SearchTurn from './SearchTurn';
 
@@ -80,7 +81,7 @@ export default function HaycarbDocSearch({
 
         {title && (
           <div className="mb-4">
-            <h2 className="font-heading text-lg text-brand-main">{title}</h2>
+            <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-brand-main">{title}</h2>
             <p className="mt-0.5 text-[11px] text-[#042b31]/80 font-medium">
               Describe what you&apos;re looking for and download the relevant chapters
             </p>
@@ -150,8 +151,21 @@ export default function HaycarbDocSearch({
 function Searching() {
   return (
     <div className="flex gap-2.5 self-start">
-      <div className="mt-0.5 flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-ui-element bg-gradient-to-br from-brand-main to-brand-hover text-[11px] font-bold text-white">
-        AI
+      <div className="mt-0.5 relative h-[32px] w-[32px] shrink-0">
+        <div
+          className="absolute inset-[-3px] rounded-full blur-[4px] opacity-50 animate-[aiGlow_3s_ease-in-out_infinite]"
+          style={{ background: 'linear-gradient(135deg, var(--color-brand-main), var(--color-tm-cyan-teal), var(--color-chart-teal))' }}
+        />
+        <div
+          className="absolute inset-[-2px] rounded-full shadow-[0_0_10px_var(--color-brand-main),0_0_18px_var(--color-tm-cyan-teal)]"
+          style={{ background: 'linear-gradient(135deg, var(--color-brand-main), var(--color-tm-cyan-teal), var(--color-chart-teal))' }}
+        />
+        <div
+          className="absolute inset-0 rounded-full flex items-center justify-center"
+          style={{ background: 'linear-gradient(135deg, var(--color-brand-hover), var(--color-brand-main))' }}
+        >
+          <SparklesIcon className="h-4 w-4 text-white drop-shadow-[0_0_4px_var(--color-tm-cyan-teal)]" />
+        </div>
       </div>
       <div className="flex items-center gap-2.5 rounded-ui-element rounded-bl-sm border border-black/10 bg-surface-muted px-4 py-3.5">
         <span className="flex gap-1">

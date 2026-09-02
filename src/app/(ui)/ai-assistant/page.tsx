@@ -70,7 +70,7 @@ export default function ChatPage() {
 
       <button
         onClick={toggleMute}
-        className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#020b10]/80 text-white shadow-lg backdrop-blur-md transition-colors hover:bg-[#020b10]/95 max-md:bottom-4 max-md:right-4 max-md:h-10 max-md:w-10"
+        className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#020b10]/80 text-white shadow-lg backdrop-blur-md transition-colors hover:bg-[#020b10]/95 max-md:top-4 max-md:right-4 max-md:bottom-auto max-md:h-10 max-md:w-10"
         aria-label={isMuted ? 'Unmute background music' : 'Mute background music'}
       >
         {isMuted ? (
