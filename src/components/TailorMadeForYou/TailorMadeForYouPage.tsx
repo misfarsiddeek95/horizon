@@ -13,7 +13,7 @@ import ReportGenerator from "@/components/ReportGenerator";
 
 const mainTabs = [
   { id: "chart-generator", label: "Chart Generator" },
-  { id: "generate-report", label: "Generate your own report" },
+  { id: "generate-report", label: "Generate Your Own Report" },
 ];
 
 export default function TailorMadeForYouPage() {
