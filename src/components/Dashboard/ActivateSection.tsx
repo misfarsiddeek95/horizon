@@ -21,7 +21,7 @@ export default function ActivateSection({
   onPillarChange,
 }: ActivateSectionProps) {
   return (
-    <section id="activate" className="px-[18px] py-[112px] sm:px-8">
+    <section id="activate" className="px-[18px] py-[112px] sm:px-8 max-md:py-14">
       <div className="mx-auto max-w-[1240px]">
         <div className="mb-[60px] grid grid-cols-1 items-start gap-[72px] lg:grid-cols-[minmax(0,1.25fr)_auto] lg:items-end">
           <div>
