@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import Image from "next/image";
 import {
   ArrowPathIcon,
@@ -102,6 +102,7 @@ export default function ReportGenerator() {
   const [selectedPdfs, setSelectedPdfs] = useState<string[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isMerging, setIsMerging] = useState(false);
+  const pdfViewerRef = useRef<HTMLDivElement>(null);
 
   const toggleFile = useCallback((file: string) => {
     setSelectedPdfs((prev) =>
@@ -111,6 +112,11 @@ export default function ReportGenerator() {
 
   const handlePreview = useCallback((file: string) => {
     setPreviewUrl((prev) => (prev === file ? null : file));
+    setTimeout(() => {
+      if (window.innerWidth < 768 && pdfViewerRef.current) {
+        pdfViewerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   }, []);
 
   const handleGenerate = useCallback(async () => {
@@ -193,7 +199,7 @@ export default function ReportGenerator() {
           </div>
 
           <div className="w-full lg:w-3/5 min-w-0">
-            <div className="bg-surface-default/80 backdrop-blur-md border border-white/50 shadow-sm rounded-ui-card overflow-hidden h-[350px] sm:h-[450px] lg:h-[calc(100vh-12rem)] flex flex-col">
+            <div ref={pdfViewerRef} className="bg-surface-default/80 backdrop-blur-md border border-white/50 shadow-sm rounded-ui-card overflow-hidden h-[350px] sm:h-[450px] lg:h-[calc(100vh-12rem)] flex flex-col">
               {previewUrl ? (
                 <>
                   <div className="flex items-center justify-between border-b border-content-primary/10 px-4 py-2.5 shrink-0">
