@@ -32,7 +32,7 @@ function PuzzleGame() {
   useEffect(() => {
     bgMusicRef.current = new Audio('/sounds/game.mp3');
     bgMusicRef.current.loop = true;
-    bgMusicRef.current.volume = 0.15;
+    bgMusicRef.current.volume = 0.2;
     return () => {
       if (bgMusicRef.current) {
         bgMusicRef.current.pause();

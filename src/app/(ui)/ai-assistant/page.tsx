@@ -31,7 +31,7 @@ export default function ChatPage() {
 
   useEffect(() => {
     const audio = new Audio('/sounds/ai.mp3');
-    audio.volume = 0.15;
+    audio.volume = 0.2;
     audio.loop = true;
     audioRef.current = audio;
 
