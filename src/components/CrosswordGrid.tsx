@@ -213,7 +213,7 @@ export default function CrosswordGrid() {
   const hasPaused = state.isPaused && state.phase === 'playing';
 
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full relative">
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full relative max-md:bg-transparent max-md:backdrop-blur-0 max-md:border-0 max-md:shadow-none">
       {hasPaused && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-white/70 backdrop-blur-sm rounded-xl">
           <div className="rounded-ui-card bg-surface-glass backdrop-blur-lg border border-white/20 px-8 py-6 text-center shadow-2xl">
