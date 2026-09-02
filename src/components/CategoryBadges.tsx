@@ -1,19 +1,21 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { Lottie } from 'lottie-react';
-import { usePuzzle } from '@/context/PuzzleContext';
-import { getAllCategories, CATEGORY_COLORS, CONFIG } from '@/data/config';
+import { useEffect, useRef, useState } from "react";
+import { Lottie } from "lottie-react";
+import { usePuzzle } from "@/context/PuzzleContext";
+import { getAllCategories, CATEGORY_COLORS, CONFIG } from "@/data/config";
 
-const TROPHY_DEFAULT = '/icons/game/wired-outline-3261-trophy-ornate-line-loop-roll.json';
-const TROPHY_COMPLETED = '/icons/game/wired-outline-3259-trophy-ornate-in-reveal.json';
+const TROPHY_DEFAULT =
+  "/icons/game/wired-outline-3261-trophy-ornate-line-loop-roll.json";
+const TROPHY_COMPLETED =
+  "/icons/game/wired-outline-3259-trophy-ornate-in-reveal.json";
 
 const CATEGORY_HEX: Record<string, string> = {
-  'Annual Report Experience': '#f59e0b',
-  'Company, Governance & Performance': '#3b82f6',
-  'Products, Solutions & Innovation': '#14b8a6',
-  'Sustainability, People & Impact': '#22c55e',
-  'Markets, Operations & Future Readiness': '#06b6d4',
+  "Annual Report Experience": "#f59e0b",
+  "Company, Governance & Performance": "#3b82f6",
+  "Products, Solutions & Innovation": "#14b8a6",
+  "Sustainability, People & Impact": "#22c55e",
+  "Markets, Operations & Future Readiness": "#06b6d4",
 };
 
 function useLottieAnimations() {
@@ -55,109 +57,144 @@ export default function CategoryBadges() {
         }
         .animate-wave { animation: wave 2s ease-in-out infinite; }
       `}</style>
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 sm:mb-8">
-      {categories.map((cat) => {
-        const completedCount = state.categoryCounts[cat] ?? 0;
-        const earned = state.earnedBadges?.[cat] ?? false;
-        const s = CATEGORY_COLORS[cat];
-        const required = CONFIG.QUESTIONS_PER_CATEGORY;
-        const hex = CATEGORY_HEX[cat] ?? '#6b7280';
-        const progress = Math.min((completedCount / required) * 100, 100);
-        const animData = earned ? completedAnim : defaultAnim;
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-6 sm:mb-8">
+        {categories.map((cat) => {
+          const completedCount = state.categoryCounts[cat] ?? 0;
+          const earned = state.earnedBadges?.[cat] ?? false;
+          const s = CATEGORY_COLORS[cat];
+          const required = CONFIG.QUESTIONS_PER_CATEGORY;
+          const hex = CATEGORY_HEX[cat] ?? "#6b7280";
+          const progress = Math.min((completedCount / required) * 100, 100);
+          const animData = earned ? completedAnim : defaultAnim;
 
-        return (
-          <div key={cat} className="flex md:flex-col items-center gap-2 md:gap-0 md:w-32">
-
-            {/* ── Desktop Circular UI ── */}
-            <div className="hidden md:flex flex-col items-center w-full">
-              <div className="relative">
-                <div
-                  className="flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-xl border-2 overflow-hidden"
-                  style={{ borderColor: hex }}
-                >
-                  <div className="absolute inset-0 overflow-hidden rounded-full">
-                    <div
-                      className="absolute bottom-0 left-0 w-full transition-all duration-700 ease-out"
-                      style={{ height: `${progress}%`, backgroundColor: hex, opacity: 0.35 }}
-                    />
-                    {progress === 50 && (
+          return (
+            <div
+              key={cat}
+              className="flex md:flex-col items-center gap-2 md:gap-0 md:w-32"
+            >
+              {/* ── Desktop Circular UI ── */}
+              <div className="hidden md:flex flex-col items-center w-full">
+                <div className="relative">
+                  <div
+                    className="flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-xl border-2 overflow-hidden"
+                    style={{ borderColor: hex }}
+                  >
+                    <div className="absolute inset-0 overflow-hidden rounded-full">
                       <div
-                        className="absolute left-1/2 w-[200%] h-3 animate-wave rounded-[40%]"
+                        className="absolute bottom-0 left-0 w-full transition-all duration-700 ease-out"
                         style={{
-                          bottom: `calc(${progress}% - 6px)`,
+                          height: `${progress}%`,
                           backgroundColor: hex,
                           opacity: 0.35,
-                          transform: 'translateX(-50%)',
                         }}
                       />
-                    )}
+                      {progress === 50 && (
+                        <div
+                          className="absolute left-1/2 w-[200%] h-3 animate-wave rounded-[40%]"
+                          style={{
+                            bottom: `calc(${progress}% - 6px)`,
+                            backgroundColor: hex,
+                            opacity: 0.35,
+                            transform: "translateX(-50%)",
+                          }}
+                        />
+                      )}
+                    </div>
+                    <div
+                      className="relative z-10 [&_path]:!stroke-current overflow-hidden w-14 h-14 flex items-center justify-center"
+                      style={{ color: hex }}
+                    >
+                      {animData ? (
+                        <Lottie
+                          src={animData}
+                          loop={true}
+                          autoplay={true}
+                          className="w-full h-full"
+                        />
+                      ) : (
+                        <div
+                          className="w-full h-full rounded-full animate-pulse"
+                          style={{ backgroundColor: `${hex}30` }}
+                        />
+                      )}
+                    </div>
                   </div>
-                  <div className="relative z-10 [&_path]:!stroke-current overflow-hidden w-14 h-14 flex items-center justify-center" style={{ color: hex }}>
-                    {animData ? (
-                      <Lottie src={animData} loop={true} autoplay={true} className="w-full h-full" />
-                    ) : (
-                      <div className="w-full h-full rounded-full animate-pulse" style={{ backgroundColor: `${hex}30` }} />
-                    )}
+                  <div className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
+                    {completedCount}
                   </div>
                 </div>
-                <div className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
-                  {completedCount}
-                </div>
+                <span className="text-center text-xs font-semibold text-white whitespace-normal leading-snug mt-1">
+                  {cat}
+                </span>
               </div>
-              <span className="text-center text-xs font-semibold text-white whitespace-normal leading-snug mt-1">
-                {cat}
-              </span>
-            </div>
 
-            {/* ── Mobile Pill UI ── */}
-            <div
-              className="relative flex md:hidden items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-semibold shadow-lg overflow-hidden transition-all duration-500"
-              style={{
-                borderColor: hex,
-                boxShadow: earned ? `0 0 12px ${hex}, inset 0 0 8px ${hex}` : 'none',
-              }}
-            >
-              <div className="absolute inset-0 -z-10 overflow-hidden rounded-full">
-                <div
-                  className="absolute bottom-0 left-0 w-full transition-all duration-700 ease-out"
-                  style={{ height: `${progress}%`, backgroundColor: hex, opacity: earned ? 0.6 : 0.25 }}
-                />
-                {progress === 50 && (
+              {/* ── Mobile Pill UI ── */}
+              <div
+                className="relative flex md:hidden items-center gap-2 rounded-full border-2 px-4 py-1 text-xs font-semibold shadow-lg overflow-hidden transition-all duration-500 max-[400px]:px-2.5 max-[400px]:py-0.5 max-[400px]:text-[10px] max-[400px]:gap-1"
+                style={{
+                  borderColor: hex,
+                  boxShadow: earned
+                    ? `0 0 12px ${hex}, inset 0 0 8px ${hex}`
+                    : "none",
+                }}
+              >
+                <div className="absolute inset-0 -z-10 overflow-hidden rounded-full">
                   <div
-                    className="absolute left-1/2 w-[200%] h-2.5 animate-wave rounded-[40%]"
+                    className="absolute bottom-0 left-0 w-full transition-all duration-700 ease-out"
                     style={{
-                      bottom: `calc(${progress}% - 5px)`,
+                      height: `${progress}%`,
                       backgroundColor: hex,
-                      opacity: 0.25,
-                      transform: 'translateX(-50%)',
+                      opacity: earned ? 0.6 : 0.25,
                     }}
                   />
-                )}
-              </div>
-              <div
-                className="h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 bg-white"
-                style={{ borderColor: hex, borderWidth: 2, borderStyle: 'solid' }}
-              >
-                <div className="[&_path]:!stroke-current" style={{ color: hex }}>
-                  {animData ? (
-                    <Lottie src={animData} loop={true} autoplay={true} className="w-5 h-5" />
-                  ) : (
-                    <div className="w-5 h-5 rounded-full bg-white/30" />
+                  {progress === 50 && (
+                    <div
+                      className="absolute left-1/2 w-[200%] h-2.5 animate-wave rounded-[40%]"
+                      style={{
+                        bottom: `calc(${progress}% - 5px)`,
+                        backgroundColor: hex,
+                        opacity: 0.25,
+                        transform: "translateX(-50%)",
+                      }}
+                    />
                   )}
                 </div>
+                <div
+                  className="h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 bg-white max-[400px]:h-6 max-[400px]:w-6"
+                  style={{
+                    borderColor: hex,
+                    borderWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                >
+                  <div
+                    className="[&_path]:!stroke-current"
+                    style={{ color: hex }}
+                  >
+                    {animData ? (
+                      <Lottie
+                        src={animData}
+                        loop={true}
+                        autoplay={true}
+                        className="w-5 h-5 max-[400px]:w-3.5 max-[400px]:h-3.5"
+                      />
+                    ) : (
+                      <div className="w-5 h-5 rounded-full bg-white/30" />
+                    )}
+                  </div>
+                </div>
+                <span className="!text-white font-bold !drop-shadow-md whitespace-nowrap transition-all duration-300">
+                  {cat}
+                  {earned && " Expert"}
+                </span>
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-bold !text-white !drop-shadow-md shrink-0 max-[400px]:h-4 max-[400px]:w-4 max-[400px]:text-[8px]">
+                  {completedCount}
+                </span>
               </div>
-              <span className="!text-white font-bold !drop-shadow-md whitespace-nowrap transition-all duration-300">
-                {cat}{earned && ' Expert'}
-              </span>
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[10px] font-bold !text-white !drop-shadow-md shrink-0">
-                {completedCount}
-              </span>
             </div>
-
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
     </>
   );
 }

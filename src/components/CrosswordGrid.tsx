@@ -213,7 +213,7 @@ export default function CrosswordGrid() {
   const hasPaused = state.isPaused && state.phase === 'playing';
 
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full relative max-md:bg-transparent max-md:backdrop-blur-0 max-md:border-0 max-md:shadow-none">
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[500px] w-full max-w-full relative max-md:bg-transparent max-md:backdrop-blur-0 max-md:border-0 max-md:shadow-none max-md:!min-h-0 max-md:!h-fit max-md:!py-6">
       {hasPaused && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-white/70 backdrop-blur-sm rounded-xl">
           <div className="rounded-ui-card bg-surface-glass backdrop-blur-lg border border-white/20 px-8 py-6 text-center shadow-2xl">
@@ -230,10 +230,10 @@ export default function CrosswordGrid() {
           </div>
         </div>
       )}
-      <div className="w-full max-w-full overflow-x-auto overflow-y-hidden pb-4 px-2 sm:px-4 snap-x touch-pan-x">
+      <div className="w-full max-w-full overflow-x-auto overflow-y-auto pb-4 px-2 sm:px-4 snap-x touch-pan-x">
         <div className="flex items-start justify-start md:justify-center p-2 md:p-6">
           <div
-            className="grid w-max mx-auto min-w-full md:min-w-0 [--cell-size:24px] lg:[--cell-size:45px]"
+            className="grid w-max mx-auto min-w-full md:min-w-0 [--cell-size:18px] min-[375px]:[--cell-size:24px] min-[425px]:[--cell-size:28px] sm:[--cell-size:32px] md:[--cell-size:40px]"
           style={{
             gridTemplateColumns: `repeat(${gridWidth}, var(--cell-size))`,
             gridTemplateRows: `repeat(${gridHeight}, var(--cell-size))`,
@@ -247,7 +247,7 @@ export default function CrosswordGrid() {
                 return (
                   <div
                     key={`${x}-${y}`}
-                    className="relative w-[24px] h-[24px] lg:w-[45px] lg:h-[45px] flex-none shrink-0 bg-transparent pointer-events-none"
+                    className="relative w-[var(--cell-size)] h-[var(--cell-size)] flex-none shrink-0 bg-transparent pointer-events-none"
                     style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                   />
                 );
@@ -283,7 +283,7 @@ export default function CrosswordGrid() {
               return (
                 <div
                   key={`${x}-${y}`}
-                  className="relative w-[24px] h-[24px] lg:w-[45px] lg:h-[45px] flex-none shrink-0"
+                  className="relative w-[var(--cell-size)] h-[var(--cell-size)] flex-none shrink-0"
                   style={{ gridColumnStart: x + 1, gridRowStart: y + 1 }}
                 >
                   <div className={overlayClasses} />
