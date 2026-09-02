@@ -63,7 +63,7 @@ export default function PdfCanvasViewer({ url, className = "" }: PdfCanvasViewer
     canvas.style.height = `${scaledViewport.height}px`;
     ctx.scale(dpr, dpr);
 
-    const task = page.render({ canvasContext: ctx, viewport: scaledViewport });
+    const task = page.render({ canvas, canvasContext: ctx, viewport: scaledViewport });
     renderTaskRef.current = task;
     try {
       await task.promise;
