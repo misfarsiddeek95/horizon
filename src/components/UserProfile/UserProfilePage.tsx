@@ -458,7 +458,7 @@ export default function UserProfilePageV2() {
 
             {/* SCENE 7: Strategy Image */}
             {tab.strategyImage && (
-              <section id="scene-strategy" className={SCENE_SECTION} data-scene>
+              <section id="scene-strategy" className={`${SCENE_SECTION} pb-16 md:pb-16`} data-scene>
                 <div className={GLASS_PANEL}>
                   <StrategyImageSection
                     title={tab.strategyImage.title}

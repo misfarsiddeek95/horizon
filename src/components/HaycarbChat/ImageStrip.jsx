@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 /**
  * Person photos returned with an answer.
@@ -52,24 +53,34 @@ function PersonCard({ img, onOpen }) {
   );
 }
 
-/**
- * Fixed-position overlay, so it escapes the chat container.
- * If a positioned ancestor traps it, wrap this in a portal.
- */
 function Lightbox({ img, onClose }) {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex cursor-pointer flex-col items-center justify-center gap-3 bg-black/85 p-6"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8 overscroll-none"
     >
-      <img
-        src={img.url}
-        alt={img.label ?? ''}
-        className="max-h-[80vh] max-w-[90vw] rounded-ui-card object-contain"
-      />
-      {img.label && (
-        <span className="text-sm text-white/80">{img.label}</span>
-      )}
+      <div
+        onClick={e => e.stopPropagation()}
+        className="relative flex flex-col items-center bg-[#0a192f] border border-white/10 rounded-2xl shadow-2xl overflow-hidden max-w-full md:max-w-4xl max-h-[90vh]"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 md:top-4 md:right-4 p-2 bg-black/40 hover:bg-black/80 text-white rounded-full transition-colors backdrop-blur-md z-10 flex items-center justify-center cursor-pointer"
+          aria-label="Close"
+        >
+          <XMarkIcon className="h-5 w-5" />
+        </button>
+        <img
+          src={img.url}
+          alt={img.label ?? ''}
+          className="w-auto max-w-full h-auto max-h-[70vh] object-contain"
+        />
+        {img.label && (
+          <div className="w-full p-4 md:p-5 text-center text-white/90 text-sm md:text-base font-medium bg-white/5">
+            {img.label}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import InnerPageLayout from "@/components/InnerPageLayout";
+import FloatingAIButton from "@/components/FloatingAIButton";
 import ChartTypeTabs from "./ChartTypeTabs";
 import ProfitabilityChart from "./Financial/ProfitabilityChart";
 import FinancialPositionChart from "./Financial/FinancialPositionChart";
@@ -13,7 +14,7 @@ import ReportGenerator from "@/components/ReportGenerator";
 
 const mainTabs = [
   { id: "chart-generator", label: "Chart Generator" },
-  { id: "generate-report", label: "Generate your own report" },
+  { id: "generate-report", label: "Generate Your Own Report" },
 ];
 
 export default function TailorMadeForYouPage() {
@@ -53,6 +54,7 @@ export default function TailorMadeForYouPage() {
         </>
       )}
       {activeTab === "generate-report" && <ReportGenerator />}
+      <FloatingAIButton />
     </InnerPageLayout>
   );
 }

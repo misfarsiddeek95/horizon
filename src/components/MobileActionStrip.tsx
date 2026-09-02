@@ -35,7 +35,7 @@ export default function MobileActionStrip({ onSubmit, onHelp }: MobileActionStri
   }
 
   return (
-    <div className="block lg:hidden w-full bg-white/10 backdrop-blur-md border-t border-white/20 px-4 pt-4 pb-8 z-50">
+    <div className="block lg:hidden w-full bg-white/10 backdrop-blur-md border-t border-white/20 px-4 pt-4 pb-8 z-50 shrink-0 max-md:!p-2 max-md:!pt-2 max-md:!pb-4 max-[400px]:!px-2 max-[400px]:!py-1.5 max-[400px]:!pt-2">
       <div className="flex gap-2 w-full">
         {showHelp && (
           <button

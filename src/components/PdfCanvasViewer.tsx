@@ -9,9 +9,17 @@ let pdfjsLib: typeof import("pdfjs-dist") | null = null;
 async function loadPdfjs() {
   if (!pdfjsLib) {
     pdfjsLib = await import("pdfjs-dist");
-    pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
   }
   return pdfjsLib;
+}
+
+function getPdfOptions(pdfjs: typeof import("pdfjs-dist")) {
+  return {
+    cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+    cMapPacked: true,
+    standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+  };
 }
 
 interface PdfCanvasViewerProps {
@@ -27,10 +35,16 @@ export default function PdfCanvasViewer({ url, className = "" }: PdfCanvasViewer
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const pdfDocRef = useRef<PDFDocumentProxy | null>(null);
+  const renderTaskRef = useRef<{ cancel: () => void } | null>(null);
 
   const renderPage = useCallback(async (pageNum: number) => {
     const doc = pdfDocRef.current;
     if (!doc || !canvasRef.current || !containerRef.current) return;
+
+    if (renderTaskRef.current) {
+      renderTaskRef.current.cancel();
+      renderTaskRef.current = null;
+    }
 
     const page: PDFPageProxy = await doc.getPage(pageNum);
     const containerWidth = containerRef.current.clientWidth;
@@ -42,10 +56,20 @@ export default function PdfCanvasViewer({ url, className = "" }: PdfCanvasViewer
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = scaledViewport.width;
-    canvas.height = scaledViewport.height;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = scaledViewport.width * dpr;
+    canvas.height = scaledViewport.height * dpr;
+    canvas.style.width = `${scaledViewport.width}px`;
+    canvas.style.height = `${scaledViewport.height}px`;
+    ctx.scale(dpr, dpr);
 
-    await page.render({ canvas: null, canvasContext: ctx, viewport: scaledViewport }).promise;
+    const task = page.render({ canvas, canvasContext: ctx, viewport: scaledViewport });
+    renderTaskRef.current = task;
+    try {
+      await task.promise;
+    } catch {
+      // Cancelled or failed — either way, don't propagate
+    }
   }, []);
 
   useEffect(() => {
@@ -62,28 +86,24 @@ export default function PdfCanvasViewer({ url, className = "" }: PdfCanvasViewer
 
         const encodedUrl = url
           .split("/")
-          .map((part, i, arr) => (i === arr.length - 1 ? encodeURIComponent(part) : encodeURIComponent(part)))
+          .map((part) => encodeURIComponent(part))
           .join("/");
 
-        const doc = await lib.getDocument({ url: encodedUrl }).promise;
+        const doc = await lib.getDocument({
+          url: encodedUrl,
+          ...getPdfOptions(lib),
+        }).promise;
         if (cancelled) return;
 
         pdfDocRef.current = doc;
         setTotalPages(doc.numPages);
         setLoading(false);
 
-        const page: PDFPageProxy = await doc.getPage(1);
-        if (cancelled || !canvasRef.current || !containerRef.current) return;
-        const containerWidth = containerRef.current.clientWidth;
-        const viewport: PageViewport = page.getViewport({ scale: 1 });
-        const scale = containerWidth / viewport.width;
-        const scaledViewport: PageViewport = page.getViewport({ scale });
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-        canvas.width = scaledViewport.width;
-        canvas.height = scaledViewport.height;
-        await page.render({ canvas: null, canvasContext: ctx, viewport: scaledViewport }).promise;
+        requestAnimationFrame(() => {
+          if (!cancelled) {
+            renderPage(1);
+          }
+        });
       } catch (err) {
         if (cancelled) return;
         setError(err instanceof Error ? err.message : "Failed to load PDF");
@@ -95,6 +115,10 @@ export default function PdfCanvasViewer({ url, className = "" }: PdfCanvasViewer
 
     return () => {
       cancelled = true;
+      if (renderTaskRef.current) {
+        renderTaskRef.current.cancel();
+        renderTaskRef.current = null;
+      }
       pdfDocRef.current = null;
     };
   }, [url]);
