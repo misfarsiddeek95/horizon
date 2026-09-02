@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import InnerPageLayout from "@/components/InnerPageLayout";
+import FloatingAIButton from "@/components/FloatingAIButton";
 import ChartTypeTabs from "./ChartTypeTabs";
 import ProfitabilityChart from "./Financial/ProfitabilityChart";
 import FinancialPositionChart from "./Financial/FinancialPositionChart";
@@ -53,6 +54,7 @@ export default function TailorMadeForYouPage() {
         </>
       )}
       {activeTab === "generate-report" && <ReportGenerator />}
+      <FloatingAIButton />
     </InnerPageLayout>
   );
 }

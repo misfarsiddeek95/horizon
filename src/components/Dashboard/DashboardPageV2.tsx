@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
 import SmokyBackground from "@/components/SmokyBackground";
+import FloatingAIButton from "@/components/FloatingAIButton";
 import { CRROS_V2 } from "@/data/dashboard/crros";
 import type { CrroId, PillarId, SectionId } from "@/data/dashboard/types";
 import ActivateSection from "./ActivateSection";
@@ -89,6 +90,8 @@ export default function DashboardPageV2() {
           </div>
         </div>
       </section>
+
+      <FloatingAIButton />
     </div>
   );
 }
