@@ -252,8 +252,8 @@ export default function InnerPageLayout({
           </div>
         )}
 
-        <div className="relative z-10 mx-auto min-w-0 max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="bg-transparent p-4 sm:p-6 lg:p-8">
+        <div className="relative z-10 mx-auto min-w-0 max-w-7xl px-4 py-8 sm:px-6 lg:px-8 max-md:px-2">
+          <div className="bg-transparent p-4 sm:p-6 lg:p-8 max-md:p-2">
             {children}
           </div>
         </div>
