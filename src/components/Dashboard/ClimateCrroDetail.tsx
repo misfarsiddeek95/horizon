@@ -126,15 +126,17 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
                 Quantified operational drivers and financial effects across the short, medium and long term
               </p>
             </div>
-            <a
+            <Button
+              behavior="link"
               href={`${CLIMATE_DISCLOSURE_URL}#page=${CRRO_PAGE[crro.id]}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full flex-shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-[9px] border border-[#cfdae1] bg-white px-[9px] py-[7px] text-[9.5px] font-[850] text-[var(--navy)] no-underline sm:w-auto"
+              variant="primary"
+              icon={<ArrowUpRightIcon className="h-3.5 w-3.5" />}
+              className="w-full flex-shrink-0 sm:w-auto !py-2 !px-4 !text-xs"
             >
               View disclosure
-              <ArrowUpRightIcon className="h-3 w-3" />
-            </a>
+            </Button>
           </div>
 
           <div className="grid grid-cols-1 gap-[12px] lg:grid-cols-2">
@@ -298,7 +300,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
             rel="noopener noreferrer"
             variant="primary"
             icon={<ArrowUpRightIcon className="h-4 w-4" />}
-            className="!mt-3.5 w-full max-w-full !bg-white max-md:!px-2 max-md:!gap-1.5 !py-[11px] !text-[12px] !text-[color:var(--color-v2-navy-btn)] sm:w-max"
+            className="!mt-3.5 w-full max-w-full !bg-white !text-[color:var(--color-v2-navy-deep)] hover:!bg-white/90 sm:w-max"
           >
             <span className="max-md:!text-[11px] max-md:!tracking-tighter max-md:!whitespace-nowrap overflow-hidden text-ellipsis flex-1 text-left">
               Annual Report Climate Resilience Assessment

@@ -79,7 +79,7 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
               variant="primary"
               onClick={() => onNavigate("activate")}
               icon={<ArrowUpRightIcon className="h-4 w-4" />}
-              className="w-full min-h-[48px] !border !border-white !bg-white !text-[color:var(--color-v2-navy-deep)] shadow-none hover:!bg-white hover:!shadow-none sm:w-auto"
+              className="w-full min-h-[48px] !bg-white !text-[color:var(--color-v2-navy-deep)] hover:!bg-white/90 shadow-none sm:w-auto"
             >
               Explore ACTIVATE 2030
             </Button>
@@ -87,7 +87,7 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
               variant="outline"
               onClick={() => onNavigate("climate")}
               icon={<ArrowUpRightIcon className="h-4 w-4" />}
-              className="w-full min-h-[48px] !border !border-white/35 !bg-white/10 !text-white backdrop-blur-[8px] hover:!bg-white/20 sm:w-auto"
+              className="w-full min-h-[48px] !border-white/35 !text-white hover:!bg-white/10 sm:w-auto"
             >
               Explore S1 &amp; S2 Outlook
             </Button>

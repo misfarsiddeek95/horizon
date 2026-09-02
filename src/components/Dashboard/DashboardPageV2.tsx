@@ -73,7 +73,7 @@ export default function DashboardPageV2() {
                 behavior="link"
                 href="/pdf/Sustainability-Dashboard/S1 & S2 Climate Risk & Opportunity Outlook/S1 & S2 Climate Risk & Opportunity Outlook - AR disclosure.pdf"
                 target="_blank"
-                variant="secondary"
+                variant="primary"
                 icon={<ArrowUpRightIcon className="h-4 w-4" />}
                 className="min-h-[48px]"
               >

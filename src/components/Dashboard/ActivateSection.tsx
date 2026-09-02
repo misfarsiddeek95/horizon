@@ -42,7 +42,7 @@ export default function ActivateSection({
               rel="noopener noreferrer"
               variant="primary"
               icon={<ArrowUpRightIcon className="h-4 w-4" />}
-              className="min-h-[48px] !bg-[color:var(--color-v2-navy-btn)] hover:!bg-[color:var(--color-v2-navy-deep)]"
+              className="min-h-[48px]"
             >
               ACTIVATE 2030
             </Button>
@@ -50,7 +50,7 @@ export default function ActivateSection({
               behavior="link"
               href="/pdf/Sustainability-Dashboard/ACTIVATE-2030/AR Disclosure on Activate 2030 achievements.pdf"
               target="_blank"
-              variant="secondary"
+              variant="outline"
               icon={<ArrowUpRightIcon className="h-4 w-4" />}
               className="min-h-[48px]"
             >
