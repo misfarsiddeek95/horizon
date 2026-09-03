@@ -27,14 +27,14 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
         aria-hidden="true"
       />
       <div className="relative z-20 mx-auto max-w-[1240px]">
-        <div className="max-w-[1080px]">
+        <div className="max-w-[1080px] mx-auto text-center md:text-left">
           <div className="font-[850] text-[14px] uppercase tracking-[0.16em] text-[var(--color-v2-hero-kicker)]">
             FY 2025/26
           </div>
-          <h1 className="mt-[18px] mb-8 max-w-[930px] font-heading font-medium leading-[0.98] tracking-[-0.025em] text-balance text-[clamp(36px,6vw,82px)]">
+          <h1 className="mt-[18px] mb-8 max-w-[930px] mx-auto md:mx-0 font-heading font-medium leading-[0.98] tracking-[-0.025em] text-balance text-[clamp(36px,6vw,82px)]">
             Sustainability at Haycarb
           </h1>
-          <p className="m-0 max-w-[1040px] text-[18px] leading-[1.72] text-[var(--color-v2-hero-copy)]">
+          <p className="m-0 max-w-[1040px] mx-auto md:mx-0 text-[18px] leading-[1.72] text-[var(--color-v2-hero-copy)]">
             Sustainability continues to shape how Haycarb creates value today
             while building a more resilient and responsible business for the
             future. ACTIVATE 2030, our sustainability roadmap, translates this
@@ -42,7 +42,7 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
             INSPIRE, EXCITE, UPLIFT and INNOVATE.
           </p>
           <div
-            className="my-[26px] mb-[30px] mt-[26px] flex flex-wrap gap-[18px]"
+            className="my-[26px] mb-[30px] mt-[26px] flex flex-wrap justify-center gap-[18px] max-w-[232px] mx-auto md:max-w-none md:mx-0 md:justify-start"
             aria-label="ACTIVATE pillars"
           >
             {PILLAR_IDS.map((id) => (
@@ -66,7 +66,7 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
               </div>
             ))}
           </div>
-          <p className="m-0 max-w-[1040px] text-[18px] leading-[1.72] text-[var(--color-v2-hero-copy)]">
+          <p className="m-0 max-w-[1040px] mx-auto md:mx-0 text-[18px] leading-[1.72] text-[var(--color-v2-hero-copy)]">
             As an early adopter of SLFRS S1 and S2, Haycarb continues to
             strengthen how we assess and communicate material sustainability
             and climate-related risks and opportunities (SRROs and CRROs)
@@ -74,7 +74,7 @@ export default function DashboardHero({ onNavigate }: DashboardHeroProps) {
             provide deeper analysis of the anticipated financial effects of our
             principal climate-related risks and opportunities.
           </p>
-          <div className="mt-[34px] flex w-full flex-wrap gap-3.5 sm:w-auto">
+          <div className="mt-[34px] flex w-full flex-wrap justify-center gap-3.5 md:justify-start sm:w-auto">
             <Button
               variant="primary"
               onClick={() => onNavigate("activate")}
