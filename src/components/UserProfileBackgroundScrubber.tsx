@@ -151,7 +151,7 @@ export default function UserProfileBackgroundScrubber() {
       const end = Math.min(start + BATCH_SIZE, FRAME_COUNT);
       const batch: Promise<HTMLImageElement | null>[] = [];
       for (let i = start; i < end; i++) {
-        const src = `/user_profile_frames/frame_${(i + 1).toString().padStart(4, "0")}.webp`;
+        const src = `/user_profile_frames_v1/frame_${(i + 1).toString().padStart(4, "0")}.webp`;
         batch.push(loadImage(src));
       }
       const results = await Promise.all(batch);
