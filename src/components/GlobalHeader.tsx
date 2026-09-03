@@ -16,14 +16,26 @@ const menuLinks = [
 const darkPages = ['/ai-assistant', '/user-profiles'];
 const whiteBarPages = ['/sustainability-dashboard', '/tailor-made-for-you', '/crossword-puzzle', '/leaderboard'];
 const fixedPages = ['/user-profiles'];
+const scopedBarPages = ['/sustainability-dashboard', '/crossword-puzzle', '/tailor-made-for-you'];
 
 export default function GlobalHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isLightBg = !darkPages.some((p) => pathname.startsWith(p));
   const useWhiteBars = whiteBarPages.some((p) => pathname === p);
   const useFixed = fixedPages.some((p) => pathname.startsWith(p));
+  const useScopedBar = scopedBarPages.some((p) => pathname === p);
   const barColor = useWhiteBars ? 'bg-white' : isLightBg ? 'bg-[#147385]' : 'bg-white';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -50,32 +62,57 @@ export default function GlobalHeader() {
     setIsOpen(false);
   };
 
+  const bars = (
+    <span className="flex flex-col justify-center items-center w-7 h-7 gap-1.5">
+      <span
+        className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
+          isOpen ? "rotate-45 translate-y-[4px]" : ""
+        }`}
+      />
+      <span
+        className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
+          isOpen ? "opacity-0" : ""
+        }`}
+      />
+      <span
+        className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
+          isOpen ? "-rotate-45 -translate-y-[4px]" : ""
+        }`}
+      />
+    </span>
+  );
+
+  const toggleLabel = isOpen ? "Close menu" : "Open menu";
+
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`${useFixed ? 'fixed' : 'absolute'} top-0 left-0 z-[9999] bg-transparent p-4 transition-colors duration-300`}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-      >
-        <span className="flex flex-col justify-center items-center w-7 h-7 gap-1.5">
-          <span
-            className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
-              isOpen ? "rotate-45 translate-y-[4px]" : ""
-            }`}
-          />
-          <span
-            className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
-              isOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
-              isOpen ? "-rotate-45 -translate-y-[4px]" : ""
-            }`}
-          />
-        </span>
-      </button>
+      {useScopedBar ? (
+        <header
+          className={`fixed top-0 left-0 z-[9999] w-full pointer-events-none transition-all duration-300 ${
+            isOpen || !isScrolled
+              ? "bg-transparent"
+              : "bg-[#020b10]/50 backdrop-blur-sm"
+          }`}
+        >
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="pointer-events-auto bg-transparent p-4 transition-colors duration-300"
+            aria-label={toggleLabel}
+          >
+            {bars}
+          </button>
+        </header>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className={`${useFixed ? 'fixed' : 'absolute'} top-0 left-0 z-[9999] bg-transparent p-4 transition-colors duration-300`}
+          aria-label={toggleLabel}
+        >
+          {bars}
+        </button>
+      )}
 
       <nav
         className={`!fixed !inset-0 !w-screen !h-dvh !h-[100dvh] !h-screen !z-[999] overflow-hidden transition-transform duration-700 ease-in-out ${
