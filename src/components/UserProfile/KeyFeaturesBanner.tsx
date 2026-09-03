@@ -35,14 +35,14 @@ export default function KeyFeaturesBannerV2({
   return (
     <section
       ref={ref}
-      aria-label="This year in focus: Key Features"
+      aria-label="This Year in Focus: Key Features"
       className={`group relative w-full lg:py-24 transition-all duration-1000 ease-out will-change-opacity will-change-transform ${
         revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
       <div className="mx-auto max-w-7xl flex flex-col items-center">
         <h2 data-animate className={`${HEADING_GRADIENT} mb-4`}>
-          This year in focus: Key Features
+          This Year in Focus: Key Features
         </h2>
         <p
           data-animate
