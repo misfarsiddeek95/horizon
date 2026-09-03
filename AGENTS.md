@@ -239,3 +239,6 @@ To change the frames, ALWAYS:
 2. Update the frame URL path in `UserProfileBackgroundScrubber.tsx` to the new folder.
 3. Add a matching immutable `Cache-Control` header entry in `next.config.ts` `headers()` for the new `/user_profile_frames_vN/:path*` source.
 4. Keep frames as WebP and never change `FRAME_COUNT`/batch/loader-gate behaviour without explicit design approval.
+
+### Loader / reveal behaviour
+The scrubber reveals the page once the **first batch of frames (0–19) is stored**, then streams the remaining frames in the background — it does **not** wait for all 240 before showing content. Do not "fix" this back to an all-240 gate; the early-reveal is intentional for faster time-to-content.
