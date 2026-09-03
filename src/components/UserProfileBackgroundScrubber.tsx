@@ -11,18 +11,12 @@ const FRAME_COUNT = 240;
 export default function UserProfileBackgroundScrubber() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loadedFrames, setLoadedFrames] = useState(0);
-  const [isReady, setIsReady] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const imagesRef = useRef<HTMLImageElement[]>(new Array(FRAME_COUNT));
 
   useEffect(() => {
-    if (loadedFrames >= FRAME_COUNT && !isReady) {
-      setIsReady(true);
-    }
-  }, [loadedFrames, isReady]);
-
-  useEffect(() => {
-    if (!isReady) return;
+    if (!ready) return;
 
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
@@ -96,10 +90,10 @@ export default function UserProfileBackgroundScrubber() {
       window.removeEventListener("resize", measureContent);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isReady]);
+  }, [ready]);
 
   useEffect(() => {
-    if (!isReady) return;
+    if (!ready) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const context = canvas.getContext("2d");
@@ -121,7 +115,7 @@ export default function UserProfileBackgroundScrubber() {
       0, 0, img.width, img.height,
       centerShiftX, centerShiftY, img.width * ratio, img.height * ratio
     );
-  }, [isReady]);
+  }, [ready]);
 
   useEffect(() => {
     const BATCH_SIZE = 20;
@@ -158,6 +152,7 @@ export default function UserProfileBackgroundScrubber() {
       for (let i = 0; i < results.length; i++) {
         imagesRef.current[start + i] = results[i] as HTMLImageElement;
       }
+      if (!cancelled && start === 0) setReady(true);
     };
 
     const loadAll = async () => {
@@ -174,7 +169,7 @@ export default function UserProfileBackgroundScrubber() {
     };
   }, []);
 
-  if (!isReady) {
+  if (!ready) {
     const progress = Math.min(100, Math.round((loadedFrames / FRAME_COUNT) * 100));
     return (
       <div className="fixed inset-0 w-screen h-screen z-[9999] isolate overflow-hidden text-white">
