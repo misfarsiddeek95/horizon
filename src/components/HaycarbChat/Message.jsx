@@ -65,11 +65,11 @@ function Avatar({ isUser }) {
       <div className="mt-0.5 relative h-[32px] w-[32px] shrink-0">
         <div
           className="absolute inset-0 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_2px_6px_rgba(0,0,0,0.3)]"
-          style={{ background: 'linear-gradient(135deg, var(--color-tm-bronze), #6b5040, var(--color-tm-bronze))' }}
+          style={{ background: 'linear-gradient(135deg, var(--color-tm-teal-blue), #147385, var(--color-tm-teal-blue))' }}
         />
         <div
           className="absolute inset-[2px] rounded-full flex items-center justify-center shadow-[inset_0_1px_2px_rgba(255,255,255,0.1)]"
-          style={{ background: 'linear-gradient(135deg, var(--color-tm-bronze), #a07860, var(--color-tm-bronze))' }}
+          style={{ background: 'linear-gradient(135deg, var(--color-brand-main), var(--color-teal-2), var(--color-brand-main))' }}
         >
           <UserIcon className="h-3.5 w-3.5 text-white/80" />
         </div>
