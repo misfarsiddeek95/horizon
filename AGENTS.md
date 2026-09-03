@@ -241,4 +241,4 @@ To change the frames, ALWAYS:
 4. Keep frames as WebP and never change `FRAME_COUNT`/batch/loader-gate behaviour without explicit design approval.
 
 ### Loader / reveal behaviour
-The scrubber reveals the page once the **first batch of frames (0–19) is stored**, then streams the remaining frames in the background — it does **not** wait for all 240 before showing content. Do not "fix" this back to an all-240 gate; the early-reveal is intentional for faster time-to-content.
+There is **no full-screen preloader**. The scrubber shows a **static poster** (`frame_0001.webp`) as the background the moment the page loads, then swaps to the live scrubbing canvas once the **first batch of frames (0–19) is stored**, cross-fading between the two, and streams the remaining frames in the background. It does **not** wait for all 240 before showing content. Do not reintroduce an all-240 loading gate or an overlay preloader; the poster early-reveal is intentional for faster time-to-content.
