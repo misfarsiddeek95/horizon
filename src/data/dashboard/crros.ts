@@ -134,7 +134,7 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     id: 3,
     kind: "Opportunity",
     tabTitle: "Renewable energy",
-    tabType: "Lower-carbon energy transition",
+    tabType: "Lower-carbon, more resilient energy use",
     title: "Renewable energy opportunity",
     desc: "A higher renewable share can reduce fossil-fuel exposure and improve cost predictability",
     color: "#4A9B52",
@@ -198,7 +198,7 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
   4: {
     id: 4,
     kind: "Opportunity",
-    tabTitle: "Value-added carbon",
+    tabTitle: "Future-focused carbon solutions",
     tabType: "Growth through higher-value solutions",
     title: "Value-added carbon opportunity",
     desc: "Growing climate-solution demand can create a market opportunity for Energy Storage Carbons",

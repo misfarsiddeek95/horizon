@@ -126,7 +126,8 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     name: "INSPIRE",
     descriptor: "Our Teams",
     desc: "Creating an inclusive, safe and future-ready workplace where our teams can grow and contribute",
-    overview: "",
+    overview:
+      "INSPIRE focuses on the people who bring ACTIVATE to life, through learning, ownership, collaboration and shared responsibility. In FY2025/26, we focused on building capability, strengthening engagement and creating a more inclusive workplace.",
     standout: "Rs. 73 Mn",
     standoutText:
       "in relief assistance following Cyclone Ditwah",
@@ -189,15 +190,16 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     id: "excite",
     name: "EXCITE",
     descriptor: "Our Customers",
-    desc: "Partnering with customers to deliver responsible solutions and strengthen shared sustainability outcomes.",
-    overview: "",
+    desc: "Partnering with customers to deliver responsible solutions and strengthen shared sustainability outcomes",
+    overview:
+      "EXCITE focuses on the trust customers place in Haycarb through consistent quality, service and technical expertise. In FY2025/26, we focused on staying close to customer needs, delivering reliable performance and responding to increasingly specialised requirements.",
     standout: "19",
     standoutText:
       "New customers acquired across the Activated Carbon Segment",
     impacts: [
-      { value: "64", label: "customer initiatives" },
-      { value: "21", label: "joint projects" },
-      { value: "93%", label: "quality satisfaction" },
+      { value: "95%", label: "customer retention rate" },
+      { value: "100%", label: "of customer complaints resolved" },
+      { value: "600+", label: "customers and distributors across 50 countries" },
     ],
     commitments: [
       {
@@ -227,8 +229,9 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     id: "uplift",
     name: "UPLIFT",
     descriptor: "Communities & Supply Chain",
-    desc: "Supporting resilient communities and responsible supply chains through shared value creation.",
-    overview: "",
+    desc: "Supporting resilient communities and responsible supply chains through shared value creation",
+    overview:
+      "UPLIFT focuses on the people and communities connected to our value chain, from suppliers and farmers to schools and local communities. In FY2025/26, we focused on responsible sourcing, stronger supplier relationships and community initiatives that respond to real needs.",
     standout: "Rs 52.7 Mn",
     standoutText: "Invested in CSR Initiatives",
     impacts: [
@@ -274,8 +277,9 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     id: "innovate",
     name: "INNOVATE",
     descriptor: "Our Future Solutions",
-    desc: "Advancing future ready carbon solutions through innovation, R&D and next generation applications.",
-    overview: "",
+    desc: "Advancing future ready carbon solutions through innovation, R&D and next generation applications",
+    overview:
+      "INNOVATE focuses on how Haycarb looks ahead through research, product development and stronger technical capabilities. In FY2025/26, we focused on more specialised and efficient solutions for future markets, with particular emphasis on energy storage carbons.",
     standout: "Rs 916 Mn",
     standoutText: "Revenue generated from new products",
     impacts: [
@@ -288,7 +292,7 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
         name: "Product and process certifications",
         current: "32",
         note: "certifications",
-        target: "No phased target disclosed",
+        target: "Annually reported figure",
         status: "Progressing",
         tone: "progressing",
       },
@@ -296,7 +300,7 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
         name: "Sustainable innovation investment",
         current: "Rs. 262 Mn",
         note: "FY2025/26 investment",
-        target: "No phased target disclosed",
+        target: "Annually reported figure",
         status: "Progressing",
         tone: "progressing",
       },

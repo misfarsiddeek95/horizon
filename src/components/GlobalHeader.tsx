@@ -9,12 +9,12 @@ const menuLinks = [
   { name: "AI Guided Exploration", path: "/ai-assistant" },
   { name: "User Profiles", path: "/user-profiles" },
   { name: "Gamified Exploration", path: "/crossword-puzzle" },
-  { name: "Sustainability Dashboard", path: "/dashboard" },
+  { name: "Sustainability Dashboard", path: "/sustainability-dashboard" },
   { name: "Interactive Charts & Reports", path: "/tailor-made-for-you" },
 ];
 
 const darkPages = ['/ai-assistant', '/user-profiles'];
-const whiteBarPages = ['/dashboard', '/tailor-made-for-you', '/crossword-puzzle', '/leaderboard'];
+const whiteBarPages = ['/sustainability-dashboard', '/tailor-made-for-you', '/crossword-puzzle', '/leaderboard'];
 const fixedPages = ['/user-profiles'];
 
 export default function GlobalHeader() {
