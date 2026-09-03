@@ -135,7 +135,7 @@ export default function ReportGenerator() {
   }, [selectedPdfs]);
 
   return (
-    <main className="min-h-screen bg-transparent p-4 sm:p-6 lg:p-12">
+    <main className="min-h-screen bg-transparent p-4 pb-16 sm:p-6 lg:p-12 sm:pb-20 lg:pb-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-6 sm:mb-8 lg:mb-10">
           <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-brand-main mb-3">
