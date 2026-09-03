@@ -57,12 +57,9 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
           />
           <div className="absolute inset-0 bg-black/50 pointer-events-none" />
           <div className="relative z-10 mx-auto max-w-[900px] text-white">
-            <h3 className="m-0 mb-[10px] max-w-[860px] font-heading text-[clamp(38px,4.2vw,58px)] font-medium leading-[1.02] tracking-[-0.025em]">
-              {crro.title}
-            </h3>
-            <p className="m-0 max-w-[860px] text-[13px] leading-[1.6] text-[#d9e8e7]">
+            <h3 className="m-0 max-w-[860px] font-heading text-[clamp(32px,3.6vw,48px)] font-medium leading-[1.1] tracking-[-0.02em]">
               {crro.desc}
-            </p>
+            </h3>
           </div>
         </div>
 
@@ -300,9 +297,9 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
             rel="noopener noreferrer"
             variant="primary"
             icon={<ArrowUpRightIcon className="h-4 w-4" />}
-            className="!mt-3.5 w-full max-w-full !bg-white !text-[color:var(--color-v2-navy-deep)] hover:!bg-white/90 sm:w-max"
+            className="!mt-3.5 w-full max-w-full min-h-[44px] h-auto whitespace-normal !bg-white !text-[color:var(--color-v2-navy-deep)] hover:!bg-white/90 sm:w-max"
           >
-            <span className="max-md:!text-[11px] max-md:!tracking-tighter max-md:!whitespace-nowrap overflow-hidden text-ellipsis flex-1 text-left">
+            <span className="block whitespace-normal text-center max-[400px]:!text-[11px] max-[400px]:!leading-tight sm:text-sm">
               Annual Report Climate Resilience Assessment
             </span>
           </Button>

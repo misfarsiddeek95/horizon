@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 function AnimatedAILogo({ size = 56, className = "" }: { size?: number; className?: string }) {
@@ -28,6 +29,14 @@ function AnimatedAILogo({ size = 56, className = "" }: { size?: number; classNam
 }
 
 export default function FloatingAIButton() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <Link
       href="/ai-assistant"
