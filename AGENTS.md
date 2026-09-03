@@ -219,3 +219,26 @@ src/
 - Before committing: run `pnpm build`, review `git status` + `git diff`, and write concise commit messages matching the repo style.
 - All new files must be created with `write` tool (not `bash`).
 - Always prefer **editing existing files** over creating new ones unless the task explicitly requires a new file.
+
+---
+
+## 6. Caching & Static Asset Versioning (STRICT)
+
+**CLAUDE.md is `@AGENTS.md`** — it includes this file, so AGENTS.md is the single source of truth for both.
+
+### The `/user-profiles` background scrub frames
+- Live in `public/user_profile_frames_v1/` (currently **240 WebP** files, `frame_0001.webp` … `frame_0240.webp`).
+- Are loaded by `src/components/UserProfileBackgroundScrubber.tsx` and drawn to a fixed canvas that scrubs with page scroll.
+- Are served with **`Cache-Control: public, max-age=31536000, immutable`** via the `headers()` config in `next.config.ts`, matching the `/user_profile_frames_v1/:path*` source.
+
+### CRITICAL: never regenerate frames in place
+Returning browsers cache these frames **immutably for a full year**. Because the URLs never revalidate, overwriting or appending frames inside `public/user_profile_frames_v1/` will **not** reach repeat visitors — they will keep serving the old cached frames.
+
+To change the frames, ALWAYS:
+1. Create a **new versioned folder** — `public/user_profile_frames_v2/`, `v3/`, etc. (use `git mv` from the previous version to preserve history).
+2. Update the frame URL path in `UserProfileBackgroundScrubber.tsx` to the new folder.
+3. Add a matching immutable `Cache-Control` header entry in `next.config.ts` `headers()` for the new `/user_profile_frames_vN/:path*` source.
+4. Keep frames as WebP and never change `FRAME_COUNT`/batch/loader-gate behaviour without explicit design approval.
+
+### Loader / reveal behaviour
+There is **no full-screen preloader**. The scrubber shows a **static poster** (`frame_0001.webp`) as the background the moment the page loads, then swaps to the live scrubbing canvas once the **first batch of frames (0–19) is stored**, cross-fading between the two, and streams the remaining frames in the background. It does **not** wait for all 240 before showing content. Do not reintroduce an all-240 loading gate or an overlay preloader; the poster early-reveal is intentional for faster time-to-content.
