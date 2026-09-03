@@ -1,16 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-
-const AuroraBackground = dynamic(() => import("@/components/AuroraBackground"), {
-  ssr: false,
-});
 
 const FRAME_COUNT = 240;
+const POSTER_SRC = "/user_profile_frames_v1/frame_0001.webp";
 
 export default function UserProfileBackgroundScrubber() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [loadedFrames, setLoadedFrames] = useState(0);
   const [ready, setReady] = useState(false);
 
   const imagesRef = useRef<HTMLImageElement[]>(new Array(FRAME_COUNT));
@@ -125,7 +120,6 @@ export default function UserProfileBackgroundScrubber() {
       return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
-          if (!cancelled) setLoadedFrames((prev) => prev + 1);
           resolve(img);
         };
         img.onerror = () => {
@@ -133,7 +127,6 @@ export default function UserProfileBackgroundScrubber() {
             loadImage(src, 0).then(resolve);
           } else {
             console.error(`Failed to load frame: ${src}`);
-            if (!cancelled) setLoadedFrames((prev) => prev + 1);
             resolve(null);
           }
         };
@@ -169,56 +162,20 @@ export default function UserProfileBackgroundScrubber() {
     };
   }, []);
 
-  if (!ready) {
-    const progress = Math.min(100, Math.round((loadedFrames / FRAME_COUNT) * 100));
-    return (
-      <div className="fixed inset-0 w-screen h-screen z-[9999] isolate overflow-hidden text-white">
-        <AuroraBackground />
-        <div className="absolute inset-0 z-10 bg-slate-900/40 backdrop-blur-sm" />
-        <div className="relative z-20 flex h-full flex-col items-center justify-center">
-          <div className="relative flex items-center justify-center">
-            <svg
-              className="h-20 w-20 animate-spin"
-              viewBox="0 0 50 50"
-            >
-              <circle
-                cx="25"
-                cy="25"
-                r="20"
-                fill="none"
-                stroke="rgba(255,255,255,0.15)"
-                strokeWidth="4"
-              />
-              <circle
-                cx="25"
-                cy="25"
-                r="20"
-                fill="none"
-                stroke="var(--color-brand-main)"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeDasharray="90, 150"
-                strokeDashoffset="0"
-              />
-            </svg>
-            <span className="absolute text-lg font-semibold tracking-widest text-white tabular-nums">
-              {progress}
-              <span className="text-sm">%</span>
-            </span>
-          </div>
-          <p className="mt-6 text-sm font-light tracking-[0.25em] uppercase text-white/50">
-            Loading experience
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="fixed inset-0 w-screen h-screen -z-10 bg-black pointer-events-none">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full object-cover"
+      />
+      <img
+        src={POSTER_SRC}
+        alt=""
+        aria-hidden
+        draggable={false}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+          ready ? "opacity-0" : "opacity-100"
+        }`}
       />
       <div
         className="absolute inset-0 z-10"
