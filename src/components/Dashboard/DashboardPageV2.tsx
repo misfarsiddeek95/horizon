@@ -51,7 +51,7 @@ export default function DashboardPageV2() {
 
       <section
         id="climate"
-        className="border-t border-[#e2eaed] px-[18px] pt-[112px] pb-8 sm:px-8 max-md:pt-14"
+        className="border-t border-[#e2eaed] px-[18px] pt-[112px] pb-16 sm:px-8 max-md:pt-14"
       >
         <div className="mx-auto max-w-[1240px]">
           <div className="mb-[34px] grid grid-cols-1 items-start gap-[72px] lg:grid-cols-[minmax(0,1.25fr)_auto] lg:items-end">
