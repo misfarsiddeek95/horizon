@@ -57,12 +57,9 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
           />
           <div className="absolute inset-0 bg-black/50 pointer-events-none" />
           <div className="relative z-10 mx-auto max-w-[900px] text-white">
-            <h3 className="m-0 mb-[10px] max-w-[860px] font-heading text-[clamp(38px,4.2vw,58px)] font-medium leading-[1.02] tracking-[-0.025em]">
-              {crro.title}
-            </h3>
-            <p className="m-0 max-w-[860px] text-[13px] leading-[1.6] text-[#d9e8e7]">
+            <h3 className="m-0 max-w-[860px] font-heading text-[clamp(32px,3.6vw,48px)] font-medium leading-[1.1] tracking-[-0.02em]">
               {crro.desc}
-            </p>
+            </h3>
           </div>
         </div>
 
