@@ -65,7 +65,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
 
         <div className="bg-surface-default px-6 pt-[26px] pb-7">
           <div className="mb-2 flex items-center justify-center gap-[18px] text-center">
-            <h2 className="m-0 mb-[15px] text-[18px] font-bold leading-[1.3] text-[var(--color-v2-navy-deep)]">
+            <h2 className="m-0 mb-[15px] text-[clamp(22px,2.2vw,28px)] font-bold leading-[1.3] text-[var(--color-v2-navy-deep)]">
               Key climate &amp; operational factors
             </h2>
           </div>
@@ -92,7 +92,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
 
         <div className="border-t border-[#edf2f1] bg-white px-6 pt-[28px] pb-[30px]">
           <div className="mb-2 flex items-center justify-center gap-[18px] text-center">
-            <h2 className="m-0 mb-[15px] text-[18px] font-bold leading-[1.3] text-[var(--color-v2-navy-deep)]">
+            <h2 className="m-0 mb-[15px] text-[clamp(22px,2.2vw,28px)] font-bold leading-[1.3] text-[var(--color-v2-navy-deep)]">
               What does this mean for Haycarb?
             </h2>
           </div>
