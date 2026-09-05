@@ -51,13 +51,26 @@ export default function GlobalHeader() {
   }, []);
 
   useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      // Lock both <html> and <body>. iOS Safari ignores a <body>-only lock,
+      // leaving the page scrollable behind the fixed overlay; a vertical touch
+      // on the overlay is then treated as a potential page scroll and taps on
+      // the nav links can be dropped. Locking the document root fixes delivery.
+      const scrollY = window.scrollY;
+      html.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+      if (window.scrollY !== scrollY) {
+        window.scrollTo(0, scrollY);
+      }
     } else {
-      document.body.style.overflow = "";
+      html.style.overflow = "";
+      body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "";
+      html.style.overflow = "";
+      body.style.overflow = "";
     };
   }, [isOpen]);
 
