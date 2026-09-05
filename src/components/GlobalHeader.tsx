@@ -13,10 +13,19 @@ const menuLinks = [
   { name: "Interactive Charts & Reports", path: "/tailor-made-for-you" },
 ];
 
-const darkPages = ['/ai-assistant', '/user-profiles'];
-const whiteBarPages = ['/sustainability-dashboard', '/tailor-made-for-you', '/crossword-puzzle', '/leaderboard'];
-const fixedPages = ['/user-profiles'];
-const scopedBarPages = ['/sustainability-dashboard', '/crossword-puzzle', '/tailor-made-for-you'];
+const darkPages = ["/ai-assistant", "/user-profiles"];
+const whiteBarPages = [
+  "/sustainability-dashboard",
+  "/tailor-made-for-you",
+  "/crossword-puzzle",
+  "/leaderboard",
+];
+const fixedPages = ["/user-profiles"];
+const scopedBarPages = [
+  "/sustainability-dashboard",
+  "/crossword-puzzle",
+  "/tailor-made-for-you",
+];
 
 export default function GlobalHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +35,11 @@ export default function GlobalHeader() {
   const useWhiteBars = whiteBarPages.some((p) => pathname === p);
   const useFixed = fixedPages.some((p) => pathname.startsWith(p));
   const useScopedBar = scopedBarPages.some((p) => pathname === p);
-  const barColor = useWhiteBars ? 'bg-white' : isLightBg ? 'bg-[#147385]' : 'bg-white';
+  const barColor = useWhiteBars
+    ? "bg-white"
+    : isLightBg
+    ? "bg-[#147385]"
+    : "bg-white";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,17 +78,23 @@ export default function GlobalHeader() {
   const bars = (
     <span className="flex flex-col justify-center items-center w-7 h-7 gap-1.5">
       <span
-        className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
+        className={`block w-7 h-0.5 ${
+          isOpen ? "bg-white" : barColor
+        } rounded-full transition-all duration-500 ease-in-out ${
           isOpen ? "rotate-45 translate-y-[4px]" : ""
         }`}
       />
       <span
-        className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
+        className={`block w-7 h-0.5 ${
+          isOpen ? "bg-white" : barColor
+        } rounded-full transition-all duration-500 ease-in-out ${
           isOpen ? "opacity-0" : ""
         }`}
       />
       <span
-        className={`block w-7 h-0.5 ${isOpen ? 'bg-white' : barColor} rounded-full transition-all duration-500 ease-in-out ${
+        className={`block w-7 h-0.5 ${
+          isOpen ? "bg-white" : barColor
+        } rounded-full transition-all duration-500 ease-in-out ${
           isOpen ? "-rotate-45 -translate-y-[4px]" : ""
         }`}
       />
@@ -107,7 +126,9 @@ export default function GlobalHeader() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className={`${useFixed ? 'fixed' : 'absolute'} top-0 left-0 z-[9999] bg-transparent p-4 transition-colors duration-300`}
+          className={`${
+            useFixed ? "fixed" : "absolute"
+          } top-0 left-0 z-[9999] bg-transparent p-4 transition-colors duration-300`}
           aria-label={toggleLabel}
         >
           {bars}
@@ -171,6 +192,22 @@ export default function GlobalHeader() {
               </Link>
             ))}
           </div>
+          <p className="!absolute !bottom-0 !right-0 !w-full !px-6 !pb-6 md:!pr-12 md:!pl-12 md:!pb-8 !z-[60] !pointer-events-auto !text-center md:!text-right !font-sans !text-[12px] !leading-relaxed text-white/50">
+            <span className="block">
+              © 2026. Haycarb PLC, All Rights Reserved.
+            </span>
+            <span className="block">
+              Concept &amp; Design by{" "}
+              <a
+                href="https://luxeeye.au/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-white/60 transition-colors duration-300"
+              >
+                Luxe Eye.
+              </a>
+            </span>
+          </p>
         </div>
       </nav>
     </>
