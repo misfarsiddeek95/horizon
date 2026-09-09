@@ -657,6 +657,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const startGame = useCallback(() => {
+    clearViewedBadges();
     const gameData = initializeGame();
     dispatch({
       type: "START_GAME",
