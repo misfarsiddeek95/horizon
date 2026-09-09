@@ -16,9 +16,10 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       `script-src ${scriptSrc}`,
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
-      "font-src 'self' data:",
+      "connect-src 'self' https://dash.accessibly.app https://cdn.accessibly.app https://alt-tags.accessiblyapp.com",
+      "style-src 'self' 'unsafe-inline' https://cdn.accessibly.app https://*.accessibly.app",
+      "img-src 'self' data: blob: https://cdn.accessibly.app https://*.accessibly.app",
+      "font-src 'self' data: https://cdn.accessibly.app https://*.accessibly.app",
       "media-src 'self' blob:",
       "frame-ancestors 'self'",
       "base-uri 'self'",
