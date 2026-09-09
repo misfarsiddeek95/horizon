@@ -608,3 +608,15 @@
     filter: blur(6px);
   }
 }
+
+/* AI Assistant chat page only: move the third-party Accessibly trigger off the
+   bottom-left (where it overlaps the chat input) to top-right below the mute
+   button. Desktop and all other routes are untouched. */
+@media (max-width: 768px) {
+  body[data-ai-chat] #accessiblyAppWidgetButton.accessibly-app-widget-button-container {
+    bottom: auto !important;
+    left: auto !important;
+    top: 80px !important;
+    right: 16px !important;
+  }
+}

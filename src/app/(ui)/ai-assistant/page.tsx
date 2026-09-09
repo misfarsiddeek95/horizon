@@ -21,9 +21,11 @@ export default function ChatPage() {
     const body = document.body;
     const prevRootBg = root.style.backgroundColor;
     const prevBodyBg = body.style.backgroundColor;
+    body.dataset.aiChat = "true";
     root.style.backgroundColor = PAGE_COLOR;
     body.style.backgroundColor = PAGE_COLOR;
     return () => {
+      delete body.dataset.aiChat;
       root.style.backgroundColor = prevRootBg;
       body.style.backgroundColor = prevBodyBg;
     };
