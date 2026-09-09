@@ -202,8 +202,8 @@ export default function InteractiveLeaderboard({
           const podium = PODIUM_STYLES[rank];
 
           const columnClasses =
-            "flex flex-col items-center" +
-            (isCurrentUser ? " cursor-pointer" : " cursor-default");
+            "flex flex-col items-center justify-center text-center transition-transform duration-300" +
+            (isCurrentUser ? " cursor-pointer hover:scale-105" : " cursor-default");
           const snakeClasses =
             "relative z-10 overflow-hidden rounded-full transition-transform duration-300" +
             " " +
@@ -212,7 +212,7 @@ export default function InteractiveLeaderboard({
             podium.glowShadow +
             " " +
             podium.ringGradient +
-            (isSelected ? " scale-105" : isCurrentUser ? " hover:scale-105" : "");
+            (isSelected ? " scale-105" : "");
 
           return (
             <div
@@ -261,6 +261,16 @@ export default function InteractiveLeaderboard({
               >
                 {player.score} pts
               </span>
+              {isCurrentUser && (
+                <div className="mt-2.5 flex items-center justify-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 shadow-sm backdrop-blur-md transition-colors hover:bg-white/20">
+                  <span className="text-[9px] sm:text-[10px] font-medium tracking-wide text-white/90 uppercase">
+                    Tap to View &amp; Share
+                  </span>
+                  <svg className="h-3 w-3 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              )}
             </div>
           );
         })}
