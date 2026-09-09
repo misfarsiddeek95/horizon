@@ -114,7 +114,7 @@ export default function MobileClueBar() {
               </span>
             </div>
           ) : (
-            <span className="text-white/70 text-sm">Tap a grid square to select a question</span>
+            <span className="text-white/70 text-sm">Use the arrows to select a question</span>
           )}
         </div>
 
