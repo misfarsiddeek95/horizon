@@ -7,6 +7,7 @@ const scriptSrc = [
   "'unsafe-inline'",
   "https://dash.accessibly.app",
   "https://cdn.accessibly.app",
+  "https://unpkg.com",
   ...(isDev ? ["'unsafe-eval'"] : []),
 ].join(" ");
 
@@ -16,11 +17,13 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       `script-src ${scriptSrc}`,
-      "connect-src 'self' https://dash.accessibly.app https://cdn.accessibly.app https://alt-tags.accessiblyapp.com",
+      "connect-src 'self' https://dash.accessibly.app https://cdn.accessibly.app https://alt-tags.accessiblyapp.com https://unpkg.com",
       "style-src 'self' 'unsafe-inline' https://cdn.accessibly.app https://*.accessibly.app",
       "img-src 'self' data: blob: https://cdn.accessibly.app https://*.accessibly.app",
       "font-src 'self' data: https://cdn.accessibly.app https://*.accessibly.app",
       "media-src 'self' blob:",
+      "frame-src https://www.youtube.com",
+      "worker-src 'self' blob: https://unpkg.com",
       "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self'",
