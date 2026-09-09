@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useCallback, useRef } from "react";
+import { ReactNode } from "react";
 import SmokyBackground from "@/components/SmokyBackground";
 
 interface Tab {
@@ -27,44 +27,6 @@ export default function InnerPageLayout({
   children,
   backgroundImage,
 }: InnerPageLayoutProps) {
-  const tabListRef = useRef<HTMLDivElement>(null);
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (!tabs || !activeTab || !onTabChange) return;
-
-      const currentIndex = tabs.findIndex((t) => t.id === activeTab);
-      let nextIndex = currentIndex;
-
-      switch (e.key) {
-        case "ArrowRight":
-          e.preventDefault();
-          nextIndex = (currentIndex + 1) % tabs.length;
-          break;
-        case "ArrowLeft":
-          e.preventDefault();
-          nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
-          break;
-        case "Home":
-          e.preventDefault();
-          nextIndex = 0;
-          break;
-        case "End":
-          e.preventDefault();
-          nextIndex = tabs.length - 1;
-          break;
-        default:
-          return;
-      }
-
-      onTabChange(tabs[nextIndex].id);
-
-      const nextTab = tabListRef.current?.children[nextIndex] as HTMLElement;
-      nextTab?.focus();
-    },
-    [tabs, activeTab, onTabChange]
-  );
-
   const heroContent = (
     <>
       {tabs && tabs.length > 0 && onTabChange && (

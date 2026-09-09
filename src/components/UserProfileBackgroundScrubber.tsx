@@ -168,6 +168,7 @@ export default function UserProfileBackgroundScrubber() {
         ref={canvasRef}
         className="absolute inset-0 w-full h-full object-cover"
       />
+      {/* eslint-disable-next-line @next/next/no-img-element -- full-viewport poster for canvas scrub; must remain a raw img for exact framing */}
       <img
         src={POSTER_SRC}
         alt=""

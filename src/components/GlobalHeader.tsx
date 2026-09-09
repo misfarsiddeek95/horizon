@@ -169,6 +169,7 @@ export default function GlobalHeader() {
             <div className="w-7 h-7" />
 
             {/* Logo (Right) */}
+            {/* eslint-disable-next-line @next/next/no-img-element -- menu logo; non-LCP, responsive heights not expressible via next/image */}
             <img
               src="/images/logo.png"
               alt="HeyCarb"

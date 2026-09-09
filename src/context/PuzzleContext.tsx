@@ -37,14 +37,6 @@ function getViewedBadges(): string[] {
   }
 }
 
-function markBadgeViewed(badgeId: string): void {
-  if (typeof window === "undefined") return;
-  const viewed = getViewedBadges();
-  if (!viewed.includes(badgeId)) {
-    localStorage.setItem(VIEWED_BADGES_KEY, JSON.stringify([...viewed, badgeId]));
-  }
-}
-
 function clearViewedBadges(): void {
   if (typeof window === "undefined") return;
   localStorage.removeItem(VIEWED_BADGES_KEY);
@@ -582,6 +574,7 @@ export function PuzzleProvider({ children }: { children: React.ReactNode }) {
     state.questions,
     state.aiAssistedQuestions,
     state.elapsedSeconds,
+    state.sessionAwardedBadges,
   ]);
 
   useEffect(() => {

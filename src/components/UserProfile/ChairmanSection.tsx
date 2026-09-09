@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { PlayIcon } from "@heroicons/react/24/outline";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useMounted } from "@/hooks/useMounted";
 import Button from "@/components/ui/Button";
 
 interface ChairmanSectionV2Props {
@@ -43,17 +44,13 @@ export default function ChairmanSectionV2({
   const { ref, revealed } = useScrollReveal<HTMLElement>();
   const [expanded, setExpanded] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
   const textRef = useRef<HTMLParagraphElement>(null);
   const expandedRef = useRef(false);
 
   const youtubeId = link ? extractYouTubeId(link.url) : null;
 
   const closeVideo = useCallback(() => setIsVideoOpen(false), []);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!isVideoOpen) return;

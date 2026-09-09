@@ -37,6 +37,7 @@ function PersonCard({ img, onOpen }) {
       onClick={onOpen}
       className="flex w-[90px] flex-col items-center gap-1.5 text-left"
     >
+      {/* eslint-disable-next-line @next/next/no-img-element -- expiring remote SAS URLs with onError fallback; not optimisable by next/image */}
       <img
         src={img.url}
         alt={img.label ?? ''}
@@ -70,6 +71,7 @@ function Lightbox({ img, onClose }) {
         >
           <XMarkIcon className="h-5 w-5" />
         </button>
+        {/* eslint-disable-next-line @next/next/no-img-element -- remote SAS lightbox image; not optimisable by next/image */}
         <img
           src={img.url}
           alt={img.label ?? ''}

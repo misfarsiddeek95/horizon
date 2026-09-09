@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Lottie } from "lottie-react";
 import { usePuzzle } from "@/context/PuzzleContext";
-import { getAllCategories, CATEGORY_COLORS, CONFIG } from "@/data/config";
+import { getAllCategories, CONFIG } from "@/data/config";
 
 const TROPHY_DEFAULT =
   "/icons/game/wired-outline-3261-trophy-ornate-line-loop-roll.json";
@@ -61,7 +61,6 @@ export default function CategoryBadges() {
         {categories.map((cat) => {
           const completedCount = state.categoryCounts[cat] ?? 0;
           const earned = state.earnedBadges?.[cat] ?? false;
-          const s = CATEGORY_COLORS[cat];
           const required = CONFIG.QUESTIONS_PER_CATEGORY;
           const hex = CATEGORY_HEX[cat] ?? "#6b7280";
           const progress = Math.min((completedCount / required) * 100, 100);

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useMounted } from "@/hooks/useMounted";
 
 function AnimatedAILogo({ size = 56, className = "" }: { size?: number; className?: string }) {
   return (
@@ -29,11 +29,7 @@ function AnimatedAILogo({ size = 56, className = "" }: { size?: number; classNam
 }
 
 export default function FloatingAIButton() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   if (!mounted) return null;
 

@@ -121,7 +121,7 @@ export default function PdfCanvasViewer({ url, className = "" }: PdfCanvasViewer
       }
       pdfDocRef.current = null;
     };
-  }, [url]);
+  }, [url, renderPage]);
 
   useEffect(() => {
     if (currentPage > 0 && pdfDocRef.current) {

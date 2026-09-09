@@ -58,6 +58,7 @@ export default function AiEnabledDigitalReport({
                     "linear-gradient(to right, rgba(252, 232, 178, 0.3), rgba(131, 222, 237, 0.3))",
                 }}
               >
+                {/* eslint-disable-next-line @next/next/no-img-element -- local SVG with CSS filter; next/image requires dangerouslyAllowSVG */}
                 <img
                   src={iconMap[subItem]}
                   alt={subItem}

@@ -13,8 +13,8 @@ const PAGE_COLOR = '#081F2B';
 
 export default function ChatPage() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioReadyRef = useRef(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [audioReady, setAudioReady] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -37,11 +37,11 @@ export default function ChatPage() {
     audio.loop = true;
     audioRef.current = audio;
 
-    audio.play().then(() => setAudioReady(true)).catch(() => {});
+    audio.play().then(() => { audioReadyRef.current = true; }).catch(() => {});
 
     const handleInteraction = () => {
-      if (!audioReady && audio.paused) {
-        audio.play().then(() => setAudioReady(true)).catch(() => {});
+      if (!audioReadyRef.current && audio.paused) {
+        audio.play().then(() => { audioReadyRef.current = true; }).catch(() => {});
       }
     };
     document.addEventListener('click', handleInteraction, { once: true });
