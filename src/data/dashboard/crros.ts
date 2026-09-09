@@ -9,7 +9,7 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     tabTitle: "Raw material supply",
     tabType: "Coconut shell charcoal availability & cost",
     title: "Climate risk to raw material supply",
-    desc: "Climate pressure can tighten coconut shell charcoal supply and raise input costs.",
+    desc: "Climate pressure can tighten coconut shell charcoal supply and raise input costs",
     color: "#174A7E",
     factors: [
       {
@@ -72,7 +72,7 @@ export const CRROS_V2: Record<1 | 2 | 3 | 4, V2Crro> = {
     tabTitle: "Physical water risk",
     tabType: "Operational exposure to water stress",
     title: "Physical water risk",
-    desc: "Water stress can constrain washing-dependent production and create revenue exposure.",
+    desc: "Water stress can constrain washing-dependent production and create revenue exposure",
     color: "#168E95",
     factors: [
       {
