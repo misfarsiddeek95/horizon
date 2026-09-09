@@ -197,9 +197,9 @@ const pillarData: Record<PillarId, Omit<V2Pillar, "accent">> = {
     standoutText:
       "New customers acquired across the Activated Carbon Segment",
     impacts: [
-      { value: "95%", label: "customer retention rate" },
-      { value: "100%", label: "of customer complaints resolved" },
-      { value: "600+", label: "customers and distributors across 50 countries" },
+      { value: "600+", label: "Customers and distributors" },
+      { value: "50", label: "Global customer base" },
+      { value: "95%", label: "Customer retention rate" },
     ],
     commitments: [
       {
