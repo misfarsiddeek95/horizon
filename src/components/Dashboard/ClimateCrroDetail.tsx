@@ -193,7 +193,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
                   : TIME_HORIZONS.map((h) => {
                       const i = TIME_HORIZONS.indexOf(h);
                       return (
-                        <span key={h.key}><b>{h.key}</b> {fmtRangeVal(crro.lower[i], crro.driverFormat)}\u2013{fmtRangeVal(crro.upper[i], crro.driverFormat)}{crro.driverFormat === "number" && crro.driverUnit ? " " + crro.driverUnit : ""}</span>
+                        <span key={h.key}><b>{h.key}</b> {fmtRangeVal(crro.lower[i], crro.driverFormat)}–{fmtRangeVal(crro.upper[i], crro.driverFormat)}{crro.driverFormat === "number" && crro.driverUnit ? " " + crro.driverUnit : ""}</span>
                       );
                     })
                 }
@@ -256,7 +256,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
                   : TIME_HORIZONS.map((h) => {
                       const i = TIME_HORIZONS.indexOf(h);
                       return (
-                        <span key={h.key}><b>{h.key}</b> {fmtRangeVal(crro.finL[i], crro.financeFormat)}\u2013{fmtRangeVal(crro.finU[i], crro.financeFormat)}{crro.financeFormat === "number" && crro.financeUnit ? " " + crro.financeUnit : ""}</span>
+                        <span key={h.key}><b>{h.key}</b> {fmtRangeVal(crro.finL[i], crro.financeFormat)}–{fmtRangeVal(crro.finU[i], crro.financeFormat)}{crro.financeFormat === "number" && crro.financeUnit ? " " + crro.financeUnit : ""}</span>
                       );
                     })
                 }
