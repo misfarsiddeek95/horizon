@@ -27,7 +27,7 @@ const PILLAR_IMAGES: Record<PillarId, { first: string; second: string }> = {
     second: "/images/innerpage/dashboard/Restore/restore_02.jpg",
   },
   uplift: {
-    first: "/images/innerpage/dashboard/Uplift/uplift_01.jpg",
+    first: "/images/innerpage/dashboard/Uplift/uplift_01.png",
     second: "/images/innerpage/dashboard/Uplift/uplift_02.jpg",
   },
 };
