@@ -81,7 +81,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
                 >
                   ✦
                 </span>
-                <b className="block text-[11.5px] leading-[1.35] text-[var(--color-v2-navy-deep)]">
+                <b className="block text-caption leading-[1.35] text-[var(--color-v2-navy-deep)]">
                   {factor.title}
                   <span className="sr-only">{`: ${factor.text}`}</span>
                 </b>
@@ -105,7 +105,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
                 <b className="mb-[6px] block text-[12px] text-[var(--color-v2-navy-deep)]">
                   {item.title}
                 </b>
-                <span className="block text-[11px] leading-[1.5] text-[var(--color-v2-text-soft)]">
+                <span className="block text-caption leading-[1.5] text-[var(--color-v2-text-soft)]">
                   {item.text}
                 </span>
               </div>
@@ -119,7 +119,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
               <h4 className="m-0 break-words text-xl font-bold tracking-tight text-[#042b31] sm:text-2xl" style={{ color: crro.color }}>
                 Driver and anticipated financial effect
               </h4>
-              <p className="mt-[6px] mb-0 text-[10.8px] leading-[1.4] text-[#7a8998]">
+              <p className="mt-[6px] mb-0 text-caption leading-[1.4] text-[#7a8998]">
                 Quantified operational drivers and financial effects across the short, medium and long term
               </p>
             </div>
@@ -138,11 +138,11 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
 
           <div className="grid grid-cols-1 gap-[12px] lg:grid-cols-2">
             <section className="min-w-0 overflow-hidden rounded-[14px] border border-[#dce5ea] bg-white p-[16px_15px_13px]" style={{ "--accent": crro.color } as React.CSSProperties}>
-              <div className="mb-[8px] text-[10px] font-black uppercase tracking-[0.09em]" style={{ color: crro.color }}>
+              <div className="mb-[8px] text-caption font-black uppercase tracking-[0.09em]" style={{ color: crro.color }}>
                 Driver
               </div>
               <div className="text-[16px] leading-[1.25] min-h-[40px]">{crro.driver}</div>
-              <div className="mt-[4px] min-h-[31px] text-[11px] leading-[1.4] text-[#7a8998]">{crro.driverSubtitle}</div>
+              <div className="mt-[4px] min-h-[31px] text-caption leading-[1.4] text-[#7a8998]">{crro.driverSubtitle}</div>
               <ClimateChart
                 title={crro.driver}
                 axisLabel={crro.driverAxis}
@@ -156,12 +156,12 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
               <div className="mt-[-4px] grid grid-cols-3 px-[8.5%]">
                 {TIME_HORIZONS.map((h) => (
                   <div key={h.key} className="text-center">
-                    <b className="block text-[10.5px] text-[var(--navy)]">{h.key}</b>
-                    <small className="block text-[8.8px] leading-[1.25] text-[#8795a2] whitespace-normal">{h.period}</small>
+                    <b className="block text-caption text-[var(--navy)]">{h.key}</b>
+                    <small className="block text-caption leading-[1.25] text-[#8795a2] whitespace-normal">{h.period}</small>
                   </div>
                 ))}
               </div>
-              <div className="mt-[8px] flex flex-wrap justify-center gap-[10px] text-[8.5px] font-[800] text-[#657586]">
+              <div className="mt-[8px] flex flex-wrap justify-center gap-[10px] text-caption font-[800] text-[#657586]">
                 {!crro.driverSingleEstimate ? (
                   <>
                     <span className="flex items-center gap-[6px]">
@@ -184,7 +184,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
                   </span>
                 )}
               </div>
-              <div className="mt-[8px] flex flex-wrap gap-[8px] border-t border-[#e5ebef] pt-[10px] text-[8.8px] leading-[1.35] text-[#627486]">
+              <div className="mt-[8px] flex flex-wrap gap-[8px] border-t border-[#e5ebef] pt-[10px] text-caption leading-[1.35] text-[#627486]">
                 <b className="text-[var(--navy)]">{crro.driverSingleEstimate ? "Estimated pathway" : "Estimated range"}</b>
                 {crro.driverSingleEstimate
                   ? TIME_HORIZONS.map((h) => (
@@ -201,11 +201,11 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
             </section>
 
             <section className="min-w-0 overflow-hidden rounded-[14px] border border-[#dce5ea] bg-white p-[16px_15px_13px]" style={{ "--accent": crro.color } as React.CSSProperties}>
-              <div className="mb-[8px] text-[10px] font-black uppercase tracking-[0.09em]" style={{ color: crro.color }}>
+              <div className="mb-[8px] text-caption font-black uppercase tracking-[0.09em]" style={{ color: crro.color }}>
                 Financial effect
               </div>
               <div className="text-[16px] leading-[1.25] min-h-[40px]">{crro.finance}</div>
-              <div className="mt-[4px] min-h-[31px] text-[11px] leading-[1.4] text-[#7a8998]">{crro.financeSubtitle}</div>
+              <div className="mt-[4px] min-h-[31px] text-caption leading-[1.4] text-[#7a8998]">{crro.financeSubtitle}</div>
               <ClimateChart
                 title={crro.finance}
                 axisLabel={crro.financeAxis}
@@ -219,12 +219,12 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
               <div className="mt-[-4px] grid grid-cols-3 px-[8.5%]">
                 {TIME_HORIZONS.map((h) => (
                   <div key={h.key} className="text-center">
-                    <b className="block text-[10.5px] text-[var(--navy)]">{h.key}</b>
-                    <small className="block text-[8.8px] leading-[1.25] text-[#8795a2] whitespace-normal">{h.period}</small>
+                    <b className="block text-caption text-[var(--navy)]">{h.key}</b>
+                    <small className="block text-caption leading-[1.25] text-[#8795a2] whitespace-normal">{h.period}</small>
                   </div>
                 ))}
               </div>
-              <div className="mt-[8px] flex flex-wrap justify-center gap-[10px] text-[8.5px] font-[800] text-[#657586]">
+              <div className="mt-[8px] flex flex-wrap justify-center gap-[10px] text-caption font-[800] text-[#657586]">
                 {!crro.financeSingleEstimate ? (
                   <>
                     <span className="flex items-center gap-[6px]">
@@ -247,7 +247,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
                   </span>
                 )}
               </div>
-              <div className="mt-[8px] flex flex-wrap gap-[8px] border-t border-[#e5ebef] pt-[10px] text-[8.8px] leading-[1.35] text-[#627486]">
+              <div className="mt-[8px] flex flex-wrap gap-[8px] border-t border-[#e5ebef] pt-[10px] text-caption leading-[1.35] text-[#627486]">
                 <b className="text-[var(--navy)]">{crro.financeSingleEstimate ? "Estimated pathway" : "Estimated range"}</b>
                 {crro.financeSingleEstimate
                   ? TIME_HORIZONS.map((h) => (
@@ -274,7 +274,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
         }}
       >
         <div>
-          <div className="text-[10px] font-black uppercase tracking-[0.12em] text-[#a9d5d2]">
+          <div className="text-caption font-black uppercase tracking-[0.12em] text-[#a9d5d2]">
             Resilience Lens
           </div>
           <h3 className="mb-0 mt-[6px] font-heading text-[21px] font-medium tracking-[-0.025em]">
@@ -299,7 +299,7 @@ export default function ClimateCrroDetail({ crro }: ClimateCrroDetailProps) {
             icon={<ArrowUpRightIcon className="h-4 w-4" />}
             className="!mt-3.5 w-full max-w-full min-h-[44px] h-auto whitespace-normal !bg-white !text-[color:var(--color-v2-navy-deep)] hover:!bg-white/90 sm:w-max"
           >
-            <span className="block whitespace-normal text-center max-[400px]:!text-[11px] max-[400px]:!leading-tight sm:text-sm">
+            <span className="block whitespace-normal text-center max-[400px]:!text-caption max-[400px]:!leading-tight sm:text-sm">
               Annual Report Climate Resilience Assessment
             </span>
           </Button>

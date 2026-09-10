@@ -70,7 +70,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                 "linear-gradient(90deg,rgba(220,243,239,.48),rgba(220,243,239,0))",
             }}
           >
-            <div className="text-[10px] font-[850] uppercase tracking-[0.13em] text-[var(--color-v2-accent-dark)]">
+            <div className="text-caption font-[850] uppercase tracking-[0.13em] text-[var(--color-v2-accent-dark)]">
               FY2025/26 standout
             </div>
             <div className="my-[9px] text-[44px] font-semibold leading-none tracking-[-0.04em] text-[var(--color-v2-accent-dark)] lg:text-[52px] [&>span]:text-[44px] lg:[&>span]:text-[52px]">
@@ -98,7 +98,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                   <b className="block text-[24px] font-semibold leading-[1.05] tracking-[-0.03em]">
                     {impact.value}
                   </b>
-                  <span className="mt-[5px] block text-[11px] leading-[1.35] text-[var(--color-v2-label)]">
+                  <span className="mt-[5px] block text-caption leading-[1.35] text-[var(--color-v2-label)]">
                     {impact.label}
                   </span>
                 </div>
@@ -143,7 +143,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                       <th
                         key={heading}
                         scope="col"
-                        className="border-y border-[var(--color-v2-border)] py-[14px] pr-3 pb-[13px] text-left align-bottom text-[10px] font-[850] uppercase tracking-[0.09em] text-[var(--color-v2-label)]"
+                        className="border-y border-[var(--color-v2-border)] py-[14px] pr-3 pb-[13px] text-left align-bottom text-caption font-[850] uppercase tracking-[0.09em] text-[var(--color-v2-label)]"
                       >
                         {heading}
                       </th>
@@ -163,7 +163,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                       <span className="text-[15px] font-[850] text-[var(--color-v2-current-value)]">
                         {commitment.current}
                         {commitment.note ? (
-                          <small className="mb-0 mt-[3px] block text-[11px] font-semibold text-[var(--color-v2-label)]">
+                          <small className="mb-0 mt-[3px] block text-caption font-semibold text-[var(--color-v2-label)]">
                             {commitment.note}
                           </small>
                         ) : null}
@@ -207,7 +207,7 @@ export default function PillarDetail({ pillar }: PillarDetailProps) {
                     <th
                       key={heading}
                       scope="col"
-                      className="border-y border-[var(--color-v2-border)] py-[14px] pr-3 pb-[13px] text-left align-bottom text-[10px] font-[850] uppercase tracking-[0.09em] text-[var(--color-v2-label)]"
+                      className="border-y border-[var(--color-v2-border)] py-[14px] pr-3 pb-[13px] text-left align-bottom text-caption font-[850] uppercase tracking-[0.09em] text-[var(--color-v2-label)]"
                     >
                       {heading}
                     </th>
