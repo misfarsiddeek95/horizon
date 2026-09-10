@@ -147,7 +147,7 @@ export default function PillarTabs({ active, onSelect }: PillarTabsProps) {
                 <div className={`mt-[9px] text-[13px] transition-colors duration-200 ${isActive ? "font-bold text-[#042b31]" : "font-black text-[#042b31]"}`}>
                   {pillar.name}
                 </div>
-                <div className={`mt-[3px] text-[11px] transition-colors duration-200 ${isActive ? "font-medium text-[#042b31]/80" : "text-[#042b31]/75"}`}>
+                <div className={`mt-[3px] text-caption transition-colors duration-200 ${isActive ? "font-medium text-[#042b31]/80" : "text-[#042b31]/75"}`}>
                   {pillar.descriptor}
                 </div>
               </div>

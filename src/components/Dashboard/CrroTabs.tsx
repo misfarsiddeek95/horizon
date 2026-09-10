@@ -137,13 +137,13 @@ export default function CrroTabs({ active, onSelect }: CrroTabsProps) {
                 </div>
               )}
               <div className="relative z-20 max-md:!p-[18px_18px_17px] max-md:!flex max-md:!flex-col max-md:!bg-transparent">
-                <div className="text-[9px] font-black uppercase tracking-[0.1em] text-[var(--color-v2-accent-text)]">
+                <div className="text-caption font-black uppercase tracking-[0.1em] text-[var(--color-v2-accent-text)]">
                   CRRO {id} · {crro.kind}
                 </div>
                 <div className={`mt-[14px] text-[15px] font-[850] leading-[1.3] transition-colors duration-200 ${isActive ? "text-[#042b31]" : "text-[var(--color-v2-text-strong)]"}`}>
                   {crro.tabTitle}
                 </div>
-                <div className={`mt-[6px] text-[10px] leading-[1.35] transition-colors duration-200 ${isActive ? "text-[#042b31]/75" : "text-[var(--color-v2-label)]"}`}>
+                <div className={`mt-[6px] text-caption leading-[1.35] transition-colors duration-200 ${isActive ? "text-[#042b31]/75" : "text-[var(--color-v2-label)]"}`}>
                   {crro.tabType}
                 </div>
               </div>

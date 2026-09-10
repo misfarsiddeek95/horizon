@@ -7,10 +7,10 @@ import { usePathname } from "next/navigation";
 const menuLinks = [
   { name: "Home", path: "/" },
   { name: "AI Guided Exploration", path: "/ai-assistant" },
-  { name: "User Profiles", path: "/user-profiles" },
+  { name: "Adaptive Reports & Charts", path: "/tailor-made-for-you" },
   { name: "Gamified Exploration", path: "/crossword-puzzle" },
   { name: "Sustainability Dashboard", path: "/sustainability-dashboard" },
-  { name: "Interactive Charts & Reports", path: "/tailor-made-for-you" },
+  { name: "Stakeholder Based Summary", path: "/user-profiles" },
 ];
 
 const darkPages = ["/ai-assistant", "/user-profiles"];

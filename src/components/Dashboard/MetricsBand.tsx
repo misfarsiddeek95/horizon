@@ -40,7 +40,7 @@ export default function MetricsBand() {
           key={metric.label}
           className="rounded-2xl border border-white/50 bg-white/30 p-6 shadow-sm backdrop-blur-md transition-all duration-300 hover:bg-white/40 hover:shadow-md"
         >
-          <div className="font-[850] text-[10px] uppercase tracking-[0.13em] text-[#042b31]/70 font-semibold">
+          <div className="font-[850] text-caption uppercase tracking-[0.13em] text-[#042b31]/70 font-semibold">
             {metric.label}
           </div>
           <div

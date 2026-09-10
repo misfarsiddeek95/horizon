@@ -31,7 +31,7 @@ export default function InnerPageLayout({
     <>
       {tabs && tabs.length > 0 && onTabChange && (
         <div className="mt-auto pb-6">
-          <div className="flex items-center justify-center gap-6 bg-black/40 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-xl mx-4">
+          <div className="flex items-center justify-center bg-[#020b10]/80 backdrop-blur-md p-1.5 rounded-full border border-white/10 shadow-xl mx-4">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -39,10 +39,10 @@ export default function InnerPageLayout({
                 aria-selected={activeTab === tab.id}
                 tabIndex={activeTab === tab.id ? 0 : -1}
                 onClick={() => onTabChange(tab.id)}
-                className={`font-heading text-base sm:text-lg lg:text-xl whitespace-nowrap transition-colors !text-white !font-medium !drop-shadow-lg focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
+                className={`font-heading px-6 py-2.5 text-base sm:text-lg font-semibold whitespace-nowrap cursor-pointer transition-all duration-300 rounded-full focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                   activeTab === tab.id
-                    ? "border-b-2 border-white"
-                    : "border-b-2 border-transparent opacity-70 hover:opacity-100"
+                    ? "bg-brand-main text-white shadow-md"
+                    : "bg-transparent text-white/70 hover:text-white hover:bg-white/10"
                 }`}
               >
                 {tab.label}

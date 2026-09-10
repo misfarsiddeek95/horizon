@@ -609,6 +609,15 @@
   }
 }
 
+/* Global: the third-party Accessibly trigger is anchored bottom-left, but its
+   options panel defaults to the right (dialogPosition "right"), which the script
+   writes as an inline right:0. Anchor the panel to the left so it opens on the
+   same side as the trigger. */
+#accessiblyAppDialog.accessibly-app-widget {
+  right: auto !important;
+  left: 0 !important;
+}
+
 /* AI Assistant chat page only: move the third-party Accessibly trigger off the
    bottom-left (where it overlaps the chat input) to top-right below the mute
    button. Desktop and all other routes are untouched. */

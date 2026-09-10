@@ -13,12 +13,12 @@ import SocialGovernanceChart from "./NonFinancial/SocialGovernanceChart";
 import ReportGenerator from "@/components/ReportGenerator";
 
 const mainTabs = [
-  { id: "chart-generator", label: "Chart Generator" },
   { id: "generate-report", label: "Generate Your Own Report" },
+  { id: "chart-generator", label: "Chart Generator" },
 ];
 
 export default function TailorMadeForYouPage() {
-  const [activeTab, setActiveTab] = useState("chart-generator");
+  const [activeTab, setActiveTab] = useState("generate-report");
   const [activeChartType, setActiveChartType] = useState("financial");
 
   return (
