@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import HaycarbChat from '@/components/HaycarbChat';
+import AiFeatureModal from '@/components/AiFeatureModal';
 import { SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/solid';
 
 const AuroraBackground = dynamic(() => import('@/components/AuroraBackground'), {
@@ -81,6 +82,8 @@ export default function ChatPage() {
           <SpeakerWaveIcon className="h-5 w-5" />
         )}
       </button>
+
+      <AiFeatureModal />
     </main>
   );
 }

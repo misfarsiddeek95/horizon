@@ -39,7 +39,7 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
   );
 
   return (
-    <div className="flex justify-center py-6">
+    <div className="flex flex-col items-center justify-center py-6">
       <div
         role="tablist"
         aria-label="Chart type"
@@ -73,6 +73,11 @@ export default function ChartTypeTabs({ activeType, onTypeChange }: ChartTypeTab
           );
         })}
       </div>
+      <p className="mt-4 max-w-2xl px-4 text-center text-sm sm:text-base leading-relaxed text-content-primary/60">
+        Select or deselect the listed metrics under financial and non-financial
+        sections to customise the data displayed in each chart and download your
+        preferred view in PDF, PNG or JPG format.
+      </p>
     </div>
   );
 }
