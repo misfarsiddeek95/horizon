@@ -35,7 +35,7 @@ export default function FloatingAIButton() {
 
   return (
     <Link
-      href="/ai-assistant"
+      href="/ai-guided-exploration"
       className="group fixed bottom-6 right-6 z-[99] flex h-14 w-14 items-center justify-center rounded-full bg-[#020b10]/80 shadow-2xl backdrop-blur-md transition-transform hover:scale-110 cursor-pointer border border-white/20 max-md:bottom-4 max-md:right-4 max-md:h-12 max-md:w-12"
       aria-label="Open AI Assistant"
     >

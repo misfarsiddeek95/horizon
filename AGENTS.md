@@ -226,7 +226,7 @@ src/
 
 **CLAUDE.md is `@AGENTS.md`** — it includes this file, so AGENTS.md is the single source of truth for both.
 
-### The `/user-profiles` background scrub frames
+### The `/stakeholder-based-summary` background scrub frames
 - Live in `public/user_profile_frames_v1/` (currently **240 WebP** files, `frame_0001.webp` … `frame_0240.webp`).
 - Are loaded by `src/components/UserProfileBackgroundScrubber.tsx` and drawn to a fixed canvas that scrubs with page scroll.
 - Are served with **`Cache-Control: public, max-age=31536000, immutable`** via the `headers()` config in `next.config.ts`, matching the `/user_profile_frames_v1/:path*` source.
