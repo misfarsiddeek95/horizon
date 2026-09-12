@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "AI Chat Assistant",
+  title: { absolute: "Haycarb Annual Report 2025/26 | AI-Guided Exploration" },
+  description: "Explore Haycarb’s Annual Report 2025/26 with AI-guided insights, multilingual responses, stakeholder-tailored answers, visualisations and downloadable PDFs.",
 };
 
 export const viewport: Viewport = {
