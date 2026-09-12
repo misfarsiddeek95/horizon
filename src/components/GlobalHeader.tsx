@@ -6,25 +6,25 @@ import { usePathname } from "next/navigation";
 
 const menuLinks = [
   { name: "Home", path: "/" },
-  { name: "AI Guided Exploration", path: "/ai-assistant" },
-  { name: "Adaptive Reports & Charts", path: "/tailor-made-for-you" },
-  { name: "Gamified Exploration", path: "/crossword-puzzle" },
+  { name: "AI Guided Exploration", path: "/ai-guided-exploration" },
+  { name: "Adaptive Reports & Charts", path: "/adaptive-reports-charts" },
+  { name: "Gamified Exploration", path: "/gamified-exploration" },
   { name: "Sustainability Dashboard", path: "/sustainability-dashboard" },
-  { name: "Stakeholder Based Summary", path: "/user-profiles" },
+  { name: "Stakeholder Based Summary", path: "/stakeholder-based-summary" },
 ];
 
-const darkPages = ["/ai-assistant", "/user-profiles"];
+const darkPages = ["/ai-guided-exploration", "/stakeholder-based-summary"];
 const whiteBarPages = [
   "/sustainability-dashboard",
-  "/tailor-made-for-you",
-  "/crossword-puzzle",
+  "/adaptive-reports-charts",
+  "/gamified-exploration",
   "/leaderboard",
 ];
-const fixedPages = ["/user-profiles"];
+const fixedPages = ["/stakeholder-based-summary"];
 const scopedBarPages = [
   "/sustainability-dashboard",
-  "/crossword-puzzle",
-  "/tailor-made-for-you",
+  "/gamified-exploration",
+  "/adaptive-reports-charts",
 ];
 
 export default function GlobalHeader() {
