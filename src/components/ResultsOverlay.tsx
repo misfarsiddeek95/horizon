@@ -1,6 +1,7 @@
 'use client';
 
 import { createPortal } from 'react-dom';
+import { useRouter } from 'next/navigation';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { usePuzzle } from '@/context/PuzzleContext';
 import { CONFIG, getAllCategories } from '@/data/config';
@@ -11,6 +12,7 @@ const CATEGORY_ORDER = getAllCategories();
 export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
   const { state, dispatch } = usePuzzle();
   const { score, questions, session } = state;
+  const router = useRouter();
 
   function handlePlayAgain() {
     localStorage.removeItem('horizon-puzzle-session');
@@ -63,7 +65,7 @@ export default function ResultsOverlay({ onClose }: { onClose?: () => void }) {
         <div className="shrink-0 p-6 pt-4 border-t border-slate-200/60 flex flex-col gap-4">
           <div className="flex gap-3">
             <button
-              onClick={() => { window.location.href = '/leaderboard'; }}
+              onClick={() => { router.push('/leaderboard'); }}
               className="flex-1 cursor-pointer rounded-ui-element border border-[var(--color-tm-teal-blue)] px-3 py-2.5 text-xs font-semibold text-[var(--color-tm-teal-blue)] bg-transparent transition-colors hover:bg-[var(--color-tm-teal-blue)]/10"
             >
               View Leaderboard
