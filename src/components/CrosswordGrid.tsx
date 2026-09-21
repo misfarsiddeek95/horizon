@@ -48,15 +48,17 @@ export default function CrosswordGrid() {
 
   const getCellStatus = useCallback(
     (questionIds: string[]) => {
+      let terminalStatus: string | null = null;
       for (const qid of questionIds) {
         const qState = questions.find((q) => q.question.id === qid);
         if (!qState) continue;
         if (qState.status === 'active') return 'active';
         if (qState.status === 'completed') return 'completed';
-        if (qState.status === 'failed') return 'failed';
-        if (qState.status === 'timeout') return 'timeout';
+        if (!terminalStatus && (qState.status === 'failed' || qState.status === 'timeout')) {
+          terminalStatus = qState.status;
+        }
       }
-      return 'pending';
+      return terminalStatus ?? 'pending';
     },
     [questions],
   );
@@ -112,7 +114,7 @@ export default function CrosswordGrid() {
 
       const existingLetter = gridCells[y]?.[x]?.letter ?? null;
 
-      // Cell belongs to a completed/failed/timeout word — lock it
+      // Cell belongs to a completed word — skip mutation, just advance if letter matches
       if (lockedSet.has(`${x},${y}`)) {
         if (letter && letter === existingLetter) {
           const nextIdx = currentCell.index + 1;
@@ -159,7 +161,6 @@ export default function CrosswordGrid() {
       if (e.key === 'Backspace') {
         if (lockedSet.has(`${x},${y}`)) return;
         e.preventDefault();
-        e.preventDefault();
         const existingLetter = gridCells[y]?.[x]?.letter;
         if (existingLetter) {
           dispatch({
@@ -170,12 +171,24 @@ export default function CrosswordGrid() {
           const prevIdx = currentCell.index - 1;
           if (prevIdx >= 0) {
             const prevCell = activePlacement.cells[prevIdx];
-            dispatch({
-              type: 'UPDATE_CELL',
-              payload: { x: prevCell.x, y: prevCell.y, letter: '' },
-            });
+            if (!lockedSet.has(`${prevCell.x},${prevCell.y}`)) {
+              dispatch({
+                type: 'UPDATE_CELL',
+                payload: { x: prevCell.x, y: prevCell.y, letter: '' },
+              });
+            }
             focusCell(prevCell.x, prevCell.y);
           }
+        }
+        return;
+      }
+
+      if (lockedSet.has(`${x},${y}`) && e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        const nextIdx = currentCell.index + 1;
+        if (nextIdx < activePlacement.word.length) {
+          const nextCell = activePlacement.cells[nextIdx];
+          focusCell(nextCell.x, nextCell.y);
         }
         return;
       }
