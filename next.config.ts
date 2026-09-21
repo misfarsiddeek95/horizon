@@ -8,6 +8,10 @@ const scriptSrc = [
   "https://dash.accessibly.app",
   "https://cdn.accessibly.app",
   "https://unpkg.com",
+  "https://*.googletagmanager.com",
+  "https://www.googletagmanager.com",
+  "https://*.google-analytics.com",
+  "https://*.analytics.google.com",
   ...(isDev ? ["'unsafe-eval'"] : []),
 ].join(" ");
 
@@ -17,9 +21,9 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       `script-src ${scriptSrc}`,
-      "connect-src 'self' https://dash.accessibly.app https://cdn.accessibly.app https://alt-tags.accessiblyapp.com https://unpkg.com",
+      "connect-src 'self' https://dash.accessibly.app https://cdn.accessibly.app https://alt-tags.accessiblyapp.com https://unpkg.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com",
       "style-src 'self' 'unsafe-inline' https://cdn.accessibly.app https://*.accessibly.app",
-      "img-src 'self' data: blob: https://cdn.accessibly.app https://*.accessibly.app",
+      "img-src 'self' data: blob: https://cdn.accessibly.app https://*.accessibly.app https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com",
       "font-src 'self' data: https://cdn.accessibly.app https://*.accessibly.app",
       "media-src 'self' blob:",
       "frame-src https://www.youtube.com",
