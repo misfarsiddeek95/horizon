@@ -11,12 +11,14 @@ const menuLinks = [
   { name: "Gamified Exploration", path: "/gamified-exploration" },
   { name: "Sustainability Dashboard", path: "/sustainability-dashboard" },
   { name: "Stakeholder Based Summary", path: "/stakeholder-based-summary" },
+  { name: "Financial & Non-Financial Review", path: "/financial-review" },
 ];
 
 const darkPages = ["/ai-guided-exploration", "/stakeholder-based-summary"];
 const whiteBarPages = [
   "/sustainability-dashboard",
   "/adaptive-reports-charts",
+  "/financial-review",
   "/gamified-exploration",
   "/leaderboard",
 ];
@@ -25,6 +27,7 @@ const scopedBarPages = [
   "/sustainability-dashboard",
   "/gamified-exploration",
   "/adaptive-reports-charts",
+  "/financial-review",
 ];
 
 export default function GlobalHeader() {
