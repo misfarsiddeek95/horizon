@@ -5,6 +5,8 @@ export type VisualSize = "standard" | "split" | "data" | "modal";
 export interface ActiveImage {
   label: string;
   variant: VisualVariant;
+  dimensions: string;
+  modalDimensions?: string;
 }
 
 export interface ActionLink {
@@ -31,6 +33,7 @@ export interface DataImageBlock {
   title: string;
   label: string;
   variant: VisualVariant;
+  dimensions: string;
 }
 
 export interface RatioItem {
@@ -50,7 +53,7 @@ export const financialSections: ContentSection[] = [
     reference: "Page 165 · Sankey Diagram",
     description:
       "Haycarb delivered a resilient financial performance in 2025/26, navigating a challenging global operating environment to achieve strong revenue growth and sustained profitability.",
-    visuals: [{ label: "Income Statement Sankey Diagram", variant: "default" }],
+    visuals: [{ label: "Income Statement Sankey Diagram", variant: "default", dimensions: "1155 x 435" }],
   },
   {
     id: "segmental-review",
@@ -58,7 +61,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 34–37 · 2 Trend Graphs",
     description:
       "Our Segmental Review explores the performance of Haycarb’s key business segments and markets, providing insight into the drivers of growth, challenges encountered, and opportunities pursued during the year. It reflects how our diversified portfolio and global footprint contribute to the Group’s resilience and long-term value creation.",
-    visuals: [{ label: "Segment Performance Trend Graphs", variant: "alt-blue" }],
+    visuals: [{ label: "Segment Performance Trend Graphs", variant: "alt-blue", dimensions: "1155 x 435" }],
   },
   {
     id: "financial-position",
@@ -66,7 +69,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 164–165 · 2 Graphs",
     description:
       "Haycarb maintained a strong financial position as at 31st March 2026, supported by continued growth in its asset base, strengthened shareholder funds, and sustained profitability. Supported by strategic investments in capacity, innovation, and operational capabilities, Haycarb remains well positioned to support future expansion while maintaining a resilient financial foundation.",
-    visuals: [{ label: "Asset Composition + Funding Composition", variant: "alt-sage" }],
+    visuals: [{ label: "Asset Composition + Funding Composition", variant: "alt-sage", dimensions: "1155 x 435" }],
   },
   {
     id: "financial-ratios",
@@ -74,7 +77,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 166–167 · Du Pont Analysis",
     description:
       "Our key financial ratios provide a snapshot of the Group’s performance, financial strength, and value creation during the year. They help stakeholders evaluate profitability, operational efficiency, financial stability, and long-term growth potential.",
-    visuals: [{ label: "Du Pont Analysis", variant: "alt-neutral" }],
+    visuals: [{ label: "Du Pont Analysis", variant: "alt-neutral", dimensions: "1155 x 435" }],
   },
   {
     id: "group-value-addition",
@@ -82,7 +85,7 @@ export const financialSections: ContentSection[] = [
     reference: "Page 38 · Graphical Illustration",
     description:
       "Our Group Value Addition illustrates how the value generated through our operations is shared among employees, governments, communities, capital providers, and the business itself. It reflects our commitment to creating sustainable economic value while supporting the long-term growth and wellbeing of all stakeholders.",
-    visuals: [{ label: "Group Value Addition & Distribution", variant: "default" }],
+    visuals: [{ label: "Group Value Addition & Distribution", variant: "default", dimensions: "1155 x 435" }],
   },
 ];
 
@@ -93,7 +96,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Page 66",
     description:
       "Outlines the structures, roles, and responsibilities in place at Haycarb to oversee and integrate environmental, social, and governance (ESG) priorities into Haycarb’s decision-making - including Board-level oversight, cross-functional ESG teams, and clear accountability mechanisms.",
-    visuals: [{ label: "ESG Governance Diagram", variant: "default" }],
+    visuals: [{ label: "ESG Governance Diagram", variant: "default", dimensions: "1155 x 435" }],
     actions: [{ label: "Download section" }],
   },
   {
@@ -102,7 +105,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Existing ACTIVATE treatment",
     description:
       "Haycarb’s ACTIVATE ESG framework - a strategic roadmap built on five key pillars to guide sustainability through 2030 and outlines Haycarb’s approach to managing environmental, social, and governance impacts with measurable goals and performance indicators.",
-    visuals: [{ label: "ACTIVATE ESG Roadmap", variant: "alt-blue" }],
+    visuals: [{ label: "ACTIVATE ESG Roadmap", variant: "alt-blue", dimensions: "1155 x 435" }],
     actions: [
       {
         label: "Download section",
@@ -117,7 +120,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 63–128 · Reference image Page 65",
     description:
       "This section highlights how Haycarb identifies, assesses, and manages sustainability and climate-related risks and opportunities that may influence its strategy, operations, financial performance, and long-term resilience. Aligned with SLFRS S1 and SLFRS S2, it provides a transparent view of the Group's governance, risk management practices, strategic responses, and performance metrics relating to sustainability and climate-related matters.",
-    visuals: [{ label: "SLFRS S1 & S2 Disclosure Overview", variant: "alt-sage" }],
+    visuals: [{ label: "SLFRS S1 & S2 Disclosure Overview", variant: "alt-sage", dimensions: "1155 x 435" }],
     actions: [
       {
         label: "Download section",
@@ -141,8 +144,8 @@ export const nonFinancialSections: ContentSection[] = [
     description:
       "Haycarb's Climate Action Plan outlines the Group's approach to reducing its environmental impact while strengthening resilience to climate-related risks. Anchored by the ACTIVATE 2030 ESG Roadmap, the plan focuses on decarbonisation, renewable energy adoption, sustainable resource management, climate adaptation, and responsible supply chain practices, supporting the Group's journey towards a more sustainable and climate-resilient future.",
     visuals: [
-      { label: "Climate Action Plan Visual 01", variant: "alt-neutral" },
-      { label: "Climate Action Plan Visual 02", variant: "default" },
+      { label: "Climate Action Plan Visual 01", variant: "alt-neutral", dimensions: "572 x 415", modalDimensions: "1155 x 435" },
+      { label: "Climate Action Plan Visual 02", variant: "default", dimensions: "572 x 415", modalDimensions: "1155 x 435" },
     ],
     actions: [{ label: "Download section" }],
   },
@@ -152,7 +155,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 146–149",
     description:
       "Explains how Haycarb prioritizes the areas that matter most to stakeholders and long-term business success.",
-    visuals: [{ label: "Material Issues Visual", variant: "alt-sage" }],
+    visuals: [{ label: "Material Issues Visual", variant: "alt-sage", dimensions: "1155 x 435" }],
     actions: [
       {
         label: "Download section",
@@ -167,8 +170,8 @@ export const nonFinancialSections: ContentSection[] = [
     description:
       "Summarizes the industry related and external factors - including industry related dynamics, political shifts, economic volatility, climate risks, social expectations, evolving technologies, and regulatory pressures - that influence Haycarb's business decisions and sustainability priorities.",
     visuals: [
-      { label: "Porter's Five Forces", variant: "default" },
-      { label: "PESTEL", variant: "alt-blue" },
+      { label: "Porter's Five Forces", variant: "default", dimensions: "572 x 415", modalDimensions: "1155 x 435" },
+      { label: "PESTEL", variant: "alt-blue", dimensions: "572 x 415", modalDimensions: "1155 x 435" },
     ],
     actions: [
       {
@@ -183,7 +186,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 139–145",
     description:
       "Highlights how Haycarb engages with key stakeholder groups - including employees, customers, suppliers, communities, and regulators - to understand their concerns, expectations, and priorities in shaping strategies and responsible decision-making.",
-    visuals: [{ label: "Stakeholder Engagement Visual", variant: "alt-neutral" }],
+    visuals: [{ label: "Stakeholder Engagement Visual", variant: "alt-neutral", dimensions: "1155 x 435" }],
     actions: [
       {
         label: "Download section",
@@ -197,7 +200,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 42–43",
     description:
       "At Haycarb, we’re committed to creating shared value across our communities. From empowering rural suppliers and supporting smallholder livelihoods to generating local employment and driving community upliftment, our operations contribute to sustainable and inclusive economic growth in every region we serve.",
-    visuals: [{ label: "Socio Economic Impact Visual", variant: "default" }],
+    visuals: [{ label: "Socio Economic Impact Visual", variant: "default", dimensions: "1155 x 435" }],
     actions: [
       {
         label: "Download section",
@@ -255,11 +258,13 @@ export const financialDataImages: DataImageBlock[] = [
     title: "Financial Performance",
     label: "Financial Performance Image Placement",
     variant: "default",
+    dimensions: "1155 x 435",
   },
   {
     title: "Financial Position",
     label: "Financial Position Image Placement",
     variant: "alt-blue",
+    dimensions: "1155 x 435",
   },
 ];
 

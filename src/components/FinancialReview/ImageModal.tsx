@@ -52,7 +52,12 @@ export default function ImageModal({ active, onClose }: ImageModalProps) {
         >
           ×
         </button>
-        <VisualPlaceholder label={active.label} variant={active.variant} size="modal" />
+        <VisualPlaceholder
+          label={active.label}
+          variant={active.variant}
+          size="modal"
+          dimensions={active.modalDimensions ?? active.dimensions}
+        />
       </div>
     </div>
   );

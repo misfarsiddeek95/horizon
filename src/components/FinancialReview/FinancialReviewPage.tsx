@@ -101,6 +101,7 @@ export default function FinancialReviewPage() {
                     label={block.label}
                     variant={block.variant}
                     size="data"
+                    dimensions={block.dimensions}
                     onSelect={setActiveImage}
                   />
                 </div>

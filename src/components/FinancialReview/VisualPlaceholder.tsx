@@ -20,6 +20,8 @@ interface VisualPlaceholderProps {
   label: string;
   variant?: VisualVariant;
   size?: VisualSize;
+  dimensions?: string;
+  modalDimensions?: string;
   onSelect?: (visual: ActiveImage) => void;
 }
 
@@ -27,11 +29,14 @@ export default function VisualPlaceholder({
   label,
   variant = "default",
   size = "standard",
+  dimensions,
+  modalDimensions,
   onSelect,
 }: VisualPlaceholderProps) {
   const isInteractive = Boolean(onSelect);
 
-  const handleSelect = () => onSelect?.({ label, variant });
+  const handleSelect = () =>
+    onSelect?.({ label, variant, dimensions: dimensions ?? "", modalDimensions });
 
   return (
     <div
@@ -63,7 +68,7 @@ export default function VisualPlaceholder({
         }}
       />
       <span className="relative z-[1] font-sans text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#416c68]">
-        {label}
+        {dimensions ? `${label} - ${dimensions}` : label}
       </span>
       <span className="absolute bottom-[18px] left-5 font-sans text-[8px] font-extrabold uppercase tracking-[0.13em] text-[#416c68] opacity-70">
         Image Placeholder
