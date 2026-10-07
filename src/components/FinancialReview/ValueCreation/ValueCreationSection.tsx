@@ -70,26 +70,40 @@ interface FlowStepProps {
 function FlowStep({ step, isLast, desktopArrow, className }: FlowStepProps) {
   return (
     <div
-      className={`relative flex min-h-[108px] items-center justify-center rounded-[16px_16px_16px_5px] border border-v2-border bg-white p-3 text-center text-caption font-bold leading-[1.35] text-v2-navy-deep ${className ?? ""}`}
+      className={`relative flex min-h-[108px] items-center justify-center rounded-[16px_16px_16px_5px] border border-v2-border bg-white p-3 text-center text-caption font-bold leading-[1.35] text-v2-navy-deep ${
+        className ?? ""
+      }`}
     >
       {step}
       {!isLast && (
-        <span aria-hidden="true" className={`${ARROW_CLASS} -bottom-8 left-1/2 -translate-x-1/2 lg:hidden`}>
+        <span
+          aria-hidden="true"
+          className={`${ARROW_CLASS} -bottom-8 left-1/2 -translate-x-1/2 animate-vcc-pulse-down lg:hidden`}
+        >
           ↓
         </span>
       )}
       {desktopArrow === "right" && (
-        <span aria-hidden="true" className={`${ARROW_CLASS} -right-5 top-1/2 hidden -translate-y-1/2 lg:block`}>
+        <span
+          aria-hidden="true"
+          className={`${ARROW_CLASS} -right-5 top-1/2 hidden -translate-y-1/2 animate-vcc-pulse-right lg:block`}
+        >
           →
         </span>
       )}
       {desktopArrow === "down" && (
-        <span aria-hidden="true" className={`${ARROW_CLASS} -bottom-8 left-1/2 hidden -translate-x-1/2 lg:block`}>
+        <span
+          aria-hidden="true"
+          className={`${ARROW_CLASS} -bottom-8 left-1/2 hidden -translate-x-1/2 animate-vcc-pulse-down lg:block`}
+        >
           ↓
         </span>
       )}
       {desktopArrow === "left" && (
-        <span aria-hidden="true" className={`${ARROW_CLASS} -left-5 top-1/2 hidden -translate-y-1/2 lg:block`}>
+        <span
+          aria-hidden="true"
+          className={`${ARROW_CLASS} -left-5 top-1/2 hidden -translate-y-1/2 animate-vcc-pulse-left lg:block`}
+        >
           ←
         </span>
       )}
@@ -120,12 +134,21 @@ function InputsPanel() {
                 {renderIconNodes(capital.icon.nodes)}
               </svg>
             </div>
-            <h4 className="mb-1.5 mt-3 text-sm font-bold text-v2-navy-deep">{capital.title}</h4>
-            <p className="mb-3 text-caption leading-[1.4] text-v2-text-soft">{capital.description}</p>
+            <h4 className="mb-1.5 mt-3 text-sm font-bold text-v2-navy-deep">
+              {capital.title}
+            </h4>
+            <p className="mb-3 text-caption leading-[1.4] text-v2-text-soft">
+              {capital.description}
+            </p>
             {capital.stats.map((stat) => (
-              <div key={stat.label} className="text-caption leading-[1.65] text-v2-text-body">
+              <div
+                key={stat.label}
+                className="text-caption leading-[1.65] text-v2-text-body"
+              >
                 {stat.label}{" "}
-                <span className="font-extrabold text-v2-navy-deep">{stat.value}</span>
+                <span className="font-extrabold text-v2-navy-deep">
+                  {stat.value}
+                </span>
               </div>
             ))}
           </article>
@@ -148,14 +171,20 @@ function StrategyPanel() {
             <div className="mb-3.5 grid h-12 w-12 place-items-center rounded-[15px] bg-[#fce9dd] text-sm font-extrabold text-[#e67f45]">
               {pillar.number}
             </div>
-            <h4 className="mb-2 text-sm font-bold text-v2-navy-deep">{pillar.title}</h4>
-            <p className="text-caption leading-[1.55] text-v2-text-soft">{pillar.text}</p>
+            <h4 className="mb-2 text-sm font-bold text-v2-navy-deep">
+              {pillar.title}
+            </h4>
+            <p className="text-caption leading-[1.55] text-v2-text-soft">
+              {pillar.text}
+            </p>
           </article>
         ))}
       </div>
       <div className="mt-[18px] flex flex-wrap items-center justify-between gap-5 rounded-[18px_18px_18px_6px] bg-gradient-to-r from-v2-accent-dark to-v2-accent p-[18px_22px] text-white">
         <strong className="text-sm font-bold">{STRATEGY_RIBBON.title}</strong>
-        <span className="text-caption leading-[1.4] opacity-90">{STRATEGY_RIBBON.detail}</span>
+        <span className="text-caption leading-[1.4] opacity-90">
+          {STRATEGY_RIBBON.detail}
+        </span>
       </div>
     </>
   );
@@ -193,7 +222,9 @@ function TransformationPanel() {
                     key={step}
                     step={step}
                     isLast={index === track.steps.length - 1}
-                    desktopArrow={index === track.steps.length - 1 ? undefined : "right"}
+                    desktopArrow={
+                      index === track.steps.length - 1 ? undefined : "right"
+                    }
                     className="flex-1"
                   />
                 ))}
@@ -215,30 +246,36 @@ function OutputsPanel() {
           {OUTPUT_METRICS.map((metric) => (
             <article
               key={metric.value}
-              className="flex min-h-[170px] min-w-0 flex-col rounded-[20px_20px_20px_7px] border border-v2-border bg-white p-5"
+              className="flex min-h-42.5 min-w-0 flex-col rounded-[20px_20px_20px_7px] border border-v2-border bg-white p-5"
             >
-              <div className="text-caption font-extrabold uppercase tracking-[0.1em] text-v2-label">
+              <div className="text-caption font-extrabold uppercase tracking-widest text-v2-label">
                 {metric.label}
               </div>
-              <div className="mt-2.5 mb-2 break-words text-2xl md:text-3xl font-semibold leading-[1.05] tracking-[-0.03em] text-v2-navy-deep">
+              <div className="mt-2.5 mb-2 wrap-break-word text-xl font-bold tracking-tight leading-tight text-v2-navy-deep">
                 {metric.value}
               </div>
-              <p className="text-caption leading-[1.5] text-v2-text-soft">{metric.text}</p>
+              <p className="text-caption leading-normal text-v2-text-soft">
+                {metric.text}
+              </p>
             </article>
           ))}
         </div>
-        <div className="min-w-0 rounded-[22px_22px_22px_7px] border border-[#d6e6de] bg-gradient-to-b from-[#eff8f5] to-[#e1efe8] p-[22px]">
-          <h4 className="mb-3.5 text-xl font-bold text-v2-navy-deep">Environmental Impact</h4>
+        <div className="min-w-0 rounded-[22px_22px_22px_7px] border border-[#d6e6de] bg-linear-to-b from-[#eff8f5] to-[#e1efe8] p-5.5">
+          <h4 className="mb-3.5 text-xl font-bold text-v2-navy-deep">
+            Environmental Impact
+          </h4>
           <div className="grid gap-3">
             {ENVIRONMENTAL_IMPACTS.map((impact) => (
               <div
                 key={impact.label}
                 className="rounded-[16px] border border-[#dce8e1] bg-white p-4"
               >
-                <div className="break-words text-3xl md:text-5xl font-semibold leading-none tracking-[-0.045em] text-v2-navy-deep">
+                <div className="wrap-break-word text-2xl font-bold tracking-tight leading-tight text-v2-navy-deep">
                   {impact.value}
                 </div>
-                <p className="mt-1.5 text-caption text-v2-text-soft">{impact.label}</p>
+                <p className="mt-1.5 text-caption text-v2-text-soft">
+                  {impact.label}
+                </p>
               </div>
             ))}
           </div>
@@ -259,20 +296,28 @@ function OutcomesPanel() {
               key={outcome.title}
               className="rounded-[18px_18px_18px_6px] border border-v2-border bg-white p-4"
             >
-              <h4 className="mb-2 text-sm font-bold text-v2-navy-deep">{outcome.title}</h4>
-              <p className="text-caption leading-[1.5] text-v2-text-soft">{outcome.text}</p>
+              <h4 className="mb-2 text-sm font-bold text-v2-navy-deep">
+                {outcome.title}
+              </h4>
+              <p className="text-caption leading-[1.5] text-v2-text-soft">
+                {outcome.text}
+              </p>
             </article>
           ))}
         </div>
         <div className="min-w-0 rounded-[22px_22px_22px_7px] border border-[#d3e8e3] bg-gradient-to-b from-[#f2fbfa] to-[#e6f5f2] p-[22px]">
-          <h4 className="mb-3.5 text-xl font-bold text-v2-navy-deep">Communities &amp; Planet</h4>
+          <h4 className="mb-3.5 text-xl font-bold text-v2-navy-deep">
+            Communities &amp; Planet
+          </h4>
           <div className="grid gap-3">
             {PLANET_FOCUS.map((focus) => (
               <div
                 key={focus.title}
                 className="rounded-[16px] border border-[#dce9e5] bg-white p-4"
               >
-                <b className="mb-1 block text-caption font-bold text-v2-navy-deep">{focus.title}</b>
+                <b className="mb-1 block text-caption font-bold text-v2-navy-deep">
+                  {focus.title}
+                </b>
                 <span className="block text-caption leading-[1.45] text-v2-text-soft">
                   {focus.text}
                 </span>
@@ -322,7 +367,9 @@ export default function ValueCreationSection() {
             {VALUE_CREATION_COPY.intro}
           </p>
           <div className="mt-6 h-0.5 w-[66px] rounded-full bg-v2-accent" />
-          <p className="mt-3.5 text-caption text-v2-label">{VALUE_CREATION_COPY.hint}</p>
+          <p className="mt-3.5 text-caption text-v2-label">
+            {VALUE_CREATION_COPY.hint}
+          </p>
         </div>
         <div className="w-full min-w-0 max-w-full overflow-hidden rounded-[25px_25px_25px_8px] border border-[#dbe8e7] bg-[#eef8f6]">
           <Image
