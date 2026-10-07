@@ -5,6 +5,7 @@ import InnerPageLayout from "@/components/InnerPageLayout";
 import FloatingAIButton from "@/components/FloatingAIButton";
 import SectionCard from "./SectionCard";
 import ImageModal from "./ImageModal";
+import ValueCreationSection from "./ValueCreation/ValueCreationSection";
 import VisualPlaceholder from "./VisualPlaceholder";
 import {
   financialDataImages,
@@ -141,6 +142,7 @@ export default function FinancialReviewPage() {
         </div>
       ) : (
         <div className="grid gap-11">
+          <ValueCreationSection />
           {nonFinancialSections.map((section) => (
             <SectionCard
               key={section.id}
