@@ -122,7 +122,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 63–128 · Reference image Page 65",
     description:
       "This section highlights how Haycarb identifies, assesses, and manages sustainability and climate-related risks and opportunities that may influence its strategy, operations, financial performance, and long-term resilience. Aligned with SLFRS S1 and SLFRS S2, it provides a transparent view of the Group's governance, risk management practices, strategic responses, and performance metrics relating to sustainability and climate-related matters.",
-    visuals: [{ label: "SLFRS S1 & S2 Disclosure Overview", variant: "alt-sage", dimensions: "1155 x 435" }],
+    visuals: [{ label: "SLFRS S1 & S2 Disclosure Overview", variant: "alt-sage", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 63–128 · Reference image Page 65.jpg" }],
     actions: [
       {
         label: "Download section",
