@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { ActiveImage, VisualSize, VisualVariant } from "./data";
 
 const variantBackgrounds: Record<VisualVariant, string> = {
@@ -16,12 +17,21 @@ const sizeClasses: Record<VisualSize, string> = {
   modal: "min-h-[300px] sm:min-h-[520px]",
 };
 
+const imageSizes: Record<VisualSize, string> = {
+  standard: "(min-width: 1280px) 1180px, 100vw",
+  split: "(min-width: 768px) 50vw, 100vw",
+  data: "(min-width: 1280px) 1180px, 100vw",
+  modal: "1180px",
+};
+
 interface VisualPlaceholderProps {
   label: string;
   variant?: VisualVariant;
   size?: VisualSize;
   dimensions?: string;
   modalDimensions?: string;
+  src?: string;
+  fit?: "cover";
   onSelect?: (visual: ActiveImage) => void;
 }
 
@@ -31,12 +41,19 @@ export default function VisualPlaceholder({
   size = "standard",
   dimensions,
   modalDimensions,
+  src,
+  fit,
   onSelect,
 }: VisualPlaceholderProps) {
   const isInteractive = Boolean(onSelect);
 
   const handleSelect = () =>
-    onSelect?.({ label, variant, dimensions: dimensions ?? "", modalDimensions });
+    onSelect?.({ label, variant, dimensions: dimensions ?? "", modalDimensions, src, fit });
+
+  const imageClassName =
+    fit === "cover"
+      ? "absolute inset-0 w-full h-full object-cover"
+      : "absolute inset-0 w-full h-full object-contain bg-white p-4 md:p-6";
 
   return (
     <div
@@ -67,12 +84,24 @@ export default function VisualPlaceholder({
             "radial-gradient(circle at 30% 28%,rgba(255,255,255,.5),transparent 26%), linear-gradient(165deg,transparent 45%,rgba(14,107,102,.18) 100%)",
         }}
       />
-      <span className="relative z-[1] font-sans text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#416c68]">
-        {dimensions ? `${label} - ${dimensions}` : label}
-      </span>
-      <span className="absolute bottom-[18px] left-5 font-sans text-[8px] font-extrabold uppercase tracking-[0.13em] text-[#416c68] opacity-70">
-        Image Placeholder
-      </span>
+      {src ? (
+        <Image
+          src={src}
+          alt={label}
+          fill
+          sizes={imageSizes[size]}
+          className={imageClassName}
+        />
+      ) : (
+        <>
+          <span className="relative z-[1] font-sans text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#416c68]">
+            {dimensions ? `${label} - ${dimensions}` : label}
+          </span>
+          <span className="absolute bottom-[18px] left-5 font-sans text-[8px] font-extrabold uppercase tracking-[0.13em] text-[#416c68] opacity-70">
+            Image Placeholder
+          </span>
+        </>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import VisualPlaceholder from "./VisualPlaceholder";
 import type { ActiveImage } from "./data";
 
@@ -32,6 +33,11 @@ export default function ImageModal({ active, onClose }: ImageModalProps) {
 
   if (!active) return null;
 
+  const imageClassName =
+    active.fit === "cover"
+      ? "absolute inset-0 w-full h-full object-cover"
+      : "absolute inset-0 w-full h-full object-contain bg-white p-4 md:p-6";
+
   return (
     <div
       role="dialog"
@@ -52,12 +58,24 @@ export default function ImageModal({ active, onClose }: ImageModalProps) {
         >
           ×
         </button>
-        <VisualPlaceholder
-          label={active.label}
-          variant={active.variant}
-          size="modal"
-          dimensions={active.modalDimensions ?? active.dimensions}
-        />
+        {active.src ? (
+          <div className="relative min-h-[300px] sm:min-h-[520px] overflow-hidden rounded-[22px_22px_22px_7px]">
+            <Image
+              src={active.src}
+              alt={active.label}
+              fill
+              sizes="1180px"
+              className={imageClassName}
+            />
+          </div>
+        ) : (
+          <VisualPlaceholder
+            label={active.label}
+            variant={active.variant}
+            size="modal"
+            dimensions={active.modalDimensions ?? active.dimensions}
+          />
+        )}
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ export interface ActiveImage {
   variant: VisualVariant;
   dimensions: string;
   modalDimensions?: string;
+  src?: string;
+  fit?: "cover";
 }
 
 export interface ActionLink {
@@ -53,7 +55,7 @@ export const financialSections: ContentSection[] = [
     reference: "Page 165 · Sankey Diagram",
     description:
       "Haycarb delivered a resilient financial performance in 2025/26, navigating a challenging global operating environment to achieve strong revenue growth and sustained profitability.",
-    visuals: [{ label: "Income Statement Sankey Diagram", variant: "default", dimensions: "1155 x 435" }],
+    visuals: [{ label: "Income Statement Sankey Diagram", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/sankey-diagram.jpg" }],
   },
   {
     id: "segmental-review",
@@ -61,7 +63,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 34–37 · 2 Trend Graphs",
     description:
       "Our Segmental Review explores the performance of Haycarb’s key business segments and markets, providing insight into the drivers of growth, challenges encountered, and opportunities pursued during the year. It reflects how our diversified portfolio and global footprint contribute to the Group’s resilience and long-term value creation.",
-    visuals: [{ label: "Segment Performance Trend Graphs", variant: "alt-blue", dimensions: "1155 x 435" }],
+    visuals: [{ label: "Segment Performance Trend Graphs", variant: "alt-blue", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/2-trend-graphs.jpg" }],
   },
   {
     id: "financial-position",
@@ -69,7 +71,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 164–165 · 2 Graphs",
     description:
       "Haycarb maintained a strong financial position as at 31st March 2026, supported by continued growth in its asset base, strengthened shareholder funds, and sustained profitability. Supported by strategic investments in capacity, innovation, and operational capabilities, Haycarb remains well positioned to support future expansion while maintaining a resilient financial foundation.",
-    visuals: [{ label: "Asset Composition + Funding Composition", variant: "alt-sage", dimensions: "1155 x 435" }],
+    visuals: [{ label: "Asset Composition + Funding Composition", variant: "alt-sage", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/Pages 164–165 · 2 Graphs.jpg" }],
   },
   {
     id: "financial-ratios",
@@ -77,7 +79,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 166–167 · Du Pont Analysis",
     description:
       "Our key financial ratios provide a snapshot of the Group’s performance, financial strength, and value creation during the year. They help stakeholders evaluate profitability, operational efficiency, financial stability, and long-term growth potential.",
-    visuals: [{ label: "Du Pont Analysis", variant: "alt-neutral", dimensions: "1155 x 435" }],
+    visuals: [{ label: "Du Pont Analysis", variant: "alt-neutral", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/Pages 166–167 · Du Pont Analysis.jpg" }],
   },
   {
     id: "group-value-addition",
@@ -85,7 +87,7 @@ export const financialSections: ContentSection[] = [
     reference: "Page 38 · Graphical Illustration",
     description:
       "Our Group Value Addition illustrates how the value generated through our operations is shared among employees, governments, communities, capital providers, and the business itself. It reflects our commitment to creating sustainable economic value while supporting the long-term growth and wellbeing of all stakeholders.",
-    visuals: [{ label: "Group Value Addition & Distribution", variant: "default", dimensions: "1155 x 435" }],
+    visuals: [{ label: "Group Value Addition & Distribution", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/Page 38 · Graphical Illustration.jpg" }],
   },
 ];
 
@@ -96,7 +98,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Page 66",
     description:
       "Outlines the structures, roles, and responsibilities in place at Haycarb to oversee and integrate environmental, social, and governance (ESG) priorities into Haycarb’s decision-making - including Board-level oversight, cross-functional ESG teams, and clear accountability mechanisms.",
-    visuals: [{ label: "ESG Governance Diagram", variant: "default", dimensions: "1155 x 435" }],
+    visuals: [{ label: "ESG Governance Diagram", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Page 66.jpg" }],
     actions: [{ label: "Download section" }],
   },
   {
@@ -105,7 +107,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Existing ACTIVATE treatment",
     description:
       "Haycarb’s ACTIVATE ESG framework - a strategic roadmap built on five key pillars to guide sustainability through 2030 and outlines Haycarb’s approach to managing environmental, social, and governance impacts with measurable goals and performance indicators.",
-    visuals: [{ label: "ACTIVATE ESG Roadmap", variant: "alt-blue", dimensions: "1155 x 435" }],
+    visuals: [{ label: "ACTIVATE ESG Roadmap", variant: "alt-blue", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Existing ACTIVATE treatment.jpg", fit: "cover" }],
     actions: [
       {
         label: "Download section",
@@ -170,8 +172,8 @@ export const nonFinancialSections: ContentSection[] = [
     description:
       "Summarizes the industry related and external factors - including industry related dynamics, political shifts, economic volatility, climate risks, social expectations, evolving technologies, and regulatory pressures - that influence Haycarb's business decisions and sustainability priorities.",
     visuals: [
-      { label: "Porter's Five Forces", variant: "default", dimensions: "572 x 415", modalDimensions: "1155 x 435" },
-      { label: "PESTEL", variant: "alt-blue", dimensions: "572 x 415", modalDimensions: "1155 x 435" },
+      { label: "Porter's Five Forces", variant: "default", dimensions: "572 x 415", modalDimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 131–138-01.jpg" },
+      { label: "PESTEL", variant: "alt-blue", dimensions: "572 x 415", modalDimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 131–138-02.jpg" },
     ],
     actions: [
       {
@@ -186,7 +188,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 139–145",
     description:
       "Highlights how Haycarb engages with key stakeholder groups - including employees, customers, suppliers, communities, and regulators - to understand their concerns, expectations, and priorities in shaping strategies and responsible decision-making.",
-    visuals: [{ label: "Stakeholder Engagement Visual", variant: "alt-neutral", dimensions: "1155 x 435" }],
+    visuals: [{ label: "Stakeholder Engagement Visual", variant: "alt-neutral", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 139–145.jpg" }],
     actions: [
       {
         label: "Download section",
@@ -200,7 +202,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 42–43",
     description:
       "At Haycarb, we’re committed to creating shared value across our communities. From empowering rural suppliers and supporting smallholder livelihoods to generating local employment and driving community upliftment, our operations contribute to sustainable and inclusive economic growth in every region we serve.",
-    visuals: [{ label: "Socio Economic Impact Visual", variant: "default", dimensions: "1155 x 435" }],
+    visuals: [{ label: "Socio Economic Impact Visual", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 42–43.jpg" }],
     actions: [
       {
         label: "Download section",

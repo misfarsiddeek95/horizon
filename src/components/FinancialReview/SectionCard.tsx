@@ -41,6 +41,8 @@ export default function SectionCard({
               size="split"
               dimensions={visual.dimensions}
               modalDimensions={visual.modalDimensions}
+              src={visual.src}
+              fit={visual.fit}
               onSelect={onVisualSelect}
             />
           ))}
@@ -53,6 +55,8 @@ export default function SectionCard({
             size="standard"
             dimensions={visuals[0].dimensions}
             modalDimensions={visuals[0].modalDimensions}
+            src={visuals[0].src}
+            fit={visuals[0].fit}
             onSelect={onVisualSelect}
           />
         </div>
