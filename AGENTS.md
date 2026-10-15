@@ -242,3 +242,9 @@ To change the frames, ALWAYS:
 
 ### Loader / reveal behaviour
 There is **no full-screen preloader**. The scrubber shows a **static poster** (`frame_0001.webp`) as the background the moment the page loads, then swaps to the live scrubbing canvas once the **first batch of frames (0–19) is stored**, cross-fading between the two, and streams the remaining frames in the background. It does **not** wait for all 240 before showing content. Do not reintroduce an all-240 loading gate or an overlay preloader; the poster early-reveal is intentional for faster time-to-content.
+
+## 7. Agents and Subagents using rule
+- Always use appropriate **FREE** models.
+- Use appropriate variants for the tasks.
+- Use the correct model for the correct tasks.
+- Don't every try with any paid models unless its intentionally selected by the human.

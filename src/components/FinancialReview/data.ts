@@ -55,7 +55,7 @@ export const financialSections: ContentSection[] = [
     reference: "Page 165 · Sankey Diagram",
     description:
       "Haycarb delivered a resilient financial performance in 2025/26, navigating a challenging global operating environment to achieve strong revenue growth and sustained profitability.",
-    visuals: [{ label: "Income Statement Sankey Diagram", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/sankey-diagram.jpg" }],
+    visuals: [{ label: "Income Statement Sankey Diagram", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/sankey-diagram-v2.jpg" }],
   },
   {
     id: "segmental-review",
@@ -63,7 +63,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 34–37 · 2 Trend Graphs",
     description:
       "Our Segmental Review explores the performance of Haycarb’s key business segments and markets, providing insight into the drivers of growth, challenges encountered, and opportunities pursued during the year. It reflects how our diversified portfolio and global footprint contribute to the Group’s resilience and long-term value creation.",
-    visuals: [{ label: "Segment Performance Trend Graphs", variant: "alt-blue", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/2-trend-graphs.jpg" }],
+    visuals: [{ label: "Segment Performance Trend Graphs", variant: "alt-blue", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/2-trend-graphs-v2.jpg" }],
   },
   {
     id: "financial-position",
@@ -71,7 +71,7 @@ export const financialSections: ContentSection[] = [
     reference: "Pages 164–165 · 2 Graphs",
     description:
       "Haycarb maintained a strong financial position as at 31st March 2026, supported by continued growth in its asset base, strengthened shareholder funds, and sustained profitability. Supported by strategic investments in capacity, innovation, and operational capabilities, Haycarb remains well positioned to support future expansion while maintaining a resilient financial foundation.",
-    visuals: [{ label: "Asset Composition + Funding Composition", variant: "alt-sage", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/Pages 164–165 · 2 Graphs.jpg" }],
+    visuals: [{ label: "Asset Composition + Funding Composition", variant: "alt-sage", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/financial/Pages 164–165 · 2 Graphs-v2.jpg" }],
   },
   {
     id: "financial-ratios",
@@ -188,7 +188,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 139–145",
     description:
       "Highlights how Haycarb engages with key stakeholder groups - including employees, customers, suppliers, communities, and regulators - to understand their concerns, expectations, and priorities in shaping strategies and responsible decision-making.",
-    visuals: [{ label: "Stakeholder Engagement Visual", variant: "alt-neutral", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 139–145.jpg" }],
+    visuals: [{ label: "Stakeholder Engagement Visual", variant: "alt-neutral", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 139–145-v2.jpg" }],
     actions: [
       {
         label: "Download section",
@@ -202,7 +202,7 @@ export const nonFinancialSections: ContentSection[] = [
     reference: "Pages 42–43",
     description:
       "At Haycarb, we’re committed to creating shared value across our communities. From empowering rural suppliers and supporting smallholder livelihoods to generating local employment and driving community upliftment, our operations contribute to sustainable and inclusive economic growth in every region we serve.",
-    visuals: [{ label: "Socio Economic Impact Visual", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 42–43.jpg" }],
+    visuals: [{ label: "Socio Economic Impact Visual", variant: "default", dimensions: "1155 x 435", src: "/images/value-creation/finance-non-finance/non-financial/Pages 42–43-v2.jpg" }],
     actions: [
       {
         label: "Download section",

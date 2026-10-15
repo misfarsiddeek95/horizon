@@ -90,7 +90,7 @@ export default function VisualPlaceholder({
           alt={label}
           fill
           sizes={imageSizes[size]}
-          className={imageClassName}
+          className={`${imageClassName} border-none outline-none`}
         />
       ) : (
         <>

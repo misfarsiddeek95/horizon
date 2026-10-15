@@ -65,7 +65,7 @@ export default function ImageModal({ active, onClose }: ImageModalProps) {
               alt={active.label}
               fill
               sizes="1180px"
-              className={imageClassName}
+              className={`${imageClassName} border-none outline-none`}
             />
           </div>
         ) : (
