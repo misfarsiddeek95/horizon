@@ -4,7 +4,14 @@ export type IconNode =
   | { tag: "path"; d: string }
   | { tag: "circle"; cx: number; cy: number; r: number }
   | { tag: "ellipse"; cx: number; cy: number; rx: number; ry: number }
-  | { tag: "rect"; x: number; y: number; width: number; height: number; rx?: number };
+  | {
+      tag: "rect";
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      rx?: number;
+    };
 
 export interface IconDef {
   viewBox: string;
@@ -171,15 +178,18 @@ export interface ValueCreationImage {
   height: number;
 }
 
-export const VALUE_CREATION_IMAGES: Record<"illustration" | "wheel", ValueCreationImage> = {
+export const VALUE_CREATION_IMAGES: Record<
+  "illustration" | "wheel",
+  ValueCreationImage
+> = {
   illustration: {
-    src: "/images/value-creation/value-creation-illustration.png",
+    src: "/images/value-creation/value-creation-illustration.jpg",
     alt: "Value creation illustration",
     width: 508,
     height: 250,
   },
   wheel: {
-    src: "/images/value-creation/value-creation-wheel.png",
+    src: "/images/value-creation/value-creation-wheel.gif",
     alt: "Value Creation at a Glance",
     width: 790,
     height: 750,
