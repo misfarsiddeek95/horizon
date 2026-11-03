@@ -189,7 +189,7 @@ export const VALUE_CREATION_IMAGES: Record<
     height: 250,
   },
   wheel: {
-    src: "/images/value-creation/value-creation-wheel.gif",
+    src: "/images/value-creation/value-creation-wheel-v3.gif",
     alt: "Value Creation at a Glance",
     width: 790,
     height: 750,
