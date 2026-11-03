@@ -280,7 +280,7 @@ export const nonFinancialSections: ContentSection[] = [
         label: "Stakeholder Engagement Visual",
         variant: "alt-neutral",
         dimensions: "1155 x 435",
-        src: "/images/value-creation/finance-non-finance/non-financial/Pages 139–145-v3.jpg",
+        src: "/images/value-creation/finance-non-finance/non-financial/Pages 139–145-v4.jpg",
       },
     ],
     actions: [
