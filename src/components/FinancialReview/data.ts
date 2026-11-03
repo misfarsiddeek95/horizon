@@ -229,7 +229,7 @@ export const nonFinancialSections: ContentSection[] = [
         label: "Material Issues Visual",
         variant: "alt-sage",
         dimensions: "1155 x 435",
-        src: "/images/value-creation/finance-non-finance/non-financial/Pages 146–149.jpg",
+        src: "/images/value-creation/finance-non-finance/non-financial/Pages 146–149-v2.jpg",
         fit: "cover",
       },
     ],
