@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ValueCreationTabs from "./ValueCreationTabs";
+import type { ActiveImage } from "../data";
 import {
   CAPITALS,
   ENVIRONMENTAL_IMPACTS,
@@ -49,7 +50,7 @@ function PanelHead({ stage }: { stage: StageId }) {
         <h3 className="text-2xl md:text-3xl font-bold leading-[1.3] text-v2-navy-deep">
           {meta.label}
         </h3>
-        <p className="mt-2 max-w-[820px] font-sans text-sm md:text-base leading-[1.6] text-v2-text-muted">
+        <p className="mt-2 max-w-[820px] font-sans md:text-base leading-[1.6] text-v2-text-muted">
           {meta.description}
         </p>
       </div>
@@ -338,10 +339,22 @@ function StagePanel({ stage }: { stage: StageId }) {
   return <OutcomesPanel />;
 }
 
-export default function ValueCreationSection() {
+export default function ValueCreationSection({
+  onVisualSelect,
+}: {
+  onVisualSelect: (visual: ActiveImage) => void;
+}) {
   const [activeStage, setActiveStage] = useState<StageId>("inputs");
   const illustration = VALUE_CREATION_IMAGES.illustration;
   const wheel = VALUE_CREATION_IMAGES.wheel;
+
+  const openIllustration = () =>
+    onVisualSelect({
+      label: illustration.alt,
+      variant: "default",
+      dimensions: `${illustration.width} x ${illustration.height}`,
+      src: illustration.src,
+    });
 
   return (
     <section className="relative overflow-hidden border-t border-v2-border py-12 md:py-16">
@@ -353,7 +366,19 @@ export default function ValueCreationSection() {
           <h2 className="mt-3.5 font-heading text-2xl md:text-4xl font-medium leading-[1.02] tracking-[-0.025em] text-balance text-v2-ink">
             {VALUE_CREATION_COPY.title}
           </h2>
-          <div className="mt-6 w-full max-w-full overflow-hidden rounded-[20px_20px_20px_6px] border border-[#d9e8e7] bg-[#eaf5f3]">
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label={`Open ${illustration.alt} in larger view`}
+            onClick={openIllustration}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openIllustration();
+              }
+            }}
+            className="mt-6 w-full max-w-full cursor-zoom-in overflow-hidden rounded-[20px_20px_20px_6px] border border-[#d9e8e7] bg-[#eaf5f3]"
+          >
             <Image
               src={illustration.src}
               alt={illustration.alt}
@@ -363,7 +388,7 @@ export default function ValueCreationSection() {
               className="block h-auto w-full max-w-full object-contain"
             />
           </div>
-          <p className="mt-6 max-w-[500px] font-sans text-sm md:text-base leading-[1.85] text-brand-muted">
+          <p className="mt-6 max-w-[500px] font-sans md:text-base leading-[1.85] text-brand-muted">
             {VALUE_CREATION_COPY.intro}
           </p>
           <div className="mt-6 h-0.5 w-[66px] rounded-full bg-v2-accent" />
@@ -371,7 +396,7 @@ export default function ValueCreationSection() {
             {VALUE_CREATION_COPY.hint}
           </p>
         </div>
-        <div className="w-full min-w-0 max-w-full overflow-hidden rounded-[25px_25px_25px_8px] border border-[#dbe8e7] bg-[#eef8f6]">
+        <div className="w-full min-w-0 max-w-full overflow-hidden rounded-[25px_25px_25px_8px]">
           <Image
             src={wheel.src}
             alt={wheel.alt}

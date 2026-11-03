@@ -71,13 +71,13 @@ export default function InnerPageLayout({
             <div className="absolute inset-0 bg-slate-900/75 z-10 pointer-events-none" />
 
             <div className="relative z-20 flex flex-col items-center w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px]">
-              <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto text-center px-4 py-8">
+              <div className="flex-1 flex flex-col items-center justify-center max-w-5xl mx-auto text-center px-4 py-8">
                 {kicker && (
                   <p className="font-sans mb-2.5 text-[12px] font-extrabold uppercase tracking-[0.16em] text-v2-hero-kicker">
                     {kicker}
                   </p>
                 )}
-                <h1 className="font-heading !text-white text-[clamp(36px,6vw,82px)] font-medium !drop-shadow-lg">
+                <h1 className="font-heading !text-white text-[clamp(36px,6vw,82px)] font-medium leading-[0.98] !drop-shadow-lg">
                   {title}
                 </h1>
                 {description && (
@@ -206,13 +206,13 @@ export default function InnerPageLayout({
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
             <div className="relative z-10 flex flex-col items-center min-h-[460px] sm:min-h-[500px] lg:min-h-[540px]">
-              <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto text-center px-4 py-8">
+              <div className="flex-1 flex flex-col items-center justify-center max-w-5xl mx-auto text-center px-4 py-8">
                 {kicker && (
                   <p className="font-sans mb-2.5 text-[12px] font-extrabold uppercase tracking-[0.16em] text-v2-hero-kicker">
                     {kicker}
                   </p>
                 )}
-                <h1 className="font-heading text-content-inverse text-[clamp(36px,6vw,82px)] font-bold drop-shadow-lg">
+                <h1 className="font-heading text-content-inverse text-[clamp(36px,6vw,82px)] font-bold leading-[0.98] drop-shadow-lg">
                   {title}
                 </h1>
                 {description && (

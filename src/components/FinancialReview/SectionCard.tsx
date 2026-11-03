@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import Button from "@/components/ui/Button";
 import VisualPlaceholder from "./VisualPlaceholder";
 import type { ActiveImage, ActionLink } from "./data";
 
@@ -20,9 +22,6 @@ export default function SectionCard({
   actions,
   onVisualSelect,
 }: SectionCardProps) {
-  const actionClassName =
-    "inline-flex min-h-[38px] cursor-pointer items-center rounded-full border border-[#cfdcda] bg-white px-3.5 py-2 text-[11px] font-extrabold text-v2-navy-btn transition-colors duration-300 hover:border-[#8fc9c3] hover:bg-[#fbfdfc]";
-
   return (
     <section className="border-t border-v2-border pt-6">
       <h3 className="font-heading max-w-[1050px] text-[clamp(28px,3vw,40px)] font-medium leading-[1.08] text-[#143b53]">
@@ -61,30 +60,35 @@ export default function SectionCard({
           />
         </div>
       )}
-      <p className="mt-4 max-w-[920px] font-sans text-sm leading-[1.72] text-[#5f747e]">
+      <p className="mt-4 max-w-[920px] font-sans leading-[1.72] text-[#5f747e]">
         {description}
       </p>
       {actions && actions.length > 0 && (
-        <div className="mt-3.5 flex flex-wrap gap-2">
+        <div className="mt-3.5 flex flex-wrap gap-2.5">
           {actions.map((action) =>
             action.href ? (
-              <a
+              <Button
                 key={action.label}
+                behavior="link"
                 href={action.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={actionClassName}
+                variant="primary"
+                className="min-h-[48px]"
+                icon={<ArrowUpRightIcon className="h-4 w-4" />}
               >
-                {action.label} ↗
-              </a>
+                {action.label}
+              </Button>
             ) : (
-              <button
+              <Button
                 key={action.label}
                 type="button"
-                className={actionClassName}
+                variant="primary"
+                className="min-h-[48px]"
+                icon={<ArrowUpRightIcon className="h-4 w-4" />}
               >
-                {action.label} ↗
-              </button>
+                {action.label}
+              </Button>
             )
           )}
         </div>

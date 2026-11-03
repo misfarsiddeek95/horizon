@@ -117,7 +117,7 @@ export default function FinancialReviewPage() {
                       key={column.title}
                       className="border-b border-v2-border-light py-5 pr-4 last:border-b-0 lg:border-b-0 lg:border-r lg:pl-4 lg:first:pl-0 lg:last:border-r-0"
                     >
-                      <h5 className="font-sans mb-3 min-h-[30px] text-[10px] font-bold uppercase leading-[1.3] tracking-[0.08em] text-[#143b53]">
+                      <h5 className="font-sans mb-3 min-h-[30px] font-bold uppercase leading-[1.3] tracking-[0.08em] text-[#143b53]">
                         {column.title}
                       </h5>
                       {column.items.map((item) => (
@@ -128,7 +128,7 @@ export default function FinancialReviewPage() {
                           <strong className="font-sans block text-[26px] font-semibold leading-none tracking-[-0.035em] text-v2-accent-dark">
                             {item.value}
                           </strong>
-                          <span className="mt-1.5 block text-[10px] leading-[1.35] text-[#72848b]">
+                          <span className="mt-1.5 block leading-[1.35] text-[#72848b]">
                             {item.label}
                           </span>
                         </div>
@@ -142,7 +142,7 @@ export default function FinancialReviewPage() {
         </div>
       ) : (
         <div className="grid gap-11">
-          <ValueCreationSection />
+          <ValueCreationSection onVisualSelect={setActiveImage} />
           {nonFinancialSections.map((section) => (
             <SectionCard
               key={section.id}
