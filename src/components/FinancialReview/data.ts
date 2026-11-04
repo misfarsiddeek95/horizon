@@ -208,12 +208,14 @@ export const nonFinancialSections: ContentSection[] = [
         variant: "alt-neutral",
         dimensions: "572 x 415",
         modalDimensions: "1155 x 435",
+        src: "/images/value-creation/finance-non-finance/non-financial/Pages 182 and 183-01.jpg",
       },
       {
         label: "Climate Action Plan Visual 02",
         variant: "default",
         dimensions: "572 x 415",
         modalDimensions: "1155 x 435",
+        src: "/images/value-creation/finance-non-finance/non-financial/Pages 182 and 183-02.jpg",
       },
     ],
     actions: [{ label: "Download section" }],
@@ -375,7 +377,7 @@ export const financialDataRatios: RatioColumn[] = [
   {
     title: "Profitability highlights",
     items: [
-      { value: "12.3", label: "Return on equity (%)" },
+      { value: "12.3", label: "Return on Equity (%)" },
       { value: "6.8", label: "Return on Assets (%)" },
       { value: "7.24", label: "Interest cover ratio (No. of times)" },
     ],
@@ -384,7 +386,7 @@ export const financialDataRatios: RatioColumn[] = [
     title: "Efficiency ratios",
     items: [
       { value: "1.05", label: "Asset turnover ratio (No. of times)" },
-      { value: "58", label: "Debtor Days" },
+      { value: "58", label: "Debtor days" },
       { value: "195", label: "Cash conversion cycle (Days)" },
     ],
   },
@@ -398,7 +400,7 @@ export const financialDataRatios: RatioColumn[] = [
   {
     title: "Solvency position",
     items: [
-      { value: "60.1", label: "Debt/equity (%)" },
+      { value: "60.1", label: "Debt/Equity (%)" },
       { value: "37.5", label: "Gearing ratio (%)" },
       { value: "31.4", label: "Debt/Total assets (%)" },
     ],

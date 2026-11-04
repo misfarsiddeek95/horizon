@@ -40,7 +40,6 @@ export default function FinancialReviewPage() {
             <SectionCard
               key={section.id}
               heading={section.heading}
-              reference={section.reference}
               description={section.description}
               visuals={section.visuals}
               actions={section.actions}
@@ -147,7 +146,6 @@ export default function FinancialReviewPage() {
             <SectionCard
               key={section.id}
               heading={section.heading}
-              reference={section.reference}
               description={section.description}
               visuals={section.visuals}
               actions={section.actions}

@@ -7,7 +7,6 @@ import type { ActiveImage, ActionLink } from "./data";
 
 interface SectionCardProps {
   heading: string;
-  reference: string;
   description: string;
   visuals: ActiveImage[];
   actions?: ActionLink[];
@@ -16,7 +15,6 @@ interface SectionCardProps {
 
 export default function SectionCard({
   heading,
-  reference,
   description,
   visuals,
   actions,
@@ -27,9 +25,6 @@ export default function SectionCard({
       <h3 className="font-heading max-w-[1050px] text-[clamp(28px,3vw,40px)] font-medium leading-[1.08] text-[#143b53]">
         {heading}
       </h3>
-      <p className="mt-1.5 font-sans text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#81929a]">
-        {reference}
-      </p>
       {visuals.length > 1 ? (
         <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
           {visuals.map((visual) => (

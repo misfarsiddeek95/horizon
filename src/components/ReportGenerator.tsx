@@ -221,7 +221,7 @@ export default function ReportGenerator() {
                 </>
               ) : (
                 <PdfCanvasViewer
-                  url="/pdf/own-report-default.pdf"
+                  url="/pdf/own-report-default-v2.pdf"
                   className="flex-1 min-h-0"
                 />
               )}

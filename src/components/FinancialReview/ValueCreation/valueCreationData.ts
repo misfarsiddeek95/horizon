@@ -106,7 +106,7 @@ export const STAGES: Record<StageId, Stage> = {
       ],
     },
     description:
-      "The model becomes more visual here through two process tracks — one for Activated Carbon Solutions and one for Environmental Engineering Solutions.",
+      "Our value creation model outlines the distinct operational pathways driving our business forward: Activated Carbon Solutions and Environmental Engineering Solutions. Together, these two strategic process tracks turn technical expertise into scalable, sustainable impact for our customers worldwide",
     badge: "2 Core Pathways",
   },
   outputs: {
@@ -410,7 +410,7 @@ export const TRANSFORMATION_TRACKS: TransformationTrack[] = [
       "Understand customer needs",
       "Research & development",
       "Source raw materials",
-      "Manufacture activated carbon",
+      "Manufacture Activated Carbon",
       "Ensure product quality",
       "Distribute to customers",
     ],
@@ -422,7 +422,7 @@ export const TRANSFORMATION_TRACKS: TransformationTrack[] = [
       "Understand customer needs",
       "Design solutions",
       "Commissioning & quality assurance",
-      "O&M support",
+      "Operational and Maintenance",
     ],
   },
 ];
@@ -437,7 +437,7 @@ export const OUTPUT_METRICS: OutputMetric[] = [
   {
     label: "Output",
     value: "53,200 MT",
-    text: "Activated carbon produced.",
+    text: "Activated Carbon produced.",
   },
   {
     label: "Output",
@@ -447,7 +447,7 @@ export const OUTPUT_METRICS: OutputMetric[] = [
   {
     label: "Output",
     value: "Product Portfolio",
-    text: "An array of activated carbon products for multiple industries.",
+    text: "An array of Activated Carbon products for multiple industries.",
   },
 ];
 

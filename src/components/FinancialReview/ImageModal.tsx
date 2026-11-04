@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import VisualPlaceholder from "./VisualPlaceholder";
 import type { ActiveImage } from "./data";
@@ -268,9 +269,9 @@ export default function ImageModal({ active, onClose }: ImageModalProps) {
     };
   }, [active, onClose]);
 
-  if (!active) return null;
+  if (!active || typeof document === "undefined") return null;
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -306,6 +307,7 @@ export default function ImageModal({ active, onClose }: ImageModalProps) {
           />
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
