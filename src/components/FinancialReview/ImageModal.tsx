@@ -172,8 +172,8 @@ function ZoomableImage({ src, label, fit }: ZoomableImageProps) {
 
   const imageClassName =
     fit === "cover"
-      ? "absolute inset-0 w-full h-full object-cover"
-      : "absolute inset-0 w-full h-full object-contain bg-white p-4 md:p-6";
+      ? "absolute inset-0 w-full h-full object-contain bg-white sm:object-cover"
+      : "absolute inset-0 w-full h-full object-contain bg-white p-2 sm:p-4 md:p-6";
 
   const zoomed = view.scale > MIN_SCALE;
   const surfaceCursor = zoomed
@@ -279,9 +279,9 @@ export default function ImageModal({ active, onClose }: ImageModalProps) {
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#071c28]/85 p-4 backdrop-blur-md sm:p-7"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#071c28]/85 p-3 backdrop-blur-md sm:p-7"
     >
-      <div className="relative max-h-[94vh] w-full max-w-[1180px] overflow-auto rounded-[22px] bg-white p-3 shadow-[0_24px_80px_rgba(0,0,0,.28)] sm:p-[18px]">
+      <div className="relative max-h-[94vh] w-full max-w-[1180px] overflow-auto rounded-[22px] bg-white p-2 shadow-[0_24px_80px_rgba(0,0,0,.28)] sm:p-[18px]">
         <button
           type="button"
           autoFocus

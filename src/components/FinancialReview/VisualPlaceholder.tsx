@@ -52,7 +52,7 @@ export default function VisualPlaceholder({
 
   const imageClassName =
     fit === "cover"
-      ? "absolute inset-0 w-full h-full object-cover"
+      ? "absolute inset-0 w-full h-full object-contain bg-white sm:object-cover"
       : "absolute inset-0 w-full h-full object-contain bg-white p-4 md:p-6";
 
   return (
