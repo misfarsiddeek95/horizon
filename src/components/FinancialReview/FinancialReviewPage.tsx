@@ -6,9 +6,7 @@ import FloatingAIButton from "@/components/FloatingAIButton";
 import SectionCard from "./SectionCard";
 import ImageModal from "./ImageModal";
 import ValueCreationSection from "./ValueCreation/ValueCreationSection";
-import VisualPlaceholder from "./VisualPlaceholder";
 import {
-  financialDataImages,
   financialDataRatios,
   financialSections,
   nonFinancialSections,
@@ -35,7 +33,7 @@ export default function FinancialReviewPage() {
       backgroundImage="/images/innerpage/tailer-made-for-you-banner.jpg"
     >
       {view === "financial" ? (
-        <div className="grid gap-11">
+        <div className="grid gap-8">
           {financialSections.map((section) => (
             <SectionCard
               key={section.id}
@@ -47,7 +45,7 @@ export default function FinancialReviewPage() {
             />
           ))}
 
-          <section className="border-t border-v2-border pt-7">
+          <section className="border-t border-v2-border pt-8">
             <div className="mb-5 flex flex-col justify-between gap-2 md:flex-row md:items-end">
               <h2 className="font-heading text-[clamp(30px,3.2vw,44px)] leading-[1.05] text-[#143b53]">
                 Supplementary Information
@@ -66,16 +64,13 @@ export default function FinancialReviewPage() {
                   className="group relative flex min-h-[112px] items-center justify-between gap-3 overflow-hidden rounded-[17px_17px_17px_6px] border border-[#d9e4e5] bg-white/85 p-[17px] text-[#11384f] shadow-[0_8px_22px_rgba(25,69,73,.025)] transition-colors duration-300 hover:border-[#8fc9c3] hover:bg-white"
                 >
                   <span className="absolute inset-x-0 top-0 h-[3px] bg-v2-accent opacity-25 transition-opacity duration-300 group-hover:opacity-100" />
-                  <span className="flex items-start gap-2.5">
+                  <span className="flex items-center gap-2.5">
                     <span className="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-[12px_12px_12px_4px] bg-gradient-to-br from-[#62b86b] to-[#137b72] text-[8px] font-black text-white">
                       PDF
                     </span>
                     <span className="font-sans">
-                      <span className="block text-[13px] font-bold leading-[1.3]">
+                      <span className="block font-bold leading-[1.3]">
                         {link.title}
-                      </span>
-                      <span className="mt-1 block text-[10px] text-[#7a8d94]">
-                        {link.page}
                       </span>
                     </span>
                   </span>
@@ -87,25 +82,11 @@ export default function FinancialReviewPage() {
             </div>
           </section>
 
-          <section className="border-t border-v2-border pt-7">
+          <section className="border-t border-v2-border pt-8">
             <h2 className="font-heading mb-6 text-[clamp(30px,3.2vw,44px)] leading-[1.05] text-[#143b53]">
               Financial Data
             </h2>
             <div className="grid gap-9">
-              {financialDataImages.map((block) => (
-                <div key={block.title}>
-                  <h4 className="font-heading mb-3 text-2xl leading-[1.15] text-[#143b53]">
-                    {block.title}
-                  </h4>
-                  <VisualPlaceholder
-                    label={block.label}
-                    variant={block.variant}
-                    size="data"
-                    dimensions={block.dimensions}
-                    onSelect={setActiveImage}
-                  />
-                </div>
-              ))}
               <div>
                 <h4 className="font-heading mb-3 text-2xl leading-[1.15] text-[#143b53]">
                   Financial Ratios
@@ -140,7 +121,7 @@ export default function FinancialReviewPage() {
           </section>
         </div>
       ) : (
-        <div className="grid gap-11">
+        <div className="grid gap-8">
           <ValueCreationSection onVisualSelect={setActiveImage} />
           {nonFinancialSections.map((section) => (
             <SectionCard

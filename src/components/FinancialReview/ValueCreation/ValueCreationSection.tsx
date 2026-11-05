@@ -12,51 +12,59 @@ import {
   PLANET_FOCUS,
   STAGES,
   STRATEGY_PILLARS,
-  STRATEGY_RIBBON,
   TRANSFORMATION_TRACKS,
   VALUE_CREATION_COPY,
   VALUE_CREATION_IMAGES,
   renderIconNodes,
   type StageId,
+  type TransformationTrack,
 } from "./valueCreationData";
 
 type DesktopArrow = "right" | "down" | "left";
 
-const AC_FLOW_PLACEMENTS = [
-  "lg:col-start-1 lg:row-start-1",
-  "lg:col-start-2 lg:row-start-1",
-  "lg:col-start-3 lg:row-start-1",
-  "lg:col-start-4 lg:row-start-1",
-  "lg:col-start-3 lg:col-span-2 lg:row-start-2",
-  "lg:col-start-1 lg:col-span-2 lg:row-start-2",
-];
+interface TrackFlow {
+  columns: string;
+  placements: string[];
+  arrows: (DesktopArrow | undefined)[];
+}
 
-const AC_FLOW_ARROWS: (DesktopArrow | undefined)[] = [
-  "right",
-  "right",
-  "right",
-  "down",
-  "left",
-  undefined,
-];
+const TRACK_FLOWS: Record<TransformationTrack["id"], TrackFlow> = {
+  "activated-carbon": {
+    columns: "lg:grid-cols-4",
+    placements: [
+      "lg:col-start-1 lg:row-start-1",
+      "lg:col-start-2 lg:row-start-1",
+      "lg:col-start-3 lg:row-start-1",
+      "lg:col-start-4 lg:row-start-1",
+      "lg:col-start-3 lg:col-span-2 lg:row-start-2",
+      "lg:col-start-1 lg:col-span-2 lg:row-start-2",
+    ],
+    arrows: ["right", "right", "right", "down", "left", undefined],
+  },
+  "environmental-engineering": {
+    columns: "lg:grid-cols-2",
+    placements: [
+      "lg:col-start-1 lg:row-start-1",
+      "lg:col-start-2 lg:row-start-1",
+      "lg:col-start-2 lg:row-start-2",
+      "lg:col-start-1 lg:row-start-2",
+    ],
+    arrows: ["right", "down", "left", undefined],
+  },
+};
 
-const ARROW_CLASS = "absolute text-2xl leading-none text-[#e67f45]";
+const ARROW_CLASS = "text-2xl leading-none text-[#e67f45]";
 
 function PanelHead({ stage }: { stage: StageId }) {
   const meta = STAGES[stage];
   return (
-    <div className="mb-6 flex flex-col items-start gap-5 sm:flex-row sm:items-start sm:justify-between">
-      <div className="min-w-0">
-        <h3 className="text-2xl md:text-3xl font-bold leading-[1.3] text-v2-navy-deep">
-          {meta.label}
-        </h3>
-        <p className="mt-2 max-w-[820px] font-sans md:text-base leading-[1.6] text-v2-text-muted">
-          {meta.description}
-        </p>
-      </div>
-      <span className="shrink-0 rounded-full border border-v2-border bg-v2-wash px-3 py-1.5 text-caption font-bold text-v2-accent-text">
-        {meta.badge}
-      </span>
+    <div className="mb-8">
+      <h3 className="text-2xl md:text-3xl font-bold leading-[1.3] text-v2-navy-deep">
+        {meta.label}
+      </h3>
+      <p className="mt-2 font-sans md:text-base leading-[1.6] text-v2-text-muted">
+        {meta.description}
+      </p>
     </div>
   );
 }
@@ -79,33 +87,33 @@ function FlowStep({ step, isLast, desktopArrow, className }: FlowStepProps) {
       {!isLast && (
         <span
           aria-hidden="true"
-          className={`${ARROW_CLASS} -bottom-8 left-1/2 -translate-x-1/2 animate-vcc-pulse-down lg:hidden`}
+          className="absolute top-full left-1/2 flex h-16 w-8 -translate-x-1/2 items-center justify-center lg:hidden"
         >
-          ↓
+          <span className={`${ARROW_CLASS} animate-vcc-pulse-down`}>↓</span>
         </span>
       )}
       {desktopArrow === "right" && (
         <span
           aria-hidden="true"
-          className={`${ARROW_CLASS} -right-5 top-1/2 hidden -translate-y-1/2 animate-vcc-pulse-right lg:block`}
+          className="absolute left-full top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center lg:flex"
         >
-          →
+          <span className={`${ARROW_CLASS} animate-vcc-pulse-right`}>→</span>
         </span>
       )}
       {desktopArrow === "down" && (
         <span
           aria-hidden="true"
-          className={`${ARROW_CLASS} -bottom-8 left-1/2 hidden -translate-x-1/2 animate-vcc-pulse-down lg:block`}
+          className="absolute top-full left-1/2 hidden h-16 w-8 -translate-x-1/2 items-center justify-center lg:flex"
         >
-          ↓
+          <span className={`${ARROW_CLASS} animate-vcc-pulse-down`}>↓</span>
         </span>
       )}
       {desktopArrow === "left" && (
         <span
           aria-hidden="true"
-          className={`${ARROW_CLASS} -left-5 top-1/2 hidden -translate-y-1/2 animate-vcc-pulse-left lg:block`}
+          className="absolute right-full top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center lg:flex"
         >
-          ←
+          <span className={`${ARROW_CLASS} animate-vcc-pulse-left`}>←</span>
         </span>
       )}
     </div>
@@ -116,7 +124,7 @@ function InputsPanel() {
   return (
     <>
       <PanelHead stage="inputs" />
-      <div className="grid grid-cols-1 gap-3.5 border-t border-v2-border pt-5 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3.5 border-t border-v2-border pt-8 md:grid-cols-2 lg:grid-cols-4">
         {CAPITALS.map((capital) => (
           <article
             key={capital.title}
@@ -163,7 +171,7 @@ function StrategyPanel() {
   return (
     <>
       <PanelHead stage="strategy" />
-      <div className="grid grid-cols-1 gap-3.5 border-t border-v2-border pt-5 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3.5 border-t border-v2-border pt-8 md:grid-cols-2 lg:grid-cols-4">
         {STRATEGY_PILLARS.map((pillar) => (
           <article
             key={pillar.number}
@@ -181,12 +189,6 @@ function StrategyPanel() {
           </article>
         ))}
       </div>
-      <div className="mt-[18px] flex flex-wrap items-center justify-between gap-5 rounded-[18px_18px_18px_6px] bg-gradient-to-r from-v2-accent-dark to-v2-accent p-[18px_22px] text-white">
-        <strong className="text-sm font-bold">{STRATEGY_RIBBON.title}</strong>
-        <span className="text-caption leading-[1.4] opacity-90">
-          {STRATEGY_RIBBON.detail}
-        </span>
-      </div>
     </>
   );
 }
@@ -195,7 +197,7 @@ function TransformationPanel() {
   return (
     <>
       <PanelHead stage="transformation" />
-      <div className="grid grid-cols-1 gap-4 border-t border-v2-border pt-5 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 border-t border-v2-border pt-8 lg:grid-cols-2">
         {TRANSFORMATION_TRACKS.map((track) => (
           <article
             key={track.id}
@@ -204,33 +206,19 @@ function TransformationPanel() {
             <h4 className="mb-3.5 text-lg font-extrabold tracking-[-0.02em] text-v2-navy-deep">
               {track.title}
             </h4>
-            {track.id === "activated-carbon" ? (
-              <div className="grid grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-4">
-                {track.steps.map((step, index) => (
-                  <FlowStep
-                    key={step}
-                    step={step}
-                    isLast={index === track.steps.length - 1}
-                    desktopArrow={AC_FLOW_ARROWS[index]}
-                    className={AC_FLOW_PLACEMENTS[index]}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="flex flex-col gap-8 lg:flex-row lg:gap-4">
-                {track.steps.map((step, index) => (
-                  <FlowStep
-                    key={step}
-                    step={step}
-                    isLast={index === track.steps.length - 1}
-                    desktopArrow={
-                      index === track.steps.length - 1 ? undefined : "right"
-                    }
-                    className="flex-1"
-                  />
-                ))}
-              </div>
-            )}
+            <div
+              className={`grid grid-cols-1 gap-x-8 gap-y-16 ${TRACK_FLOWS[track.id].columns}`}
+            >
+              {track.steps.map((step, index) => (
+                <FlowStep
+                  key={step}
+                  step={step}
+                  isLast={index === track.steps.length - 1}
+                  desktopArrow={TRACK_FLOWS[track.id].arrows[index]}
+                  className={TRACK_FLOWS[track.id].placements[index]}
+                />
+              ))}
+            </div>
           </article>
         ))}
       </div>
@@ -242,7 +230,7 @@ function OutputsPanel() {
   return (
     <>
       <PanelHead stage="outputs" />
-      <div className="grid grid-cols-1 gap-4 border-t border-v2-border pt-5 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid grid-cols-1 gap-4 border-t border-v2-border pt-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2 lg:grid-cols-3">
           {OUTPUT_METRICS.map((metric) => (
             <article
@@ -290,7 +278,7 @@ function OutcomesPanel() {
   return (
     <>
       <PanelHead stage="outcomes" />
-      <div className="grid grid-cols-1 gap-4 border-t border-v2-border pt-5 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="grid grid-cols-1 gap-4 border-t border-v2-border pt-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {OUTCOMES.map((outcome) => (
             <article
@@ -357,7 +345,7 @@ export default function ValueCreationSection({
     });
 
   return (
-    <section className="relative overflow-hidden border-t border-v2-border py-12 md:py-16">
+    <section className="relative overflow-hidden border-t border-v2-border pt-8">
       <div className="flex flex-col-reverse gap-8 lg:grid lg:grid-cols-2 lg:gap-11">
         <div className="flex w-full min-w-0 flex-col lg:pt-8">
           <p className="text-caption font-black uppercase tracking-[0.1em] text-v2-accent-text">
@@ -377,7 +365,7 @@ export default function ValueCreationSection({
                 openIllustration();
               }
             }}
-            className="mt-6 w-full max-w-full cursor-zoom-in overflow-hidden rounded-[20px_20px_20px_6px] border border-[#d9e8e7] bg-[#eaf5f3]"
+            className="group mt-6 w-full max-w-full cursor-zoom-in overflow-hidden rounded-[20px_20px_20px_6px] border border-[#d9e8e7] bg-[#eaf5f3]"
           >
             <Image
               src={illustration.src}
@@ -385,16 +373,13 @@ export default function ValueCreationSection({
               width={illustration.width}
               height={illustration.height}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="block h-auto w-full max-w-full object-contain"
+              className="block h-auto w-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             />
           </div>
           <p className="mt-6 max-w-[500px] font-sans md:text-base leading-[1.85] text-brand-muted">
             {VALUE_CREATION_COPY.intro}
           </p>
           <div className="mt-6 h-0.5 w-[66px] rounded-full bg-v2-accent" />
-          <p className="mt-3.5 text-caption text-v2-label">
-            {VALUE_CREATION_COPY.hint}
-          </p>
         </div>
         <div className="w-full min-w-0 max-w-full overflow-hidden rounded-[25px_25px_25px_8px]">
           <Image
@@ -408,11 +393,14 @@ export default function ValueCreationSection({
         </div>
       </div>
 
-      <div className="mt-12 border-t border-v2-border pt-4">
+      <div className="mt-8 border-t border-v2-border pt-8">
+        <p className="mb-6 font-heading text-2xl md:text-4xl font-medium leading-[1.02] tracking-[-0.025em] text-balance text-v2-ink">
+          {VALUE_CREATION_COPY.hint}
+        </p>
         <ValueCreationTabs active={activeStage} onSelect={setActiveStage} />
       </div>
 
-      <div key={activeStage} className="animate-fade-in pt-8 md:pt-12">
+      <div key={activeStage} className="animate-fade-in pt-2">
         <StagePanel stage={activeStage} />
       </div>
     </section>

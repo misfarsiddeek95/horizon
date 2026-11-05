@@ -21,7 +21,7 @@ export default function SectionCard({
   onVisualSelect,
 }: SectionCardProps) {
   return (
-    <section className="border-t border-v2-border pt-6">
+    <section className="border-t border-v2-border pt-8">
       <h3 className="font-heading max-w-[1050px] text-[clamp(28px,3vw,40px)] font-medium leading-[1.08] text-[#143b53]">
         {heading}
       </h3>

@@ -42,7 +42,6 @@ export interface Stage {
   color: string;
   tabIcon: IconDef;
   description: string;
-  badge: string;
 }
 
 export const STAGES: Record<StageId, Stage> = {
@@ -63,7 +62,6 @@ export const STAGES: Record<StageId, Stage> = {
     },
     description:
       "Haycarb’s model starts with seven capitals. This version uses larger, more visual tiles so the information feels more like an infographic than a report page.",
-    badge: "7 Capitals",
   },
   strategy: {
     id: "strategy",
@@ -81,7 +79,6 @@ export const STAGES: Record<StageId, Stage> = {
     },
     description:
       "A more visual snapshot of the four strategic focus areas, supported by governance, risk management and an ESG mindset.",
-    badge: "4 Strategic Pillars",
   },
   transformation: {
     id: "transformation",
@@ -107,7 +104,6 @@ export const STAGES: Record<StageId, Stage> = {
     },
     description:
       "Our value creation model outlines the distinct operational pathways driving our business forward: Activated Carbon Solutions and Environmental Engineering Solutions. Together, these two strategic process tracks turn technical expertise into scalable, sustainable impact for our customers worldwide",
-    badge: "2 Core Pathways",
   },
   outputs: {
     id: "outputs",
@@ -128,7 +124,6 @@ export const STAGES: Record<StageId, Stage> = {
     },
     description:
       "This section uses bigger metric cards and a side impact panel to make the data feel more visual and easier to scan.",
-    badge: "Key Measures",
   },
   outcomes: {
     id: "outcomes",
@@ -152,7 +147,6 @@ export const STAGES: Record<StageId, Stage> = {
     },
     description:
       "The outcomes view groups value by capital and highlights the three broader themes for communities and the planet.",
-    badge: "Long-term Value",
   },
 };
 
@@ -168,7 +162,7 @@ export const VALUE_CREATION_COPY: ValueCreationCopy = {
   title: "Our Value Creation Model",
   intro:
     "Explore how Haycarb brings together its capitals, strategy and transformation processes to create outputs, impacts and long-term outcomes.",
-  hint: "Use the stages below to move through the value creation journey.",
+  hint: "Select any stage of the value creation journey to explore the corresponding section.",
 };
 
 export interface ValueCreationImage {
@@ -390,12 +384,6 @@ export const STRATEGY_PILLARS: StrategyPillar[] = [
   },
 ];
 
-export const STRATEGY_RIBBON = {
-  title: "Governance + Risk Management",
-  detail:
-    "Operating context • Material topics • Climate-related and sustainability-related risks & opportunities",
-};
-
 export interface TransformationTrack {
   id: "activated-carbon" | "environmental-engineering";
   title: string;
@@ -422,7 +410,7 @@ export const TRANSFORMATION_TRACKS: TransformationTrack[] = [
       "Understand customer needs",
       "Design solutions",
       "Commissioning & quality assurance",
-      "Operational and Maintenance",
+      "Operational & Maintenance support",
     ],
   },
 ];

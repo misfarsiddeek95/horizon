@@ -72,7 +72,7 @@ export default function VisualPlaceholder({
           : undefined
       }
       style={{ background: variantBackgrounds[variant] }}
-      className={`relative flex w-full items-center justify-center overflow-hidden rounded-[22px_22px_22px_7px] p-6 text-center sm:p-8 ${sizeClasses[size]} ${
+      className={`group relative flex w-full items-center justify-center overflow-hidden rounded-[22px_22px_22px_7px] p-6 text-center sm:p-8 ${sizeClasses[size]} ${
         isInteractive ? "cursor-zoom-in" : "cursor-default"
       }`}
     >
@@ -90,7 +90,7 @@ export default function VisualPlaceholder({
           alt={label}
           fill
           sizes={imageSizes[size]}
-          className={`${imageClassName} border-none outline-none`}
+          className={`${imageClassName} border-none outline-none transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
         />
       ) : (
         <>
