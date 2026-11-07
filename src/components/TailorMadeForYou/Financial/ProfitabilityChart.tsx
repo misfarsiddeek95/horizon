@@ -150,7 +150,11 @@ export default function ProfitabilityChart() {
   }, []);
 
   return (
-    <ChartSection title="Profitability (Rs.Bn)" exporting={exportingInstance}>
+    <ChartSection
+      title="Profitability (Rs.Bn)"
+      exporting={exportingInstance}
+      mobileImage="/images/innerpage/tailor-made-for-you/Profitability Bar Chart, 2022–2026 (1).png"
+    >
       <ChartContainer ref={chartRef} />
     </ChartSection>
   );

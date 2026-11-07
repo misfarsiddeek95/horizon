@@ -229,7 +229,11 @@ export default function MaterialsWaterChart() {
   }, []);
 
   return (
-    <ChartSection title="Materials and Water Management" exporting={exportingInstance}>
+    <ChartSection
+      title="Materials and Water Management"
+      exporting={exportingInstance}
+      mobileImage="/images/innerpage/tailor-made-for-you/Materials and Water Management Infographic.png"
+    >
       <ChartContainer ref={chartRef} />
     </ChartSection>
   );

@@ -231,7 +231,11 @@ export default function SocialGovernanceChart() {
   }, []);
 
   return (
-    <ChartSection title="Social and Governance Performance" exporting={exportingInstance}>
+    <ChartSection
+      title="Social and Governance Performance"
+      exporting={exportingInstance}
+      mobileImage="/images/innerpage/tailor-made-for-you/Social and Governance Performance Chart.png"
+    >
       <ChartContainer ref={chartRef} />
     </ChartSection>
   );

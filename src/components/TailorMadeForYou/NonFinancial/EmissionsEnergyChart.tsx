@@ -233,7 +233,11 @@ export default function EmissionsEnergyChart() {
   }, []);
 
   return (
-    <ChartSection title="Emissions and Energy Consumption" exporting={exportingInstance}>
+    <ChartSection
+      title="Emissions and Energy Consumption"
+      exporting={exportingInstance}
+      mobileImage="/images/innerpage/tailor-made-for-you/Emissions and Energy Consumption Chart.png"
+    >
       <ChartContainer ref={chartRef} />
     </ChartSection>
   );

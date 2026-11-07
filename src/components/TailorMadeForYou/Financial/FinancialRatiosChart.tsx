@@ -245,7 +245,11 @@ export default function FinancialRatiosChart() {
   }, []);
 
   return (
-    <ChartSection title="Financial Ratios" exporting={exportingInstance}>
+    <ChartSection
+      title="Financial Ratios"
+      exporting={exportingInstance}
+      mobileImage="/images/innerpage/tailor-made-for-you/Financial Ratios Trend Chart.png"
+    >
       <ChartContainer ref={chartRef} />
     </ChartSection>
   );

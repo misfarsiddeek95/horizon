@@ -183,7 +183,11 @@ export default function FinancialPositionChart() {
   }, []);
 
   return (
-    <ChartSection title="Financial Position (Rs.Bn)" exporting={exportingInstance}>
+    <ChartSection
+      title="Financial Position (Rs.Bn)"
+      exporting={exportingInstance}
+      mobileImage="/images/innerpage/tailor-made-for-you/Financial Position Trends 2022–2026 (1).png"
+    >
       <ChartContainer ref={chartRef} />
     </ChartSection>
   );
