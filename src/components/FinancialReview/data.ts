@@ -281,7 +281,7 @@ export const nonFinancialSections: ContentSection[] = [
         label: "Socio Economic Impact Visual",
         variant: "default",
         dimensions: "1155 x 435",
-        src: "/images/value-creation/finance-non-finance/non-financial/Pages 42–43-v3.jpg",
+        src: "/images/value-creation/finance-non-finance/non-financial/Pages 42–43-v4.jpeg",
       },
     ],
     actions: [
