@@ -3,7 +3,8 @@ import FinancialReviewPage from "@/components/FinancialReview/FinancialReviewPag
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Haycarb Annual Report 2025/26 | Financial & Non-Financial Review",
+    absolute:
+      "Haycarb Annual Report 2025/26 | Financial & Non-Financial Performance",
   },
   description:
     "Explore Haycarb’s financial performance and non-financial value creation through a connected, visual review of the year.",

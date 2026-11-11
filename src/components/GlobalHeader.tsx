@@ -11,7 +11,7 @@ const menuLinks = [
   { name: "Gamified Exploration", path: "/gamified-exploration" },
   { name: "Sustainability Dashboard", path: "/sustainability-dashboard" },
   { name: "Stakeholder Based Summary", path: "/stakeholder-based-summary" },
-  { name: "Financial & Non-Financial Review", path: "/financial-review" },
+  { name: "Financial & Non-Financial Performance", path: "/financial-review" },
 ];
 
 const darkPages = ["/ai-guided-exploration", "/stakeholder-based-summary"];

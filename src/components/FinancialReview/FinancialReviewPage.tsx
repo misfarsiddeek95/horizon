@@ -25,7 +25,7 @@ export default function FinancialReviewPage() {
 
   return (
     <InnerPageLayout
-      title="Financial & Non-Financial Review"
+      title="Financial & Non-Financial Performance"
       description="Explore Haycarb’s financial performance and non-financial value creation through a connected, visual review of the year."
       tabs={tabs}
       activeTab={view}
@@ -84,13 +84,13 @@ export default function FinancialReviewPage() {
 
           <section className="border-t border-v2-border pt-8">
             <h2 className="font-heading mb-6 text-[clamp(30px,3.2vw,44px)] leading-[1.05] text-[#143b53]">
-              Financial Data
+              Financial Ratios
             </h2>
             <div className="grid gap-9">
               <div>
-                <h4 className="font-heading mb-3 text-2xl leading-[1.15] text-[#143b53]">
+                {/* <h4 className="font-heading mb-3 text-2xl leading-[1.15] text-[#143b53]">
                   Financial Ratios
-                </h4>
+                </h4> */}
                 <div className="grid grid-cols-1 border-y border-v2-border sm:grid-cols-2 lg:grid-cols-5">
                   {financialDataRatios.map((column) => (
                     <div

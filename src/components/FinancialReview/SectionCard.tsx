@@ -55,7 +55,7 @@ export default function SectionCard({
           />
         </div>
       )}
-      <p className="mt-4 max-w-[920px] font-sans leading-[1.72] text-[#5f747e]">
+      <p className="mt-4 font-sans leading-[1.72] text-[#5f747e]">
         {description}
       </p>
       {actions && actions.length > 0 && (
