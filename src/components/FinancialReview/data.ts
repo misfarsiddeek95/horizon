@@ -166,13 +166,16 @@ export const nonFinancialSections: ContentSection[] = [
     actions: [
       {
         label: "Download section",
-        href: "/pdf/tbc/Managing Climate and Sustainability Related Risks and Opportunities – SLFRS S1 and S2 Disclosures.pdf",
+        href: "/pdf/financial-non-financial/Managing Climate and Sustainability Related Risks and Opportunities – SLFRS S1 and S2 Disclosures.pdf",
       },
       {
         label: "S1 S2 Assurance Report",
         href: "/pdf/tbc/Assurance Report on SLFRS S1 and S2 Disclosures.pdf",
       },
-      { label: "IR and GRI Assurance Report" },
+      {
+        label: "IR and GRI Assurance Report",
+        href: "/pdf/financial-non-financial/IR and GRI Assurance reports.pdf",
+      },
       {
         label: "SDGs & UN Global Compact",
         href: "/pdf/tbc/Our Contribution to the SDGs and UN Global Compact.pdf",
@@ -200,7 +203,12 @@ export const nonFinancialSections: ContentSection[] = [
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 182 and 183-02.jpg",
       },
     ],
-    actions: [{ label: "Download section" }],
+    actions: [
+      {
+        label: "Download section",
+        href: "/pdf/financial-non-financial/Climate action plan.pdf",
+      },
+    ],
   },
   {
     id: "material-issues",
