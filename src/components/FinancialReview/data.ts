@@ -64,7 +64,7 @@ export const financialSections: ContentSection[] = [
         label: "Segment Performance Trend Graphs",
         variant: "alt-blue",
         dimensions: "1155 x 435",
-        src: "/images/value-creation/finance-non-finance/financial/2-trend-graphs-v2.jpg",
+        src: "/images/value-creation/finance-non-finance/financial/2-trend-graphs-v3.jpg",
       },
     ],
   },
@@ -160,7 +160,7 @@ export const nonFinancialSections: ContentSection[] = [
         label: "SLFRS S1 & S2 Disclosure Overview",
         variant: "alt-sage",
         dimensions: "1155 x 435",
-        src: "/images/value-creation/finance-non-finance/non-financial/Pages 63–128 · Reference image Page 65-v2.jpg",
+        src: "/images/value-creation/finance-non-finance/non-financial/Pages 63–128 · Reference image Page 65-v3.jpg",
       },
     ],
     actions: [
