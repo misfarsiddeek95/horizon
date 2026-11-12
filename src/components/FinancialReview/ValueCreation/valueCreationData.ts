@@ -103,7 +103,7 @@ export const STAGES: Record<StageId, Stage> = {
       ],
     },
     description:
-      "Our value creation model outlines the distinct operational pathways driving our business forward: Activated Carbon Solutions and Environmental Engineering Solutions. Together, these two strategic process tracks turn technical expertise into scalable, sustainable impact for our customers worldwide",
+      "Our value creation model outlines the distinct operational pathways driving our business forward: Activated Carbon Solutions and Environmental Engineering Solutions. Together, these two strategic processes turn technical expertise into scalable, sustainable impact for our customers worldwide.",
   },
   outputs: {
     id: "outputs",
@@ -352,6 +352,25 @@ export const CAPITALS: Capital[] = [
       { label: "PPE", value: "Rs. 16.17 Bn" },
       { label: "Capex", value: "Rs. 4.15 Bn" },
     ],
+  },
+  {
+    title: "ESG mindset",
+    description:
+      "Embed environmental stewardship, social responsibility and strong governance into our strategy and operations, guiding how we create sustainable value for our stakeholders.",
+    background: "#e3eefb",
+    iconBackground: "#4a86c8",
+    icon: {
+      viewBox: "0 0 24 24",
+      nodes: [
+        {
+          tag: "path",
+          d: "M12 2.8l6.8 2.7v5.5c0 4.2-2.7 8-6.8 9.6-4.1-1.6-6.8-5.4-6.8-9.6V5.5L12 2.8z",
+        },
+        { tag: "path", d: "M8.8 14.2c0-2.6 2.1-4.7 4.7-4.7.4 3.2-1.9 6-4.7 4.7z" },
+        { tag: "path", d: "M8.8 14.2c1.4-.7 2.5-1.9 3.1-3.3" },
+      ],
+    },
+    stats: [],
   },
 ];
 
