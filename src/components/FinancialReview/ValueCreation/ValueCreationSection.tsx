@@ -171,7 +171,7 @@ function StrategyPanel() {
   return (
     <>
       <PanelHead stage="strategy" />
-      <div className="grid grid-cols-1 gap-3.5 border-t border-v2-border pt-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3.5 border-t border-v2-border pt-8 md:grid-cols-2 lg:grid-cols-5">
         {STRATEGY_PILLARS.map((pillar) => (
           <article
             key={pillar.number}
