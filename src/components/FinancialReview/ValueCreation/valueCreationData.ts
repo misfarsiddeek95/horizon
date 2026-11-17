@@ -66,7 +66,7 @@ export const STAGES: Record<StageId, Stage> = {
   strategy: {
     id: "strategy",
     label: "Strategy",
-    tabSubtitle: "Growth, supply chain, innovation and people.",
+    tabSubtitle: "Growth, supply chain, innovation, people and ESG.",
     color: "#ee7e45",
     tabIcon: {
       viewBox: "0 0 120 120",
@@ -78,7 +78,7 @@ export const STAGES: Record<StageId, Stage> = {
       ],
     },
     description:
-      "A more visual snapshot of the four strategic focus areas, supported by governance, risk management and an ESG mindset.",
+      "A more visual snapshot of the five strategic focus areas, supported by governance and risk management.",
   },
   transformation: {
     id: "transformation",
@@ -355,25 +355,6 @@ export const CAPITALS: Capital[] = [
       { label: "Capex", value: "Rs. 4.15 Bn" },
     ],
   },
-  {
-    title: "ESG mindset",
-    description:
-      "Embed environmental stewardship, social responsibility and strong governance into our strategy and operations, guiding how we create sustainable value for our stakeholders.",
-    background: "#e3eefb",
-    iconBackground: "#4a86c8",
-    icon: {
-      viewBox: "0 0 24 24",
-      nodes: [
-        {
-          tag: "path",
-          d: "M12 2.8l6.8 2.7v5.5c0 4.2-2.7 8-6.8 9.6-4.1-1.6-6.8-5.4-6.8-9.6V5.5L12 2.8z",
-        },
-        { tag: "path", d: "M8.8 14.2c0-2.6 2.1-4.7 4.7-4.7.4 3.2-1.9 6-4.7 4.7z" },
-        { tag: "path", d: "M8.8 14.2c1.4-.7 2.5-1.9 3.1-3.3" },
-      ],
-    },
-    stats: [],
-  },
 ];
 
 export interface StrategyPillar {
@@ -402,6 +383,11 @@ export const STRATEGY_PILLARS: StrategyPillar[] = [
     number: "04",
     title: "Purpose-driven teams",
     text: "Strengthen people capability and shared commitment around long-term business value.",
+  },
+  {
+    number: "05",
+    title: "ESG mindset",
+    text: "Embed environmental stewardship, social responsibility and strong governance into our strategy and operations, guiding how we create sustainable value for our stakeholders.",
   },
 ];
 
