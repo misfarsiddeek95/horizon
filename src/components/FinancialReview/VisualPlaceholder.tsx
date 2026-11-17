@@ -31,6 +31,7 @@ interface VisualPlaceholderProps {
   dimensions?: string;
   modalDimensions?: string;
   src?: string;
+  mobileSrc?: string;
   fit?: "cover";
   onSelect?: (visual: ActiveImage) => void;
 }
@@ -42,13 +43,22 @@ export default function VisualPlaceholder({
   dimensions,
   modalDimensions,
   src,
+  mobileSrc,
   fit,
   onSelect,
 }: VisualPlaceholderProps) {
   const isInteractive = Boolean(onSelect);
 
-  const handleSelect = () =>
-    onSelect?.({ label, variant, dimensions: dimensions ?? "", modalDimensions, src, fit });
+  const handleSelect = (imageSrc = src, imageFit = fit) =>
+    onSelect?.({
+      label,
+      variant,
+      dimensions: dimensions ?? "",
+      modalDimensions,
+      src: imageSrc,
+      mobileSrc,
+      fit: imageFit,
+    });
 
   const imageClassName =
     fit === "cover"
@@ -56,52 +66,88 @@ export default function VisualPlaceholder({
       : "absolute inset-0 w-full h-full object-contain bg-white p-4 md:p-6";
 
   return (
-    <div
-      role={isInteractive ? "button" : undefined}
-      tabIndex={isInteractive ? 0 : undefined}
-      aria-label={isInteractive ? `Open ${label} in larger view` : undefined}
-      onClick={isInteractive ? handleSelect : undefined}
-      onKeyDown={
-        isInteractive
-          ? (event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                handleSelect();
-              }
+    <>
+      {mobileSrc && (
+        <div className="md:hidden">
+          <div
+            role={isInteractive ? "button" : undefined}
+            tabIndex={isInteractive ? 0 : undefined}
+            aria-label={isInteractive ? `Open ${label} in larger view` : undefined}
+            onClick={isInteractive ? () => handleSelect(mobileSrc) : undefined}
+            onKeyDown={
+              isInteractive
+                ? (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      handleSelect(mobileSrc);
+                    }
+                  }
+                : undefined
             }
-          : undefined
-      }
-      style={{ background: variantBackgrounds[variant] }}
-      className={`group relative flex w-full items-center justify-center overflow-hidden rounded-[22px_22px_22px_7px] p-6 text-center sm:p-8 ${sizeClasses[size]} ${
-        isInteractive ? "cursor-zoom-in" : "cursor-default"
-      }`}
-    >
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 30% 28%,rgba(255,255,255,.5),transparent 26%), linear-gradient(165deg,transparent 45%,rgba(14,107,102,.18) 100%)",
-        }}
-      />
-      {src ? (
-        <Image
-          src={src}
-          alt={label}
-          fill
-          sizes={imageSizes[size]}
-          className={`${imageClassName} border-none outline-none transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
-        />
-      ) : (
-        <>
-          <span className="relative z-[1] font-sans text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#416c68]">
-            {dimensions ? `${label} - ${dimensions}` : label}
-          </span>
-          <span className="absolute bottom-[18px] left-5 font-sans text-[8px] font-extrabold uppercase tracking-[0.13em] text-[#416c68] opacity-70">
-            Image Placeholder
-          </span>
-        </>
+            className={`group relative w-full overflow-hidden rounded-[22px_22px_22px_7px] bg-white ${
+              isInteractive ? "cursor-zoom-in" : "cursor-default"
+            }`}
+          >
+            <Image
+              src={mobileSrc}
+              alt={label}
+              width={5000}
+              height={5000}
+              sizes="(max-width: 767px) 100vw, 1px"
+              className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            />
+          </div>
+        </div>
       )}
-    </div>
+      <div
+        role={isInteractive ? "button" : undefined}
+        tabIndex={isInteractive ? 0 : undefined}
+        aria-label={isInteractive ? `Open ${label} in larger view` : undefined}
+        onClick={isInteractive ? () => handleSelect() : undefined}
+        onKeyDown={
+          isInteractive
+            ? (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  handleSelect();
+                }
+              }
+            : undefined
+        }
+        style={{ background: variantBackgrounds[variant] }}
+        className={`group relative ${
+          mobileSrc ? "hidden md:flex" : "flex"
+        } w-full items-center justify-center overflow-hidden rounded-[22px_22px_22px_7px] p-6 text-center sm:p-8 ${sizeClasses[size]} ${
+          isInteractive ? "cursor-zoom-in" : "cursor-default"
+        }`}
+      >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 30% 28%,rgba(255,255,255,.5),transparent 26%), linear-gradient(165deg,transparent 45%,rgba(14,107,102,.18) 100%)",
+          }}
+        />
+        {src ? (
+          <Image
+            src={src}
+            alt={label}
+            fill
+            sizes={imageSizes[size]}
+            className={`${imageClassName} border-none outline-none transition-transform duration-500 ease-out group-hover:scale-[1.04]`}
+          />
+        ) : (
+          <>
+            <span className="relative z-[1] font-sans text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#416c68]">
+              {dimensions ? `${label} - ${dimensions}` : label}
+            </span>
+            <span className="absolute bottom-[18px] left-5 font-sans text-[8px] font-extrabold uppercase tracking-[0.13em] text-[#416c68] opacity-70">
+              Image Placeholder
+            </span>
+          </>
+        )}
+      </div>
+    </>
   );
 }

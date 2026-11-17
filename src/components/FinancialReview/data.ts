@@ -8,6 +8,7 @@ export interface ActiveImage {
   dimensions: string;
   modalDimensions?: string;
   src?: string;
+  mobileSrc?: string;
   fit?: "cover";
 }
 
@@ -51,6 +52,7 @@ export const financialSections: ContentSection[] = [
         variant: "default",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/financial/sankey-diagram-v2.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/financial/mobile/sankey-diagram-v3.jpg",
       },
     ],
   },
@@ -65,6 +67,7 @@ export const financialSections: ContentSection[] = [
         variant: "alt-blue",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/financial/2-trend-graphs-v3.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/financial/mobile/2-trend-graphs-v4.jpg",
       },
     ],
   },
@@ -79,6 +82,7 @@ export const financialSections: ContentSection[] = [
         variant: "alt-sage",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/financial/Pages 164–165 · 2 Graphs-v2.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/financial/mobile/Pages 164–165 · 2 Graphs-v2.jpg",
       },
     ],
   },
@@ -93,6 +97,7 @@ export const financialSections: ContentSection[] = [
         variant: "alt-neutral",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/financial/Pages 166–167 · Du Pont Analysis.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/financial/mobile/Pages 166–167 · Du Pont Analysis.jpg",
       },
     ],
   },
@@ -107,6 +112,7 @@ export const financialSections: ContentSection[] = [
         variant: "default",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/financial/Page 38 · Graphical Illustration.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/financial/mobile/Page 38 · Graphical Illustration.jpg",
       },
     ],
   },
@@ -124,6 +130,7 @@ export const nonFinancialSections: ContentSection[] = [
         variant: "default",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Page 66.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Page 66.jpg",
       },
     ],
     actions: [{ label: "Download section" }],
@@ -139,6 +146,7 @@ export const nonFinancialSections: ContentSection[] = [
         variant: "alt-blue",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Existing ACTIVATE treatment.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Existing ACTIVATE treatment.jpg",
         fit: "cover",
       },
     ],
@@ -161,6 +169,7 @@ export const nonFinancialSections: ContentSection[] = [
         variant: "alt-sage",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 63–128 · Reference image Page 65-v3.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 63–128 · Reference image Page 65.jpg",
       },
     ],
     actions: [
@@ -194,6 +203,7 @@ export const nonFinancialSections: ContentSection[] = [
         dimensions: "572 x 415",
         modalDimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 182 and 183-01.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 182 and 183-01.jpg",
       },
       {
         label: "Climate Action Plan Visual 02",
@@ -201,6 +211,7 @@ export const nonFinancialSections: ContentSection[] = [
         dimensions: "572 x 415",
         modalDimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 182 and 183-02.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 182 and 183-02.jpg",
       },
     ],
     actions: [
@@ -221,6 +232,7 @@ export const nonFinancialSections: ContentSection[] = [
         variant: "alt-sage",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 146–149-v2.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 146–149.jpg",
         fit: "cover",
       },
     ],
@@ -243,6 +255,7 @@ export const nonFinancialSections: ContentSection[] = [
         dimensions: "572 x 415",
         modalDimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 131–138-01.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 131–138-01.jpg",
       },
       {
         label: "PESTEL",
@@ -250,6 +263,7 @@ export const nonFinancialSections: ContentSection[] = [
         dimensions: "572 x 415",
         modalDimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 131–138-02.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 131–138-02.jpg",
       },
     ],
     actions: [
@@ -270,6 +284,7 @@ export const nonFinancialSections: ContentSection[] = [
         variant: "alt-neutral",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 139–145-v4.jpg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 139–145-v2.jpg",
       },
     ],
     actions: [
