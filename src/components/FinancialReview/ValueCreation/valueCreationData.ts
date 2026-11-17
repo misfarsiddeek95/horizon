@@ -167,6 +167,7 @@ export const VALUE_CREATION_COPY: ValueCreationCopy = {
 
 export interface ValueCreationImage {
   src: string;
+  mobileSrc?: string;
   alt: string;
   width: number;
   height: number;
@@ -178,6 +179,7 @@ export const VALUE_CREATION_IMAGES: Record<
 > = {
   illustration: {
     src: "/images/value-creation/value-creation-illustration.jpg",
+    mobileSrc: "/images/value-creation/mobile/Value Creation Model.jpg",
     alt: "Value creation illustration",
     width: 508,
     height: 250,

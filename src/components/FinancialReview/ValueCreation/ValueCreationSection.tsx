@@ -334,14 +334,19 @@ export default function ValueCreationSection({
 }) {
   const [activeStage, setActiveStage] = useState<StageId>("inputs");
   const illustration = VALUE_CREATION_IMAGES.illustration;
+  const illustrationMobileSrc = illustration.mobileSrc;
   const wheel = VALUE_CREATION_IMAGES.wheel;
 
-  const openIllustration = () =>
+  const openIllustration = (
+    src = illustration.src,
+    width = illustration.width,
+    height = illustration.height,
+  ) =>
     onVisualSelect({
       label: illustration.alt,
       variant: "default",
-      dimensions: `${illustration.width} x ${illustration.height}`,
-      src: illustration.src,
+      dimensions: `${width} x ${height}`,
+      src,
     });
 
   return (
@@ -354,18 +359,44 @@ export default function ValueCreationSection({
           <h2 className="mt-3.5 font-heading text-2xl md:text-4xl font-medium leading-[1.02] tracking-[-0.025em] text-balance text-v2-ink">
             {VALUE_CREATION_COPY.title}
           </h2>
+          {illustrationMobileSrc && (
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label={`Open ${illustration.alt} in larger view`}
+              onClick={() => openIllustration(illustrationMobileSrc, 5000, 5000)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  openIllustration(illustrationMobileSrc, 5000, 5000);
+                }
+              }}
+              className="group mt-6 w-full max-w-full cursor-zoom-in overflow-hidden rounded-[20px_20px_20px_6px] bg-white lg:hidden"
+            >
+              <Image
+                src={illustrationMobileSrc}
+                alt={illustration.alt}
+                width={5000}
+                height={5000}
+                sizes="(max-width: 1023px) 100vw, 1px"
+                className="block h-auto w-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+              />
+            </div>
+          )}
           <div
             role="button"
             tabIndex={0}
             aria-label={`Open ${illustration.alt} in larger view`}
-            onClick={openIllustration}
+            onClick={() => openIllustration()}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
                 openIllustration();
               }
             }}
-            className="group mt-6 w-full max-w-full cursor-zoom-in overflow-hidden rounded-[20px_20px_20px_6px] border border-[#d9e8e7] bg-[#eaf5f3]"
+            className={`group mt-6 w-full max-w-full cursor-zoom-in overflow-hidden rounded-[20px_20px_20px_6px] border border-[#d9e8e7] bg-[#eaf5f3] ${
+              illustrationMobileSrc ? "hidden lg:block" : ""
+            }`}
           >
             <Image
               src={illustration.src}
