@@ -305,6 +305,7 @@ export const nonFinancialSections: ContentSection[] = [
         variant: "default",
         dimensions: "1155 x 435",
         src: "/images/value-creation/finance-non-finance/non-financial/Pages 42–43-v4.jpeg",
+        mobileSrc: "/images/value-creation/finance-non-finance/non-financial/mobile/Pages 42–43 - V2.jpg",
       },
     ],
     actions: [
