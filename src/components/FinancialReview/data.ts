@@ -183,7 +183,7 @@ export const nonFinancialSections: ContentSection[] = [
     actions: [
       {
         label: "Download section",
-        href: "/pdf/financial-non-financial/Managing Climate and Sustainability Related Risks and Opportunities – SLFRS S1 and S2 Disclosures.pdf",
+        href: "/pdf/financial-non-financial/Managing Climate and Sustainability Related Risks and Opportunities – SLFRS S1 and S2 Disclosures-v2.pdf",
       },
       {
         label: "S1 S2 Assurance Report",
